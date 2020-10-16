@@ -1,0 +1,635 @@
+#include<iostream>
+using namespace std;
+class shailesh
+{
+	private: int d;
+	public:	shailesh()
+			{
+				d=0;
+			}
+			shailesh(int a)
+			{
+				d=a;
+			}
+			void display()
+			{
+				cout<<"Shailesh data"<<d;
+			}
+			
+		friend shailesh operator+(shailesh a,shailesh b);
+		friend shailesh operator*(shailesh a,shailesh b);
+		friend shailesh operator/(shailesh a,shailesh b);
+};
+shailesh operator+(shailesh a,shailesh b)
+{
+	shailesh c;
+	c.d=a.d+b.d;
+	return c;
+}
+shailesh operator*(shailesh a,shailesh b)
+{
+	shailesh c;
+	c.d=a.d*b.d;
+	return c;
+}
+shailesh operator/(shailesh a,shailesh b)
+{
+	shailesh c;
+	c.d=a.d/b.d;
+	return c;
+
+}
+
+
+
+
+void main()
+{
+	shailesh x(10),y(5),z,a(5);
+	z=x+y+x*a;
+	z.display();
+
+
+}
+
+
+
+
+/******************************************************************************/
+
+
+#include<iostream>
+using namespace std;
+class shailesh
+{
+	private: int d;
+	public:	shailesh()
+			{
+				d=0;
+			}
+			shailesh(int a)
+			{
+				d=a;
+			}
+			void display()
+			{
+				cout<<"Shailesh data"<<d;
+			}
+			shailesh& operator+(shailesh a)
+			{
+			
+				d=d+a.d;
+				return *this;
+			}
+			shailesh& operator*(shailesh a)
+			{
+				
+				d=d*a.d;
+				return *this;
+			}
+			shailesh& operator/(shailesh a)
+			{
+			
+				d=d/a.d;
+				return *this;
+			}
+			
+};
+void main()
+{
+	shailesh x(10),y(5),z,a;
+	z=x+y;
+	z.display();
+	cout<<"dasasas"<<endl;
+	a=x+y;
+	a.display();
+	//z=x+y+x*a;
+	z.display();
+}
+
+/**************************************************************************************/
+
+use of static as a counter in private data member in class 
+***************************************************************************************
+
+
+#include<iostream>
+using namespace std;
+class Integer
+{
+	private: int n;
+			 static int count;
+	public: Integer()
+			   {
+				   n=0;
+			   }
+			   Integer(int x)
+			   {
+				   n=x;
+			   }
+			   Integer(Integer &t)
+			   {
+				   n=t.n;
+			   }
+			   ~Integer()
+			   {
+				   count++;
+				   cout<<count;
+				   cout<<"In Destructor"<<endl;
+			   }
+			   void showInteger()
+			   {
+				   cout<<n<<endl;
+			   }
+};
+int Integer::count;
+void main()
+{
+	Integer a;
+	Integer b(10);
+	Integer c(b);
+	a.showInteger();
+	b.showInteger();
+	c.showInteger();
+}
+
+
+
+/***********************************************************************************/
+
+
+#include<iostream>
+using namespace std;
+class Integer
+{
+	private: int n;
+			 static int count;
+	public: Integer()
+			   {
+				   n=0;
+			   }
+			   Integer(int x)
+			   {
+				   n=x;
+			   }
+			   Integer(Integer &t)
+			   {
+				   n=t.n;
+			   }
+			   ~Integer()
+			   {
+				   count++;
+				   cout<<count;
+				   cout<<"In Destructor"<<endl;
+			   }
+			   void static showInteger()
+			   {
+				   count++;
+				    cout<<count;
+				   //cout<<n<<endl;
+			   }
+};
+int Integer::count;
+void main()
+{
+	Integer a;
+	Integer b(10);
+	Integer c(b);
+	a.showInteger();
+	b.showInteger();
+	c.showInteger();
+}
+
+
+
+/************************************************************************************/
+
+file handling...
+*************************************************************************************
+
+#include<iostream>
+#include<fstream>
+#include<conio.h>
+#include<string>
+using namespace std;
+class textfilehandle
+{
+  private: char fn[13];
+		   textfilehandle(){} //User cannot create an Object without File Name
+
+  public:  textfilehandle (char *tfh)
+		   {
+			  strcpy(fn,tfh);
+		   }
+		   void addtext(char *n);
+		   void displayfile();
+		   void addfilecontents(char *tn);
+};
+
+
+void textfilehandle::addtext(char *n)
+ {
+	 ofstream o(fn,ios::app);
+	  //o.open(fn,ios::app);
+	 if(o.good())
+	  {
+		  
+			//character by character insertion		  
+		/*  for(int i=0;n[i]!='\0';i++)	//enter character untill null character is found
+			   o.put(n[i]);*/
+
+		  /*string insertion*/
+		  
+		  o<<n;
+
+
+
+		   o.close();
+	  }
+	  else
+		   cout<<"operation failed";
+ }
+
+void textfilehandle::displayfile()
+{
+	ifstream ifs(fn);	//read file
+   if(!ifs.good())
+  {
+	  cout<<"Operation Failed";
+	  getch();
+	  return;
+  }
+
+/*	//character by character reading
+   char ch;
+  ch=ifs.get();
+  while(!ifs.eof())
+  {
+	cout<<ch;
+	ch=ifs.get();
+  }
+*/
+
+  //
+/*entire string reading*/
+  char str[200];
+  
+  ifs>>str;
+  
+  cout<<str;
+  
+  ifs.close();
+}
+void textfilehandle::addfilecontents(char *tn)
+{
+  fstream f;
+  ifstream ifs(tn);//b.txt
+  if(!ifs.good())
+  {
+	  cout<<"Operation Failed";
+	  getch();
+	  return;
+  }
+  f.open(fn,ios::app);//fn=a.txt  file1
+  if(!f.good())
+  {
+	  ifs.close();
+	  cout<<"Operation Failed";
+	  getch();
+	  return;
+  }
+
+  /*coping entire string*/
+	char b[100];
+	ifs>>b;
+	cout<<b;
+    
+/*
+  char ch;
+  ifs.get(ch);
+  while(!ifs.eof())
+  {
+	f.put(ch);
+	ifs.get(ch);
+  }*/
+  ifs.close();
+  f.close();
+}
+void main()
+{
+  textfilehandle tfh("a.txt");
+  char n[100];
+  cout<<"enter contents to add in a.txt\n";
+  cin>>n;
+  //cin.getline(n,100);
+  tfh.addtext(n);
+  cout<<"\n\nContents of a.txt...\n\n";
+  tfh.displayfile();
+  getch();
+  tfh.addfilecontents("b.txt");
+  cout<<"\n\nContents of a.txt after adding contents of b.txt...\n\n";
+  tfh.displayfile();
+  getch();
+}
+/********************************************************************************************/
+file handling using line by line insertion
+
+
+
+#include<iostream>
+#include<fstream>
+#include<conio.h>
+using namespace std;
+void main()
+{
+	fstream fs("a.txt",ios::out);//write mode
+	char ch;
+
+	cout<<"Enter text:";
+	ch=getche();
+
+	/*taking character by character input until control+Z is pressed*/
+
+	while(ch!=26)	//ascii code of control z
+	{
+		if(ch==13)	//ascii code of enter 
+		{
+			fs<<"\n";
+			cout<<"\n";
+		}
+		else
+			   fs<<ch;
+
+		ch=getche();
+	}
+
+	fs.close();
+	cout<<"\b^Z File Saved\n";
+
+
+	fs.open("a.txt",ios::in);
+
+	ch=fs.get();
+	while(!fs.eof())
+	{
+		cout<<ch;
+		ch=fs.get();
+	}
+	fs.close();
+}
+
+/********************************************************************************/
+
+EXCEPTION HANDLING
+**************************************
+
+void main()
+{
+	int a,b,c=0;
+
+	cout<<"NUm1\n";
+	cin>>a;
+	cout<<"NUM2\n";
+	cin>>b;
+
+	try
+	{
+		if(b==0)
+		{
+			throw "divide by zero";
+			c=a/b;
+		}
+	}
+	catch(char *str)
+	{
+		cout<<"ERROR IS:"<<str;
+	}
+		cout<<"Division is :"<<c<<endl;
+}
+
+
+/*********************************************************************************
+#include<iostream>
+using namespace std;
+
+double divide (long dividend, long divisor)
+{
+        if ( divisor  ==  0L )
+                throw  "Division by zero " ;
+        return (double) dividend / divisor ;
+}
+
+void main( )
+{
+       cout << "Enter a dividend and a divisor : " ;
+       long dividend, divisor ;
+       while( ! (cin >> dividend >> divisor) .eof( )) /////to exit enter ctrl+z;
+       {	
+         try 
+         {
+                 cout << dividend << " / " << divisor <<"="<<divide( dividend, divisor);
+         }
+         catch ( const char* message) 
+         {
+				cerr << message << endl ;
+        }
+          cout << "Next dividend and divisor : " ;
+       }
+}
+
+/*********************************************************************************
+
+#include<iostream>
+using namespace std;
+void main()
+{
+	int x;
+	cout<<"Enter any value:";
+	cin>>x;
+	try
+	{
+		if(x>0)
+		{
+			throw x;
+		}
+		else
+			if(x<0)
+			{
+				throw 'x';
+			}
+			else
+			{
+				throw "Zero";
+			}
+	}
+	catch(int a)
+	{
+		cout<<"In catch 1";
+	}
+	catch(char a)
+	{
+		cout<<"In catch 2";
+	}
+	catch(char *a)
+	{
+		cout<<"ZEROOOOOOOOOOO"<<endl;
+	}
+	catch(...)
+	{
+		cout<<"In generic catch";
+	}
+}
+
+/**********************************************************************************/
+
+CONSTRUCTOR CATCH GOLMAAAAAL
+/***********************************************************************************
+#include <iostream>
+
+using namespace std;
+void MyFunc( void );
+
+class CTest
+{
+public:
+    CTest(){
+	cout<<"CTest CONSTR\n";
+	};
+    ~CTest()
+	{
+		cout<<"CTest DESTR\n";
+	};
+    const char *ShowReason() const { return "Exception in CTest class."; }
+
+};
+
+class CDtorDemo
+{
+public:
+    CDtorDemo();
+    ~CDtorDemo();
+};
+
+CDtorDemo::CDtorDemo()
+{
+    cout << "Constructing CDtorDemo." << endl;
+}
+
+CDtorDemo::~CDtorDemo()
+{
+    cout << "Destructing CDtorDemo." << endl;
+}
+
+void MyFunc()
+{
+
+    CDtorDemo D;
+    cout<< "In MyFunc(). Throwing CTest exception." << endl;
+    throw CTest();
+}
+
+int main()
+{
+    cout << "In main." << endl;
+    try
+    {
+        cout << "In try block, calling MyFunc()." << endl;
+        MyFunc();
+    }
+    catch( CTest E )
+    {
+        cout << "In catch handler." << endl;
+        cout << "Caught CTest exception type: ";
+        cout << E.ShowReason() << endl;
+    }
+    catch( char *str) //Generic Catch
+    {
+        cout << "Caught some other exception: " << str << endl;
+    }
+    cout << "Back in main. Execution resumes here." << endl;
+    return 0;
+}
+
+/**************************************************************
+TEMPALTE
+/********************************************
+
+#include<iostream>
+#include<string>
+using namespace std;
+
+char *max(char *x,char *y) 
+{
+	return (strcmp(x,y)>0?x:y);
+}
+
+template <class T>
+T& max(T &x,T &y) 
+{
+	return (x > y) ? x : y ;
+}
+void main( ) 
+{
+	char *a;
+	cout << max(1, 2) << endl ;
+	cout << max(4L, 3L) << endl ;
+	cout << max(5.62, 3.48) << endl ;
+	a=max("naa","ndas");
+		cout <<a<<endl;
+	cout << max(5, 6) << endl ;
+}
+****************************************************************
+#include<iostream>
+using namespace std;
+template <class T1, class T2>
+class test 
+{
+		T1 a;
+		T2 b;
+public:
+		test( )
+		{ 
+			a=b=0;		
+		}	
+		test( T1 x, T2 y)
+		{ 
+			a=x;
+			b=y;
+		}	
+		test(const test<T1,T2> &t)
+		{
+			a=t.a;
+			b=t.b;
+		}
+		~test( )	{ }	
+		friend ostream& operator << (ostream& stream, const test<T1,T2>&  t )  ///can't be defined outside the class.bcoz this give template Error,as template is only for class .
+		{
+			stream<< "Value 1:"<<t.a<<endl ;
+			stream<< "Value 2:"<<t.b<<endl ;
+			return stream;
+		}
+
+		void setdata(T1 x,T2 y);
+		void display();
+};
+template <class T1, class T2>
+void test<T1,T2>::setdata(T1 x,T2 y)////for each function def define template
+{
+	a=x;
+	b=y;
+}
+template <class T1, class T2>  ///for each function def define template
+void test<T1,T2>::display()
+{
+	cout<<a<<"   "<<b;
+}
+	
+void main( )
+{
+	test <int,float> t1(10,32.56f) ;
+	cout << t1  << endl ;
+	t1.display();
+}
+
+
+

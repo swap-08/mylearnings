@@ -1,0 +1,114 @@
+ 
+TRANSACTION CONTROL LANGUAGE STATEMENTS
+***************************************
+query1
+
+
+INSERT
+INTO	Customer_Master VALUES
+(
+&CUSTOMERID,'&CUSTOMERNAME','&ADDRESS1','&ADDRESS2','&GENDER',&AGE,&PHONENO
+);
+
+
+SQL> INSERT INTO Customer_Master VALUES (&CUSTOMERID,'&CUSTOMERNAME','&ADDRESS1','&ADDRESS2','&GENDE
+R',&AGE,&PHONENO);
+
+Enter value for customerid: 6000
+Enter value for customername: JOHN
+Enter value for address1: #115 CHICAGO
+Enter value for address2: #115 CHICAGO
+Enter value for gender: M
+Enter value for age: 25
+Enter value for phoneno: 7878776
+old   1: INSERT INTO Customer_Master VALUES (&CUSTOMERID,'&CUSTOMERNAME','&ADDRESS1','&ADDRESS2','&G
+new   1: INSERT INTO Customer_Master VALUES (6000,'JOHN','#115 CHICAGO','#115 CHICAGO','M',25,787877
+1 row created.
+
+
+SQL> INSERT INTO Customer_Master VALUES (&CUSTOMERID,'&CUSTOMERNAME','&ADDRESS1','&ADDRESS2','&GENDE
+R',&AGE,&PHONENO);
+Enter value for customerid: 6001
+Enter value for customername: JACK
+Enter value for address1: #116 FRANCE
+Enter value for address2: #116 FRANCE
+Enter value for gender: M
+Enter value for age: 25
+Enter value for phoneno: 434524
+old   1: INSERT INTO Customer_Master VALUES (&CUSTOMERID,'&CUSTOMERNAME','&ADDRESS1','&ADDRESS2','&G
+new   1: INSERT INTO Customer_Master VALUES (6001,'JACK','#116 FRANCE','#116 FRANCE','M',25,434524)
+1 row created.
+
+
+
+ 
+SQL> INSERT INTO Customer_Master VALUES (&CUSTOMERID,'&CUSTOMERNAME','&ADDRESS1','&ADDRESS2','&GENDE
+R',&AGE,&PHONENO);
+Enter value for customerid: 6002
+Enter value for customername: JAMES
+Enter value for address1: #114 NEW YORK
+Enter value for address2: #114 NEW YORK
+Enter value for gender: M
+Enter value for age: 45
+Enter value for phoneno: 431525
+old   1: INSERT INTO Customer_Master VALUES (&CUSTOMERID,'&CUSTOMERNAME','&ADDRESS1','&ADDRESS2','&G
+new   1: INSERT INTO Customer_Master VALUES (6002,'JAMES','#114 NEW YORK','#114 NEW YORK','M',45,431
+1 row created.
+
+
+
+--------------------------------------------------------------------------------------------------------------------------
+
+
+query2
+
+SAVEPOINT SP1;
+
+SQL> SAVEPOINT SP1;
+Savepoint created.
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+query3
+
+
+SQL> INSERT INTO Customer_Master VALUES (&CUSTOMERID,'&CUSTOMERNAME','&ADDRESS1','&ADDRESS2','&GENDER',&AGE,&PHONENO);
+Enter value for customerid: 6003
+Enter value for customername: JOHN
+Enter value for address1: #114 CHICAGO
+Enter value for address2: #114 CHICAGO
+Enter value for gender: M
+Enter value for age: 45
+Enter value for phoneno: 439525
+old   1: INSERT INTO Customer_Master VALUES (&CUSTOMERID,'&CUSTOMERNAME','&ADDRESS1','&ADDRESS2','&G
+new   1: INSERT INTO Customer_Master VALUES (6003,'JOHN','#114 CHICAGO','#114 CHICAGO','M',45,439525
+1 row created.
+
+
+-------------------------------------------------------------------------------------------------------------------------
+
+query4
+
+ROLLBACK TO SP1;
+commit;
+select * FROM CUSTOMER_MASTER;
+
+SQL> ROLLBACK TO SP1;
+Rollback complete.
+SQL> commit;
+Commit complete.
+SQL> select * FROM CUSTOMER_MASTER;
+
+CUSTOMERID CUSTOMERNAME                   ADDRESS1                       ADDRESS2                       G        AGE    PHONENO
+---------- ------------------------------ ------------------------------ -------------------------------------- ------- ---------
+      1000 ALLEN                          #115 Chicago                   #115 Chicago                   M         25    7878776
+      1001 George                         #116 France                    #116 France                    M         25     534542
+      1002 Becker                         #114 New York                  #114 New York                  M         45     431535
+      1003 SAM                            #116 Chicago                   #116 Chicago                   M         35   78767584
+      1004 BOB                            #210 Chicago                   #210 Chicago                   M         55   78732323
+      6000 JOHN                           #115 CHICAGO                   #115 CHICAGO                   M         25    7878776
+      6001 JACK                           #116 FRANCE                    #116 FRANCE                    M         25     434524
+      6002 JAMES                          #114 NEW YORK                  #114 NEW YORK                  M         45     431525
+8 rows selected.

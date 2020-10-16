@@ -1,0 +1,54 @@
+
+ insert into dept values(50,'HRMS','MUM');
+ insert into dept(deptno,loc,dname) values(60,'CHN','HR');
+ insert into dept(deptno,loc) values(70,'PUNJ');\\\ dname will be null\\
+insert into dept(deptno,loc,dname) select dmod(sal,100),job,ename from emp where empno>7900;
+
+update dept set deptno=90,dname='FIN' where deptno=60;
+
+create table dept2(deptno2 number(2),dname2 varchar2(200),loc2 varchar2(200),cdate date);
+drop table dept2;
+delete from dept where deptno=0;
+
+create table dept3(deptno3 number(2),dname3 varchar2(20),loc3 varchar2(20)) insert in to dept3 values(99,'FIN','pqr');
+create table dept3(deptno3 number(2)primary key check(deptno>0),dname3 varchar2(20),loc3 varchar2(20));
+create table dept4(deptno4 number(2),dname4 varchar2(20),loc4 varchar2(20) constraints check_deptno check (deptno4)>0);
+
+alter table dept2 add temp varchar2(20);
+alter table dept2 modify deptno2 numbr(3);
+insert into dept2 values(50,'HRMS','MUM');
+alter table dept2 drop column deptno2;
+alter table dept2 add constraints c_name check(deptno>0);
+alter table dept2 drop constraints c_name check(deptno2>0);
+
+select rowid ename,empno from emp;
+create index emp_ind on emp(ename);
+ 
+select * from emp;
+
+
+ create synonym employee for emp;
+
+
+creat sequence seqname increment by 1 start with 1 maxvalue 1000 no cycle;
+
+
+  create view emp_dept as select empno,ename,loc from emp e,dept d where e.deptno=d.deptno;
+
+
+select * from emp_dept;
+
+select ename,empno,mgr from emp connect by empno=prior mgr start with empno=7566
+
+
+select ename,job,deptno from emp where job IN(select job from emp where deptno=20) order by deptno;
+ select ename,empno,sal from emp where sal IN(select min(sal) from emp group by mgr);
+ alter table customer modify customername varchar2(30) not null;
+alter table customer add(sex varchar2(1),age number(3),phoneno number(10),income number(10,2));
+insert into customer values(1003,'Nanapatekar','#115 India','#115 India','M','45','431525',20000.50);
+alter table customer drop constraint custld_prim;
+ insert into customer values(1002,'Becker','#114 New york','#114 New york','M','45','431525',15000.50);
+alter table customer drop constraint customerid;
+alter table customer add(annualincome number(10,4));
+comment on column customer.phoneno is 'personal contact no';
+select comments from USER_COL_COMMENTS where table_name='CUSTOMER' and column_name='PHONENO';

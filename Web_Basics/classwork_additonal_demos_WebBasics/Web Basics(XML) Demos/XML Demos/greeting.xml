@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<!DOCTYPE xdoc SYSTEM "greeting.dtd">
+<xdoc>
+	<farewell>Goodbye HTML</farewell>
+	<greeting>Hello XML</greeting>
+</xdoc>

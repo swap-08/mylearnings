@@ -1,0 +1,70 @@
+query 3.4
+
+CREATE OR REPLACE PROCEDURE MANAGER(e_code IN NUMBER)
+As
+
+
+CURSOR C IS
+	
+SELECT 
+	S.STAFF_CODE,
+	S.STAFF_NAME AS STAFF_NAME,
+	S.DEPT_CODE,
+	M.STAFF_NAME AS MANAGER
+FROM	STAFF_MASTERS S,
+	STAFF_MASTERS M
+WHERE	S.MGR_CODE=M.STAFF_CODE AND
+	S.DEPT_CODE=e_code;
+
+begin
+
+	for v in c
+loop
+	dbms_output.put_line(v.manager||'  '||v.staff_name);
+end loop;
+end;
+/
+
+
+
+
+
+
+execute manager(10);
+
+
+SQL> CREATE OR REPLACE PROCEDURE MANAGER(e_code IN NUMBER)
+  2  As
+  3  
+  4  
+  5  CURSOR C IS
+  6   
+  7  SELECT 
+  8   S.STAFF_CODE,
+  9   S.STAFF_NAME AS STAFF_NAME,
+ 10   S.DEPT_CODE,
+ 11   M.STAFF_NAME AS MANAGER
+ 12  FROM STAFF_MASTERS S,
+ 13   STAFF_MASTERS M
+ 14  WHERE S.MGR_CODE=M.STAFF_CODE AND
+ 15   S.DEPT_CODE=e_code;
+ 16  
+ 17  begin
+ 18  
+ 19   for v in c
+ 20  loop
+ 21   dbms_output.put_line(v.manager||'  '||v.staff_name);
+ 22  end loop;
+ 23  end;
+ 24  /
+
+Procedure created.
+
+SQL> 
+SQL> execute manager(10);
+Allen  Mohan
+Smith  John
+
+PL/SQL procedure successfully completed.
+
+-------------------------------------------------------------------

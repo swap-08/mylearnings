@@ -1,0 +1,128 @@
+<<<xsd linking>>>>>
+
+
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="try.xsd">
+
+
+
+
+<<<<xsl linking>>>>>>
+
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet type="text/xsl" href="lab4.xsl"?>
+
+
+<<<output see in xml file>>>>>
+
+
+
+
+
+<<<xsd>>
+
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<!-- simple -->
+
+<xs:element name="a" type="atype"/>	////restriction define new type
+<xs:element name="b" type="btype"/>	////restriction define new type
+
+<xs:element name="try">
+<xs:complexType>
+<xs:sequence>
+<xs:element ref="a"/>
+<xs:element ref="b"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+
+
+
+<xs:simpleType name="atype">
+<xs:restriction base="xs:string">
+<xs:pattern value="[a-z][0-9]"/>
+</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="btype">
+<xs:restriction base="xs:integer">
+<xs:totalDigits value="2"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:schema>
+
+
+<<<xml>>>
+
+
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<try xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="try.xsd">
+
+<a>s</a>
+<b>12</b>
+</try>
+
+
+
+<<<<for each>>>>>
+
+
+
+  <?xml version="1.0" ?> 
+ <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+ <xsl:template match="/">
+ <table border="1">
+ <xsl:for-each select="movies/movie">
+ <tr>
+ <xsl:for-each select="actor">
+ 	<td>
+ 	<h1>
+  	<xsl:value-of select="." /> 
+  	</h1>
+  	</td>
+  </xsl:for-each>
+  </tr>
+ <tr>
+ 	<td>
+	<h1>
+  	<xsl:value-of select="title" /> 
+  	</h1>
+  	</td>
+  </tr>
+  </xsl:for-each>
+  </table>
+  </xsl:template>
+  </xsl:stylesheet>
+
+
+
+<<<<<xml>>>>>
+
+
+<?xml version="1.0"?>
+<?xml:stylesheet type="text/xsl" href="dummy.xsl"?>
+<movies>
+<movie type="comedy" rating="A3" review="6" year="1987">
+	<title>Raising Arizona</title>
+	<writer>Ethan Coen</writer>
+	<writer>Joel Coen</writer>
+	<producer>Ethan Coen</producer>
+	<director>Joel Coen</director>
+        <actor>Nicolas Cage</actor>
+	<actor>Holly Hunter</actor>
+	<actor>John Goodman</actor>
+	<comments>A classic love story</comments>
+</movie>
+<movie type="comedy" rating="B2" review="6" year="1998">
+	<title>Midnight Run</title>
+	<writer>Georger Gallo</writer>
+	<producer>Martin Brest</producer>
+	<director>Martin Breast</director>
+	<actor>Robert De Niro</actor>
+	<actor>Charlse Grodin</actor>
+	<comments>A road comedy</comments>
+</movie>
+</movies>

@@ -1,0 +1,635 @@
+??????bind and host variable
+
+begin
+dbms_output.put_line('Hello World');
+end;
+/
+
+set serveroutput on;
+
+begin
+dbms_output.put_line('Hello World
+How are you ?');
+end;
+/
+
+begin
+dbms_output.put_line('Hello World');
+dbms_output.put_line('How are you?');
+end;
+/
+
+declare
+ name varchar2(10);
+begin
+name:='amit';
+dbms_output.put_line('Hello how r u' || name);
+end;
+/
+
+Tell Them this is the unnamed block
+
+declare
+ name varchar2(10) := 'amit';
+begin
+dbms_output.put_line('Hello how r u' || name);
+end;
+/
+
+declare
+ name varchar2(10) NOT NULL := 'amit';
+begin
+dbms_output.put_line('Hello how r u' || name);
+end;
+/
+
+declare
+ name CONSTANT varchar2(10) := 'amit';
+begin
+dbms_output.put_line('Hello how r u' || name);
+name = 'prakash';
+dbms_output.put_line('Hello how r u' || name);
+end;
+/
+
+declare
+ name varchar2(10) default 'amit';
+begin
+dbms_output.put_line('Hello how r u' || name);
+end;
+/
+
+
+NUMBER, DATE, BOOLEAN,CHAR, VARCHAR2
+PLS_INTEGER  := faster than NUMBER and Binary integers 
+
+begin
+insert into dept values(70,'ADMIN','SAN FRANSISCO');
+end;
+/
+
+declare
+dno number;
+dname varchar2(200);
+dloc varchar2(200);
+begin
+dno:=1;
+dname:='SALES';
+dloc:='MUMBAI';
+insert into dept2 values (dno,dname,dloc,3000);
+commit;
+end;
+/
+
+declare
+dno dept2.deptno%TYPE;
+dname dept2.dname%TYPE;
+dloc dept2.loc%TYPE;
+begin
+dno:=11;
+dname:='SALES';
+dloc:='MUMBAI';
+insert into dept2 values (dno,dname,dloc,5000);
+dbms_output.put_line('Hello World');
+commit;
+end;
+/
+
+
+
+declare
+--dno dept2.deptno%TYPE;
+--dname dept2.dname%TYPE;
+--dloc dept2.loc%TYPE;
+drow dept2%ROWTYPE;
+begin
+drow.deptno:=11;
+drow.dname:='SALES';
+drow.loc:='MUMBAI';
+dbms_output.put_line('Start');
+--insert into dept2 values (dno,dname,dloc,5000);
+insert into dept values drow;
+dbms_output.put_line('End');
+commit;
+end;
+/
+
+Discuss single line comment and multiple line comments
+
+
+declare
+--dno dept2.deptno%TYPE;
+--dname dept2.dname%TYPE;
+--dloc dept2.loc%TYPE;
+SUBTYPE dept2row IS dept2%ROWTYPE; 
+drow dept2row;
+begin
+drow.deptno:=11;
+drow.dname:='SALES';
+drow.loc:='MUMBAI';
+dbms_output.put_line('Start');
+--insert into dept2 values (dno,dname,dloc,5000);
+insert into dept values drow;
+dbms_output.put_line('End');
+commit;
+end;
+/
+
+
+*******************************************************************
+
+declare
+TYPE erecord IS RECORD
+(
+dno dept2.deptno%TYPE,
+dname dept2.dname%TYPE,
+dloc dept2.loc%TYPE,
+dsal dept2.total_sal%TYPE
+);
+erow erecord;
+begin
+erow.dno:=18;
+erow.dname:='SALES';
+erow.dloc:='MUMBAI';
+erow.dsal:=5000;
+dbms_output.put_line('Start');
+insert into dept2 values erow;
+dbms_output.put_line('End');
+commit;
+end;
+/
+*********************************************************
+ARRAY / PL/SQL Tables
+
+declare 
+TYPE etable IS TABLE OF dept2%ROWTYPE INDEX BY 
+BINARY_INTEGER;
+erow etable;
+
+begin
+erow(10).deptno:=19;
+erow(10).dname:='SALES';
+erow(10).loc:='MUMBAI';
+erow(10).total_sal:=5000;
+dbms_output.put_line('Start');
+insert into dept2 values erow(10);
+dbms_output.put_line('End');
+commit;
+end;
+/
+
+
+begin
+delete from dept where deptno=12;                                           <-------------DELETE
+commit;
+end;
+/
+
+
+begin
+update dept set dname='TRANSPORT' where loc='CHENNAI';          <-------------UPDATE
+commit;
+end;
+/
+
+
+declare
+dno number;
+dnm varchar2(20);
+dloc varchar2(20);
+
+begin
+select deptno,dname,loc into dno,dnm,dloc from dept           <-----------SELECT
+where deptno=40;
+dbms_output.put_line(dno);
+commit;
+end;
+/
+
+*********************************************************
+
+if...else
+
+syntax
+if(condition) then
+  begin
+
+  end;
+else
+  begin
+
+  end;
+end if;
+
+declare
+dno number := 55;
+dnm varchar2(20);
+dloc varchar2(20);
+begin
+if (dno=55) then
+	begin
+	select deptno,dname,loc into dno,dnm,dloc from dept           <-----------IF ELSE LOOP
+	where deptno=40;
+	dbms_output.put_line(dno);
+	end;
+end if;
+commit;
+end;
+/
+
+declare
+dno number :=70;
+dnm varchar2(20);
+dloc varchar2(20);
+begin
+
+if (dno=55) then
+	begin
+	select deptno,dname,loc into dno,dnm,dloc from dept           <-----------IF ELSE LOOP
+	where deptno=20;
+	dbms_output.put_line(dno);
+	end;
+else
+	begin
+	select deptno,dname,loc into dno,dnm,dloc from dept           <-----------IF ELSE LOOP
+	where deptno=40;
+	dbms_output.put_line(dno);
+	end;
+
+end if;
+commit;
+end;
+/
+
+
+declare
+dno number := 70; 
+dnm varchar2(20);
+dloc varchar2(20);
+begin
+
+if (dno=55) then
+	select deptno,dname,loc into dno,dnm,dloc from dept           <-----------IF ELSE LOOP
+	where deptno=20;
+elsif (dno=70) then
+	select deptno,dname,loc into dno,dnm,dloc from dept           <-----------IF ELSE LOOP
+	where deptno=40;
+else 
+	select deptno,dname,loc into dno,dnm,dloc from dept           <-----------IF ELSE LOOP
+	where deptno=60;
+end if;
+commit;
+end;
+/
+
+
+**********************************************************************
+loop 
+
+exit when(condition);
+
+end loop;
+
+declare
+ a NUMBER;
+begin
+a:=1;
+loop
+dbms_output.put_line(a);
+a:=a+1;
+end loop;
+end;
+/
+
+
+declare
+ a NUMBER;
+begin
+a:=1;
+loop
+dbms_output.put_line(a);
+a:=a+1;
+exit when(a>10);
+end loop;
+end;
+/
+
+**********************************************
+While  ........ do
+
+declare
+ a NUMBER;
+begin
+a:=1;
+while(a<11)
+loop
+dbms_output.put_line(a);
+a:=a+1;
+end loop;
+end;
+/
+***************************************************
+For
+
+declare
+ a NUMBER;
+begin
+a:=1;
+for a IN 1..10
+loop
+dbms_output.put_line(a);
+end loop;
+end;
+/
+
+declare
+ a NUMBER;
+begin
+a:=1;
+for a IN REVERSE 1..10
+loop
+dbms_output.put_line(a);
+end loop;
+end;
+/
+
+
+declare
+ a NUMBER;
+ b NUMBER;
+begin
+a:=1;
+b:=1;
+<<Outer_LOOP>>
+while(b<11)
+loop
+	<<INNER_LOOP>>
+	while(a<11)
+	loop	
+	dbms_output.put_line(a);
+	a:=a+1;
+	exit when a = 5
+	end loop;
+b :=b+1;
+end loop;
+end;
+/
+
+
+declare
+ a NUMBER;
+ b NUMBER;
+begin
+a:=1;
+b:=1;
+
+<<Outer_LOOP>>
+while(b<11)
+loop
+	<<INNER_LOOP>>
+	while(a<11)
+	loop	
+	dbms_output.put_line(a);
+	a:=a+1;
+	exit OUTER_LOOP when a = 5
+	end loop;
+b :=b+1;
+end loop;
+end;
+/
+
+Discuss about the scope of variable of a block 
+
+
+
+
+******************************************************
+cursor
+
+declare
+cursor cdept IS
+select deptno,dname,loc,total_sal from dept2;
+deptno NUMBER;
+dname VARCHAR2(200);
+loc VARCHAR2(200);
+total_sal NUMBER;
+begin
+open cdept;
+loop
+fetch cdept into deptno,dname,loc,total_sal;
+exit when cdept% NOTFOUND;
+dbms_output.put_line(deptno || dname || loc || total_sal);
+end loop;
+close cdept;
+commit;
+end;
+/
+
+************************************************************
+
+declare
+cursor cdept IS
+select deptno,dname,loc,total_sal from dept2;
+dno NUMBER;
+dname VARCHAR2(200);
+dloc VARCHAR2(200);
+dsal NUMBER;
+begin
+open cdept;
+while(cdept%FOUND)
+loop
+fetch cdept into dno,dname,dloc,dsal;
+dbms_output.put_line(dno || dname || dloc || dsal);
+end loop;
+
+close cdept;
+
+commit;
+end;
+/
+
+----------------------------------------------
+?????? Create a record and then isert into record
+
+declare
+cursor cdept IS
+select deptno,dname,loc,total_sal from dept2;
+dno NUMBER;
+dname VARCHAR2(200);
+dloc VARCHAR2(200);
+dsal NUMBER;
+begin
+open cdept;
+while(cdept%FOUND)
+loop
+fetch cdept into dno,dname,dloc,dsal;
+dbms_output.put_line(dno || dname || dloc || dsal);
+close cdept;
+end loop;
+commit;
+end;
+/
+----------------------------------------------
+declare
+cursor cdept IS
+select deptno,dname,loc,total_sal from dept2;
+dno NUMBER;
+dname VARCHAR2(200);
+dloc VARCHAR2(200);
+dsal NUMBER;
+begin
+open cdept;
+dbms_output.put_line(cdept%ROWCOUNT);
+while(cdept%FOUND)
+loop
+fetch cdept into dno,dname,dloc,dsal;
+dbms_output.put_line(dno || dname || dloc || dsal);
+close cdept;
+end loop;
+commit;
+end;
+/
+
+
+****************************************************************
+types of cursor variables
+* %NOTFOUND
+* %FOUND
+* %ROWCOUNT
+* %ISOPEN
+***********************************************************************
+
+
+BEGIN
+	UPDATE dept2 
+		SET dname ='SYSTEMS' 
+		WHERE deptno= 50;
+	IF SQL%NOTFOUND THEN
+	dbms_output.put_line('Data Found');
+	END IF;
+END; 
+
+------------------------------------------
+
+Using For Loop i cursor
+
+declare
+cursor cdept IS
+select deptno,dname,loc,total_sal from dept2;
+
+begin
+For rdept IN cdept
+loop
+dbms_output.put_line(rdept.deptno || rdept.dname || rdept.loc || rdept.total_sal);
+end loop;
+commit;
+end;
+/
+
+************************************************
+
+declare
+cursor cdept is select deptno,dname,loc from dept;
+
+begin
+for rdept in cdept
+loop
+dbms_output.put_line(rdept.deptno || rdept.dname || rdept.loc);
+end loop;
+commit;
+end;
+/
+----------------------------------------
+declare
+cursor cdept (dno number, dnm varchar2, dloc varchar2) IS
+select deptno,dname,loc from dept
+where deptno=dno and dname=dnm and loc=dloc;
+
+begin
+for rdept in cdept(&dno,'&dnm','&dloc')
+loop
+dbms_output.put_line(rdept.deptno || rdept.dname || rdept.loc);
+end loop;
+end;
+/
+
+--------------------------------------------------------
+
+declare
+cursor csenior_clerk IS
+select empno,job from emp
+where job='CLERK' and sal >1000
+for update of job NOWAIT;
+begin
+for V_Emp in csenior_clerk
+loop
+update emp
+set job='SR. Clerk',
+sal=1.1*sal
+where current of csenior_clerk;
+end loop;
+end;
+/
+
+--------------------------------------------------------------
+declare
+  TYPE cref IS REF CURSOR; 
+  vref cref;
+  dno number;
+  dnm varchar2(200);
+  dloc varchar2(200);
+begin
+   open vref for &stmt;
+   --open vref for select * from dept;
+   fetch vref into dno,dnm,dloc;
+   while (vref%FOUND)
+   loop
+       dbms_output.put_line(dno || dnm || dloc);
+       fetch vref into dno,dnm,dloc;
+    end loop;
+   close vref;
+end;
+/
+
+--------------------------------------------------------------
+declare
+TYPE cref IS REF CURSOR RETURN dept%ROWTYPE; 
+vref cref;
+dno number;
+dnm varchar2(200);
+dloc varchar2(200);
+begin
+open vref for &stmt;
+--open vref for select * from dept;
+fetch vref into dno,dnm,dloc;
+while (vref%FOUND)
+loop
+dbms_output.put_line(dno || dnm || dloc);
+fetch vref into dno,dnm,dloc;
+end loop;
+close vref;
+end;
+/
+
+
+Two types of cursor
+*  Strong cursor
+* Weak cursor
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

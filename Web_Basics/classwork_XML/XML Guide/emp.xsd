@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<xs:group name="nameGroup">
+
+<xs:sequence>
+<xs:element name="fname" type="xs:string"/>
+<xs:element name="lname" type="xs:string" />
+</xs:sequence>
+
+</xs:group>
+
+<xs:element name="empList" type="eListType"/>
+
+<xs:complexType name="eListType">
+
+<xs:sequence>
+
+<xs:element name="emp" type="emptype" minOccurs="2" maxOccurs="4" />
+
+</xs:sequence>
+
+</xs:complexType>
+
+
+
+<xs:element name="emp" type="emptype"/>
+
+<xs:complexType name="emptype">
+
+<xs:sequence>
+<xs:group ref="nameGroup"/>
+<xs:element name="salary" type="xs:decimal" />
+<xs:element name="dept" type="xs:string" />
+<xs:element name="comm" type="commType" />
+<xs:element name="DOJ" type="DOJtype"/>
+<xs:element name="phone" type="phType"/>
+
+</xs:sequence>
+
+<xs:attribute name="empno" type="xs:integer" use="required"/>
+
+</xs:complexType>
+
+<xs:complexType name="phType">
+<xs:choice>
+	<xs:element name="mobile" type="xs:integer"/>
+	<xs:element name="landline" type="xs:integer"/>
+	</xs:choice>
+
+</xs:complexType>
+
+<xs:simpleType name="commType">
+<xs:restriction base="xs:decimal">
+<xs:minInclusive value="500"></xs:minInclusive>
+<xs:maxInclusive value="5000"></xs:maxInclusive>
+<xs:fractionDigits value="2"></xs:fractionDigits>
+
+</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="DOJtype">
+<xs:restriction base="xs:string">
+<xs:length value="10"/>
+<xs:pattern value="[0-9]{1,2}-[0-9]{1,2}-[0-9]{1,4}"/>
+</xs:restriction>
+</xs:simpleType>
+
+</xs:schema>

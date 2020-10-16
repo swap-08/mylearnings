@@ -1,0 +1,25 @@
+<html>
+<script type="text/javascript">
+function goBack()
+{
+	history.back();
+}
+function goForward()
+{
+	history.forward();
+}
+function gotoURL()
+{
+	var val=frm1.getData.value;
+	top.frame[1].location.href=val;
+}
+
+</script>
+<body>
+<form name=frm1 method=post>
+Enter URL<input type="text" size=80 name=getDataid=getData><br>
+<input type="button" align=center value="Back" onclick="goBack()"/>
+<input type="button" align=center value="GO" onclick="gotoURL()"/>
+<input type="button" align=center value="Forward" onclick="goForward()"/>
+<body>
+</html>

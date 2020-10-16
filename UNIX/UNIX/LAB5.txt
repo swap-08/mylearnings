@@ -1,0 +1,47 @@
+VI EDITOR
+
+VIM stands for Vi IMproved.
+
+a>
+
+[user15@DELL0708S-02VM7 lab5]$ cat lab5
+A network is a group of computers that can communicate with each other,share resources,and access remote host or other networks.Netware is a computer network operating system designed to connect,manage and maintain a network and its services.Some of the network services are Netware Directory Service(NDS),file system, printin and security.
+
+
+
+command:
+[user15@DELL0708S-02VM7 lab5]$ vi lab5
+
+commands:
+
+r  : replace current character with new character
+I  : Insert the remaining text
+
+A network is a group of computers that can communicate with each other,share resources,and access remote host or other networks.Novell Netware is a computer network operating system designed to connect,manage and maintain a network and its services.Some of the network services are Netware Directory Service(NDS),file system, printin and security.
+
+
+---------------------------------------------------------------------------------------------------
+
+b>
+
+
+[user15@DELL0708S-02VM7 lab5]$ vi lab5
+
+commands:
+a  :append the string to right
+
+[user15@DELL0708S-02VM7 lab5]$ cat lab5
+A network is a group of computers that can communicate with each other,share resources such as hard disks and printers,and access remote host or other networks.Novell Netware is a computer network operating system designed to connect,manage and maintain a network and its services.Some of the network services are Netware Directory Service(NDS),file system, printin and security.
+
+---------------------------------------------------------------------------------------------------
+
+c>
+
+
+[user15@DELL0708S-02VM7 lab5]$ vi lab5
+
+commands:
+A  :append the string at the end
+
+[user15@DELL0708S-02VM7 lab5]$ cat lab5
+A network is a group of computers that can communicate with each other,share resources such as hard disks and printers,and access remote host or other networks.Novell Netware is a computer network operating system designed to connect,manage and maintain a network and its services.Some of the network services are Netware Directory Service(NDS),file system, printin and security.Managing NDS is a fundamental administrator role because NDS provides a single point for accessing and managing most network resource.

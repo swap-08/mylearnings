@@ -1,0 +1,22 @@
+<html>
+<body>
+<h2><b>
+*****************************************<br>
+**********COMPOUND INTEREST*********<br>
+*****************************************<br>
+</h2>
+</b>
+<script> 
+p=prompt("Enter principal amount");
+document.write("<br>Principal -&nbsp&nbsp&nbsp&nbsp"+p);
+r=prompt("Enter rate of interest");
+document.write("<br>Rate of Interest -&nbsp&nbsp&nbsp&nbsp"+r)
+n=prompt("Enter period");
+document.write("<br>Period -&nbsp&nbsp&nbsp&nbsp"+r);
+temp1=r/100;
+temp=Math.pow(temp1,n);
+c=p*(1+temp)-p;
+document.write("<br>Compound Interest-&nbsp&nbsp&nbsp&nbsp"+c);
+</script>
+</body>
+</html>

@@ -1,0 +1,922 @@
+1.//
+set PS1=varun
+
+2.
+
+3.
+echo $SHELL
+/bin/bash
+
+
+4.
+
+continent="Africa"
+echo "$continent"
+Africa
+
+continent="Asia"
+echo "$continent"
+Asia
+
+5.
+continent="Africa"
+export continent
+echo "$continent"
+Africa
+
+
+sh
+sh-3.00$ echo "$continent"
+Africa
+sh-3.00$ continent="Asia"
+sh-3.00$ echo "$continent"
+Asia
+sh-3.00$ exit
+echo "$continent"
+Africa
+
+6.
+vi hello.sh
+
+echo "Enter your name"
+read name
+who > all.txt
+
+if grep "$name" all.txt
+then
+echo "$name logged in"
+else
+echo "$name not logged in"
+fi
+
+sh hello.sh
+Enter your name
+user22
+user22   pts/11       Dec 23 11:12 (10.216.53.33)
+user22 logged in
+
+sh hello.sh
+Enter your name
+jjjsjsjsjs
+jjjsjsjsjs not logged in
+
+
+7.//displaying file name for each output is not done
+vi 7.sh
+
+for file in ls
+do
+ cat *.*
+done
+
+sh 7.sh
+
+Hi! Good Morning everybody
+Welcome to the First Excercise on UNIX
+Hope you enjooy doing the assignments
+Madhu   6966456 09/07/68
+Jamil   2345215 08/09/67
+Ajay    5546785 01/04/6
+Mano    7820022 09/07/68
+David   8281292 09/09/60
+Simmi   7864563 12/12/70
+Navin   2224311 30/05/68
+echo "Enter your name"
+read name
+if test $name = $USER
+then
+echo "$name logged in"
+else
+echo "$name not logged in"
+fi
+02|iLearn    |0000
+01|PES       |1111
+mn|manager
+tr|trainee
+1234|varun raj         |manager  |ilearn    |03/11/91|10000
+2345|nishanth jain     |trainee  |ilearn    |01/01/91|01000
+3456|adarsh            |manager  |iGrow     |01/01/90|00100
+5678|vaarun raj        |hr       |hr        |21/11/90|13000
+This is the name file
+typed in VI editor
+This line was opened with O
+This line was opened with o
+
+Madhu   6966456 09/07/68
+Jamil   2345215 08/09/67
+Ajay    5546785 01/04/6
+Mano    7820022 09/07/68
+David   8281292 09/09/60
+Simmi   7864563 12/12/70
+Navin   2224311 30/05/68
+bonjour
+Albert 32342 GRIT Pune
+Richard 23232 ACS Pune
+02|iLearn    |0000
+01|PES       |1111
+mn|manager
+tr|trainee
+1234|dwivedi           |manager  |ilearn    |03/11/91|10000
+2345|trivedi           |trainee  |ilearn    |01/01/91|01000
+3456|chaturvedi        |manager  |iGrow     |01/01/90|00100
+4567|jeevan            |HR       |GE        |11/12/92|12000
+1234|varun raj         |manager  |ilearn    |03/11/91|10000
+2345|nishanth jain     |trainee  |ilearn    |01/01/91|01000
+3456|adarsh            |manager  |iGrow     |01/01/90|00100
+02|iLearn    |0000
+01|PES       |1111
+mn|manager
+tr|trainee
+ora9     :0           May 24 22:31
+user34   pts/9        Dec 20 06:43 (10.216.53.100)
+user31   pts/24       Dec 20 06:43 (10.216.53.144)
+user3    pts/25       Dec 20 07:04 (10.216.53.15)
+user36   pts/27       Dec 20 07:11 (10.216.53.164)
+user13   pts/30       Dec 20 08:36 (10.216.53.23)
+user19   pts/10       Dec 20 06:49 (10.216.53.34)
+user22   pts/12       Dec 20 06:42 (10.216.53.33)
+user8    pts/14       Dec 20 08:34 (10.216.53.12)
+user4    pts/2        Dec 20 06:53 (10.216.53.14)
+user24   pts/3        Dec 20 06:52 (10.216.53.39)
+user26   pts/39       Dec 20 06:45 (10.216.53.40)
+user30   pts/41       Dec 20 07:47 (10.216.53.22)
+user17   pts/21       Dec 20 07:32 (10.216.53.38)
+user9    pts/6        Dec 20 06:42 (10.216.53.26)
+user28   pts/7        Dec 20 06:42 (10.216.53.139)
+user12   pts/8        Dec 20 06:54 (10.216.53.27)
+user29   pts/5        Dec 20 06:44 (10.216.53.135)
+user33   pts/13       Dec 20 06:42 (10.216.53.20)
+user11   pts/11       Dec 20 07:24 (10.216.53.21)
+user32   pts/16       Dec 20 06:43 (10.216.53.29)
+user16   pts/18       Dec 20 06:42 (10.216.53.16)
+user25   pts/19       Dec 20 06:59 (10.216.53.83)
+user23   pts/22       Dec 20 06:43 (10.216.53.90)
+user7    pts/20       Dec 20 07:18 (10.216.53.41)
+user20   pts/17       Dec 20 06:42 (10.216.53.30)
+user27   pts/26       Dec 20 06:43 (10.216.53.67)
+user14   pts/44       Dec 20 08:14 (10.216.53.25)
+user15   pts/33       Dec 20 07:34 (10.216.53.57)
+user2    pts/38       Dec 20 08:37 (10.216.53.17)
+user1    pts/43       Dec 20 06:46 (10.216.53.18)
+user10   pts/37       Dec 20 06:43 (10.216.53.32)
+user6    pts/35       Dec 20 07:54 (10.216.53.19)
+ora9     pts/4        May 24 22:33 (:0.0)
+user5    pts/32       Dec 20 06:49 (10.216.53.28)
+user18   pts/34       Dec 20 06:49 (10.216.53.35)
+user35   pts/42       Dec 20 06:48 (10.216.53.182)
+Madhu   6966456 09/07/68
+Jamil   2345215 08/09/67
+Ajay    5546785 01/04/6
+Mano    7820022 09/07/68
+David   8281292 09/09/60
+Simmi   7864563 12/12/70
+Navin   2224311 30/05/68
+[user22@DELL0708S-02VM7 varun]$ vi 7.sh
+[user22@DELL0708S-02VM7 varun]$ clear
+[user22@DELL0708S-02VM7 varun]$ sh 7.sh
+for file in ls
+do
+ cat *.*
+done
+hello
+hai
+02|iLearn    |0000
+01|PES       |1111
+mn|manager
+tr|trainee
+James 76382 PACE Chennai
+John 34228 GRIT Hyderabad
+Peter 22321 GE Bangalore
+Albert 32342 GRIT Pune
+Mathew 23222 PACE Mumbai
+Richard 23232 ACS Pune
+1234|varun raj         |manager  |ilearn    |03/11/91|10000
+2345|nishanth jain     |trainee  |ilearn    |01/01/91|01000
+3456|adarsh            |manager  |iGrow     |01/01/90|00100
+Hi! Good Morning everybody
+Welcome to the First Excercise on UNIX
+Hope you enjooy doing the assignments
+Madhu   6966456 09/07/68
+Jamil   2345215 08/09/67
+Ajay    5546785 01/04/6
+Mano    7820022 09/07/68
+David   8281292 09/09/60
+Simmi   7864563 12/12/70
+Navin   2224311 30/05/68
+echo "Enter your name"
+read name
+if test $name = $USER
+then
+echo "$name logged in"
+else
+echo "$name not logged in"
+fi
+02|iLearn    |0000
+01|PES       |1111
+mn|manager
+tr|trainee
+1234|varun raj         |manager  |ilearn    |03/11/91|10000
+2345|nishanth jain     |trainee  |ilearn    |01/01/91|01000
+3456|adarsh            |manager  |iGrow     |01/01/90|00100
+5678|vaarun raj        |hr       |hr        |21/11/90|13000
+This is the name file
+typed in VI editor
+This line was opened with O
+This line was opened with o
+
+Madhu   6966456 09/07/68
+Jamil   2345215 08/09/67
+Ajay    5546785 01/04/6
+Mano    7820022 09/07/68
+David   8281292 09/09/60
+Simmi   7864563 12/12/70
+Navin   2224311 30/05/68
+bonjour
+Albert 32342 GRIT Pune
+Richard 23232 ACS Pune
+02|iLearn    |0000
+01|PES       |1111
+mn|manager
+tr|trainee
+1234|dwivedi           |manager  |ilearn    |03/11/91|10000
+2345|trivedi           |trainee  |ilearn    |01/01/91|01000
+3456|chaturvedi        |manager  |iGrow     |01/01/90|00100
+4567|jeevan            |HR       |GE        |11/12/92|12000
+1234|varun raj         |manager  |ilearn    |03/11/91|10000
+2345|nishanth jain     |trainee  |ilearn    |01/01/91|01000
+3456|adarsh            |manager  |iGrow     |01/01/90|00100
+02|iLearn    |0000
+01|PES       |1111
+mn|manager
+tr|trainee
+ora9     :0           May 24 22:31
+user34   pts/9        Dec 20 06:43 (10.216.53.100)
+user31   pts/24       Dec 20 06:43 (10.216.53.144)
+user3    pts/25       Dec 20 07:04 (10.216.53.15)
+user36   pts/27       Dec 20 07:11 (10.216.53.164)
+user13   pts/30       Dec 20 08:36 (10.216.53.23)
+user19   pts/10       Dec 20 06:49 (10.216.53.34)
+user22   pts/12       Dec 20 06:42 (10.216.53.33)
+user8    pts/14       Dec 20 08:34 (10.216.53.12)
+user4    pts/2        Dec 20 06:53 (10.216.53.14)
+user24   pts/3        Dec 20 06:52 (10.216.53.39)
+user26   pts/39       Dec 20 06:45 (10.216.53.40)
+user30   pts/41       Dec 20 07:47 (10.216.53.22)
+user17   pts/21       Dec 20 07:32 (10.216.53.38)
+user9    pts/6        Dec 20 06:42 (10.216.53.26)
+user28   pts/7        Dec 20 06:42 (10.216.53.139)
+user12   pts/8        Dec 20 06:54 (10.216.53.27)
+user29   pts/5        Dec 20 06:44 (10.216.53.135)
+user33   pts/13       Dec 20 06:42 (10.216.53.20)
+user11   pts/11       Dec 20 07:24 (10.216.53.21)
+user32   pts/16       Dec 20 06:43 (10.216.53.29)
+user16   pts/18       Dec 20 06:42 (10.216.53.16)
+user25   pts/19       Dec 20 06:59 (10.216.53.83)
+user23   pts/22       Dec 20 06:43 (10.216.53.90)
+user7    pts/20       Dec 20 07:18 (10.216.53.41)
+user20   pts/17       Dec 20 06:42 (10.216.53.30)
+user27   pts/26       Dec 20 06:43 (10.216.53.67)
+user14   pts/44       Dec 20 08:14 (10.216.53.25)
+user15   pts/33       Dec 20 07:34 (10.216.53.57)
+user2    pts/38       Dec 20 08:37 (10.216.53.17)
+user1    pts/43       Dec 20 06:46 (10.216.53.18)
+user10   pts/37       Dec 20 06:43 (10.216.53.32)
+user6    pts/35       Dec 20 07:54 (10.216.53.19)
+ora9     pts/4        May 24 22:33 (:0.0)
+user5    pts/32       Dec 20 06:49 (10.216.53.28)
+user18   pts/34       Dec 20 06:49 (10.216.53.35)
+user35   pts/42       Dec 20 06:48 (10.216.53.182)
+Madhu   6966456 09/07/68
+Jamil   2345215 08/09/67
+Ajay    5546785 01/04/6
+Mano    7820022 09/07/68
+David   8281292 09/09/60
+Simmi   7864563 12/12/70
+Navin   2224311 30/05/68
+
+8.
+
+vi 8.sh
+
+echo "Enter file name"
+read name
+ls -l $name|cut -d" " -f1
+
+
+sh 8.sh
+
+Enter file name
+hai
+-rw-rw-r--
+
+9.
+vi 9.sh
+
+echo "Number of arguments entered is $#"
+if test $1 -gt $2
+then
+ if test $1 -gt $3
+ then
+ echo "$1 is the greatest"
+fi
+fi
+if test $2 -gt $1
+then
+if test $2 -gt $3
+then
+ echo "$2 is the greatest"
+fi
+fi
+if test $3 -gt $2
+then
+if test $3 -gt $1
+then
+echo "$333 is the greatest"
+fi
+fi
+
+sh 9.sh 5 4 3
+Number of arguments entered is 3
+5 is the greatest
+
+10.
+vi 10.sh
+
+echo "The number of arguments is $#"
+egrep "$1" $2
+
+sh 10.sh manager puneemp.lst
+The number of arguments is 2
+1234|dwivedi           |manager  |ilearn    |03/11/91|10000
+3456|chaturvedi        |manager  |iGrow     |01/01/90|00100
+
+11.
+
+vi 11.sh
+
+echo "Enter the option\n 1.Create a file 2.Create a directory 3.Copying a file 4.Moving a file\c"
+read choice
+case $choice in
+1) echo "Enter the filename to be created"
+   read fname
+   ls -l > newall.txt
+   if grep "$fname" newall.txt
+   then
+   echo "File $fname already exists"
+   else
+   cat > $fname.txt
+fi;;
+
+2)echo "Enter the directory name to be created"
+  read dname
+  ls -l > newall.txt
+  if grep "$dname" newall.txt
+  then
+  echo "Directory $dname already exists"
+  else
+  mkdir $dname
+fi;;
+
+3)echo "Enter the filename to be copied to 'temp' directory"
+  read fname
+  ls -l temp > newall.txt
+  if grep "$fname" newall.txt
+  then
+  echo "Filename $fname already exists in 'temp'"
+  else
+  cp $fname temp/$fname
+fi;;
+4)echo "Enter the filename to be moved to 'temp' directory"
+  read fname
+  ls -l temp > newall.txt
+  if grep "$fname" newall.txt
+  then
+  echo "Filename $fname already exists in 'temp'"
+  else
+  mv $fname temp/$fname
+fi;;
+esac
+
+
+Enter the option\n 1.Create a file 2.Create a directory 3.Copying a file 4.Moving a file\c
+1
+Enter the filename to be created
+hallo.txt
+-rw-rw-r--  1 user22 user22    4 Dec 23 11:38 hallo.txt.txt
+File hallo.txt already exists
+
+sh 11.sh
+Enter the option\n 1.Create a file 2.Create a directory 3.Copying a file 4.Moving a file\c
+2
+Enter the directory name to be created
+temp
+drwxrwxr-x  3 user22 user22 4096 Dec 23 11:26 temp
+Directory temp already exists
+
+sh 11.sh
+Enter the option\n 1.Create a file 2.Create a directory 3.Copying a file 4.Moving a file\c
+3
+Enter the filename to be copied to 'temp' directory
+hallo.txt
+-rw-rw-r--  1 user22 user22   14 Dec 23 11:26 hallo.txt
+Filename hallo.txt already exists in 'temp'
+
+sh 11.sh
+Enter the option\n 1.Create a file 2.Create a directory 3.Copying a file 4.Moving a file\c
+4
+Enter the filename to be moved to 'temp' directory
+hallo.txt
+\-rw-rw-r--  1 user22 user22   14 Dec 23 11:26 hallo.txt
+Filename hallo.txt already exists in 'temp'
+
+12.
+vi 12.sh
+
+yesno()
+{
+echo "$*"
+read choice
+ if test $choice = y
+ then
+  return 0;
+else
+return 1;
+fi
+
+}
+
+echo "Enter the name of the file"
+read name
+ls -l $name|cut -c1 >newfile.txt
+if yesno "Wanna delete the file?"
+ then
+ if grep '-' newfile.txt
+ then
+ rm $name
+ else
+ rmdir $name
+
+******
+sh 12.sh
+
+Enter the name of the file
+happ.txt
+Wanna delete the file?
+n
+
+ls
+10.sh      dir           main.o           nonhr          srtf
+11.sh      employee.dat  message.h        nonmanager     success.c
+12.sh      emp.lst       mumbaidept.lst   ooo.txt        success.o
+7.sh       files         mumbaidesig.lst  perms          temp
+8.sh       first.unix    mumbaiemp.lst    Pune.dat       ttccemp.lst
+9.sh       friends.txt   mypattern        punedept.lst   ttcdept.lst
+aaa.txt    hai           mypattern2       punedesig.lst  ttcdesig.lst
+abc.txt    hai.c         mypatttern       puneemp.lst    users.txt
+all.txt    hallo         name.txt         sizes          welcome.c
+a.out      happ.txt      new              square         welcome.o
+cfile1     hello.sh      newall.txt       square.c
+cfile2     Isdoc         newfile          square.i
+dept.lst   libmessage.a  newfile.txt      square.o
+desig.lst  main.c        newfriend.txt    square.s
+
+**
+
+sh 12.sh
+Enter the name of the file
+happ.txt
+Wanna delete the file?
+y
+-
+
+ls
+10.sh     desig.lst     main.c           newfile.txt    square.i
+11.sh     dir           main.o           newfriend.txt  square.o
+12.sh     employee.dat  message.h        nonhr          square.s
+7.sh      emp.lst       mumbaidept.lst   nonmanager     srtf
+8.sh      files         mumbaidesig.lst  ooo.txt        success.c
+9.sh      first.unix    mumbaiemp.lst    perms          success.o
+aaa.txt   friends.txt   mypattern        Pune.dat       temp
+abc.txt   hai           mypattern2       punedept.lst   ttccemp.lst
+all.txt   hai.c         mypatttern       punedesig.lst  ttcdept.lst
+a.out     hallo         name.txt         puneemp.lst    ttcdesig.lst
+cfile1    hello.sh      new              sizes          users.txt
+cfile2    Isdoc         newall.txt       square         welcome.c
+dept.lst  libmessage.a  newfile          square.c       welcome.o
+
+**
+
+sh 12.sh
+Enter the name of the file
+hallo
+Wanna delete the file?
+y
+
+ls
+10.sh     desig.lst     main.o           newfriend.txt  square.o
+11.sh     dir           message.h        nonhr          square.s
+12.sh     employee.dat  mumbaidept.lst   nonmanager     srtf
+7.sh      emp.lst       mumbaidesig.lst  ooo.txt        success.c
+8.sh      files         mumbaiemp.lst    perms          success.o
+9.sh      first.unix    mypattern        Pune.dat       temp
+aaa.txt   friends.txt   mypattern2       punedept.lst   ttccemp.lst
+abc.txt   hai           mypatttern       punedesig.lst  ttcdept.lst
+all.txt   hai.c         name.txt         puneemp.lst    ttcdesig.lst
+a.out     hello.sh      new              sizes          users.txt
+cfile1    Isdoc         newall.txt       square         welcome.c
+cfile2    libmessage.a  newfile          square.c       welcome.o
+dept.lst  main.c        newfile.txt      square.i
+
+13.
+
+vi 13.sh
+
+name[0]=user20
+name[1]=user21
+name[2]=user22
+name[3]=sdsdssd3
+
+i=0
+who > newall.txt
+for i in 0 1 2 3
+do
+if grep "${name[$i]}" newall.txt
+then
+echo "User ${name[$i]} logged in"
+else
+echo "User ${name[$i]} not logged in"
+fi
+done
+
+**
+
+sh 13.sh
+
+user20   pts/16       Dec 24 04:16 (10.216.53.30)
+User user20 logged in
+user21   pts/17       Dec 24 04:16 (10.216.53.31)
+User user21 logged in
+user22   pts/24       Dec 24 04:25 (10.216.53.33)
+User user22 logged in
+User sdsdssd3 not logged in
+
+14.
+
+vi 14.sh
+
+echo "Enter your first name"
+read fname
+echo "Emter last name"
+read lname
+echo " Hello $fname $lname..."
+
+sh 14.sh
+
+Enter your first name
+varun
+Emter last name
+raj
+ Hello varun raj...
+
+
+15.
+
+vi 15.sh
+
+ls -l -t > newfile.txt
+if grep "`date "+%h %d"`" newfile.txt
+then
+echo "done"
+else
+echo "Not done"
+fi
+
+sh 15.sh
+-rw-rw-r--  1 user22 user22     0 Dec 24 08:48 newfile.txt
+-rw-rw-r--  1 user22 user22   105 Dec 24 08:48 15.sh
+-rw-rw-r--  1 user22 user22   105 Dec 24 07:29 14.sh
+-rw-rw-r--  1 user22 user22  2033 Dec 24 07:10 newall.txt
+-rw-rw-r--  1 user22 user22   232 Dec 24 07:10 13.sh
+-rwxrwxr-x  1 user22 user22  4745 Dec 24 07:04 a.out
+-rw-rw-r--  1 user22 user22   101 Dec 24 07:03 welcome.c
+-rw-rw-r--  1 user22 user22     0 Dec 24 07:02 hello.c
+-rwxrwxr-x  1 user22 user22  5022 Dec 24 06:47 main.o
+-rwxrwxr-x  1 user22 user22  4562 Dec 24 06:44 libsentence.so
+-rw-rw-r--  1 user22 user22   860 Dec 24 06:42 success.o
+-rw-rw-r--  1 user22 user22   864 Dec 24 06:42 welcome.o
+-rw-rw-r--  1 user22 user22   279 Dec 24 06:36 12.sh
+-rw-rw-r--  1 user22 user22  1940 Dec 24 06:14 libmessage.a
+-rw-rw-r--  1 user22 user22   100 Dec 24 06:07 main.c
+-rw-rw-r--  1 user22 user22    52 Dec 24 06:06 message.h
+-rw-rw-r--  1 user22 user22    84 Dec 24 06:05 success.c
+-rwxrwxr-x  1 user22 user22  4748 Dec 24 04:58 square
+-rw-rw-r--  1 user22 user22   904 Dec 24 04:58 square.o
+-rw-rw-r--  1 user22 user22   556 Dec 24 04:58 square.s
+-rw-rw-r--  1 user22 user22 17920 Dec 24 04:58 square.i
+-rw-rw-r--  1 user22 user22    80 Dec 24 04:54 square.c
+-rwxrwxr-x  1 user22 user22  4717 Dec 24 04:34 hai
+-rw-rw-r--  1 user22 user22    40 Dec 24 04:33 hai.c
+done
+
+16.
+
+vi 16.sh
+
+ls -l|cut -c1,47-57|grep '^-'|cut -d" " -f2
+
+sh 16.sh
+
+10.sh
+11.sh
+12.sh
+13.sh
+14.sh
+15.sh
+16.sh
+7.sh
+8.sh
+9.sh
+aaa.txt
+abc.txt
+all.txt
+a.out
+cfile1
+cfile2
+dept.lst
+desig.lst
+dir
+employee.d
+emp.lst
+files
+first.unix
+friends.tx
+hai
+hai.c
+hello.c
+hello.sh
+Isdoc
+libmessage
+libsentenc
+main.c
+main.o
+message.h
+mumbaidept
+mumbaidesi
+mumbaiemp.
+mypattern
+mypattern2
+mypatttern
+name.txt
+new
+newall.txt
+newfile.tx
+newfriend.
+nonhr
+nonmanager
+ooo.txt
+perms
+Pune.dat
+punedept.l
+punedesig.
+puneemp.ls
+sizes
+square
+square.c
+square.i
+square.o
+square.s
+srtf
+success.c
+success.o
+ttccemp.ls
+ttcdept.ls
+ttcdesig.l
+users.txt
+welcome.c
+welcome.o
+
+17.
+
+vi 17.sh
+
+echo "Enter path 1"
+read path1
+ls $path1
+clear
+echo "Enter path 2"
+read path2
+ls $path2
+
+
+sh 17.sh
+Enter path 1
+/home/user22/varun
+10.sh    a.out         hello.sh         new            square.c
+11.sh    cfile1        Isdoc            newall.txt     square.i
+12.sh    cfile2        libmessage.a     newfile.txt    square.o
+13.sh    dept.lst      libsentence.so   newfriend.txt  square.s
+14.sh    desig.lst     main.c           nonhr          srtf
+15.sh    dir           main.o           nonmanager     success.c
+16.sh    employee.dat  message.h        ooo.txt        success.o
+17.sh    emp.lst       mumbaidept.lst   perms          temp
+7.sh     files         mumbaidesig.lst  Pune.dat       ttccemp.lst
+8.sh     first.unix    mumbaiemp.lst    punedept.lst   ttcdept.lst
+9.sh     friends.txt   mypattern        punedesig.lst  ttcdesig.lst
+aaa.txt  hai           mypattern2       puneemp.lst    users.txt
+abc.txt  hai.c         mypatttern       sizes          welcome.c
+all.txt  hello.c       name.txt         square         welcome.o
+
+Enter path 2
+/home/user22/varun/temp
+aaa.txt  abc.txt  first.unix  hallo.txt  ooo.txt  temp1
+
+18.
+
+vi 18.sh
+logname
+ps|cut -d" " -f1|tail -1
+
+
+sh 18.sh
+user22
+16989
+
+
+19.
+
+vi 19.sh
+
+if test $# -lt 3
+then
+echo "Invalid number of arguments"
+else
+cat $2 $3 >> $1
+fi
+
+cat > a.txt
+aaa
+cat > b.txt
+bbb
+cat > c.txt
+ccc
+
+ sh 19.sh
+Invalid number of arguments
+
+sh 19.sh a.txt b.txt c.txt
+cat < a.txt
+aaa
+bbb
+ccc
+
+20.
+vi 20.sh
+
+echo "Enter Choice 1.Calendar for current month 2. Search for a pattern in file 3. Count Number of sub directories in given directory"
+read choice
+
+case $choice in
+1) cal;;
+
+2) echo "Enter the pattern"
+   read pattern
+   egrep "$pattern" *.*;;
+
+3) ls -l -R|grep '^d'|wc -l
+
+esac
+
+sh 20.sh
+
+Enter Choice 1.Calendar for current month 2. Search for a pattern in file 3. Count Number of sub directories in given directory
+1
+    December 2013
+Su Mo Tu We Th Fr Sa
+ 1  2  3  4  5  6  7
+ 8  9 10 11 12 13 14
+15 16 17 18 19 20 21
+22 23 24 25 26 27 28
+29 30 31
+
+***
+sh 20.sh
+
+Enter Choice 1.Calendar for current month 2. Search for a pattern in file 3. Count Number of sub directories in given directory
+2
+Enter the pattern
+manager
+desig.lst:mn|manager
+emp.lst:1234|varun raj         |manager  |ilearn    |03/11/91|10000
+emp.lst:3456|adarsh            |manager  |iGrow     |01/01/90|00100
+mumbaidesig.lst:mn|manager
+mumbaiemp.lst:1234|varun raj         |manager  |ilearn    |03/11/91|10000
+mumbaiemp.lst:3456|adarsh            |manager  |iGrow     |01/01/90|00100
+punedesig.lst:mn|manager
+puneemp.lst:1234|dwivedi           |manager  |ilearn    |03/11/91|10000
+puneemp.lst:3456|chaturvedi        |manager  |iGrow     |01/01/90|00100
+ttccemp.lst:1234|varun raj         |manager  |ilearn    |03/11/91|10000
+ttccemp.lst:3456|adarsh            |manager  |iGrow     |01/01/90|00100
+
+****
+sh 20.sh
+
+Enter Choice 1.Calendar for current month 2. Search for a pattern in file 3. Count Number of sub directories in given directory
+3
+2
+
+21.//
+
+
+22.
+vi 22.sh
+
+cat *.lst
+
+sh 22.sh
+
+02|iLearn    |0000
+01|PES       |1111
+mn|manager
+tr|trainee
+1234|varun raj         |manager  |ilearn    |03/11/91|10000
+2345|nishanth jain     |trainee  |ilearn    |01/01/91|01000
+3456|adarsh            |manager  |iGrow     |01/01/90|00100
+02|iLearn    |0000
+01|PES       |1111
+mn|manager
+tr|trainee
+1234|varun raj         |manager  |ilearn    |03/11/91|10000
+2345|nishanth jain     |trainee  |ilearn    |01/01/91|01000
+3456|adarsh            |manager  |iGrow     |01/01/90|00100
+5678|vaarun raj        |hr       |hr        |21/11/90|13000
+02|iLearn    |0000
+01|PES       |1111
+mn|manager
+tr|trainee
+1234|dwivedi           |manager  |ilearn    |03/11/91|10000
+2345|trivedi           |trainee  |ilearn    |01/01/91|01000
+3456|chaturvedi        |manager  |iGrow     |01/01/90|00100
+4567|jeevan            |HR       |GE        |11/12/92|12000
+1234|varun raj         |manager  |ilearn    |03/11/91|10000
+2345|nishanth jain     |trainee  |ilearn    |01/01/91|01000
+3456|adarsh            |manager  |iGrow     |01/01/90|00100
+02|iLearn    |0000
+01|PES       |1111
+mn|manager
+tr|trainee
+
+23.
+
+vi 23.sh
+
+case $4 in
++)x=`expr $2 + $3`
+  echo "The result of $1 $2 $3 is $x";;
+-)x=`expr $2 - $3`
+   echo "The result of $1 $2 $3 is $x";;
+*)echo "The result of $1 $2 $3 is `expr $2 * $3`";;
+\/)echo "The result of $1 $2 $3 is `expr $2 \/ $3`";;
+esac
+
+sh 23.sh cal 1 2 +
+The result of cal 1 2 is 3
+
+sh 23.sh cal 2 1 -
+The result of cal 2 1 is 1
+
+sh 23.sh cal 4 2 /
+The result of cal 4 2 is 2
+
+24.
+
+cat student.txt
+1|Varun       |088
+2|Nishanth    |034
+3|Jeevan      |080
+4|Adarsh      |099
+5|rahul       |060
+
+vi 24.sh
+
+egrep "[10][06-9][0-9]" student.txt -v > fail
+egrep "[10][06-9][0-9]" student.txt > pass
+
+
+sh 24.sh
+
+cat pass
+
+1|Varun       |088
+3|Jeevan      |080
+4|Adarsh      |099
+5|rahul       |060
+
+cat fail
+
+2|Nishanth    |034
+
+25.
+
+
+2|Nishanth    |034
+ 

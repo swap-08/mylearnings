@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="first" type="xs:string" />
+  <xs:element name="last" type="xs:string" />
+  <xs:element name="hiredate" type="xs:string" />
+  <xs:element name="email" type="xs:string" />
+
+  <xs:attribute name="id" type="xs:unsignedByte"/>
+
+  <xs:element name="employee">
+    <xs:complexType>
+      <xs:sequence>
+        
+        <xs:element name="emp" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              
+              <xs:element name="name">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element ref="first"/>
+                    <xs:element ref="last"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              
+              <xs:element ref="hiredate"/>
+              <xs:element ref="email"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,72 @@
+DEBUGGING YOUR C/C++ PROGRAM
+
+
+1>
+
+
+[user15@DELL0708S-02VM7 lab3]$ vi lab2_3.3.cpp
+#include <iostream>
+#include <cmath>
+using namespace std;
+int ComputeFactorial(int number) 
+{
+	int fact = 0;
+	for (int j = 1; j <= number; j++) 
+	{
+	fact = fact * j;
+	}
+	return fact;
+}
+double ComputeSeriesValue(double x, int n) 
+{
+	double seriesValue = 0.0;
+	double xpow = 1;
+	for (int k = 0; k <= n; k++) 
+	{
+		seriesValue += xpow / ComputeFactorial(k);
+		xpow = xpow * x;
+	}
+return seriesValue;
+}
+int main() 
+{
+	cout << "This program is used to compute the value of the following series : " <<
+	endl;
+	cout << "(x^0)/0! + (x^1)/1! + (x^2)/2! + (x^3)/3! + (x^4)/4! + ........ + (x^n)/n! " <<
+	endl;
+	cout << "Please enter the value of x : " ;
+	double x;
+	cin >> x;
+	int n;
+	cout << endl << "Please enter an integer value for n : " ;
+	cin >> n;
+	cout << endl;
+	double seriesValue = ComputeSeriesValue(x, n);
+	cout << "The value of the series for the values entered is "<< seriesValue << endl;
+	return 0;
+}
+
+
+[user15@DELL0708S-02VM7 lab3]$ g++ -g lab2_3.3.cpp -o lab3_3
+
+[user15@DELL0708S-02VM7 lab3]$ gdb lab3_3
+GNU gdb Red Hat Linux (6.3.0.0-0.31rh)
+Copyright 2004 Free Software Foundation, Inc.
+GDB is free software, covered by the GNU General Public License, and you are
+welcome to change it and/or distribute copies of it under certain conditions.
+Type "show copying" to see the conditions.
+There is absolutely no warranty for GDB.  Type "show warranty" for details.
+This GDB was configured as "i386-redhat-linux-gnu"...Using host libthread_db library "/lib/tls/libthread_db.so.1".
+
+
+(gdb) run
+Starting program: /home/user15/swapnil/c_cpp_on_unix/lab3/lab3_3
+This program is used to compute the value of the following series :
+(x^0)/0! + (x^1)/1! + (x^2)/2! + (x^3)/3! + (x^4)/4! + ........ + (x^n)/n!
+Please enter the value of x : 10
+
+Please enter an integer value for n : 2
+
+The value of the series for the values entered is inf
+
+Program exited normally.

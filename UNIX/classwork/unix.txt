@@ -1,0 +1,724 @@
+login as: user15
+user15@192.168.224.34's password:
+Last login: Sun Nov 17 00:51:59 2013 from 10.217.99.180
+Welcome to unix
+
+[user15@DELL0708S-02VM7 ~]$ cal
+
+    December 2013
+Su Mo Tu We Th Fr Sa
+ 1  2  3  4  5  6  7
+ 8  9 10 11 12 13 14
+15 16 17 18 19 20 21
+22 23 24 25 26 27 28
+29 30 31
+
+[user15@DELL0708S-02VM7 ~]$ clear
+
+
+[user15@DELL0708S-02VM7 ~]$ pwd
+/home/user15
+
+
+[user15@DELL0708S-02VM7 ~]$ cal
+    December 2013
+Su Mo Tu We Th Fr Sa
+ 1  2  3  4  5  6  7
+ 8  9 10 11 12 13 14
+15 16 17 18 19 20 21
+22 23 24 25 26 27 28
+29 30 31
+
+
+
+[user15@DELL0708S-02VM7 ~]$ pwd
+/home/user15
+
+
+[user15@DELL0708S-02VM7 ~]$ cd
+
+
+[user15@DELL0708S-02VM7 ~]$ date
+Fri Dec 20 06:47:56 IST 2013
+
+
+[user15@DELL0708S-02VM7 ~]$ date "+%T"
+06:48:11
+
+
+[user15@DELL0708S-02VM7 ~]$ date "+%A"
+Friday
+
+
+[user15@DELL0708S-02VM7 ~]$ date "+%R"
+06:48
+
+
+[user15@DELL0708S-02VM7 ~]$ date "+%m"
+12
+
+
+[user15@DELL0708S-02VM7 ~]$ date "+%h"
+Dec
+
+[user15@DELL0708S-02VM7 ~]$ date
+Fri Dec 20 06:51:32 IST 2013
+
+
+[user15@DELL0708S-02VM7 ~]$ tty
+/dev/pts/33
+
+
+[user15@DELL0708S-02VM7 ~]$ who
+ora9     :0           May 24 22:31
+user34   pts/9        Dec 20 06:43 (10.216.53.100)
+user31   pts/24       Dec 20 06:43 (10.216.53.144)
+user25   pts/25       Dec 20 06:43 (10.216.53.83)
+user3    pts/27       Dec 20 06:43 (10.216.53.15)
+user8    pts/30       Dec 20 06:43 (10.216.53.12)
+user19   pts/10       Dec 20 06:49 (10.216.53.34)
+user22   pts/12       Dec 20 06:42 (10.216.53.33)
+user21   pts/14       Dec 20 06:48 (10.216.53.31)
+user24   pts/3        Dec 20 06:52 (10.216.53.39)
+user26   pts/39       Dec 20 06:45 (10.216.53.40)
+user36   pts/41       Dec 20 06:48 (10.216.53.164)
+user17   pts/21       Dec 20 06:43 (10.216.53.38)
+user9    pts/6        Dec 20 06:42 (10.216.53.26)
+user28   pts/7        Dec 20 06:42 (10.216.53.139)
+user12   pts/8        Dec 20 06:42 (10.216.53.27)
+user29   pts/5        Dec 20 06:44 (10.216.53.135)
+user33   pts/13       Dec 20 06:42 (10.216.53.20)
+user11   pts/11       Dec 20 06:42 (10.216.53.21)
+user32   pts/16       Dec 20 06:43 (10.216.53.29)
+user16   pts/18       Dec 20 06:42 (10.216.53.16)
+user23   pts/22       Dec 20 06:43 (10.216.53.90)
+user7    pts/20       Dec 20 06:43 (10.216.53.41)
+user20   pts/17       Dec 20 06:42 (10.216.53.30)
+user27   pts/26       Dec 20 06:43 (10.216.53.67)
+user15   pts/33       Dec 20 06:43 (10.216.53.57)
+user2    pts/36       Dec 20 06:43 (10.216.53.17)
+user13   pts/38       Dec 20 06:44 (10.216.53.23)
+user1    pts/43       Dec 20 06:46 (10.216.53.18)
+user14   pts/31       Dec 20 06:44 (10.216.53.25)
+user10   pts/37       Dec 20 06:43 (10.216.53.32)
+user6    pts/35       Dec 20 06:43 (10.216.53.19)
+ora9     pts/4        May 24 22:33 (:0.0)
+user5    pts/32       Dec 20 06:49 (10.216.53.28)
+user18   pts/34       Dec 20 06:49 (10.216.53.35)
+user30   pts/40       Dec 20 06:44 (10.216.53.22)
+user35   pts/42       Dec 20 06:48 (10.216.53.182)
+
+
+[user15@DELL0708S-02VM7 ~]$ pwd
+/home/user15
+
+
+[user15@DELL0708S-02VM7 ~]$ nl myfile.txt
+     1  ankur
+     2  danas
+
+
+[user15@DELL0708S-02VM7 ~]$ nl -w2 -v40 -i7 myfile.txt
+40      ankur
+47      danas
+
+
+[user15@DELL0708S-02VM7 ~]$ nl -w5 -v10 -i2 myfile.txt
+   10   ankur
+   12   danas
+
+[user15@DELL0708S-02VM7 ~]$
+
+
+
+[user15@DELL0708S-02VM7 ~]$ tty
+/dev/pts/33
+
+
+[user15@DELL0708S-02VM7 ~]$ cd ..
+
+
+/***error***/
+[user15@DELL0708S-02VM7 home]$ cd..
+-bash: cd..: command not found
+
+
+[user15@DELL0708S-02VM7 home]$ cd ..
+
+
+[user15@DELL0708S-02VM7 /]$ pwd
+/
+
+
+[user15@DELL0708S-02VM7 /]$ cd home
+
+
+[user15@DELL0708S-02VM7 home]$ pwd
+/home
+
+
+[user15@DELL0708S-02VM7 home]$ cd user15
+
+
+[user15@DELL0708S-02VM7 ~]$ pwd
+/home/user15
+
+
+[user15@DELL0708S-02VM7 ~]$
+
+
+[user15@DELL0708S-02VM7 ~]$ cd swa
+
+-bash: cd: swa: No such file or directory
+
+
+[user15@DELL0708S-02VM7 ~]$ logname
+user15
+
+
+[user15@DELL0708S-02VM7 ~]$ ls
+
+/*******************************************************************/
+	      /*user file name*/  /*group file name*/	  
+/****************-----------******------------*********************/					|
+'                enum.lst          myemp.sh         script1.sh
+\                errfile.txt       myerr.txt        script2.sh
+010539.txt       examples          myf1             scriptnew.sh
+010541.txt       f1.txt            myfile           sdavsd
+010548.txt       f2.txt            myfile1          sdsdf
+1000.txt         f5clear           myfile96         second
+1001010624.txt   factorial.c       myfile.cpp       second.sh
+1001010806.txt   factorial.h       myfile.txt       sedsrc
+1001.txt         factorial.o       myhello.c        sena
+1002010627.txt   fcount            myhello.o        shape
+1002010807.txt   ff.lst            mynewdir11       shape_.cpp
+
+
+
+
+
+
+
+
+
+[user15@DELL0708S-02VM7 ~]$ nl myfile1
+     1  ertyui
+
+
+[user15@DELL0708S-02VM7 ~]$ nl myfile.cpp
+     1  #include<iostream.h>
+     2  using namespace std;
+     3  int main()
+     4  {
+     5  cout<<"hello world!"<<endl;
+     6  return 1;
+     7  }
+
+
+[user15@DELL0708S-02VM7 ~]$ ls -F
+
+/*********************
+ls -F
+
+* for executable files
+/ for directories
+*********************/
+
+'                enum.lst          myemp.sh         script1.sh
+\                errfile.txt       myerr.txt        script2.sh*
+010539.txt       examples/         myf1             scriptnew.sh*
+010541.txt       f1.txt            myfile*          sdavsd
+010548.txt       f2.txt            myfile1*         sdsdf
+1000.txt         f5clear           myfile96         second
+1001010624.txt   factorial.c       myfile.cpp       second.sh
+1001010806.txt   factorial.h       myfile.txt*      sedsrc
+1001.txt         factorial.o       myhello.c        sena
+1002010627.txt   fcount            myhello.o        shape*
+1002010807.txt   ff.lst            mynewdir11/      shape_.cpp
+1002.txt         fibonacci.cpp     mynew.sh         shape.cpp
+1003010634.txt   file*             mypattern        shape.h
+1003010808.txt   file111is         myshel.sh        shape_main.c
+1003.txt         file1.txt         mytest.lst       shape_main.cpp
+1004.txt         file2.sh          myusers          shape_Makefile
+
+
+
+[user15@DELL0708S-02VM7 ~]$ ls -r
+
+
+/*****directory color is displayed as dot colour****/
+
+[user15@DELL0708S-02VM7 ~]$ ls -d
+.
+
+
+/*********************
+ls -F
+
+sort files
+*********************/
+
+
+zz.c             test123          sol14.sh        reddy            o                mydir             lab8_1.awk       find           debug1.cpp       ankit
+z                test             sol13.sh        rat              numbers.sh       mydemo1           lab5.txt         FIN.c          cprogram         ank
+yourfile.txt     tempfile         sol12.sh        rahul            numbers2.sh      #mydemo#          lab5             file.sh        C-prog           ani.txt
+yesno            temper2          sol11.sh        ques3_2.sh       numbers          mydemo            lab4_1_Makefile  files222       c_prog           a.lst
+xx.txt           temper1          sol10.sh        ques3_1.sh       number.lst       mydata.dat        lab3_5.o         files          cprog            alpha.lst
+x                temper           sma             ques2_3.sh       nohup.out        mydata_64743.dat  lab3_5.cpp       file.o         count.txt        aki.txt
+wheels.txt       tempdir          slldemo.c       ques23           newvijay         mycfile.o         lab3_5           file.c         Computer         akanksha
+          
+
+
+
+
+/************************
+ls -l
+
+long listing
+************************/
+[user15@DELL0708S-02VM7 ~]$ ls -l
+
+-rw-rw-r--   1 user15 user15     23 Feb 26  2011 vkj
+drwxrwxr-x   2 user15 user15   4096 Feb 26  2011 vkj1
+-rw-rw-r--   1 user15 user15    120 Mar 14  2011 v_path
+-rw-rw-r--   1 user15 user15    107 Nov 14 22:29 welcome.c
+-rw-rw-r--   1 user15 user15    932 Nov 14 22:42 welcome.o
+-rw-rw-r--   1 user15 user15      0 Feb 18  2011 wheels.txt
+-rw-rw-r--   1 user15 user15     19 Mar 14  2011 x
+-rw-rw-r--   1 user15 user15   1104 Apr 25  2011 xx.txt
+-rw-rw-r--   1 user15 user15    569 Mar 18  2011 yesno
+-rw-rw-r--   1 user15 user15     12 Jun 17  2010 yourfile.txt
+-rwxr-x-wx   1 user15 user15     34 Apr  6  2010 z
+-rw-rw-r--   1 user15 user15    145 Nov  5  2009 zz.c
+
+
+***********************************************************
+
+
+[user15@DELL0708S-02VM7 ~]$ cd example
+-bash: cd: example: No such file or directory
+
+
+[user15@DELL0708S-02VM7 ~]$ cd vkj1
+
+
+[user15@DELL0708S-02VM7 vkj1]$ pwd
+/home/user15/vkj1
+
+
+[user15@DELL0708S-02VM7 vkj1]$ cd .
+[user15@DELL0708S-02VM7 vkj1]$ pwd
+/home/user15/vkj1
+
+
+[user15@DELL0708S-02VM7 vkj1]$ cd ..
+[user15@DELL0708S-02VM7 ~]$ pwd
+/home/user15
+
+*******************************************************
+
+
+
+
+/**************************
+ls -s
+
+Display number of blocks
+used by file
+****************************/
+[user15@DELL0708S-02VM7 ~]$ ls -s
+
+total 2652
+
+  4 '                  0 greptest            4 q1.sh
+  4 \                  8 hello               4 q22
+  0 010539.txt         4 hello.c             4 q32
+  0 010541.txt         4 hellofn.c           4 q7.sh
+  0 010548.txt         4 hellofn.h           4 q8.sh
+  0 1000.txt           4 hello.o             4 q9.sh
+  0 1001010624.txt     4 h.lst               4 ques21
+  0 1001010806.txt     4 home                4 ques2_1.sh
+  0 1001.txt           4 HR.c                4 ques2_2.sh
+  0 1002010627.txt     4 india.txt           4 ques23
+  0 1002010807.txt     4 island.txt          4 ques2_3.sh
+  0 1002.txt           0 kk.c                4 ques3_1.sh
+  0 1003010634.txt     8 lab1                4 ques3_2.sh
+
+
+
+
+
+[user15@DELL0708S-02VM7 ~]$ ls -l
+**************************************************************
+modes
+(user,grp,others)(no. of links) (username)   (groupname) (no. ofbytes)(    date   )(file/directory/dev)  
+-rw-rw-r--             1          user15       user15        23 	Feb 26  2011       vkj
+
+
+drwxrwxr-x   2 user15 user15   4096 Feb 26  2011 vkj1
+-rw-rw-r--   1 user15 user15    120 Mar 14  2011 v_path
+-rw-rw-r--   1 user15 user15    107 Nov 14 22:29 welcome.c
+-rw-rw-r--   1 user15 user15    932 Nov 14 22:42 welcome.o
+-rw-rw-r--   1 user15 user15      0 Feb 18  2011 wheels.txt
+-rw-rw-r--   1 user15 user15     19 Mar 14  2011 x
+-rw-rw-r--   1 user15 user15   1104 Apr 25  2011 xx.txt
+-rw-rw-r--   1 user15 user15    569 Mar 18  2011 yesno
+-rw-rw-r--   1 user15 user15     12 Jun 17  2010 yourfile.txt
+-rwxr-x-wx   1 user15 user15     34 Apr  6  2010 z
+-rw-rw-r--   1 user15 user15    145 Nov  5  2009 zz.c
+
+
+/***************************************
+creating a file and adding content
+
+press ctrl+d to save file
+(come out of write operation)
+
+(**< "OUTPUT REDIRECTION"**  cat >igate )
+*****************************************/
+[user15@DELL0708S-02VM7 ~]$ cat >igate
+shailesh
+mandavkar
+
+/***********************
+display content of file
+***********************/
+
+[user15@DELL0708S-02VM7 ~]$ cat igate
+\shailesh
+mandavkar[user15@DELL0708S-02VM7 ~]$
+
+
+
+/************************
+display multiple file
+
+file 1: igate
+file 2: myfile.txt
+************************/
+
+[user15@DELL0708S-02VM7 ~]$ cat igate myfile.txt
+shailesh
+mandavkarankur
+danas
+
+
+/*******************************************************************************
+cat < igate (input indirection)  ->take contents from this file
+igate > swa (output indirection)  ->copy content of file igate to new file swa
+********************************************************************************/
+
+[user15@DELL0708S-02VM7 ~]$ cat < igate > swa
+[user15@DELL0708S-02VM7 ~]$ cat swa
+shailesh
+mandavkar
+
+
+
+/*******************************************************************************
+cat < igate (input indirection)  ->take contents from this file
+igate >> swa (output indirection)  ->append content of file igate to file swa
+********************************************************************************/
+
+
+[user15@DELL0708S-02VM7 ~]$ cat <igate>>swa
+[user15@DELL0708S-02VM7 ~]$ cat swa
+shailesh
+mandavkarshailesh
+
+
+
+/******************************************************
+Here newfile is not existing
+newfile>igate  ->coping the content to igate (*error)
+error is store in errfile.txt(automatically created)
+*******************************************************/
+
+
+[user15@DELL0708S-02VM7 ~]$ cat newfile>igate 2>errfile.txt
+[user15@DELL0708S-02VM7 ~]$ cat errfile.txt
+cat: newfile: No such file or directory
+
+
+/*************************************
+file descriptor
+
+" 1> "-> create a file(input)
+(same as ">")
+" 2> "-> error
+" 0< "-> display content(output)
+(same as "<")
+**************************************/
+
+(create file)
+[user15@DELL0708S-02VM7 ~]$ cat 1>swa
+swa
+
+(display file)
+[user15@DELL0708S-02VM7 ~]$ cat 0<swa
+swa
+
+(error file)
+[user15@DELL0708S-02VM7 ~]$ cat newfile>igate 2>errfile.txt
+
+
+/*******************************************************************
+cp swa newf.txt (copy content of file "swa" to new file "newf.txt")
+********************************************************************/
+
+[user15@DELL0708S-02VM7 ~]$ cp swa newf.txt
+
+[user15@DELL0708S-02VM7 ~]$ cat newf.txt
+swa
+
+
+/*********************************************************************************
+copy content of file "swa" to new file "newf.txt" using cat and output redirection
+**********************************************************************************/
+
+[user15@DELL0708S-02VM7 ~]$ cat swa>anotherfile
+
+[user15@DELL0708S-02VM7 ~]$ cat anotherfile
+swa
+
+
+/*****************************************************
+delete file  (rm igate)
+*******************************************************/
+
+[user15@DELL0708S-02VM7 ~]$ rm igate
+
+[user15@DELL0708S-02VM7 ~]$ cat igate
+cat: igate: No such file or directory
+
+/***************************
+rm *   ->delete all files
+****************************/
+  
+2 files created:
+
+file 1: abc
+file 2: pqr
+
+
+[user15@DELL0708S-02VM7 ~]$ cat abc
+swapnil
+
+kadam
+igate
+[user15@DELL0708S-02VM7 ~]$ cat >pqr
+aditya
+jamdade
+igate
+
+
+
+[user15@DELL0708S-02VM7 ~]$ cat pqr
+aditya
+jamdade
+igate
+
+/*************************
+move file abc to pqr
+pqr contains abc ka data
+and abc data is erased
+**************************/
+
+
+[user15@DELL0708S-02VM7 ~]$ mv abc pqr
+[user15@DELL0708S-02VM7 ~]$ cat pqr
+swapnil
+
+kadam
+igate
+[user15@DELL0708S-02VM7 ~]$ cat abc
+cat: abc: No such file or directory
+
+/********************************************
+xyz->newfile automatically created
+*********************************************/
+
+[user15@DELL0708S-02VM7 ~]$ mv pqr xyz
+[user15@DELL0708S-02VM7 ~]$ cat xyz
+swapnil
+
+kadam
+igate
+[user15@DELL0708S-02VM7 ~]$ cat pqr
+cat: pqr: No such file or directory
+
+
+/***************************
+wc commands
+
+wc xyz
+wc xyz -l
+wc xyz -w
+wc xyz -c
+wc xyz -cw
+wc xyz -cwl
+****************************/
+
+[user15@DELL0708S-02VM7 ~]$ wc xyz
+ 4  3 21 xyz
+
+[user15@DELL0708S-02VM7 ~]$ wc xyz -l
+4 xyz
+
+[user15@DELL0708S-02VM7 ~]$ wc xyz -w
+3 xyz
+
+[user15@DELL0708S-02VM7 ~]$ wc xyz -c
+21 xyz
+
+[user15@DELL0708S-02VM7 ~]$ wc xyz -cw
+ 3 21 xyz
+
+[user15@DELL0708S-02VM7 ~]$ wc xyz -cwl
+ 4  3 21 xyz
+
+
+/**************************************************
+cmp compare two files
+and returns location where mismatch occur is occur
+else no msg is displayed if both files are same
+****************************************************/
+
+
+[user15@DELL0708S-02VM7 ~]$ cat >abc
+igate global solution
+
+
+
+[user15@DELL0708S-02VM7 ~]$ cat >pqr
+igate company
+
+
+[user15@DELL0708S-02VM7 ~]$ cmp abc pqr
+abc pqr differ: byte 7, line 1
+
+
+****************************************
+
+[user15@DELL0708S-02VM7 ~]$ cat >abc
+A
+G
+K
+X
+
+[6]+  Stopped                 cat >abc
+[user15@DELL0708S-02VM7 ~]$ cat >pqr
+A
+F
+K
+W
+X
+Z
+
+[7]+  Stopped                 cat >pqr
+
+
+/**********************************************************
+comm ->	
+uncommon of abc||uncommon of pqr||common of both files
+***********************************************************/
+[user15@DELL0708S-02VM7 ~]$ comm abc pqr
+                A
+        F
+G
+                K
+        W
+                X
+        Z
+[user15@DELL0708S-02VM7 ~]$ comm -12 abc pqr
+A
+K
+X
+
+/***********************************************************
+diff->  gives which character is to be appended or replaced
+
+************************************************************/
+[user15@DELL0708S-02VM7 ~]$ diff abc pqr
+2c2
+< G
+---
+> F
+3a4
+> W
+4a6
+> Z
+
+
+/*****************
+tr
+******************/
+[user15@DELL0708S-02VM7 ~]$ tr "[A-Z]" "[a-z]" <abc
+a
+g
+k
+x
+
+/***************
+more 
+ref pg: 02-32
+****************/
+[user15@DELL0708S-02VM7 ~]$ more abc
+A
+G
+K
+X
+
+/***********
+chmod
+
+[user15@DELL0708S-02VM7 ~]$ chmod u+x abc
+
+
+
+
+
+/*************************
+directory
+
+create directory
+mkdir directory_name
+***************************/
+[user15@DELL0708S-02VM7 ~]$ mkdir swa
+mkdir: `swa' exists but is not a directory
+
+[user15@DELL0708S-02VM7 ~]$ rm swa
+[user15@DELL0708S-02VM7 ~]$ mkdir swa
+
+
+
+/************************
+deleting directory
+
+rmdir directory_name
+*************************/
+
+/************
+choice mode
+
+chmod...
+*************/
+
+
+[user15@DELL0708S-02VM7 C_prog]$ chmod u-r cfile.c
+
+[user15@DELL0708S-02VM7 C_prog]$ cat cfile.c
+cat: cfile.c: Permission denied
+
+[user15@DELL0708S-02VM7 C_prog]$ cat cfile.c
+cat: cfile.c: Permission denied
+
+[user15@DELL0708S-02VM7 C_prog]$ chmod u+r cfile.c
+
+[user15@DELL0708S-02VM7 C_prog]$ cat cfile.c
+#include<stdio.h>
+{
+printf("Hello World..");
+}
+
+**************

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<empdetails>
+	<employee type="regular">
+		<ecode>1111</ecode>
+		<ename>
+			<fname>Seema</fname>
+			<lname>Dalvi</lname>
+		</ename>
+		<doj>09/08/97</doj>
+		<totalexp>12</totalexp>
+		<department>
+			<unit>3d</unit>
+			<loc>Mumbai</loc>
+		</department>
+		<desig>4</desig>
+		<sal>21000</sal>
+		<grade>b</grade>
+	</employee>
+	
+	<employee type="contract">
+		<ecode>222</ecode>
+		<ename>
+			<fname>Bharati</fname>
+			<lname>Mantri</lname>
+		</ename>
+		<doj>12/01/99</doj>
+		<totalexp>5</totalexp>
+		<department>
+			<unit>4a</unit>
+			<loc>Pune</loc>
+		</department>
+		<desig>2</desig>
+		<sal>12000</sal>
+		<grade>a</grade>
+	</employee>
+</empdetails>

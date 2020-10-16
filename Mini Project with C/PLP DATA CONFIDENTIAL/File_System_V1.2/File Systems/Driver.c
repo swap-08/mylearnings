@@ -1,0 +1,231 @@
+/****************************<File Header>**********************************/
+/*!
+@File: Driver.c
+@brief Abstract: This file include the main driver module.
+@Description: This is the driver module which will display a menu to the user 
+from which various file system operations can be selected.When the user selects
+an option,the function for that particular operation will called.
+@Author: Neeraj Narkar
+@Date: 02-01-2014
+@Change History: 
+*/
+/****************************************************************************/
+
+
+
+//Header files
+#include <stdio.h>
+#include <conio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "SystemDefinitions.h"
+#include "Initialization.h"
+#include "FileOperations.h"
+#include "ErrorHandling.h"
+
+//global start & end pointers for link lists
+DBNODE	*g_pDbStart = NULL, *g_pDbEnd = NULL;
+FNODE	*g_ptFatStart = NULL, *g_ptFatEnd = NULL;
+
+int main(void)
+{
+	int l_nOption=0;						//for user input
+	int l_nOption1=0;						//for user input
+	int l_nOption2=0;						//for user input
+
+	do
+	{
+		system("cls");
+		printf("\n\n********************* Login Menu *********************\n");
+		printf("\n 1. Admin Login ");
+		printf("\n 2. User Login");
+		printf("\n 3. Exit ");
+
+		printf("\n\n Enter Your Option: ");
+		fflush(stdin);
+		scanf("%d", &l_nOption1);
+
+			switch(l_nOption1)
+			{
+				case 1:
+						//for admin login
+						if(admin_Login() == TRUE)
+						{
+							do
+							{
+								system("cls");
+								printf("\n\n********************* Admin Menu *********************\n");
+								printf("\n 1. Create Root File");
+								printf("\n 2. Add Users");
+								printf("\n 3. View Error Log");
+								printf("\n 4. Go Back to Main Menu");
+								printf("\n\n Enter Your Option: ");
+								fflush(stdin);
+								scanf("%d", &l_nOption2);
+
+								switch(l_nOption2)
+								{
+									case 1:
+											//Function to create root file
+
+											if(checkFileSystem() == TRUE)			//check for existing file system
+											{
+												system("cls");
+
+												//load existsing file system
+
+												loadDB();
+												loadFATTable();
+												
+											}
+											else
+											{
+												system("cls");
+
+												//creation of a file system & initialization
+
+												createFileSystem();
+												initializeDataBlocks();
+												copyFATToFile();
+												copyDBToFile();
+											}
+											break;
+
+									case 2:
+											//Function to add new user to the system
+											add_User();
+											printf("\n Press any key to continue..!!");
+											getch();
+											break;
+
+									case 3:
+											//Function to display error log
+											displayErrorFile();
+											printf("\n Press any key to continue..!!");
+											getch();
+											break;
+
+									case 4:
+											//go to main menu
+											printf("\n Press any key to continue..!!");
+											getch();
+											break;
+			
+									default:
+											printf("\n Enter a valid option..!! \n");
+											printf("\n Press any key to continue..!!");
+											getch();
+											break;
+								}//end of inner switch
+							}while(l_nOption2!=4);
+						}
+						break;
+				
+				case 2:
+						//for user login
+						if(user_Login() == TRUE)			//user login successful
+						{ 
+							system("cls");
+							if(checkFileSystem() == TRUE)			//check for existing file system
+							{
+
+								//load existsing file system
+
+								loadDB();
+								loadFATTable();					
+								do
+								{
+									system("cls");
+									printf("\n********************* File System *********************\n");
+									printf("\n 1. Create File ");
+									printf("\n 2. List all the Files with their Attributes ");
+									printf("\n 3. Display File Contents ");
+									printf("\n 4. Delete File from the System ");
+									printf("\n 5. Modify File ");
+									printf("\n 6. Go Back to Main Menu ");
+
+									//take user input
+									printf("\n\n Enter your Option: ");
+									fflush(stdin);
+									scanf("%d", &l_nOption);
+
+									switch(l_nOption)
+									{
+										case 1:
+												//Function to create a file
+												createFile();
+												printf("\n Press any key to continue..!!");
+												getch();
+												break;
+										case 2:
+												//Function to display all the files with their attributes
+												listAllFiles();
+												printf("\n Press any key to continue..!!");
+												getch();
+												break;
+										case 3:
+												//Function to display specified file contents
+												displayFile();
+												printf("\n Press any key to continue..!!");
+												getch();
+												break;
+										case 4:
+												//Function to delete specified file
+												deleteFile();
+												printf("\n Press any key to continue..!!");
+												getch();
+												break;
+										case 5:
+												//Funtion to modify specified file
+												modifyFile();
+												printf("\n Press any key to continue..!!");
+												getch();
+												break;
+												
+										case 6:
+												//exit
+												copyFATToFile();
+												copyDBToFile();
+												system("cls");
+												printf("\n Thank You..!! \n");
+												getch();
+												break;
+										default:
+												//if user enters wrong option
+												printf("\n Enter a valid option..!! \n");
+												printf("\n Press any key to continue..!!");
+												getch();
+												break;
+										}
+								}while (l_nOption!=6);
+							}
+							else
+							{
+								printf("\n\n You cannot Perform Any Operations as File System Does Not Exist..!! \n");
+								printf("\n Press any key to continue..!!");
+								getch();
+							}
+
+						}
+						break;
+
+				case 3:
+						//exit
+						copyDBToFile();
+						copyFATToFile();
+						system("cls");
+						printf("\n Thank You..!! \n");
+						getch();
+						break;
+
+				default:
+						//For wrong input
+						printf("\n Enter a valid option..!! \n");
+						printf("\n Press any key to continue..!!");
+						getch();
+						break;
+			}
+		}while (l_nOption1!=3);
+
+	return 0;
+}

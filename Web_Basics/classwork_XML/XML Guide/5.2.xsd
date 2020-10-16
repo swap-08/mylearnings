@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://www.w3.org/2001/XMLSchema">
+
+<xs:element name="breakfast_menu" type="bf">
+<xs:complexType name="bf">
+
+<xs:element name="food" type="f" maxOccurs="unbounded"/>
+
+
+
+
+
+
+</xs:complexType>
+
+
+
+</xs:element>
+
+
+
+
+
+
+
+
+
+
+
+<cs:schema></cs:schema>

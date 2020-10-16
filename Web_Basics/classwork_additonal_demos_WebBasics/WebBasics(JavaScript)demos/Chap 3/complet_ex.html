@@ -1,0 +1,54 @@
+<HTML>
+<HEAD>
+<META NAME="GENERATOR" Content="Microsoft Visual Studio 6.0">
+<TITLE></TITLE>
+</HEAD>
+<script language="JavaScript">
+
+ function employee(fname, lname, project)
+ {
+   this.fname = fname
+   this.lname = lname
+   this.project = project
+   this.showsummaryInfo = summaryInfo
+ }
+
+ function summaryInfo()
+ {
+   newWindow = window.open("", "", "width=600, height=400")
+   newWindow.document.write("<h1>Employee Information</h1>"  )
+   newWindow.document.write("<h2>" + this.fname + "&nbsp" +      this.lname + "</h2>" + "<p>")
+   newWindow.document.write("<h1>Client Information</h1>")
+   newWindow.document.write("<h2>" + "Project : " + this.project.pn +  "</h2>")
+   newWindow.document.write
+   ("<h2>Client : " + this.project.client.cname + "<p></h2>")
+   newWindow.document.write("<h2>Address : " +   this.project.client.address + "<p></h2>")
+   newWindow.document.write("<h2>City : " + this.project.client.city + "</h2>")
+  newWindow.document.close()
+ }
+		
+ function project(pn, client, language)
+ {
+   this.pn = pn;
+   this.client = client;
+   this.language = language;
+ }
+		
+ function client(cname, address, city, state, pin)
+ {
+   this.cname = cname;
+   this.address = address;
+   this.city = city;
+   this.state = state;
+   this.pin = pin;
+ }
+		
+ c1 = new client("Venkat", "Royal Garden", "Mumbai", "Maharashtra", "66")
+ p1 = new project("Training", c1, "C++")
+ e1 = new employee("John", "Mathew",p1)
+ e1.showsummaryInfo()
+ 
+</SCRIPT> 	  	
+<BODY>        
+</BODY>
+</HTML>

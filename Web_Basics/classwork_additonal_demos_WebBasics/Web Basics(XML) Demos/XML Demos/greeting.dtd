@@ -1,0 +1,4 @@
+
+<!ELEMENT xdoc ( farewell,greeting)+ >
+<!ELEMENT farewell ( #PCDATA)>
+<!ELEMENT greeting (#PCDATA)>

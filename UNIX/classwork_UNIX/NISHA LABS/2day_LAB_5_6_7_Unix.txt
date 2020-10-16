@@ -1,0 +1,412 @@
+LAB-5
+----------
+
+5.1)
+
+vi aaq
+i
+
+a)s
+b)i
+c)A
+
+
+LAB-6
+----------
+
+1)
+  a)@@sed -n 2,/Pune/p Employee.dat
+
+  b)@@sed 5q Employee.dat
+
+  c)@@sed 's/Chennai/Pune/g' Employee.dat
+
+  d)@@sed -e 's/e/UNIX/g' Employee.dat
+
+  e)@@sed '/^$/d' Employee.dat
+
+  f)@@sed '3,5d' Employee.dat
+
+2)@@sed -n '/PACE/p' Employee.dat > PACE.dat
+
+
+
+LAB-7
+-----------
+
+7.1) @@ps -u
+     @@ps -l
+
+7.2) @@ps -A
+
+
+7.3) @@sort -s -o emptemp.lst emp1.lst&
+
+LAB-8
+-----------
+
+1)@@echo $PS1 $PS2
+
+2)PS1=aaq
+
+3)@@echo $SHELL
+
+4)continent="Africa"
+  echo "$continent"
+
+5)continent="Africa"
+  echo "$continent"
+
+
+6)echo "Enter your name"
+  read name
+  echo "`who|egrep ^$name`"
+
+7)echo "Enter the file name"
+  read name
+  echo `cat $name`
+
+8)echo `ls -l $1|cut -c1-4`
+
+  @@sh sample.sh emp1.lst
+
+9)
+
+@@vi sample.sh 
+
+sample.sh
+--------------
+   if test $1 -gt $2 -a $1 -gt $3
+   then
+   echo "Greater of the three numbers is: $1"
+   elif test $2 -gt $1 -a $2 -gt $3
+   then
+   echo "Greater of the three numbers is: $2"
+   else
+   echo "Greater of the three numbers is: $3"
+   fi
+
+@@sh sample.sh 15 7 1
+
+10)@@vi sample.sh
+
+sample.sh
+----------------
+
+echo "ENTER PATTERN"
+read PATTERN
+echo "ENTER FILE NAME"
+read NAME
+if [ -f "$NAME" ]
+then
+echo "`grep $PATTERN $NAME`"
+else
+echo "File does not exist"
+fi
+
+@@sh sample.sh
+
+
+11)
+
+ echo "1.Create new file"
+ echo "2.Create new directory"
+ echo "3.Copy file"
+ echo "4.Move file"
+ echo "Enter your choice"
+ read choice
+ case $choice in
+ 1)echo "Enter the file name you want to create"
+   read fname
+   if [ ! -f "$fname" ]
+   then
+   echo "`cat > $fname`"
+   else
+   echo "File already exist"
+   fi;;
+ 2)echo "Enter the name of the directory you want to create"
+   read dname
+   if [ ! -d "$dname" ]
+   then
+   echo "`mkdir $dname`"
+   else
+   echo "Directory already exist"
+   fi;;
+ 3)echo "Enter source file"
+   read sfile
+   echo "Enter destination file"
+   read dfile
+   if [ ! -f "$sfile" ]
+   then
+      echo "source file does not exist"
+   else
+      if [ ! -r "$sfile" ]
+      then
+         echo "source file not readable"
+      else
+         if [ ! -f "$dfile" ]
+         then
+            cat $dfile
+            cp $sfile $dfile
+         else
+            echo "Destination file exist"
+            echo "Do you wish to overwrite?y:n"
+            read answer
+            if [ $answer = "y" -o $answer = "Y" ]
+            then
+               cp $sfile $dfile
+            else
+               echo "File exists and cannot be overwritten"
+            fi
+         fi
+      fi
+   fi;;
+ 
+ 4)echo "Enter source file"
+   read sname
+   if [ ! -f $sname ]
+   then
+       echo "$sname does not exist"
+   else
+       echo "Enter destination directory"
+           read dname
+           if [ ! -d $dname ]
+           then
+              echo "$dname does not exist"
+           else
+              mv $sname $dname
+           fi
+   fi;;
+ *)echo "Invalid choice";;
+ esac
+
+
+12)
+
+yesno()
+{
+echo "$*"
+read answer
+if [ $answer = "y" -o $answer = "Y" ]
+then
+return 0
+else
+return 1
+fi
+}
+echo "enter the filename you want to delete"
+read filename
+if [ ! -f "$filename" ]
+then
+
+    if [ ! -d "$filename" ]
+    then
+       echo "No such file or directory exist"
+    else
+       echo "The filename you entered is a Directory"
+       if yesno "Do you really want to delete?y:n"
+       then
+           rmdir $filename
+       else
+          echo "Exiting without deleting..."
+       fi
+    fi
+else
+   echo "The filename you entered is a Regular file"
+    if yesno "Do you really want to delete?y:n"
+    then
+         rm $filename
+    else
+       echo "Exiting..."
+    fi
+fi
+
+
+13)sample1.sh
+---------------
+
+echo "Enter the first username"
+read u1
+echo "Enter the second username"
+read u2
+echo "Enter the third username"
+read u3
+echo "Enter the fourth username"
+read u4
+username[0]=$u1
+username[1]=$u2
+username[2]=$u3
+username[3]=$u4
+who >f1
+for x in 0 1 2 3
+do
+   if grep ${username[x]} f1 >f2
+   then
+      echo "User is logged in"
+   else
+      echo "User not logged in"
+   fi
+done
+
+
+
+14)
+
+echo "Enter the first name"
+read fname
+echo "enter the last name"
+read lname
+echo "Your complete name is:"
+echo "$fname $lname"
+
+
+15)
+
+ls -l -t|head -100 >file1
+grep "`date "+%b %d"`" file1
+
+16)
+
+ls -l|grep "^-"
+
+17)
+
+echo "enter the first path(main directories separated by /)"
+read path1
+ls $path1
+echo "enter the second path(main directories separated by /)"
+read path2
+ls $path2
+
+18)
+
+
+echo "$0"
+ps -u|grep "$0"|cut -c9-14
+
+
+19)
+
+cat $2 >> $1
+cat $3 >> $1
+
+sh sample5.sh sample5.txt emp1.lst emp2.lst
+
+Stretched assignment
+----------------------------------
+
+20)
+
+
+
+
+21)
+
+case `date|cut -d" " -f1` in
+Mon)echo "Monday Blues";;
+Tue)echo "Tuesday Reds";;
+Wed)echo "Wednesday Blacks";;
+Thu)echo "Thursday Greens";;
+Fri)echo "Friday Fever";;
+Sat)echo "Saturday Party Night";;
+Sun)echo "Holiday";;
+*)echo wrong choice;;
+esac
+
+
+
+22)
+
+cat *.lst
+
+
+23)
+
+
+case $3 in
++)let op=$1+$2
+  echo $op;;
+-)let op=$1-$2
+  echo $op;;
+x)let op=$1*$2
+  echo $op;;
+/)let op=$1/$2
+  echo $op;;
+*)echo "Wrong Choice";;
+esac
+
+
+24)
+
+
+echo Student Result
+egrep "[6-9][0-9]" student > pass
+egrep "[6-9][0-9]" -v student > fail
+echo Pass Students
+cat pass
+echo Fail Students
+cat fail
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

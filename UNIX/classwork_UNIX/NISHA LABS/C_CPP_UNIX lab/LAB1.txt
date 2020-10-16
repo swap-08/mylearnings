@@ -1,0 +1,225 @@
+1)
+
+$ vi sample.c
+
+#include <stdio.h>
+#include<string.h>
+ /* Function Prototype */
+int reverse ();
+int main ()
+{
+char str [100]; /* Buffer to hold reversed string */
+reverse ("cat", str); /* Reverse the string "cat" */
+printf ("reverse (cat) = %s\n", str); /* Display */
+reverse ("noon", str); /* Reverse the string "noon" */
+printf ("reverse (noon) = %s\n", str); /* Display */
+}
+reverse (before, after)
+char *before; /* A pointer to the source string */
+char *after; /* A pointer to the reversed string */
+{
+int i;
+int j;
+int len;
+len = strlen(before);
+for (j = len - 1, i = 0; j >= 0 ; j--, i++) /* Reverse loop */
+after[i] = before[j];
+after[len] = 0; /* terminate reversed string */
+}
+
+
+$ gcc sample.c
+]$ ./a.out
+reverse (cat) = tac
+reverse (noon) = noon
+$ gcc -o sample sample.c
+$ ./sample
+reverse (cat) = tac
+reverse (noon) = noon
+
+--------------------------------------------------------------------------------
+2)
+
+$ vi reverse.h
+int reverse();
+
+$ vi reverse1.c
+
+#include<string.h>
+#include <stdio.h>
+#include "reverse.h"
+reverse (before, after)
+char *before; /* A pointer to the original string */
+char *after; /* A pointer to the reversed string */
+{
+int i;
+int j;
+int len;
+len = strlen (before);
+for (j = len - 1, i = 0; j >= 0; j--, i++) /* Reverse loop */
+after[i] = before[j];
+after[len] = 0; /* terminate reversed string */
+}
+
+$ vi main.c
+
+#include <stdio.h>
+#include "reverse.h" /* Contains the prototype of reverse () */
+int main ()
+{
+char str [100];
+reverse ("cat", str); /* Invoke external function */
+printf ("reverse (\"cat\") = %s\n", str);
+reverse ("noon", str); /* Invoke external function */
+printf ("reverse (\"noon\") = %s\n", str);
+}
+
+
+$ gcc -c reverse1.c
+$ gcc -c main1.c
+$ gcc reverse1.o main1.o -o reverse1
+$ ./reverse1
+reverse ("cat") = tac
+reverse ("noon") = noon
+
+-------------------------------------------------------------------------------------
+3)
+
+
+$ vi factorial.c
+#include "factorial.h"
+#include<stdio.h>
+long int factorial(int limit)
+{
+int cur_fact_num, result;
+if(limit<0)
+return -1;
+if(limit==0)
+return 1;
+for(cur_fact_num=1,result=1;cur_fact_num<=limit;cur_fact_num++)
+result *=cur_fact_num;
+return result;
+}
+
+
+
+
+#include "factorial.h" /*Included Header file which contains the prototype of
+* factorial function*/
+#include <stdio.h>
+int main()
+{
+int limit;
+printf("Enter the factorial Number:");
+scanf("%d",&limit);
+printf("Factorial of %d is %d",limit,factorial(limit));
+}
+
+
+$ gcc -c factorial.c
+$ ar -cr libfact.a factorial.o
+$ gcc -L. -o main2.o main2.c -lfact
+$ vi main2.c
+$ ./main2.o
+
+Enter the factorial Number:5
+Factorial of 5 is 120
+
+---------------------------------------------------------------------------------------------
+4)
+
+$ vi message1.h
+void welcome(const char * name);
+void success(void);
+
+
+$ vi welcome1.c
+#include<stdio.h>
+#include "message.h"
+void welcome(const char *name)
+{
+printf("Successfully Logged");
+printf("Hello, %s!\n",name);
+}
+
+$ vi success1.c
+#include<stdio.h>
+#include "message.h"
+void success(void)
+{
+printf("Congratulations on your best performance!\n");
+}
+
+
+
+$ vi main3.c
+#include<stdio.h>
+#include "message.h"
+int main(void)
+{
+welcome("John");
+success();
+return 0;
+}
+
+
+$ gcc -Wall -fPIC -c welcome1.c success1.c
+$ gcc -shared -o libmsg.so welcome1.o success1.o
+$ gcc -o main3.o main3.c -Wl,-rpath,/home/user13/kapl -L/home/user13/sam -lmsg
+$ Ld_LIBRARY_PATH=/home/testuser33/dynamic export LD_LIBARY_PATH
+$ ./main3.o
+
+Successfully LoggedHello, John!
+Congratulations on your best performance!
+
+---------------------------------------------------------------------------------------------------------------------------
+5)
+
+$ vi armstrong.h
+void armstrong(int);
+
+$ vi armstrong.c
+#include<stdio.h>
+#include "armstrong.h"
+void armstrong(int n)
+{
+int i=0,sum=0,d,temp;
+temp=n;
+for(i=0;temp>0;i++)
+{
+d=temp%10;
+sum=sum+(d*d*d);
+temp=temp/10;
+}
+if(n==sum)
+{
+printf("%d is an armstrong number",n);
+}
+else
+printf("%d is not an armstrong number",n);
+}
+
+
+
+$ vi main4.c
+#include<stdio.h>
+#include"armstrong.h"
+int main()
+{
+int n;
+printf("enter number:");
+scanf("%d",&n);
+armstrong(n);
+}
+
+
+
+$ gcc -Wall -fPIC -c armstrong.c
+$ gcc -shared -o libarm.so armstrong.o 
+$ gcc -o main4.o main4.c -Wl,-rpath,/home/user13/sam -L/home/user13/sam -larm
+$ Ld_LIBRARY_PATH=/home/user13/dynamic export LD_LIBRARY_PATH
+$ ./main4.o
+
+enter number:157
+157 is not an armstrong number
+---------------------------------------------------------------------------------------------------------------------

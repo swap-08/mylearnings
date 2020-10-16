@@ -1,0 +1,18 @@
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+void main(int argc,char *argv[])
+{
+	int a,min=100;
+	float num;
+	//printf("%c\n",argv[1]);
+	a=atoi(argv[1]);
+	//printf("%d\n",a);
+
+	srand(time(NULL));
+	num=(float)(rand()%(a-min))+min;
+	printf("%.2f",num);
+
+	return;
+
+}

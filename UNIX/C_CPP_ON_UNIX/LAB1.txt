@@ -1,0 +1,136 @@
+C PROGRAM DEVELOPMENT IN UNIX
+
+<<TO DO>>assignment 1
+
+#include<stdio.h>
+#define MAX 5
+int main(void)
+{
+int i,j,temp,arr[MAX]
+printf("Enter 5 elements");
+for(i=0;i<MAX;i++)
+{
+	scanf("%d",&arr[i]);
+}
+for(i=0;i<MAX-1;i++)
+{
+	for(j=0;j<MAX-1;j++)
+	{
+		if(arr[j]>arr[j+1])
+		{
+			temp=arr[j];
+			arr[j]=arr[j+1];
+			arr[j+1]=temp;
+		}
+	}
+}
+
+
+printf("After sorting elementrs are:\n");
+for(i=0;i<MAX;i++)
+{
+	printf("%d\n",arr[i]);
+}
+
+return 0;
+}
+
+-------------------------------------------------------------------
+steps
+
+static link library..
+---------------------
+
+[user15@DELL0708S-02VM7 c_cpp_on_unix]$ gcc -c lab1_bubblesort.c
+
+[user15@DELL0708S-02VM7 c_cpp_on_unix]$ ar -cr libmessage.a lab1_bubblesort.o
+
+[user15@DELL0708S-02VM7 c_cpp_on_unix]$ gcc -L. -o execute_bubblesort.o lab1_bubblesort.o -lmessage
+
+[user15@DELL0708S-02VM7 c_cpp_on_unix]$ ./execute_bubblesort.o
+Enter 5 elements
+22
+10
+25
+30
+1
+After sorting elementrs are:
+1
+10
+22
+25
+30
+
+
+dynamic link library..
+---------------------
+
+[user15@DELL0708S-02VM7 c_cpp_on_unix]$ gcc -Wall -fPIC -c lab1_bubblesort.c
+
+[user15@DELL0708S-02VM7 c_cpp_on_unix]$ gcc -shared -o libsentence.so lab1_bubblesort.o
+
+[user15@DELL0708S-02VM7 c_cpp_on_unix]$ LD_RUN_PATH=/home/user15/swapnil/c_cpp_on_unix export LD_RUN_PATH
+
+[user15@DELL0708S-02VM7 c_cpp_on_unix]$ gcc -o dynamic.o lab1_bubblesort.c -L/home/user15/swapnil/c_cpp_on_unix -lmessage
+
+[user15@DELL0708S-02VM7 c_cpp_on_unix]$ ./dynamic.o
+Enter 5 elements
+1
+2
+3
+4
+5
+After sorting elementrs are:
+1
+2
+3
+4
+5
+
+
+--------------------------------------------------------------------------------------------------------------------------
+<<TO DO>>assignment 2
+
+[user15@DELL0708S-02VM7 lab1_assignment2]$ vi lab1_armstrong.c
+#include<stdio.h>
+#include"armstrong.h"
+void armstrong(int);
+int main()
+{
+int n;
+printf("enter number:");
+scanf("%d",&n);
+armstrong(n);
+return 0;
+}
+
+
+[user15@DELL0708S-02VM7 lab1_assignment2]$ vi armstrong.h
+void armstrong(int n)
+{
+int i=0,sum=0,d,temp;
+temp=n;
+        for(i=0;temp>0;i++)
+        {
+                d=temp%10;
+                sum=sum+(d*d*d);
+                temp=temp/10;
+        }
+        if(n==sum)
+        {
+                printf("%d is an armstrong number",n);
+        }
+        else
+        printf("%d is not an armstrong number",n);
+}
+
+
+output:
+
+[user15@DELL0708S-02VM7 lab1_assignment2]$ ./a.out
+enter number:153
+153 is an armstrong number
+
+
+[user15@DELL0708S-02VM7 lab1_assignment2]$ ls
+a.out  armstrong.h  lab1_armstrong.c

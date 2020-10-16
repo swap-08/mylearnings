@@ -1,0 +1,263 @@
+1)
+
+$ vi helloworld.cpp
+
+$ g++ -Wall helloworld.cc -o hello
+
+g++: helloworld.cc: No such file or directory
+
+g++: no input files
+
+$ g++ -Wall helloworld.cpp -o hello
+
+$ ./hello
+
+Hello, world!
+
+
+
+$ vi sample.cpp
+
+$ g++ sample.cpp
+
+$ ./a.out
+
+Floating point exception
+
+
+
+
+$ g++ -g sample.cpp -o crash
+
+$ gdb crash
+
+GNU gdb (GDB) Red Hat Enterprise Linux (7.0.1-32.el5)
+
+Copyright (C) 2009 Free Software Foundation, Inc.
+
+License GPLv3+: GNU GPL version 3 or later 
+
+http://gnu.org/licenses/gpl.html>
+
+This is free software: you are free to change and 
+redistribute it.
+
+There is NO WARRANTY, to the extent permitted by law.  Type 
+"show copying"
+
+and "show warranty" for details.
+
+This GDB was configured as "i386-redhat-linux-gnu".
+
+For bug reporting instructions, please see:
+
+<http://www.gnu.org/software/gdb/bugs/>...
+
+Reading symbols from /home/testuser33/sam/crash...done.
+
+>>(gdb) r
+Starting program: /home/testuser33/sam/crash
+
+Program received signal SIGFPE, Arithmetic exception.
+0x0804858f in divint (a=3, b=0) at sample.cpp:15
+15      return a / b;
+
+>>(gdb) l
+10      cout << divint(x, y);
+11      return 0;
+12      }
+13      int divint(int a, int b)
+14      {
+15      return a / b;
+16      }
+
+>>(gdb) where
+#0  0x0804858f in divint (a=3, b=0) at sample.cpp:15
+#1  0x08048667 in main () at sample.cpp:10
+
+>>(gdb) up
+#1  0x08048667 in main () at sample.cpp:10
+10      cout << divint(x, y);
+
+>>(gdb) p x
+$1 = 3
+
+>>(gdb) p y
+$2 = 0
+
+>>(gdb) q
+
+------------------------------------------------------------------------------------------------------------------------
+
+2)
+Debug the following C++ program
+
+#include <iostream>
+using namespace std;
+void setint(int*, int);
+int main() {
+int a;
+setint(&a, 10);
+cout << a << endl;
+int* b;
+setint(b, 10);
+cout << *b << endl;
+return 0;
+}
+void setint(int* ip, int i) 
+{
+*ip = i;
+}
+
+
+
+
+$ g++ -g example1.c -o example1
+$ gdb example1
+
+
+
+(gdb) r
+Starting program: /home/testuser33/sam/example1
+10
+
+Program received signal SIGSEGV, Segmentation fault.
+0x0804862d in setint (ip=0x23b570, i=10) at example1.c:14
+14      *ip = i;
+(gdb) l
+9       setint(b, 10);
+10      cout << *b << endl;
+11      return 0;
+12      }
+13      void setint(int* ip, int i) {
+14      *ip = i;
+15      }
+
+---------------------------------------------------------------------------------------------------------------------
+3)
+
+
+The program has some logical errors. The program is supposed to output the summation
+of (X^0)/0! + (X^1)/1! + (X^2)/2! + (X^3)/3! + (X^4)/4! + ... + (X^n)/n!, given x and n as
+inputs. However the program outputs a value of infinity, regardless of the inputs.
+
+#include <iostream>
+#include <cmath>
+using namespace std;
+int ComputeFactorial(int number) {
+int fact = 0;
+for (int j = 1; j <= number; j++) {
+fact = fact * j;
+}
+return fact;
+}
+double ComputeSeriesValue(double x, int n) {
+double seriesValue = 0.0;
+double xpow = 1;
+for (int k = 0; k <= n; k++) {
+seriesValue += xpow / ComputeFactorial(k);
+xpow = xpow * x;
+}
+return seriesValue;
+}
+int main() 
+{
+cout << "This program is used to compute the value of the following series : " <<
+endl;
+cout << "(x^0)/0! + (x^1)/1! + (x^2)/2! + (x^3)/3! + (x^4)/4! + ........ + (x^n)/n! " <<
+endl;
+cout << "Please enter the value of x : " ;
+double x;
+cin >> x;
+int n;
+cout << endl << "Please enter an integer value for n : " ;
+cin >> n;
+cout << endl;
+double seriesValue = ComputeSeriesValue(x, n);
+cout << "The value of the series for the values entered is "
+<< seriesValue << endl;
+return 0;
+}
+
+
+
+$ g++ -g fact.cpp -o fact
+$ gdb fact
+
+
+(gdb) r
+Starting program: /home/testuser33/sam/fact
+This program is used to compute the value of the following series :
+(x^0)/0! + (x^1)/1! + (x^2)/2! + (x^3)/3! + (x^4)/4! + ........ + (x^n)/n!
+Please enter the value of x : 10
+
+Please enter an integer value for n : 2
+
+The value of the series for the values entered is inf
+
+Program exited normally.
+
+-----------------------------------------------------------------------------------------------------------------------
+
+4)
+
+The program should print out all the alphanumeric (letter and number) characters in its
+input.
+
+>>
+#include <stdio.h>
+#include <ctype.h>
+int main(int argc, char **argv)
+{
+char c;
+c = fgetc(stdin);
+while(c != EOF){
+if(isalnum(c))
+printf("%c", c);
+else
+c = fgetc(stdin);
+}
+return 1;
+}
+
+
+
+$ g++ -g example5.cpp -o example5
+$ gdb example5
+
+--------------------------------------------------------------------------------------------------------------------
+
+5)
+
+The program is meant to read in a line of text from the user and print it.
+
+>>#include <stdio.h>
+#include <stdlib.h>
+int main(int argc, char **argv)
+{
+char *buf;
+buf = malloc(1<<31);
+fgets(buf, 1024, stdin);
+printf("%s\n", buf);
+return 1;
+
+
+
+
+$ g++ -g exaample.cpp -o exaample
+$ gdb exaample
+
+
+(gdb) r
+Starting program: /home/testuser33/sam/exaample
+345
+345
+
+
+Program exited with code 01.
+(gdb) r
+Starting program: /home/testuser33/sam/exaample
+123
+123
+
+-----------------------------------------------------------------------------------------------------------------------

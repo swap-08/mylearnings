@@ -1,0 +1,265 @@
+<html>
+<head bgcolor=blue>
+<title>lab 8.3</title>
+</head>
+<script>
+
+function isHintQuesAns()
+{
+	if(f1.hint.selectedIndex==0 && f1.own_ans.value==0)
+	{
+	alert("Hint field should not be empty");
+	return false;
+	}
+	
+	else
+	{
+	if(f1.own_ques.value==0 && f1.own_ans.value==0)
+	{
+	alert("Hint question field is empty");
+	return false;
+	}
+	}
+	return true;
+}
+function isCity()
+{
+	if(f1.city.selectedIndex==0)
+	{
+	alert("City field should not be empty");
+	return false;
+	}
+	return true;
+}
+
+
+function isCountry()
+{
+	if(f1.cntry.selectedIndex==0)
+	{
+	alert("Country field should not be empty");
+	return false;
+	}
+	return true;
+}
+
+function isDate()
+{
+	if(f1.day.selectedIndex==0 || f1.day.selectedIndex==0 || f1.mnth.selectedIndex==0)
+	{
+	alert("Date field should not be empty");
+	return false;
+	}
+	return true;
+}
+
+function isFullName()
+{
+
+	if(f1.fname.value=="" && f1.lname.value=="")
+	{	
+	alert("Name field should not be empty");
+	return false;
+	}
+	for(i=0;i<f1.fname.value.length;i++)
+	{
+	if(!isNaN(f1.fname.value.charAt(i)))
+	{
+	alert("First Name should not start with any number");
+	return false;
+	}
+	}
+	
+	for(i=0;i<f1.lname.value.length;i++)
+	{
+	if(!isNaN(f1.lname.value.charAt(i)))
+	{
+	alert("Last Name should not start with any number");
+	return false;
+	}
+	}
+	if(f1.fname.value==f1.lname.value)
+	{
+	alert("First name and Last name both are same");
+	return false;
+	}
+	return true;
+}
+
+
+function isPass()
+{
+
+	if(f1.employee.value=="")
+	{
+	alert("Password field should not be empty");
+	return false;
+	}
+	if(f1.pwd.value.length<7)
+	{
+	alert("Password should not be less then 6 characters");
+	return false;
+	}
+	if(f1.pwd.value!=f1.repwd.value)
+	{
+	alert("Password does not match");
+	return false;
+	}
+	return true;
+}
+
+function isName()
+{
+
+	if(f1.login.value=="")
+	{
+	alert("Login field should not be empty");
+	return false;
+	}
+	if(!isNaN(f1.login.value.charAt(0)))
+	{
+	alert("Login Name should not start with any number");
+	return false;
+	}
+	return true;
+}
+
+function validate()
+{
+if(isHintQuesAns() && isCity() && isCountry() && isDate() && isFullName() && isPass() && isName())
+return true;
+else
+return false;
+}
+
+</script>
+
+<form name="f1" action="register.html" onsubmit="return validate()">
+<h2>Email Registration Form</h2><br>
+<b>Email Account Details(* is required)</b>
+<center><br>
+
+Choose your Login name		:*<input type="text" name="login">@patni.com <br>
+Choose Password			:*<input type="password" name="pwd"><br>
+Re-Type Password		:*<input type="password" name="repwd"/><br></center>
+
+<hr>
+<br>
+<b>
+Password Reminder Information *(<i>All the fields are required</i>)</b><br><center>
+Hint Question			:<select name="hint"><option>[select one]</option>
+					 <option>Favourite colour</option>
+					 <option>First school</option>
+					 <option>Pet's name</option>
+				 </select><br>
+<b>Or</b> 
+Create your own question     :<input type="text" size="20" name="own_ques"><br>
+Hint Answer			:<input type="text" size="20" name="own_ans"><br>
+Birthday			:<select name="mnth"><option>Month</option>
+					 <option>January</option>	
+					 <option>February</option>
+					 <option>March</option>
+					 <option>April</option>
+					 <option>May</option>
+					 <option>June</option>
+					 <option>July</option>
+					 <option>August</option>
+					 <option>September</option>
+					 <option>October</option>
+					 <option>November</option>
+					 <option>December</option>
+				  </select>
+				  <select name="day"><option>Day</option>
+					  <option>01</option>
+					  <option>02</option>
+					  <option>03</option>
+					  <option>04</option>
+					  <option>05</option>
+					  <option>06</option>
+					  <option>07</option>
+					  <option>08</option>
+					  <option>09</option>
+					  <option>10</option>
+					  <option>11</option>
+					  <option>12</option>
+					  <option>13</option>
+					  <option>14</option>
+					  <option>15</option>
+					  <option>16</option>
+					  <option>17</option>
+					  <option>18</option>
+					  <option>19</option>
+					  <option>20</option>
+					  <option>21</option>
+					  <option>22</option>
+					  <option>23</option>
+					  <option>24</option>
+					  <option>25</option>
+					  <option>26</option>
+					  <option>27</option>
+					  <option>28</option>
+					  <option>29</option>
+					  <option>30</option>
+					  <option>31</option>
+				 </select>
+				 <select name="year"><option>Year</option>
+					 <option>1985</option>
+					 <option>1986</option>
+					 <option>1987</option>
+					 <option>1988</option>
+					 <option>1989</option>
+					 <option>1990</option>
+					 <option>1991</option>
+					 <option>1992</option>
+					 <option>1993</option>
+					 <option>1994</option>
+					 <option>1995</option>
+					 <option>1996</option>
+					 <option>1997</option>
+			          </select><br>
+
+Country	 			:<select name="cntry">
+				<option>[select one]</option>
+				<option>India</option>
+				<option>Bangladesh</option>
+				<option>China</option>
+				</select><br>
+City				:<select name="city"><option>[Select One]</option>
+					 <option>Bangalore</option>
+ 					 <option>Mumbai</option>
+					 <option>Chennai</option>
+				 </select><br></center>
+<hr>
+<b>Tell us about yourself</b><center>
+First Name	      :*<input type="text" name="fname">Last Name:*<input type="text" name="lname"><br>
+Gender		      :<select name="gndr"><option>male</option><option>female</option></select><br>
+State		      :<select name="ste"><option>[select one]</option><option>Karnataka</option><option>Maharashtra</option><option>Kerala</option></select><br>
+Pin Code	      :<input type="text" name="pin" size=10><br>
+Education	      :<select name="edu"><option>[select one]</option>
+				<option>Bachelor's Degree </option>
+				<option>Master's Degree </option>
+				<option>Ph.D or M.Phil</option>
+			</select><br>
+Occupation	      :<select name="edu"><option>[Select One]</option>
+				<option>Self Employed</option>
+				<option>IT/BPO</option>
+				<option>Others</option>
+			</select><br>
+Alternate email address:<input type="text" name="alter" size=20></center></h6><br>
+<hr>
+<b>Tell us your interests</b>[optional]
+Based on your selection, we will periodically send you information<br>
+<table>
+<tr><td>
+<input type="checkbox" name="enter">Entertainment</td> <td><input type="checkbox" name="cmpt">Computer & technology</td> <td><input type="checkbox" name="rst">Real Estate</td></tr>	
+<tr><td><input type="checkbox" name="news">News</td> <td><input type="checkbox" name="education">Education</td> <td><input type="checkbox" name="cc">Credit Card</td></tr>
+<tr><td><input type="checkbox" name="hnf">Home & Family</td> <td><input type="checkbox" name="cars">Careers</td> <td><input type="checkbox" name="ins">Insurance</td></tr>
+<tr><td><input type="checkbox" name="bnf">Beauty and fashion</td> <td><input type="checkbox" name="auto">Automobiles</td> <td><input type="checkbox" name="so">Special Offers</td></tr>
+<tr><td><input type="checkbox" name="hnn">Health and Nutrition</td> <td><input type="checkbox" name="shh">Shopping</td> <td><input type="checkbox" name="bnk">Banking</td></tr>
+<tr><td><input type="checkbox" name="sng">Sports and Games</td> <td><input type="checkbox" name="inv">Investing</td></tr>
+<tr><td><input type="checkbox" name="tra">Travel</td> <td><input type="checkbox" name="loan">Loans</td></tr>
+</table>
+<hr>
+<hr>
+<center><input type="submit" value="Register Me" onClick="isHintQuesAns()"></center><center><input type="reset" value="Reset">
+</html>

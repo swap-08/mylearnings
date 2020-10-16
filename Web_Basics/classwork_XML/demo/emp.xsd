@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+
+<xs:element name="emplist" type="eListType"/>
+
+<xs:group name="namegroup">
+
+<xs:sequence>
+
+<xs:element name="firstname" type="xs:string"/>
+
+<xs:element name="lastname" type="xs:string"/>
+
+</xs:sequence>
+
+</xs:group>
+
+
+<xs:complexType name="eListType">
+
+<xs:sequence>
+
+<xs:element name="emp" type="empType" minOccurs="1" maxOccurs="unbounded"/>
+
+</xs:sequence>
+
+</xs:complexType>
+
+
+<xs:complexType name="empType">
+
+	<xs:sequence>
+
+		<xs:group ref="namegroup"/>
+
+		<xs:element name="salary" type="xs:decimal"/>
+
+		<xs:element name="dept" type="deptType"/>
+
+		<xs:element name="comm" type="commType"/>
+
+		<xs:element name="DOJ" type="DOJType"/>
+
+		<xs:element name="phone" type="phType"/>
+
+	</xs:sequence>
+
+<xs:attribute name="empno" type="xs:integer" use="required"/>
+
+</xs:complexType>
+
+
+<xs:complexType name="phType">
+
+	<xs:choice>
+
+		<xs:element name="mobile" type="xs:integer"/>
+
+		<xs:element name="landline" type="xs:integer"/>
+
+	</xs:choice>
+
+</xs:complexType>
+
+
+<xs:simpleType name="deptType">
+
+<xs:restriction base="xs:string">
+
+<xs:enumeration value="iLEARN"/>
+
+<xs:enumeration value="SOFTWARE"/>
+
+</xs:restriction>
+
+</xs:simpleType>
+
+
+<xs:simpleType name="commType">
+
+<xs:restriction base="xs:decimal">
+
+<xs:minInclusive value="500"/>
+
+<xs:maxInclusive value="5000"/>
+
+</xs:restriction>
+
+</xs:simpleType>
+
+
+<xs:simpleType name="DOJType">
+
+<xs:restriction base="xs:string">
+
+<xs:length value="10"/>
+
+<xs:pattern value="\d{2}-\d{2}-\d{4}"/>
+
+</xs:restriction>
+
+</xs:simpleType>
+
+
+</xs:schema>

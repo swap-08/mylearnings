@@ -1,0 +1,34 @@
+<html>
+<head>
+<body>
+<script>
+function validate()
+{
+	var name=frm.uname.value;
+	var age=frm.age.value;
+	if(name.length==0){
+	var er1=document.getElementById("e1");
+	er1.innerHTML="<font color='red'>name is mandatory</font>";
+	return false;
+	}
+	if(age.length==0){
+	var er1=document.getElementById("e2");
+	er2.innerHTML="<font color='red'>age is mandatory</font>";
+	return false;
+	}
+return true;
+}
+</script>
+</head>
+<body>
+<form name="frm" action="demo1.html" onsubmit="return validate()">
+enter name
+<input type="text" name="uname" size="20" onfocus="getElementById('e1').innerHTML=' '" onblur="validate()"/>
+<span Id="e1"></span><br>
+enter age
+<input type="text" name="age" size="20" onfocus="getElementById('e2').innerHTML=' '"/>
+<span Id="e2"></span><br>
+<input type="submit" value="submit" onclick="validate()"/><br>
+</form>
+</body>
+</html>

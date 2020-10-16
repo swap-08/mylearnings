@@ -1,0 +1,76 @@
+Ans-1.
+
+[testuser6@pace sapnadubey]$ vi makefile6
+
+hello6: hello6.c
+        gcc -lm -o hello6 hello6.o pi.o
+pi.o:   pi.c
+        gcc -c pi.c
+hello6.o:       hello6.c
+        gcc -c hello6.c
+
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+"makefile6" 6L, 110C                                          6,2-9         All
+
+
+[testuser6@pace sapnadubey]$ make -f makefile6
+gcc -c hello6.c
+gcc -c pi.c
+gcc -lm -o hello2 hello6.o pi.o
+[testuser6@pace sapnadubey]$ ./hello6
+pi = 3.14159
+
+
+
+Ans-2.
+[testuser6@pace sapnadubey]$ vi Makefile1
+
+
+hellocpp: hellocpp.o picpp.o
+        gcc -lm -o hellocpp hellocpp.o picpp.o
+picpp.o:        picpp.cpp
+        gcc -c picpp.cpp
+hellocpp.o:     hellocpp.cpp
+        gcc -c hellocpp.cpp
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+"Makefile1" 6L, 152C                                          6,2-9         All
+
+
+[testuser6@pace sapnadubey]$ make -f Makefile1
+gcc -c hellocpp.cpp
+gcc -c picpp.cpp
+gcc -lm -o hellocpp hellocpp.o picpp.o
+[testuser6@pace sapnadubey]$ ./hellocpp
+pi = 3.14159

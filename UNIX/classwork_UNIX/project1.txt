@@ -1,0 +1,354 @@
+Ans1_1.
+[testuser6@pace sapna]$ vi merge.sh
+To show normal running process we use ps -u
+
+sh merge.sh &
+
+Now run ps -u it will show uou the running background process
+
+----------------------------------------------------------------------------
+Ans1_2.
+[testuser6@pace sapna]$ cat > sample.txt
+this is our fourth module ^M
+after that we have mini project
+then we are left with plp ^M
+[testuser6@pace sapna]$ grep -n "\^M$" sample.txt
+1:this is our fourth module ^M
+3:then we are left with plp ^M
+
+-----------------------------------------------------------------------------
+
+
+Ans1_3.
+[testuser6@pace sapna]$ cat sample.txt
+Sumana|2012|20000|M
+Rajashree|2000|50000|F
+Ramprasad|2013|13000|M
+[testuser6@pace sapna]$ cut -d"|" -f3 sample.txt|sort
+13000
+20000
+50000
+-----------------------------------------------------------------------------
+
+Ans1_4.
+[testuser6@pace sapna]$ ls -l|grep "\.dat"
+-rw-rw-r-- 1 testuser6 testuser6   0 Oct 24 09:52 abc.dat
+-rw-rw-r-- 1 testuser6 testuser6   0 Oct 24 09:53 file2.dat
+-rw-rw-r-- 1 testuser6 testuser6   0 Oct 24 09:53 txt.dat
+-rw-rw-r-- 1 testuser6 testuser6   0 Oct 24 09:53 xyz.dat
+
+-----------------------------------------------------------------------------
+
+Ans1_5.
+[testuser6@pace sapna]$ mkdir Project
+[testuser6@pace sapna]$ mkdir Project/Analysis
+[testuser6@pace sapna]$ mkdir Project/Design
+[testuser6@pace sapna]$ tree -a
+.
+|-- Project
+|   |-- Analysis
+|   `-- Design
+|-- bonus_calculation
+|-- sample.txt
+`-- solution2
+
+3 directories, 3 files
+[testuser6@pace sapna]$ rm -rf Project/
+[testuser6@pace sapna]$ tree -a
+.
+|-- bonus_calculation
+|-- sample.txt
+`-- solution2
+
+0 directories, 3 files
+
+-------------------------------------------------------------------------------
+Ans2_1.
+[testuser6@pace sapna]$ cat file
+echo "Enter the source file name:\c"
+read filename
+#check for the existence of the source file
+if [ ! -s "$filename"] #file not exist and sice is zero
+then
+        echo "source file doesnot exist or size is zero"
+        exit
+elif test ! -r "$filename"
+then
+        echo "Source file is not readable"
+        exit
+else
+        echo "Source file exist"
+        echo -n "Source file Created by:"
+        ls -l &filename|cut -f3 -d" " > uname
+        cat uname
+
+        echo -n "Date and time of creation"
+        ls -l &filename|cut -f6,7,8 -d" ">date
+        cat date
+
+        echo -n "Size of the file"
+        ls -l $filename|cut -f5 -d" " >file
+        cat file
+
+	echo "Kindly, confirm to change the timestamp (y/Y), (n/N) "
+	read choice
+	if test $choice=='y'
+	then
+	touch -m $filename
+fi
+
+---------------------------------------------------------------------------------
+Ans2_2.
+[testuser6@pace sapna]$ vi solution2
+[testuser6@pace sapna]$ cat solution2
+Sumana|2012|20000|M
+Rajashree|2000|50000|F
+Ramprasad|2013|13000|M
+
+
+[testuser6@pace sapna]$ vi record_sol
+[testuser6@pace sapna]$ cat record_sol
+echo Record:1
+echo Name: `cut -d"|" -f1 solution2 | head -1`
+echo Date of joining: `cut -d"|" -f2 solution2 | head -1`
+echo Salary: `cut -d"|" -f3 solution2 | head -1`
+echo Gender: `cut -d"|" -f4 solution2 | head -1`
+echo Record:2.sh
+echo Name: `cut -d"|" -f1 solution2 | head -2 | tail -1`
+echo Date of joining: `cut -d"|" -f2 solution2 chead -2 | tail -1`
+echo Salary: `cut -d"|" -f3 solution2 | head -2 | tail -1`
+echo Gender: `cut -d"|" -f4 solution2 | head -2 | tail -1`
+echo Record:3
+echo Name: `cut -d"|" -f1 solution2 | head -3 | tail -1`
+echo Date of joining: `cut -d"|" -f2 solution2 |  head -3 | tail -1`
+echo Salary: `cut -d"|" -f3 solution2 |  head -3 | tail -1`
+echo Gender: `cut -d"|" -f4 solution2 |  head -3 | tail -1`
+
+[testuser6@pace sapna]$ sh record_sol
+Record:1
+Name: Sumana
+Date of joining: 2012
+Salary: 20000
+Gender: M
+solution2:2.sh
+Name: Rajashree
+Date of joining: 2000
+Salary: 50000
+Gender: F
+solution2:3
+Name: Ramprasad
+Date of joining: 2013
+Salary: 13000
+Gender: M
+
+-----------------------------------------------------------------------------------------
+Ans2_3.
+
+[testuser6@pace sapna]$ vi solution2.3.sh
+[testuser6@pace sapna]$ cat solution2.3.sh
+echo "Enter a number"
+read number
+
+for (( count-0;count<num;count++))
+do
+        sleep 1
+        file1=`expr 6000 + %count`
+        operator=_
+        file2=`date "+%H%M%S"`
+        touch $file1$operator$file2.txt
+done
+
+[testuser6@pace sapna]$ sh solution2.3.sh
+Enter a number
+10
+
+[testuser6@pace sapna]$ ls 6*
+6000_110625.txt  6002_110934.txt  6005_110625.txt  6007_110939.txt
+6000_110932.txt  6003_110625.txt  6005_110937.txt  6008_110625.txt
+6001_110625.txt  6003_110935.txt  6006_110625.txt  6008_110940.txt
+6001_110933.txt  6004_110625.txt  6006_110938.txt  6009_110625.txt
+6002_110625.txt  6004_110936.txt  6007_110625.txt  6009_110941.txt
+
+
+........................................................
+step 1:  //creating the header files
+ 
+[testuser6@pace sapna]$ touch employee.h
+[testuser6@pace sapna]$ touch manager.h
+[testuser6@pace sapna]$ touch salary.h
+[testuser6@pace sapna]$ touch budget.h
+[testuser6@pace sapna]$ touch global.h
+ 
+step 2: //creating a file HR.c
+ 
+[testuser6@pace sapna]$ vi HR.c
+ 
+ 
+#include "employee.h"//including the hedaer file employee.h
+#include "manager.h"//including the header file manager.h
+#include<string.h>
+#include<stdio.h>
+void function_hrc()
+{
+char emp_name[10];//declaration of employee name
+char manager_name[10];//declaration of manager name
+printf("enter the name of the employee:");
+scanf("%s",emp_name);//getting the  employee name
+printf("enter the manager name:");
+scanf("%s",manager_name);//getting the mnager name
+printf("The employee name:%s,\nThe manager of the  employee:%s",emp_name,manager_name);
+}
+ 
+ 
+ 
+
+step 3: //creating a file HR.c  
+ 
+[testuser6@pace sapna]$ vi FIN.c
+
+ 
+#include "salary.h"//including the headerfile salary.h
+#include "budget.h"//including the hedarfile budget.h
+#include<stdio.h>
+#include<math.h>
+void function_fin()
+{
+float salary;//decalring salary
+float bonus;//declaring bonus
+float budget;//declaring budget
+float totalsalary;//declaring total salary
+printf("\nenter the salary of the employee:");
+scanf("%f",&salary);//getting the salary
+printf("enter the budget:");
+scanf("%f",&budget);//getting the budget
+printf("\nthe bonus of the employee is given as:");
+/*the bonus is 10% of salary*/
+bonus=salary*(1+(10/(float)100));//calculating the bonus
+printf("%f",bonus);
+totalsalary=bonus+salary;//calculating the totalsalary
+printf("\nthe total salary after adding up the bonus is %f",totalsalary);
+}
+ 
+ 
+ 
+step 4: //creating a file BONUS
+ 
+[testuser6@pace sapna]$ vi BONUS.c
+ 
+#include "global.h"
+extern void function_hrc();//including the function function_hrc
+extern void function_fin();//including the function function_fin
+int main()
+{
+function_hrc();//calling the function function_hrc
+function_fin();//calling the function_fin
+return 0;
+}
+  
+step 5: //creating a makefile named mymakefile 
+ 
+ 
+ 
+[testuser6@pace sapna]$ vi mymakefile
+ 
+
+myapp1: BONUS.o HR.o FIN.o
+        gcc -o myapp1 BONUS.o HR.o FIN.o
+BONUS.o: BONUS.c global.h
+        gcc -c BONUS.c
+HR.o: HR.c employee.h manager.h
+        gcc -c HR.c
+FIN.o: FIN.c salary.h budget.h
+        gcc -c FIN.c
+
+
+ 
+[testuser6@pace sapna]$ make -f mymakefile
+gcc -c BONUS.c
+gcc -c HR.c
+gcc -c FIN.c
+gcc -o mymain BONUS.o HR.o FIN.o
+ 
+
+  
+ 
+step 6: //executing the makefile
+ 
+ 
+ 
+ 
+[testuser6@pace sapna]$ ./myapp1
+enter the name of the employee:sapna
+enter the manager name:rakhee
+The employee name:sapna,
+The manager of the  employee:rakhee
+enter the salary of the employee:23000
+enter the budget:2500
+ 
+the bonus of the employee is given as:25300.000000
+the total salary after adding up the bonus is: 48300.000000
+ *******************************************
+
+
+
+
+
+
+
+
+[user15@DELL0708S-02VM7 moduletest]$ cat HR.c
+#include "employee.h"
+#include "manager.h"
+#include<string.h>
+#include<stdio.h>
+#define MAX 20
+void employee_hr()
+{
+//variable declaration
+char employee_name[MAX];
+char manager_name[MAX];
+
+//taking values from users
+printf("Enter name of the Employee:\n");
+scanf("%s",employee_name);
+printf("Enter name of the Managee:\n");
+scanf("%s",manager_name);
+}
+
+
+
+[user15@DELL0708S-02VM7 moduletest]$ cat FIN.c
+#include "salary.h"
+#include "budget.h"
+#include<stdio.h>
+#include<math.h>
+#define BONUS 0.5
+void salary_bonus()
+{
+float employee_salary;
+float employee_bonus;
+float budget;
+float totalsalary;
+
+printf("\nEnter Salary of Employee:\n");
+scanf("%f",&employee_salary);
+printf("Enter the budget:\n");
+scanf("%f",&budget);
+printf("\nBonus of Employee is given as:");
+employee_bonus=employee_salary*BONUS;
+printf("%f",employee_bonus);
+totalsalary=employee_bonus+employee_salary;
+printf("\nTotal salary %f\n",totalsalary);
+}
+
+
+
+[user15@DELL0708S-02VM7 moduletest]$ cat BONUS.c
+extern void employee_hr();
+extern void salary_bonus();
+int main()
+{
+void employee_hr();
+void salary_bonus();
+return 0;
+}

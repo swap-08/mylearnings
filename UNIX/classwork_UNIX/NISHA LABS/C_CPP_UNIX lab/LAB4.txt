@@ -1,0 +1,74 @@
+1)
+
+
+Create a file called Makefile using the VI editor.
+
+reversemain:    reversemain.o reversenum.o
+        gcc reversemain.o reversenum.o -o reversemain
+reversemain.o:  reversemain.c reversenum.h
+        gcc -c reversemain.c
+reversenum.c:   reversenum.c reversenum.h
+        gcc -c reversenum.c
+
+
+
+
+Execute the Makefile.
+
+[testuser6@pace sapna]$ make
+make: Circular reversenum.c <- reversenum.c dependency dropped.
+cc    -c -o reversenum.o reversenum.c
+
+
+
+
+
+
+$ gcc -c reversemain.c
+$ gcc -c reversenum.c
+$ gcc reversemain.o reversenum.o -o reversemain
+$ ./reversemain
+reverse("cat") = tac
+reverse ("noon") = noon
+
+
+Copy the makefile to another file called mymakefile and execute it.
+
+$ make -f makefile
+make: Circular reversenum.c <- reversenum.c dependency dropped.
+make: `reversemain' is up to date.
+
+
+
+
+Modifying Makefile with Macros
+
+#Which Compiler
+CC = gcc
+#Options for development
+CFLAGS = -g -Wall
+#Options for release
+#CFLAGS = -Wall
+main1: main1.o reverse1.o
+$(CC) main1.o reverse1.o -o main1
+main1.o: main1.c reverse1.h
+$(CC) -c main1.c
+reverse1.o: reverse1.c reverse1.h
+$(CC) -c reverse1.c
+clean:
+rm *.o
+
+
+Executing the Makefile with the clean target, and checking that all the object files are
+deleted.
+
+[testuser6@pace sapna]$ make
+make: Circular reversenum.c <- reversenum.c dependency dropped.
+make: `reversemain' is up to date.
+[testuser6@pace sapna]$ make -f makefile
+make: Circular reversenum.c <- reversenum.c dependency dropped.
+make: `reversemain' is up to date.
+[testuser6@pace sapna]$ make clean
+rm *.o
+
+--------------------------------------------------------------------------------------------------------------------------

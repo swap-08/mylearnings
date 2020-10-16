@@ -1,0 +1,163 @@
+# 1. Write a program to accept file name from user and check whether
+#    the file exist,is readable and has non zero size.
+#    if file available show tje following details
+#    ->File created by
+#    ->Date and time of creation
+#    ->Size of the file
+
+[user15@DELL0708S-02VM7 moduletest]$ vi shell_1.sh
+
+[user15@DELL0708S-02VM7 moduletest]$ cat shell_1.sh
+#start of script
+
+echo "Enter file name"
+read filename
+echo "File name entered is $filename"
+
+if test ! -s $filename			#source file exist and size equal to 0
+         then
+         echo "Filename exist and size is greater then zero"
+
+        #check for read access
+        if test ! -r $filename		#check whether source file is readable or not
+        then
+        echo "File not readable.. "
+        exit
+        fi		#end of if
+
+        #file created user name
+        echo "File created by"
+        ls -i|grep $filename|cut -d" " -f4
+
+        #date and time creation
+         ls -l|grep $filename|cut -d" " -f9,10,11
+
+        #size of file
+        ls -l|grep $filename|cut -d" " -f8
+
+        #changing timestamp
+        echo "Want to change the the timestamp to current timestamp (y/n)"
+        read choice
+                if $choice -eq 'y'
+                then
+                echo "Current time stamp is" date
+                else
+                echo "Current time stamp is not changed..Thank You"
+                fi		#end of if
+else
+        find $filename || echo "Filename not exist in directory"
+fi
+		#end of if
+#end of script
+
+
+output:
+
+[user15@DELL0708S-02VM7 moduletest]$ sh shell_1.sh
+Enter file name
+a.dat
+File name entered is a.dat
+Filename exist and size is greater then zero
+File created by
+
+Dec 28 07:57
+0
+Want to change the the timestamp to current timestamp (y/n)
+n
+Current time stamp is not changed..Thank You
+
+
+-------------------------------------------------------------------------------------------------------
+
+# 2. Given a file with sample contents
+#    Write a program which will read the above mentioned file and display the output in the following format
+
+
+[user15@DELL0708S-02VM7 moduletest]$ vi shell_2.sh
+
+[user15@DELL0708S-02VM7 moduletest]$ cat shell_2.sh
+#start of script
+
+echo "Content of file is"
+cat sample.txt
+echo "...Output.."
+
+#display first row of file
+echo "Record:1"
+echo "Name: `cut -d"|" -f1 sample.txt | head -1`"
+echo "Date of Joining: `cut -d"|" -f2 sample.txt | head -1`"
+echo "Salary: `cut -d"|" -f3 sample.txt | head -1`"
+echo "Gender: `cut -d"|" -f4 sample.txt | head -1`"
+
+#display second row of file
+echo "Record:2"
+echo "Name: `cut -d"|" -f1 sample.txt | head -2 | tail -1`"
+echo "Date of Joining: `cut -d"|" -f2 sample.txt |head -2 | tail -1`"
+echo "Salary: `cut -d"|" -f3 sample.txt | head -2 | tail -1`"
+echo "Gender: `cut -d"|" -f4 sample.txt | head -2 | tail -1`"
+
+#display third row of file
+echo "Record:3"
+echo "Name: `cut -d"|" -f1 sample.txt | head -3 | tail -1`"
+echo "Date of Joining: `cut -d"|" -f2 sample.txt |  head -3 | tail -1`"
+echo "Salary: `cut -d"|" -f3 sample.txt |  head -3 | tail -1`"
+echo "Gender: `cut -d"|" -f4 sample.txt |  head -3 | tail -1`"
+
+#end of script
+
+output:
+
+[user15@DELL0708S-02VM7 moduletest]$ sh shell_2.sh
+Content of file is
+Sumana|2012|20000|M
+Rajashree|2000|50000|M
+Ramprasad|2013|13000|M
+...Output..
+Record:1
+Name: Sumana
+Date of Joining: 2012
+Salary: 20000
+Gender: M
+Record:2
+Name: Rajashree
+Date of Joining: 2000
+Salary: 50000
+Gender: M
+Record:3
+Name: Ramprasad
+Date of Joining: 2013
+Salary: 13000
+Gender: M
+
+
+-------------------------------------------------------------------------------------------------
+# 3. Write a shell script to create N files with the name EMP_ID_HHMISS.txt
+#    where employee id should start with 60000 and is auto incremented and HHMIS is current timestamp
+
+
+[user15@DELL0708S-02VM7 moduletest]$ vi shell_3.sh
+[user15@DELL0708S-02VM7 moduletest]$ cat shell_3.sh
+#start of script
+
+echo "Enter any number.."
+read number
+
+for ((element_number = 0; element_number < $number ; element_number++))		#for loop for iterations
+do
+	sleep 1						#incrementation of seconds
+        emp_id=`expr 60000 + $element_number`		#auto_incrementation od employee id
+        underscore=_					#underscore to be appended in file name
+        date=`date "+%H%M%S"`				#current timestamp
+        touch $emp_id$underscore$date			#creating empty files
+done
+
+#end of script
+
+
+output:
+
+
+Enter any number..
+5
+[user15@DELL0708S-02VM7 moduletest]$ ls 6*
+60000_094308  60001_094309  60002_094310  60003_094311  60004_094312

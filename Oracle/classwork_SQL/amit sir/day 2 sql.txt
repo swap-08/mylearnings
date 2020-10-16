@@ -1,0 +1,87 @@
+select * from dual;
+
+select sysdate from dual;
+
+select (100*12/399) from dual;
+
+select CEIL(7.5) from dual;
+select CEIL(-7.5) from dual;
+select round(7.5) from dual;
+
+select round(7.1) from dual;
+
+select sqrt(7.5) from dual;
+ select ABS(-4) from dual;
+select ABS(4) from dual;
+ select mod(22,10) from dual;
+
+select round(333.92,-2) from dual;
+ select CONCAT (job,ename) from emp;
+
+ select MONTHS_BETWEEN(sysdate,hiredate) from emp;
+ select LAST_DAY(sysdate) from emp;
+
+ select NEXT_DAY(sysdate,'monday') from emp;
+
+ select to_char(hiredate,'dd month,yyyy') from emp;
+select to_Date(hiredate) from emp;
+
+select to_char(hiredate,'ddth month,yyyy') from emp;
+
+select sal+NVL(comm,0) from emp;
+
+select empno,ename,deptno, DECODE(Deptno,10,'TEN',20,'TWENTY','OTHER') from emp;
+ 
+
+
+
+select e.ename,m.ename from emp e,emp m 
+where e.mgr=m.empno;
+
+select e.ename,d.loc,d.deptno from emp e,dept d 
+where e.deptno=d.deptno;
+
+select e.ename,m.ename from emp e,emp m where e.mgr=m.empno(+);
+
+select e.ename,m.ename from emp e,emp m where e.mgr(+)=m.empno;
+
+select * from emp where deptno=(select deptno from emp where ename='SMITH');
+
+select * from emp where deptno=all(select deptno from emp where ename in('SMITH'));
+
+select * from emp where exists(select deptno from emp where ename in('SMITH'));
+
+select * from emp e where e.deptno=(select m.deptno from emp m where m.empno=e.mgr);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+select ename,empno from emp where deptno=20 
+minus
+select ename,empno from emp where deptno=30;
+
+
+select ename,empno from emp where deptno IN(20,30) UNION ALL select ename,empno from emp where deptno=30;
+select ename,empno from emp where deptno IN(20,30) MINUS select ename,empno from emp where deptno=30
+;
+select ename,empno from emp where deptno=10 UNION select ename,empno from emp where deptno IN(20,30) MINUS select ename,empno from emp where deptno=30;
+
+select ename,empno from emp where deptno IN(20,30) MINUS select ename,sal from emp where deptno=30;
+
+
+
+
+
+
+

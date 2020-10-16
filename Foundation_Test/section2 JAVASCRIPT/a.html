@@ -1,0 +1,127 @@
+<!--Problem definition: Create a webpage to accept Module practical test,Module theory test,Assignment marks from coordinator-->
+<html>
+<head>
+    <title>Module Test</title>
+</head>
+<script>
+function validate()
+{
+if(f1.employee.value=="")
+	{
+	alert("Empoloyee ID should not be empty");
+	return false;
+	}
+if(!isNaN(f1.employee.value.charAt(0)) && !isNaN(f1.employee.value.charAt(1)))
+	{
+	alert("Empoloyee ID should not start with any number");
+	return false;
+	}
+
+if(f1.employee.value.length>9)
+	{
+	alert("Incorrect Empoloyee ID");
+	return false;
+	}
+
+
+if(f1.trainee.value=="")
+	{
+	alert("Name of Trainee should not be empty");
+	return false;
+	}
+if(f1.domain.value=="")
+	{
+	alert("Domain should not be empty");
+	return false;
+	}
+if(f1.email.value=="")
+	{
+	alert("E-mail should not be empty");
+	return false;
+	}
+re =/([a-z0-9\.\_])+\@([a-zA-Z])+\.([a-zA-Z]{2,4})$/;
+if(!re.test(f.email.value))
+	{
+	alert("Incorrect email id");
+	}
+
+
+
+
+
+}
+</script>
+<body>
+<form name="f1" action="register.html" onsubmit="return validate()">
+	<center>
+	<img src="igate.jpg"><BR>
+	<h1>iLEARN Module Test</h1>
+	</center>
+	<!-- Table creation-->
+
+    <table align="center" border="2" bgcolor="aqua">
+        <tr>
+          	<th>
+		Employee ID of Trainee:
+		</th>
+            	<td>
+		<input type="text" name="employee" />
+		</td>
+        </tr>
+        <tr>
+            	<th>
+                Name of the Trainee:
+		</th>
+           	 <td>
+                <input  type="text" name="trainee"/>
+		</td>
+        </tr>
+        <tr>
+            	<th>
+                Domain:
+		</th>
+            	<td>
+                <input  type="text" name="domain"/>
+		</td>
+        </tr>
+        <tr>
+            	<th>
+                Email id:
+		</th>
+            	<td>
+                <input type="text" name="email"/>
+		</td>
+        </tr>
+        <tr>
+            	<th>
+                Module Practical Test Marks:
+		</th>
+            	<td>
+                <inputtype="text" size="3" name="mpt"/>
+		</td>
+        </tr>
+        <tr>
+            	<th>
+                Module Theory Test Marks:
+		</th>
+            	<td>
+                <input  type="text" size="3" name="mtt"/>
+		</td>
+        </tr>
+        <tr>
+            	<th>
+                Assignment Marks:
+		</th>
+            	<td>
+                <input type="text" size="3" name="assign"/>
+		</td>
+        </tr>
+    </table>
+	<!-- End of table tag-->
+
+	<center>
+	<input type="submit" value="Submit Details" onClick="validate()">
+	</center>
+</form>
+</body>
+</html>

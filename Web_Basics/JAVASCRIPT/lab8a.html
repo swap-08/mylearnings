@@ -1,0 +1,54 @@
+<html>
+<h1>Enter Loan Information:</h1>
+<body>
+<script>
+function validloan(loan)
+{
+	if(isNaN(loan))
+	{						
+	alert("You have entered wrong number..!!");
+	}
+	if(loan=="" || loan>="1500000")
+	{
+	alert("entered loan is greater than 15 lakh");
+	}
+}
+function validrate(rate)
+{
+	if(isNaN(rate))
+	{						
+	alert("You have entered wrong number..!!");
+	}
+}
+function validyrs(yrs)
+{
+	if(isNaN(yrs))
+	{						
+	alert("You have entered wrong number..!!");
+	}
+	if(yrs<7 || yrs>15)
+	{
+	alert("Repayment period should be between 7yrs to 15yrs");
+	}
+}
+function calculate()
+{
+temp1=f.loan.value*f.rate.value*f.yrs.value;
+f.interest.value=temp1/100;
+temp2=12*f.yrs.value
+f.month.value=f.interest.value/temp2;
+f.total.value=parseInt(f.interest.value)+parseInt(f.loan.value);
+}
+</script>
+<form name="f">
+1)Amount of the loan(any currency):<input type="text" size=10 name="loan" onblur="validloan(f.loan.value)"/><br>
+2)Annual percentage rate of interest:<input type="text" size=10 name="rate" onblur="validrate(f.rate.value)"/><br>
+3)Repayment period in years:<input type="text" size=10 name="yrs" onblur="validyrs(f.yrs.value)"/><br>
+<input type="button" value="Compute" onclick="calculate()"/>
+<h1>Payment Information:</h1><br>
+4)Your monthly payment will be:<input type="text" name="month" size=10 disabled/><br>
+5)Your total payment will be:<input type="text" name="total" size=10 disabled/><br>
+6)Your total interest payments will be:<input type="text" name="interest" size=10 disabled/><br>
+</form>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<html>
+<head>
+<script>
+function myfun(n)
+{		
+	document.write(n+" Hello ");
+	return n*n;
+}
+</script>
+</head>
+<body>
+<script>
+do{		
+	i=prompt("Enter a number");
+	if(!isNaN(i)){
+		document.write("<br>");
+		i=myfun(i);
+		document.write("<br>Square is "+i);
+	}
+	else{alert("you have not enetered");}
+	ch=confirm("Do you want to continue  ?");
+}
+while(ch);
+</script>
+</body>
+</html>

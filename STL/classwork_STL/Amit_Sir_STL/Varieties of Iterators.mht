@@ -1,0 +1,1581 @@
+From: "Saved by Windows Internet Explorer 8"
+Subject: Varieties of Iterators
+Date: Thu, 12 Dec 2013 18:40:27 +0530
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----=_NextPart_000_0000_01CEF769.A08B6600"
+X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7600.16807
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_0000_01CEF769.A08B6600
+Content-Type: text/html;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://stdcxx.apache.org/doc/stdlibug/2-2.html
+
+=EF=BB=BF<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!--=0A=
+    Licensed to the Apache Software  Foundation (ASF) under one or more=0A=
+    contributor  license agreements.  See  the NOTICE  file distributed=0A=
+    with  this  work  for  additional information  regarding  copyright=0A=
+    ownership.   The ASF  licenses this  file to  you under  the Apache=0A=
+    License, Version  2.0 (the  License); you may  not use  this file=0A=
+    except in  compliance with the License.   You may obtain  a copy of=0A=
+    the License at=0A=
+=0A=
+    http://www.apache.org/licenses/LICENSE-2.0=0A=
+=0A=
+    Unless required by applicable law or agreed to in writing, software=0A=
+    distributed under the  License is distributed on an  "AS IS" BASIS,=0A=
+    WITHOUT  WARRANTIES OR CONDITIONS  OF ANY  KIND, either  express or=0A=
+    implied.   See  the License  for  the  specific language  governing=0A=
+    permissions and limitations under the License.=0A=
+=0A=
+    Copyright 1999-2007 Rogue Wave Software, Inc.=0A=
+--><HTML><HEAD><TITLE>Varieties of Iterators</TITLE>
+<META content=3D"text/html; charset=3Dutf-8" =
+http-equiv=3DContent-Type><LINK=20
+title=3D"Apache stdcxx Stylesheet" rel=3DStyleSheet type=3Dtext/css=20
+href=3D"http://stdcxx.apache.org/doc/rw.css">
+<META name=3DGENERATOR content=3D"MSHTML 8.00.7600.17006"></HEAD>
+<BODY bgColor=3D#ffffff><A=20
+href=3D"http://stdcxx.apache.org/doc/stdlibug/2-1.html"><IMG border=3DO=20
+alt=3D"Previous file" =
+src=3D"http://stdcxx.apache.org/doc/stdlibug/images/bprev.gif"=20
+width=3D20 height=3D21></A><A=20
+href=3D"http://stdcxx.apache.org/doc/stdlibug/noframes.html"><IMG =
+border=3DO=20
+alt=3D"Top of Document"=20
+src=3D"http://stdcxx.apache.org/doc/stdlibug/images/btop.gif" width=3D56 =
+
+height=3D21></A><A =
+href=3D"http://stdcxx.apache.org/doc/stdlibug/booktoc.html"><IMG=20
+border=3DO alt=3DContents=20
+src=3D"http://stdcxx.apache.org/doc/stdlibug/images/btoc.gif" width=3D56 =
+
+height=3D21></A><A =
+href=3D"http://stdcxx.apache.org/doc/stdlibug/tindex.html"><IMG=20
+border=3DO alt=3D"Index page"=20
+src=3D"http://stdcxx.apache.org/doc/stdlibug/images/bindex.gif" =
+width=3D56=20
+height=3D21></A><A =
+href=3D"http://stdcxx.apache.org/doc/stdlibug/2-3.html"><IMG=20
+border=3DO alt=3D"Next file"=20
+src=3D"http://stdcxx.apache.org/doc/stdlibug/images/bnext.gif" =
+width=3D25=20
+height=3D21></A>
+<DIV class=3DDOCUMENTNAME><B>Apache C++ Standard Library User's =
+Guide</B></DIV>
+<H2>2.2 Varieties of Iterators</H2><A name=3Didx16><!></A>
+<P>As shown in <A=20
+href=3D"http://stdcxx.apache.org/doc/stdlibug/2-2.html#Table&nbsp;3">Tabl=
+e&nbsp;3</A>,=20
+there are five basic forms of iterators used in the C++ Standard =
+Library:</P>
+<H4><A name=3DTable&nbsp;3>Table&nbsp;3: Iterator forms in the C++ =
+Standard=20
+Library&nbsp;</A></H4>
+<TABLE border=3D1 cellSpacing=3D3 cellPadding=3D3>
+  <TBODY>
+  <TR>
+    <TD vAlign=3Dtop><B><B>Iterator form</B></B> </TD>
+    <TD vAlign=3Dtop><B><B>Description</B></B> </TD></TR>
+  <TR>
+    <TD vAlign=3Dtop>
+      <P class=3DTABLE>input iterator </P></TD>
+    <TD vAlign=3Dtop>
+      <P class=3DTABLE>Read only, forward moving </P></TD></TR>
+  <TR>
+    <TD vAlign=3Dtop>
+      <P class=3DTABLE>output iterator </P></TD>
+    <TD vAlign=3Dtop>
+      <P class=3DTABLE>Write only, forward moving </P></TD></TR>
+  <TR>
+    <TD vAlign=3Dtop>
+      <P class=3DTABLE>forward iterator</P></TD>
+    <TD vAlign=3Dtop>
+      <P class=3DTABLE>Both read and write, forward moving =
+</P></TD></TR>
+  <TR>
+    <TD vAlign=3Dtop>
+      <P class=3DTABLE>bidirectional iterator </P></TD>
+    <TD vAlign=3Dtop>
+      <P class=3DTABLE>Read and write, forward and backward moving =
+</P></TD></TR>
+  <TR>
+    <TD vAlign=3Dtop>
+      <P class=3DTABLE>random access iterator</P></TD>
+    <TD vAlign=3Dtop>
+      <P class=3DTABLE>Read and write, random access =
+</P></TD></TR></TBODY></TABLE><A=20
+name=3Didx17><!></A>
+<P>Iterator categories are hierarchical. <I>Forward iterators</I> can be =
+used=20
+wherever input or output iterators are required, <I>bidirectional =
+iterators</I>=20
+can be used in place of forward iterators, and <I>random access =
+iterators</I>=20
+can be used in situations requiring bidirectionality. </P><A =
+name=3Didx18><!></A>
+<P>A second characteristic of iterators is whether or not they can be =
+used to=20
+modify the values held by their associated container. A <I>constant =
+iterator</I>=20
+is one that can be used for access only, and cannot be used for =
+modification.=20
+<I>Output iterators</I> are never constant, and <I>input iterators</I> =
+always=20
+are. Other iterators may or may not be constant, depending upon how they =
+are=20
+created. There are both constant and non-constant bidirectional =
+iterators, both=20
+constant and non-constant random access iterators, and so on.</P>
+<P><A=20
+href=3D"http://stdcxx.apache.org/doc/stdlibug/2-2.html#Table&nbsp;4">Tabl=
+e&nbsp;4</A>=20
+summarizes specific ways that various categories of iterators are =
+generated by=20
+the containers in the C++ Standard Library.</P>
+<H4><A name=3DTable&nbsp;4>Table&nbsp;4: Iterators generated in the C++ =
+Standard=20
+Library&nbsp;</A></H4>
+<TABLE border=3D1 cellSpacing=3D3 cellPadding=3D3>
+  <TBODY>
+  <TR>
+    <TD vAlign=3Dtop><B>Iterator form</B> </TD>
+    <TD vAlign=3Dtop><B>Produced by</B> </TD></TR><A =
+name=3Didx19><!></A>
+  <TR>
+    <TD vAlign=3Dtop>
+      <P class=3DTABLE>input iterator</P></TD>
+    <TD vAlign=3Dtop>
+      <P class=3DTABLE><SAMP>istream_iterator</SAMP></P></TD></TR><A=20
+name=3Didx20><!></A>
+  <TR>
+    <TD vAlign=3Dtop>
+      <P class=3DTABLE>output iterator </P></TD>
+    <TD vAlign=3Dtop>
+      <P class=3DTABLE><SAMP>ostream_iterator</SAMP></P>
+      <P class=3DTABLE><SAMP>inserter()</SAMP></P>
+      <P class=3DTABLE><SAMP>front_inserter()</SAMP></P>
+      <P class=3DTABLE><SAMP>back_inserter()</SAMP></P></TD></TR><A =
+name=3Didx21><!></A>
+  <TR>
+    <TD vAlign=3Dtop>
+      <P class=3DTABLE>bidirectional iterator </P></TD>
+    <TD vAlign=3Dtop>
+      <P class=3DTABLE><B><I><A=20
+      =
+href=3D"http://stdcxx.apache.org/doc/stdlibref/list.html">list</A></I></B=
+>=20
+      </P>
+      <P class=3DTABLE><B><I><A=20
+      =
+href=3D"http://stdcxx.apache.org/doc/stdlibref/set.html">set</A></I></B> =
+and=20
+      <B><I><A=20
+      =
+href=3D"http://stdcxx.apache.org/doc/stdlibref/multiset.html">multiset</A=
+></I></B>=20
+      </P>
+      <P class=3DTABLE><B><I><A=20
+      =
+href=3D"http://stdcxx.apache.org/doc/stdlibref/map.html">map</A></I></B> =
+and=20
+      <B><I><A=20
+      =
+href=3D"http://stdcxx.apache.org/doc/stdlibref/multimap.html">multimap</A=
+></I></B></P></TD></TR><A=20
+  name=3Didx22><!></A>
+  <TR>
+    <TD vAlign=3Dtop>
+      <P class=3DTABLE>random access iterator </P></TD>
+    <TD vAlign=3Dtop>
+      <P class=3DTABLE>ordinary pointers </P>
+      <P class=3DTABLE><B><I><A=20
+      =
+href=3D"http://stdcxx.apache.org/doc/stdlibref/vector.html">vector</A></I=
+></B>=20
+      </P>
+      <P class=3DTABLE><B><I><A=20
+      =
+href=3D"http://stdcxx.apache.org/doc/stdlibref/deque.html">deque</A></I><=
+/B></P></TD></TR></TBODY></TABLE>
+<P>In the following sections we describe the capabilities and =
+construction of=20
+each form of iterator.</P><A name=3D221>
+<H3>2.2.1 Input Iterators</H3></A><A name=3Didx23><!></A>
+<P>Input iterators are the simplest form of iterator. To understand =
+their=20
+capabilities, consider an example algorithm: </P>
+<UL><PRE>template &lt;class InputIterator, class T&gt;
+InputIterator=20
+find (InputIterator first, InputIterator last,
+      const T&amp; value)
+{
+  while (first !=3D last &amp;&amp; *first !=3D value)=20
+    ++first;
+  return first;
+}
+
+</PRE></UL>
+<P>This algorithm, which is similar to the <SAMP>std::find()</SAMP> =
+generic=20
+algorithm (<A=20
+href=3D"http://stdcxx.apache.org/doc/stdlibug/13-3.html#1331">Section&nbs=
+p;13.3.1</A>),=20
+performs a simple linear search, looking for a specific value being held =
+within=20
+a container. The contents of the container are described using two =
+iterators,=20
+<SAMP>first</SAMP> and <SAMP>last</SAMP>. While <SAMP>first</SAMP> is =
+not equal=20
+to <SAMP>last</SAMP>, the element denoted by <SAMP>first</SAMP> is =
+compared to=20
+the test value. If this element is equal to the test value, the =
+iterator, which=20
+now denotes the located element, is returned. If it is not equal, the=20
+<SAMP>first</SAMP> iterator is incremented and the loop cycles once =
+more. If the=20
+entire region of memory is examined without finding the desired value, =
+then the=20
+algorithm returns the end-of-range iterator.</P>
+<P>This algorithm illustrates three features of an <I>input =
+iterator</I>:</P>
+<UL>
+  <LI>
+  <P class=3DLIST>An input iterator can be compared for equality to =
+another=20
+  iterator. They are equal when they point to the same position, and not =
+equal=20
+  otherwise.</P>
+  <LI>
+  <P class=3DLIST>An input iterator can be dereferenced, using=20
+  <SAMP>operator*()</SAMP> to obtain the value being denoted by the=20
+iterator.</P>
+  <LI>
+  <P class=3DLIST>An input iterator can be incremented, so that it =
+refers to the=20
+  next element in sequence, using =
+<SAMP>operator++()</SAMP>.</P></LI></UL>
+<P>Notice that these features can all be provided with new meanings in a =
+C++=20
+program, since the behavior of the given functions can all be modified =
+by=20
+overloading the appropriate operators. Because of this overloading, =
+iterators=20
+are possible. </P><A name=3D221-1>
+<H4>2.2.1.1 Kinds of Input Iterators</H4></A><A name=3Didx24><!></A>
+<P>There are three main kinds of input iterators: ordinary pointers, =
+container=20
+iterators, and input streams iterators.</P><A name=3Didx25><!></A>
+<P><B>Ordinary pointers</B>. Ordinary pointers can be used as input =
+iterators.=20
+In fact, since we can subscript and add to ordinary pointers, they are =
+random=20
+access values, and thus can be used either as input or output iterators. =
+The=20
+end-of-range pointer describes the end of a contiguous region of memory, =
+and the=20
+dereference and increment operators have their conventional meanings. =
+For=20
+example, the following code searches for the value 7 in an array of=20
+integers:</P>
+<UL><PRE>int data[100];
+   ...
+int* where =3D std::find(data, data+100, 7);
+</PRE></UL>
+<P>Note that constant pointers, which do not permit the underlying array =
+to be=20
+modified, can be created by simply placing the keyword =
+<SAMP>const</SAMP> in a=20
+declaration:</P>
+<UL><PRE>const int* first =3D data;
+const int* last  =3D data + 100;
+   // can't modify location returned by the following
+const int* where =3D std::find(first, last, 7);
+</PRE></UL>
+<P>Because ordinary pointers have the same functionality as random =
+access=20
+iterators, most of the generic algorithms in the C++ Standard Library =
+can be=20
+used with conventional C++ arrays, as well as with the containers =
+provided by=20
+the C++ Standard Library.</P><A name=3Didx26><!></A>
+<P><B>Container iterators</B>. All of the iterators constructed for the =
+various=20
+containers provided by the C++ Standard Library are at <I>least</I> as =
+general=20
+as input iterators. The iterator for the first element in a collection =
+is always=20
+constructed by the member function<SAMP> begin()</SAMP>, while the =
+iterator that=20
+denotes the past-the-end location is generated by the member function=20
+<SAMP>end()</SAMP>. For example, the following iterator searches for the =
+value 7=20
+in a list of integers:</P>
+<UL><PRE>std::list&lt;int&gt;::iterator where =3D
+  std::find(aList.begin(), aList.end(), 7);
+</PRE></UL>
+<P>Each container that supports iterators provides a type with the name=20
+<SAMP>iterator </SAMP>within the class declaration. Using this type, =
+iterators=20
+can uniformly be declared in the fashion shown. If the container being =
+accessed=20
+is constant, or if the description <SAMP>const_iterator</SAMP> is used, =
+then the=20
+iterator is a constant iterator.</P><A name=3Didx27><!></A>
+<P><B>Input stream iterators</B>. The C++ Standard Library provides a =
+mechanism=20
+to operate on an input stream using an input iterator. This ability is =
+provided=20
+by the class <B><I><A=20
+href=3D"http://stdcxx.apache.org/doc/stdlibref/istream-iterator.html">ist=
+ream_iterator</A></I></B>,=20
+described in more detail in <A=20
+href=3D"http://stdcxx.apache.org/doc/stdlibug/2-3.html#231">Section&nbsp;=
+2.3.1</A>.</P><A=20
+name=3D222>
+<H3>2.2.2 Output Iterators</H3></A><A name=3Didx28><!></A>
+<P>An <I>output iterator</I> has the opposite function of an input =
+iterator.=20
+Output iterators can be used to assign values in a sequence, but cannot =
+be used=20
+to access values. For example, we can use an output iterator in a =
+generic=20
+algorithm that copies values from one sequence into another:</P>
+<UL><PRE>template &lt;class InputIterator, class OutputIterator&gt;
+OutputIterator copy
+   (InputIterator first, InputIterator last, OutputIterator result)=20
+{
+    while (first !=3D last)=20
+      *result++ =3D *first++;
+    return result;
+}
+</PRE></UL>
+<P>A number of the generic algorithms manipulate two parallel sequences. =
+
+Frequently the second sequence is described using only a beginning =
+iterator,=20
+rather than an iterator pair. It is assumed, but not checked, that the =
+second=20
+sequence has at least as many elements as the first.</P>
+<P>In the algorithm shown here, two ranges are being manipulated: the =
+range of=20
+source values specified by a pair of input iterators, and the =
+destination range.=20
+The latter, however, is specified by only a single argument. It is =
+assumed that=20
+the destination is large enough to include all values, and errors will =
+ensue if=20
+this is not the case.</P>
+<P>As illustrated by this algorithm, an output iterator can modify the =
+element=20
+to which it points by being used as the target for an assignment. Output =
+
+iterators can use the dereference operator only in this fashion; they =
+cannot be=20
+used to return or to access the elements they denote. </P>
+<P>As we noted earlier, ordinary pointers, like all iterators =
+constructed by=20
+containers in the C++ Standard Library, can be used as output iterators. =
+
+(Ordinary pointers are random access iterators, which are a superset of =
+output=20
+iterators.) For example, in this code fragment elements from an ordinary =
+C-style=20
+array are copied into a C++ Standard Library vector:</P>
+<UL><PRE>int data[100];
+std::vector&lt;int&gt; newdata(100);
+   ...
+std::copy(data, data+100, newdata.begin());
+</PRE></UL>
+<P>Just as the <SAMP>istream_iterator</SAMP> provides a way to operate =
+on an=20
+input stream using the input iterator mechanism, the C++ Standard =
+Library=20
+provides a datatype, <SAMP>ostream_iterator</SAMP>, that permits values =
+to be=20
+written to an output stream in an iterator-like fashion (<A=20
+href=3D"http://stdcxx.apache.org/doc/stdlibug/2-3.html#232">Section&nbsp;=
+2.3.2</A>).</P>
+<P>Yet another form of output iterator is an <I>insert iterator </I>(<A=20
+href=3D"http://stdcxx.apache.org/doc/stdlibug/2-4.html">Section&nbsp;2.4<=
+/A>). An=20
+insert iterator changes the output iterator operations of=20
+dereferencing/assignment and increment into insertions into a container. =
+This=20
+permits operations such as <SAMP>copy()</SAMP> to be used with variable =
+length=20
+containers, such as <B><I><A=20
+href=3D"http://stdcxx.apache.org/doc/stdlibref/list.html">list</A></I></B=
+>s and=20
+<B><I><A=20
+href=3D"http://stdcxx.apache.org/doc/stdlibref/set.html">set</A></I></B>s=
+.</P><A=20
+name=3D223>
+<H3>2.2.3 Forward Iterators</H3></A><A name=3Didx29><!></A>
+<P>A <I>forward iterator </I>combines the features of an input iterator =
+and an=20
+output iterator. It permits values to be both accessed and modified. One =
+
+function that uses forward iterators is the <SAMP>replace()</SAMP> =
+generic=20
+algorithm, which replaces occurrences of specific values with other =
+values. This=20
+algorithm could be written as follows:</P>
+<UL><PRE>template &lt;class ForwardIterator, class T&gt;
+void
+replace(ForwardIterator first, ForwardIterator last,=20
+        const T&amp; old_value, const T&amp; new_value)
+{
+   while (first !=3D last)=20
+   {
+      if (*first =3D=3D old_value)=20
+          *first =3D new_value;
+      ++first;
+   }
+}
+</PRE></UL>
+<P>Ordinary pointers, like all iterators produced by containers in the =
+C++=20
+Standard Library, can be used as forward iterators. For example, in the=20
+following code instances of the value 7 are replaced with the value 11 =
+in a=20
+vector of integers:</P>
+<UL><PRE>std::replace(aVec.begin(), aVec.end(), 7, 11);
+</PRE></UL><A name=3D224>
+<H3>2.2.4 Bidirectional Iterators</H3></A><A name=3Didx30><!></A>
+<P><I>Bidirectional iterators</I> are similar to forward iterators, =
+except that=20
+bidirectional iterators support the decrement operator,=20
+<SAMP>operator--()</SAMP>, permitting movement in either a forward or a =
+backward=20
+direction through the elements of a container. For example, we can use=20
+bidirectional iterators in a function that reverses the values of a =
+container,=20
+placing the results into a new container:</P>
+<UL><PRE>template &lt;class BidirectionalIterator, class =
+OutputIterator&gt;
+OutputIterator=20
+reverse_copy(BidirectionalIterator first,
+             BidirectionalIterator last,
+             OutputIterator result)=20
+{
+   while (first !=3D last)=20
+      *result++ =3D *--last;
+   return result;
+}
+</PRE></UL>
+<P>As always, the value initially denoted by the <SAMP>last</SAMP> =
+argument is=20
+not considered part of the collection.</P><A name=3Didx31><!></A>
+<P>The <SAMP>reverse_copy()</SAMP> function could be used, for example, =
+to=20
+reverse the values of a linked list, and place the result into a =
+vector:</P>
+<UL><PRE>std::list&lt;int&gt; aList;
+ ....
+std::vector&lt;int&gt; aVec (aList.size());
+std::reverse_copy(aList.begin(), aList.end(), aVec.begin() );
+</PRE></UL><A name=3D225>
+<H3>2.2.5 Random Access Iterators</H3></A><A name=3Didx32><!></A>
+<P>Some algorithms require more functionality than simply accessing =
+values in=20
+either a forward or backward direction. Random access iterators permit =
+values to=20
+be accessed by subscript, subtracted one from another (to yield the =
+number of=20
+elements between their respective values), or modified by arithmetic =
+operations,=20
+all in a manner similar to conventional pointers.</P>
+<P>With conventional pointers, arithmetic operations can be related to =
+the=20
+underlying memory; that is, <SAMP>x+10</SAMP> is the memory ten elements =
+after=20
+the beginning of <SAMP>x</SAMP>. With iterators the logical meaning is =
+preserved=20
+(<SAMP>x+10</SAMP> is the tenth element after <SAMP>x</SAMP>), however =
+different=20
+the physical addresses being described.</P>
+<P>Algorithms that use random access iterators include generic =
+operations like=20
+sorting and binary search. For example, the following algorithm randomly =
+
+shuffles the elements of a container. This is similar to, although =
+simpler than,=20
+the function <SAMP>std::random_shuffle()</SAMP> provided by the C++ =
+Standard=20
+Library.</P>
+<UL><PRE>template &lt;class RandomAccessIterator&gt;
+void
+mixup(RandomAccessIterator first, RandomAccessIterator last)
+{
+   while (first &lt; last)=20
+   {
+      std::iter_swap(first, first + randomInteger(last - first));
+      ++first;
+   }
+}
+</PRE></UL>
+<BLOCKQUOTE>
+  <HR>
+  <B>NOTE -- The function randomInteger described here appears in a =
+number of=20
+  the example programs presented in later sections. </B>
+  <HR>
+</BLOCKQUOTE><A name=3Didx33><!></A>
+<P>The program will cycle as long as <SAMP>first</SAMP> denotes a =
+position that=20
+occurs earlier in the sequence than the one denoted by =
+<SAMP>last</SAMP>. Only=20
+random access iterators can be compared using relational operators; all =
+other=20
+iterators can be compared only for equality or inequality. On each cycle =
+through=20
+the loop, the expression <BR><SAMP>last - first</SAMP> yields the number =
+of=20
+elements between the two limits. The function =
+<SAMP>randomInteger()</SAMP> is=20
+assumed to generate a random number between 0 and the argument. Using =
+the=20
+standard random number generator, this function could be written as =
+follows:</P>
+<UL><PRE>unsigned int randomInteger(unsigned int n)
+// return random integer greater than
+// or equal to 0 and less than n
+{
+   return std::rand() % n;
+}
+</PRE></UL>
+<P>This random value is added to the iterator <SAMP>first</SAMP>, =
+resulting in=20
+an iterator to a randomly selected value in the container. This value is =
+then=20
+swapped with the element denoted by the iterator =
+<SAMP>first</SAMP>.</P><A=20
+name=3D226>
+<H3>2.2.6 Reverse Iterators</H3></A><A name=3Didx34><!></A>
+<P>An iterator naturally imposes an order on an underlying container of =
+values.=20
+For a <B><I><A=20
+href=3D"http://stdcxx.apache.org/doc/stdlibref/vector.html">vector</A></I=
+></B> or=20
+a <B><I><A=20
+href=3D"http://stdcxx.apache.org/doc/stdlibref/map.html">map</A></I></B>,=
+ the=20
+order is imposed by increasing index values; for a <B><I><A=20
+href=3D"http://stdcxx.apache.org/doc/stdlibref/set.html">set</A></I></B>,=
+ by the=20
+increasing order of the elements held in the container. For a <B><I><A=20
+href=3D"http://stdcxx.apache.org/doc/stdlibref/list.html">list</A></I></B=
+>, the=20
+order is explicitly derived from the way values are inserted.</P>
+<P>A <I>reverse iterator</I> yields values in exactly the reverse order =
+of=20
+values given by the standard iterators. For a vector or a list, a =
+reverse=20
+iterator generates the last element first, and the first element last. =
+For a set=20
+it generates the largest element first, and the smallest element last. =
+Strictly=20
+speaking, reverse iterators do not constitute a new category of =
+iterator, but an=20
+adaptation of another iterator type. Consequently, we have reverse =
+bidirectional=20
+iterators and reverse random access iterators. Any bidirectional or =
+random=20
+access iterator can be adapted by the <SAMP>reverse_iterator</SAMP>=20
+template.</P>
+<P>The <B><I><A=20
+href=3D"http://stdcxx.apache.org/doc/stdlibref/list.html">list</A></I></B=
+>,=20
+<B><I><A =
+href=3D"http://stdcxx.apache.org/doc/stdlibref/set.html">set</A></I></B>,=
+=20
+and <B><I><A=20
+href=3D"http://stdcxx.apache.org/doc/stdlibref/map.html">map</A></I></B> =
+datatypes=20
+provide a pair of member functions that produce reverse bidirectional =
+iterators.=20
+The functions <SAMP>rbegin()</SAMP> and <SAMP>rend()</SAMP> generate =
+iterators=20
+that cycle through the underlying container in reverse order. Increments =
+to such=20
+iterators move backward, and decrements move forward through the =
+sequence.</P>
+<P>Similarly, the <B><I><A=20
+href=3D"http://stdcxx.apache.org/doc/stdlibref/vector.html">vector</A></I=
+></B> and=20
+<B><I><A=20
+href=3D"http://stdcxx.apache.org/doc/stdlibref/deque.html">deque</A></I><=
+/B>=20
+datatypes provide functions, also named <SAMP>rbegin()</SAMP> and=20
+<SAMP>rend()</SAMP>, that produce reverse random access iterators. =
+Subscript and=20
+addition operators, as well as increments to such iterators, move =
+backward=20
+within the sequence.</P><BR>
+<HR>
+<A href=3D"http://stdcxx.apache.org/doc/stdlibug/2-1.html"><IMG =
+border=3DO=20
+alt=3D"Previous file" =
+src=3D"http://stdcxx.apache.org/doc/stdlibug/images/bprev.gif"=20
+width=3D20 height=3D21></A><A=20
+href=3D"http://stdcxx.apache.org/doc/stdlibug/noframes.html"><IMG =
+border=3DO=20
+alt=3D"Top of Document"=20
+src=3D"http://stdcxx.apache.org/doc/stdlibug/images/btop.gif" width=3D56 =
+
+height=3D21></A><A =
+href=3D"http://stdcxx.apache.org/doc/stdlibug/booktoc.html"><IMG=20
+border=3DO alt=3DContents=20
+src=3D"http://stdcxx.apache.org/doc/stdlibug/images/btoc.gif" width=3D56 =
+
+height=3D21></A><A =
+href=3D"http://stdcxx.apache.org/doc/stdlibug/tindex.html"><IMG=20
+border=3DO alt=3D"Index page"=20
+src=3D"http://stdcxx.apache.org/doc/stdlibug/images/bindex.gif" =
+width=3D56=20
+height=3D21></A><A =
+href=3D"http://stdcxx.apache.org/doc/stdlibug/2-3.html"><IMG=20
+border=3DO alt=3D"Next file"=20
+src=3D"http://stdcxx.apache.org/doc/stdlibug/images/bnext.gif" =
+width=3D20=20
+height=3D21></A> <!-- Google Analytics tracking code -->
+<SCRIPT type=3Dtext/javascript=20
+src=3D"http://www.google-analytics.com/urchin.js">=0A=
+</SCRIPT>
+
+<SCRIPT=20
+type=3Dtext/javascript>=0A=
+    _uacct =3D "UA-1775151-1";=0A=
+    urchinTracker();=0A=
+</SCRIPT>
+<!-- end of Google Analytics tracking code --></BODY></HTML>
+
+------=_NextPart_000_0000_01CEF769.A08B6600
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://stdcxx.apache.org/doc/stdlibug/images/bprev.gif
+
+R0lGODlhFAAVANUAAP////n7/rvW8bPR8JC86UqM0j6GzziD0DB+zSp7zBdkuxJkvhVitxZgsABm
+zABJqQBAlAA/nAA+jAA7nAA6ggAzmQAxlAA0gwAwjQAxegArggApjAApewAmcwAjagAhY/4BAgAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAQUAP8ALAAAAAAUABUAAAamQIBw
+SCwaj8ikslhxOJ/QKLRCrVqvVgcWa+l2qdottYt5RDDfMNeCmSwSDw26uW4rCgICpCOnV8kRCgcC
+QgQSHn1qbBELg0QEFB8cGH4VbngBRZCSaGEWbgYDmY+RkxaeGBoXDAYCowCbpooYHB4ZDAmEsKWd
+fxgbGh0eFw0IA5Aek5UVZBocwhnFh4l1zsIXFxwaFstWzc7ac2pbZBjmaWJXXlUOQQA7
+
+------=_NextPart_000_0000_01CEF769.A08B6600
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://stdcxx.apache.org/doc/stdlibug/images/btop.gif
+
+R0lGODlhOAAVANUAAP////Dz+eDm89HZ68jN1sDN5r7AxKCz2ZemxZCm05WZo4CZzImNk2CAv2h5
+l2ZmZkBms1lZWUVZgzBZrABmzCtNjyBNphlGnD1ARTRAVzMzMyozRh0zXxAzeQozhgAzmf4BAgAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAQUAP8ALAAAAAA4ABUAAAbbQIBw
+SCwaj8ikcslsOp/Q6PNDqVqv2Kx2y+1+vuCweEwum8+Us3rNNqfbXwtkPr/A7294oVi5w/NwGwoA
+GoUefmyAcAuEXw0CAAlfEAMHAQITiFSajBofEAAODKGfAAoOAQaHfoptnR8HAxodAgYdoA8cCAAc
+iK1srwUEGx/CHLgdr6ycjcLEzsgJsr7MngkAGR8BDBu4FQEKxMuIrxaXAwMYt0MJGr3jfhYSnh8V
+DAwZxKAMEe6av2w8rPrgoUOHSQAedBgIT1MZUBEOOgToEEwHDQwbVtxYhkIQADs=
+
+------=_NextPart_000_0000_01CEF769.A08B6600
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://stdcxx.apache.org/doc/stdlibug/images/btoc.gif
+
+R0lGODlhOAAVANUAAP////Lz9uPm7NXZ48fN18DN5rDA36qzxpGm0JmZmZCZrICZzImNk3CNxmiA
+r21zgFJxrlpmfkBms1VZY0VZgzBZrABmzDVGa0JFShBAnzMzMyYzTBozZhAzeQAzmQYzjP4BAgAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAQUAP8ALAAAAAA4ABUAAAb/QIBw
+SCwaj8ikcslsOp/Q6NNjqVqv2Kx2y+16vuCweEwum8+Ws3rNNqfDlcUC0q7bqWEHYDAAdOoQDXYN
+dG5gEgAQGhsYGnUFBBx1AAp/ZW8eBgMalh8eGQYAAhVfCAgFAAseEAEBBKUBBaQepqiqC6IHHg4C
+AAhhmAEKG2IFBhEDAp4ABMgBHBICAgwbCwIRAgfLzQPPegQPF8IPDJJfmAAJ5l8VAA8behMe6dUA
+jpAaHAMHGgsBxPRwOaIHAcABDh3WoVMXBtGEDg4/pOMg0AMkgEMCDFRXcaJFUbPOgUm2zoNDiAAe
+Tqx4cV4CDTA3UrTn0hyDAMrAYMKV4EuGigoZ0nVooLHDSpotCwi44GHWUZmfPCjQqBNMhj4CUGX4
+gIBZAAcyK4YasApArAHLONIUEOCAhFhfHYkM8yABgwly6+L9IwEDhwoUHGVQ8M4DBbsXiPX9G7hp
+ggkXHCSIwKmqmIQcPH1JqNlDp84Iv3zgkHmzaM2jPSW0NPeOa9eYXstmE3u27UtBAAA7
+
+------=_NextPart_000_0000_01CEF769.A08B6600
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://stdcxx.apache.org/doc/stdlibug/images/bindex.gif
+
+R0lGODlhOAAVANUAAP////Lz9uDm89DZ7MfN18DN5qyzwaKz1JCm05mZmYuZtoCZzIuNkG6Gr2Zm
+Zlhmg0Bms0ZfkEVZgzBZrABmzEFNYiBNpi1Ge0BAQBBAnzMzMyozRhozZg0zfwozhgAzmf4BAgAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAQUAP8ALAAAAAA4ABUAAAb/QIBw
+SCwaj8ikcslsOp/Q6PNDqVqv2Kx2y+1+vuCweEwum8+Us3rNNqfXlgk8AGmr3+pCwaOGABwddm5s
+BQQbfX+BgmR4Z4WHCAgFAAtgEwcDiR8IAQVyEAUWFqFrjWaPHwAEDwMBHB8TAQcGiQsCDwIGHhYA
+BgcHG3xohIapCRsKABofehoPiQMKyAGHBwABFa93xIcACRwLyh8B0n6ARAHLvAQawsNrqN7g4vLm
+Hd4a+ct+AA9spmXifQu3TAABDvYKCLjwwcKXAg0CEFD0Lk8xeQQ/hBsgIJGfTgM8NBCArF8pNhMq
+HIKAgYMFCcs+NGBQwYGGQBES0Nww4cKGKgwPMFAsA7CMB2GKjoLpwMEDRQ8cmn5Q+mEo0UVYs1LR
+yrVN0a5gwVAIAgA7
+
+------=_NextPart_000_0000_01CEF769.A08B6600
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://stdcxx.apache.org/doc/stdlibug/images/bnext.gif
+
+R0lGODlhEwAVAMQAAP////n7/rvW8bPR8Iy66EqLzj6L2ECGzzGD1it7zhJjuxZitxZfrwBmzBdd
+qgBIpQBDngA9nQA6jgAzmQAxlAAvjAAxggAwcwArggApfAAndAAjaQAhYgAeWgAbUv4BAiH5BAUU
+AB8ALAAAAAATABUAAAWVICCOZGmeaKqKU+O+cPxOdG3fdWNTPIXbugklEqkYeb8WjfIwKCQYTAV5
+CzIJg8RCkpFSacEKhCASJJ7dqU85EZNFAcFh6/WFx6XA4PCcst15AgUKFl53b2VnFxwahjSAAHIO
+Fx4dGxl+h4IMlJYamJmPDwgKnRufdWBLERAbHKdpX2wUFRgZt6lVS7RGaklBQj1rvyEAOw==
+
+------=_NextPart_000_0000_01CEF769.A08B6600
+Content-Type: text/css;
+	charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://stdcxx.apache.org/doc/rw.css
+
+BODY {
+	FONT-FAMILY: arial, helvetica, sans-serif; FONT-SIZE: 10pt
+}
+H1 {
+	LINE-HEIGHT: 100%; FONT-FAMILY: arial, helvetica, sans-serif; COLOR: =
+#003399; FONT-SIZE: 16pt; FONT-WEIGHT: bold
+}
+H2 {
+	LINE-HEIGHT: 100%; FONT-FAMILY: arial, helvetica, sans-serif; COLOR: =
+#003399; FONT-SIZE: 14pt; FONT-WEIGHT: bold
+}
+H3 {
+	LINE-HEIGHT: 200%; FONT-FAMILY: arial, helvetica, sans-serif; COLOR: =
+#003399; FONT-SIZE: 12pt; FONT-WEIGHT: bold
+}
+H4 {
+	LINE-HEIGHT: 100%; FONT-FAMILY: arial, helvetica, sans-serif; =
+FONT-SIZE: 10pt; FONT-WEIGHT: bold
+}
+P {
+	FONT-FAMILY: arial, helvetica, sans-serif; FONT-SIZE: 10pt
+}
+P.LIST {
+	LINE-HEIGHT: 120%; FONT-FAMILY: arial, helvetica, sans-serif; =
+FONT-SIZE: 10pt
+}
+P.TABLE {
+	LINE-HEIGHT: 100%; FONT-FAMILY: arial, helvetica, sans-serif; =
+FONT-SIZE: 10pt
+}
+TR {
+	FONT-FAMILY: arial, helvetica, sans-serif; FONT-SIZE: 10pt
+}
+TR.LIST {
+	LINE-HEIGHT: 0%; FONT-FAMILY: arial, helvetica, sans-serif; FONT-SIZE: =
+10pt
+}
+TD {
+	FONT-FAMILY: arial, helvetica, sans-serif; FONT-SIZE: 10pt
+}
+TD.LIST {
+	LINE-HEIGHT: 0%; FONT-FAMILY: arial, helvetica, sans-serif; FONT-SIZE: =
+10pt
+}
+UL {
+	FONT-FAMILY: arial, helvetica, sans-serif; FONT-SIZE: 10pt
+}
+OL {
+	FONT-FAMILY: arial, helvetica, sans-serif; FONT-SIZE: 10pt
+}
+LI {
+	FONT-FAMILY: arial, helvetica, sans-serif; FONT-SIZE: 10pt
+}
+BLOCKQUOTE {
+	FONT-FAMILY: arial, helvetica, sans-serif; FONT-SIZE: 10pt
+}
+PRE {
+	FONT-FAMILY: "courier new", monospace; COLOR: #990033; FONT-SIZE: 10pt
+}
+SAMP {
+	FONT-FAMILY: "courier new", monospace; COLOR: #990033; FONT-SIZE: 10pt
+}
+CODE {
+	FONT-FAMILY: "courier new", monospace; COLOR: #990033; FONT-SIZE: 10pt
+}
+
+------=_NextPart_000_0000_01CEF769.A08B6600
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.google-analytics.com/urchin.js
+
+//-- Google Analytics Urchin Module=0A=
+//-- Copyright 2007 Google, All Rights Reserved.=0A=
+=0A=
+//-- Urchin On Demand Settings ONLY=0A=
+var _uacct=3D"";			// set up the Urchin Account=0A=
+var _userv=3D1;			// service mode (0=3Dlocal,1=3Dremote,2=3Dboth)=0A=
+=0A=
+//-- UTM User Settings=0A=
+var _ufsc=3D1;			// set client info flag (1=3Don|0=3Doff)=0A=
+var _udn=3D"auto";		// (auto|none|domain) set the domain name for cookies=0A=
+var _uhash=3D"on";		// (on|off) unique domain hash for cookies=0A=
+var _utimeout=3D"1800";   	// set the inactive session timeout in seconds=0A=
+var _ugifpath=3D"/__utm.gif";	// set the web path to the __utm.gif file=0A=
+var _utsp=3D"|";			// transaction field separator=0A=
+var _uflash=3D1;			// set flash version detect option (1=3Don|0=3Doff)=0A=
+var _utitle=3D1;			// set the document title detect option =
+(1=3Don|0=3Doff)=0A=
+var _ulink=3D0;			// enable linker functionality (1=3Don|0=3Doff)=0A=
+var _uanchor=3D0;			// enable use of anchors for campaign =
+(1=3Don|0=3Doff)=0A=
+var _utcp=3D"/";			// the cookie path for tracking=0A=
+var _usample=3D100;		// The sampling % of visitors to track (1-100).=0A=
+=0A=
+//-- UTM Campaign Tracking Settings=0A=
+var _uctm=3D1;			// set campaign tracking module (1=3Don|0=3Doff)=0A=
+var _ucto=3D"15768000";		// set timeout in seconds (6 month default)=0A=
+var _uccn=3D"utm_campaign";	// name=0A=
+var _ucmd=3D"utm_medium";		// medium (cpc|cpm|link|email|organic)=0A=
+var _ucsr=3D"utm_source";		// source=0A=
+var _uctr=3D"utm_term";		// term/keyword=0A=
+var _ucct=3D"utm_content";	// content=0A=
+var _ucid=3D"utm_id";		// id number=0A=
+var _ucno=3D"utm_nooverride";	// don't override=0A=
+=0A=
+//-- Auto/Organic Sources and Keywords=0A=
+var _uOsr=3Dnew Array();=0A=
+var _uOkw=3Dnew Array();=0A=
+_uOsr[0]=3D"google";	_uOkw[0]=3D"q";=0A=
+_uOsr[1]=3D"yahoo";	_uOkw[1]=3D"p";=0A=
+_uOsr[2]=3D"msn";		_uOkw[2]=3D"q";=0A=
+_uOsr[3]=3D"aol";		_uOkw[3]=3D"query";=0A=
+_uOsr[4]=3D"aol";		_uOkw[4]=3D"encquery";=0A=
+_uOsr[5]=3D"lycos";	_uOkw[5]=3D"query";=0A=
+_uOsr[6]=3D"ask";		_uOkw[6]=3D"q";=0A=
+_uOsr[7]=3D"altavista";	_uOkw[7]=3D"q";=0A=
+_uOsr[8]=3D"netscape";	_uOkw[8]=3D"query";=0A=
+_uOsr[9]=3D"cnn";	_uOkw[9]=3D"query";=0A=
+_uOsr[10]=3D"looksmart";	_uOkw[10]=3D"qt";=0A=
+_uOsr[11]=3D"about";	_uOkw[11]=3D"terms";=0A=
+_uOsr[12]=3D"mamma";	_uOkw[12]=3D"query";=0A=
+_uOsr[13]=3D"alltheweb";	_uOkw[13]=3D"q";=0A=
+_uOsr[14]=3D"gigablast";	_uOkw[14]=3D"q";=0A=
+_uOsr[15]=3D"voila";	_uOkw[15]=3D"rdata";=0A=
+_uOsr[16]=3D"virgilio";	_uOkw[16]=3D"qs";=0A=
+_uOsr[17]=3D"live";	_uOkw[17]=3D"q";=0A=
+_uOsr[18]=3D"baidu";	_uOkw[18]=3D"wd";=0A=
+_uOsr[19]=3D"alice";	_uOkw[19]=3D"qs";=0A=
+_uOsr[20]=3D"yandex";	_uOkw[20]=3D"text";=0A=
+_uOsr[21]=3D"najdi";	_uOkw[21]=3D"q";=0A=
+_uOsr[22]=3D"aol";	_uOkw[22]=3D"q";=0A=
+_uOsr[23]=3D"club-internet"; _uOkw[23]=3D"query";=0A=
+_uOsr[24]=3D"mama";	_uOkw[24]=3D"query";=0A=
+_uOsr[25]=3D"seznam";	_uOkw[25]=3D"q";=0A=
+_uOsr[26]=3D"search";	_uOkw[26]=3D"q";=0A=
+_uOsr[27]=3D"wp";	_uOkw[27]=3D"szukaj";=0A=
+_uOsr[28]=3D"onet";	_uOkw[28]=3D"qt";=0A=
+_uOsr[29]=3D"netsprint";	_uOkw[29]=3D"q";=0A=
+_uOsr[30]=3D"google.interia";	_uOkw[30]=3D"q";=0A=
+_uOsr[31]=3D"szukacz";	_uOkw[31]=3D"q";=0A=
+_uOsr[32]=3D"yam";	_uOkw[32]=3D"k";=0A=
+_uOsr[33]=3D"pchome";	_uOkw[33]=3D"q";=0A=
+_uOsr[34]=3D"kvasir";	_uOkw[34]=3D"searchExpr";=0A=
+_uOsr[35]=3D"sesam";	_uOkw[35]=3D"q";=0A=
+_uOsr[36]=3D"ozu"; _uOkw[36]=3D"q";=0A=
+_uOsr[37]=3D"terra"; _uOkw[37]=3D"query";=0A=
+_uOsr[38]=3D"nostrum"; _uOkw[38]=3D"query";=0A=
+_uOsr[39]=3D"mynet"; _uOkw[39]=3D"q";=0A=
+_uOsr[40]=3D"ekolay"; _uOkw[40]=3D"q";=0A=
+_uOsr[41]=3D"search.ilse"; _uOkw[41]=3D"search_for";=0A=
+_uOsr[42]=3D"bing"; _uOkw[42]=3D"q";=0A=
+=0A=
+//-- Auto/Organic Keywords to Ignore=0A=
+var _uOno=3Dnew Array();=0A=
+//_uOno[0]=3D"urchin";=0A=
+//_uOno[1]=3D"urchin.com";=0A=
+//_uOno[2]=3D"www.urchin.com";=0A=
+=0A=
+//-- Referral domains to Ignore=0A=
+var _uRno=3Dnew Array();=0A=
+//_uRno[0]=3D".urchin.com";=0A=
+=0A=
+//-- **** Don't modify below this point ***=0A=
+var =
+_uff,_udh,_udt,_ubl=3D0,_udo=3D"",_uu,_ufns=3D0,_uns=3D0,_ur=3D"-",_ufno=3D=
+0,_ust=3D0,_ubd=3Ddocument,_udl=3D_ubd.location,_udlh=3D"",_uwv=3D"1.4";=0A=
+var _ugifpath2=3D"http://www.google-analytics.com/__utm.gif";=0A=
+if (_udl.hash) _udlh=3D_udl.href.substring(_udl.href.indexOf('#'));=0A=
+if (_udl.protocol=3D=3D"https:") =
+_ugifpath2=3D"https://ssl.google-analytics.com/__utm.gif";=0A=
+if (!_utcp || _utcp=3D=3D"") _utcp=3D"/";=0A=
+function urchinTracker(page) {=0A=
+ if (_udl.protocol=3D=3D"file:") return;=0A=
+ if (_uff && (!page || page=3D=3D"")) return;=0A=
+ var a,b,c,xx,v,z,k,x=3D"",s=3D"",f=3D0,nv=3D0;=0A=
+ var nx=3D" expires=3D"+_uNx()+";";=0A=
+ var dc=3D_ubd.cookie;=0A=
+ _udh=3D_uDomain();=0A=
+ if (!_uVG()) return;=0A=
+ _uu=3DMath.round(Math.random()*2147483647);=0A=
+ _udt=3Dnew Date();=0A=
+ _ust=3DMath.round(_udt.getTime()/1000);=0A=
+ a=3Ddc.indexOf("__utma=3D"+_udh+".");=0A=
+ b=3Ddc.indexOf("__utmb=3D"+_udh);=0A=
+ c=3Ddc.indexOf("__utmc=3D"+_udh);=0A=
+ if (_udn && _udn!=3D"") { _udo=3D" domain=3D"+_udn+";"; }=0A=
+ if (_utimeout && _utimeout!=3D"") {=0A=
+  x=3Dnew Date(_udt.getTime()+(_utimeout*1000));=0A=
+  x=3D" expires=3D"+x.toGMTString()+";";=0A=
+ }=0A=
+ if (_ulink) {=0A=
+  if (_uanchor && _udlh && _udlh!=3D"") s=3D_udlh+"&";=0A=
+  s+=3D_udl.search;=0A=
+  if(s && s!=3D"" && s.indexOf("__utma=3D")>=3D0) {=0A=
+   if (!(_uIN(a=3D_uGC(s,"__utma=3D","&")))) a=3D"-";=0A=
+   if (!(_uIN(b=3D_uGC(s,"__utmb=3D","&")))) b=3D"-";=0A=
+   if (!(_uIN(c=3D_uGC(s,"__utmc=3D","&")))) c=3D"-";=0A=
+   v=3D_uGC(s,"__utmv=3D","&");=0A=
+   z=3D_uGC(s,"__utmz=3D","&");=0A=
+   k=3D_uGC(s,"__utmk=3D","&");=0A=
+   xx=3D_uGC(s,"__utmx=3D","&");=0A=
+   if ((k*1) !=3D ((_uHash(a+b+c+xx+z+v)*1)+(_udh*1))) =
+{_ubl=3D1;a=3D"-";b=3D"-";c=3D"-";xx=3D"-";z=3D"-";v=3D"-";}=0A=
+   if (a!=3D"-" && b!=3D"-" && c!=3D"-") f=3D1;=0A=
+   else if(a!=3D"-") f=3D2;=0A=
+  }=0A=
+ }=0A=
+ if(f=3D=3D1) {=0A=
+  _ubd.cookie=3D"__utma=3D"+a+"; path=3D"+_utcp+";"+nx+_udo;=0A=
+  _ubd.cookie=3D"__utmb=3D"+b+"; path=3D"+_utcp+";"+x+_udo;=0A=
+  _ubd.cookie=3D"__utmc=3D"+c+"; path=3D"+_utcp+";"+_udo;=0A=
+ } else if (f=3D=3D2) {=0A=
+  a=3D_uFixA(s,"&",_ust);=0A=
+  _ubd.cookie=3D"__utma=3D"+a+"; path=3D"+_utcp+";"+nx+_udo;=0A=
+  _ubd.cookie=3D"__utmb=3D"+_udh+"; path=3D"+_utcp+";"+x+_udo;=0A=
+  _ubd.cookie=3D"__utmc=3D"+_udh+"; path=3D"+_utcp+";"+_udo;=0A=
+  _ufns=3D1;=0A=
+ } else if (a>=3D0 && b>=3D0 && c>=3D0) {=0A=
+   b =3D _uGC(dc,"__utmb=3D"+_udh,";");=0A=
+   b =3D ("-" =3D=3D b) ? _udh : b;  =0A=
+  _ubd.cookie=3D"__utmb=3D"+b+"; path=3D"+_utcp+";"+x+_udo;=0A=
+ } else {=0A=
+  if (a>=3D0) a=3D_uFixA(_ubd.cookie,";",_ust);=0A=
+  else {=0A=
+   a=3D_udh+"."+_uu+"."+_ust+"."+_ust+"."+_ust+".1";=0A=
+   nv=3D1;=0A=
+  }=0A=
+  _ubd.cookie=3D"__utma=3D"+a+"; path=3D"+_utcp+";"+nx+_udo;=0A=
+  _ubd.cookie=3D"__utmb=3D"+_udh+"; path=3D"+_utcp+";"+x+_udo;=0A=
+  _ubd.cookie=3D"__utmc=3D"+_udh+"; path=3D"+_utcp+";"+_udo;=0A=
+  _ufns=3D1;=0A=
+ }=0A=
+ if (_ulink && xx && xx!=3D"" && xx!=3D"-") {=0A=
+   xx=3D_uUES(xx);=0A=
+   if (xx.indexOf(";")=3D=3D-1) _ubd.cookie=3D"__utmx=3D"+xx+"; =
+path=3D"+_utcp+";"+nx+_udo;=0A=
+ }=0A=
+ if (_ulink && v && v!=3D"" && v!=3D"-") {=0A=
+  v=3D_uUES(v);=0A=
+  if (v.indexOf(";")=3D=3D-1) _ubd.cookie=3D"__utmv=3D"+v+"; =
+path=3D"+_utcp+";"+nx+_udo;=0A=
+ }=0A=
+ var wc=3Dwindow;=0A=
+ var c=3D_ubd.cookie;=0A=
+ if(wc && wc.gaGlobal && wc.gaGlobal.dh=3D=3D_udh){=0A=
+  var g=3Dwc.gaGlobal;=0A=
+  var ua=3Dc.split("__utma=3D"+_udh+".")[1].split(";")[0].split(".");=0A=
+  if(g.sid)ua[3]=3Dg.sid;=0A=
+  if(nv>0){=0A=
+   ua[2]=3Dua[3];=0A=
+   if(g.vid){=0A=
+    var v=3Dg.vid.split(".");=0A=
+    ua[0]=3Dv[0];=0A=
+    ua[1]=3Dv[1];=0A=
+   }=0A=
+  }=0A=
+  _ubd.cookie=3D"__utma=3D"+_udh+"."+ua.join(".")+"; =
+path=3D"+_utcp+";"+nx+_udo;=0A=
+ }=0A=
+ _uInfo(page);=0A=
+ _ufns=3D0;=0A=
+ _ufno=3D0;=0A=
+ if (!page || page=3D=3D"") _uff=3D1;=0A=
+}=0A=
+function _uGH() {=0A=
+ var hid;=0A=
+ var wc=3Dwindow;=0A=
+ if (wc && wc.gaGlobal && wc.gaGlobal.hid) {=0A=
+  hid=3Dwc.gaGlobal.hid;=0A=
+ } else {=0A=
+  hid=3DMath.round(Math.random()*0x7fffffff);=0A=
+  if (!wc.gaGlobal) wc.gaGlobal=3D{};=0A=
+  wc.gaGlobal.hid=3Dhid;=0A=
+ }=0A=
+ return hid;=0A=
+}=0A=
+function _uInfo(page) {=0A=
+ var p,s=3D"",dm=3D"",pg=3D_udl.pathname+_udl.search;=0A=
+ if (page && page!=3D"") pg=3D_uES(page,1);=0A=
+ _ur=3D_ubd.referrer;=0A=
+ if (!_ur || _ur=3D=3D"") { _ur=3D"-"; }=0A=
+ else {=0A=
+  dm=3D_ubd.domain;=0A=
+  if(_utcp && _utcp!=3D"/") dm+=3D_utcp;=0A=
+  p=3D_ur.indexOf(dm);=0A=
+  if ((p>=3D0) && (p<=3D8)) { _ur=3D"0"; }=0A=
+  if (_ur.indexOf("[")=3D=3D0 && =
+_ur.lastIndexOf("]")=3D=3D(_ur.length-1)) { _ur=3D"-"; }=0A=
+ }=0A=
+ s+=3D"&utmn=3D"+_uu;=0A=
+ if (_ufsc) s+=3D_uBInfo();=0A=
+ if (_uctm) s+=3D_uCInfo();=0A=
+ if (_utitle && _ubd.title && _ubd.title!=3D"") =
+s+=3D"&utmdt=3D"+_uES(_ubd.title);=0A=
+ if (_udl.hostname && _udl.hostname!=3D"") =
+s+=3D"&utmhn=3D"+_uES(_udl.hostname);=0A=
+ if (_usample && _usample !=3D 100) s+=3D"&utmsp=3D"+_uES(_usample);=0A=
+ s+=3D"&utmhid=3D"+_uGH();=0A=
+ s+=3D"&utmr=3D"+_ur;=0A=
+ s+=3D"&utmp=3D"+pg;=0A=
+ if ((_userv=3D=3D0 || _userv=3D=3D2) && _uSP()) {=0A=
+  var i=3Dnew Image(1,1);=0A=
+  i.src=3D_ugifpath+"?"+"utmwv=3D"+_uwv+s;=0A=
+  i.onload=3Dfunction() { _uVoid(); }=0A=
+ }=0A=
+ if ((_userv=3D=3D1 || _userv=3D=3D2) && _uSP()) {=0A=
+  var i2=3Dnew Image(1,1);=0A=
+  =
+i2.src=3D_ugifpath2+"?"+"utmwv=3D"+_uwv+s+"&utmac=3D"+_uacct+"&utmcc=3D"+=
+_uGCS();=0A=
+  i2.onload=3Dfunction() { _uVoid(); }=0A=
+ }=0A=
+ return;=0A=
+}=0A=
+function _uVoid() { return; }=0A=
+function _uCInfo() {=0A=
+ if (!_ucto || _ucto=3D=3D"") { _ucto=3D"15768000"; }=0A=
+ if (!_uVG()) return;=0A=
+ var =
+c=3D"",t=3D"-",t2=3D"-",t3=3D"-",o=3D0,cs=3D0,cn=3D0,i=3D0,z=3D"-",s=3D""=
+;=0A=
+ if (_uanchor && _udlh && _udlh!=3D"") s=3D_udlh+"&";=0A=
+ s+=3D_udl.search;=0A=
+ var x=3Dnew Date(_udt.getTime()+(_ucto*1000));=0A=
+ var dc=3D_ubd.cookie;=0A=
+ x=3D" expires=3D"+x.toGMTString()+";";=0A=
+ if (_ulink && !_ubl) {=0A=
+  z=3D_uUES(_uGC(s,"__utmz=3D","&"));=0A=
+  if (z!=3D"-" && z.indexOf(";")=3D=3D-1) { =
+_ubd.cookie=3D"__utmz=3D"+z+"; path=3D"+_utcp+";"+x+_udo; return ""; }=0A=
+ }=0A=
+ z=3Ddc.indexOf("__utmz=3D"+_udh+".");=0A=
+ if (z>-1) { z=3D_uGC(dc,"__utmz=3D"+_udh+".",";"); }=0A=
+ else { z=3D"-"; }=0A=
+ t=3D_uGC(s,_ucid+"=3D","&");=0A=
+ t2=3D_uGC(s,_ucsr+"=3D","&");=0A=
+ t3=3D_uGC(s,"gclid=3D","&");=0A=
+ if ((t!=3D"-" && t!=3D"") || (t2!=3D"-" && t2!=3D"") || (t3!=3D"-" && =
+t3!=3D"")) {=0A=
+  if (t!=3D"-" && t!=3D"") c+=3D"utmcid=3D"+_uEC(t);=0A=
+  if (t2!=3D"-" && t2!=3D"") { if (c !=3D "") c+=3D"|"; =
+c+=3D"utmcsr=3D"+_uEC(t2); }=0A=
+  if (t3!=3D"-" && t3!=3D"") { if (c !=3D "") c+=3D"|"; =
+c+=3D"utmgclid=3D"+_uEC(t3); }=0A=
+  t=3D_uGC(s,_uccn+"=3D","&");=0A=
+  if (t!=3D"-" && t!=3D"") c+=3D"|utmccn=3D"+_uEC(t);=0A=
+  else c+=3D"|utmccn=3D(not+set)";=0A=
+  t=3D_uGC(s,_ucmd+"=3D","&");=0A=
+  if (t!=3D"-" && t!=3D"") c+=3D"|utmcmd=3D"+_uEC(t);=0A=
+  else  c+=3D"|utmcmd=3D(not+set)";=0A=
+  t=3D_uGC(s,_uctr+"=3D","&");=0A=
+  if (t!=3D"-" && t!=3D"") c+=3D"|utmctr=3D"+_uEC(t);=0A=
+  else { t=3D_uOrg(1); if (t!=3D"-" && t!=3D"") =
+c+=3D"|utmctr=3D"+_uEC(t); }=0A=
+  t=3D_uGC(s,_ucct+"=3D","&");=0A=
+  if (t!=3D"-" && t!=3D"") c+=3D"|utmcct=3D"+_uEC(t);=0A=
+  t=3D_uGC(s,_ucno+"=3D","&");=0A=
+  if (t=3D=3D"1") o=3D1;=0A=
+  if (z!=3D"-" && o=3D=3D1) return "";=0A=
+ }=0A=
+ if (c=3D=3D"-" || c=3D=3D"") { c=3D_uOrg(); if (z!=3D"-" && =
+_ufno=3D=3D1)  return ""; }=0A=
+ if (c=3D=3D"-" || c=3D=3D"") { if (_ufns=3D=3D1)  c=3D_uRef(); if =
+(z!=3D"-" && _ufno=3D=3D1)  return ""; }=0A=
+ if (c=3D=3D"-" || c=3D=3D"") {=0A=
+  if (z=3D=3D"-" && _ufns=3D=3D1) { =
+c=3D"utmccn=3D(direct)|utmcsr=3D(direct)|utmcmd=3D(none)"; }=0A=
+  if (c=3D=3D"-" || c=3D=3D"") return "";=0A=
+ }=0A=
+ if (z!=3D"-") {=0A=
+  i=3Dz.indexOf(".");=0A=
+  if (i>-1) i=3Dz.indexOf(".",i+1);=0A=
+  if (i>-1) i=3Dz.indexOf(".",i+1);=0A=
+  if (i>-1) i=3Dz.indexOf(".",i+1);=0A=
+  t=3Dz.substring(i+1,z.length);=0A=
+  if (t.toLowerCase()=3D=3Dc.toLowerCase()) cs=3D1;=0A=
+  t=3Dz.substring(0,i);=0A=
+  if ((i=3Dt.lastIndexOf(".")) > -1) {=0A=
+   t=3Dt.substring(i+1,t.length);=0A=
+   cn=3D(t*1);=0A=
+  }=0A=
+ }=0A=
+ if (cs=3D=3D0 || _ufns=3D=3D1) {=0A=
+  t=3D_uGC(dc,"__utma=3D"+_udh+".",";");=0A=
+  if ((i=3Dt.lastIndexOf(".")) > 9) {=0A=
+   _uns=3Dt.substring(i+1,t.length);=0A=
+   _uns=3D(_uns*1);=0A=
+  }=0A=
+  cn++;=0A=
+  if (_uns=3D=3D0) _uns=3D1;=0A=
+  _ubd.cookie=3D"__utmz=3D"+_udh+"."+_ust+"."+_uns+"."+cn+"."+c+"; =
+path=3D"+_utcp+"; "+x+_udo;=0A=
+ }=0A=
+ if (cs=3D=3D0 || _ufns=3D=3D1) return "&utmcn=3D1";=0A=
+ else return "&utmcr=3D1";=0A=
+}=0A=
+function _uRef() {=0A=
+ if (_ur=3D=3D"0" || _ur=3D=3D"" || _ur=3D=3D"-") return "";=0A=
+ var i=3D0,h,k,n;=0A=
+ if ((i=3D_ur.indexOf("://"))<0 || _uGCse()) return "";=0A=
+ h=3D_ur.substring(i+3,_ur.length);=0A=
+ if (h.indexOf("/") > -1) {=0A=
+  k=3Dh.substring(h.indexOf("/"),h.length);=0A=
+  if (k.indexOf("?") > -1) k=3Dk.substring(0,k.indexOf("?"));=0A=
+  h=3Dh.substring(0,h.indexOf("/"));=0A=
+ }=0A=
+ h=3Dh.toLowerCase();=0A=
+ n=3Dh;=0A=
+ if ((i=3Dn.indexOf(":")) > -1) n=3Dn.substring(0,i);=0A=
+ for (var ii=3D0;ii<_uRno.length;ii++) {=0A=
+  if ((i=3Dn.indexOf(_uRno[ii].toLowerCase())) > -1 && =
+n.length=3D=3D(i+_uRno[ii].length)) { _ufno=3D1; break; }=0A=
+ }=0A=
+ if (h.indexOf("www.")=3D=3D0) h=3Dh.substring(4,h.length);=0A=
+ return =
+"utmccn=3D(referral)|utmcsr=3D"+_uEC(h)+"|"+"utmcct=3D"+_uEC(k)+"|utmcmd=3D=
+referral";=0A=
+}=0A=
+function _uOrg(t) {=0A=
+ if (_ur=3D=3D"0" || _ur=3D=3D"" || _ur=3D=3D"-") return "";=0A=
+ var i=3D0,h,k;=0A=
+ if ((i=3D_ur.indexOf("://"))<0 || _uGCse()) return "";=0A=
+ h=3D_ur.substring(i+3,_ur.length);=0A=
+ if (h.indexOf("/") > -1) {=0A=
+  h=3Dh.substring(0,h.indexOf("/"));=0A=
+ }=0A=
+ for (var ii=3D0;ii<_uOsr.length;ii++) {=0A=
+  if (h.toLowerCase().indexOf(_uOsr[ii].toLowerCase()) > -1) {=0A=
+   if ((i=3D_ur.indexOf("?"+_uOkw[ii]+"=3D")) > -1 || =
+(i=3D_ur.indexOf("&"+_uOkw[ii]+"=3D")) > -1) {=0A=
+    k=3D_ur.substring(i+_uOkw[ii].length+2,_ur.length);=0A=
+    if ((i=3Dk.indexOf("&")) > -1) k=3Dk.substring(0,i);=0A=
+    for (var yy=3D0;yy<_uOno.length;yy++) {=0A=
+     if (_uOno[yy].toLowerCase()=3D=3Dk.toLowerCase()) { _ufno=3D1; =
+break; }=0A=
+    }=0A=
+    if (t) return _uEC(k);=0A=
+    else return =
+"utmccn=3D(organic)|utmcsr=3D"+_uEC(_uOsr[ii])+"|"+"utmctr=3D"+_uEC(k)+"|=
+utmcmd=3Dorganic";=0A=
+   }=0A=
+  }=0A=
+ }=0A=
+ return "";=0A=
+}=0A=
+function _uGCse() {=0A=
+ var h,p;=0A=
+ h=3Dp=3D_ur.split("://")[1];=0A=
+ if(h.indexOf("/")>-1) {=0A=
+  h=3Dh.split("/")[0];=0A=
+  p=3Dp.substring(p.indexOf("/")+1,p.length);=0A=
+ }=0A=
+ if(p.indexOf("?")>-1) {=0A=
+  p=3Dp.split("?")[0];=0A=
+ }=0A=
+ if(h.toLowerCase().indexOf("google")>-1) {=0A=
+  if(_ur.indexOf("?q=3D")>-1 || _ur.indexOf("&q=3D")>-1) {=0A=
+   if (p.toLowerCase().indexOf("cse")>-1) {=0A=
+    return true;=0A=
+   }=0A=
+  }=0A=
+ }=0A=
+}=0A=
+function _uBInfo() {=0A=
+ var sr=3D"-",sc=3D"-",ul=3D"-",fl=3D"-",cs=3D"-",je=3D1;=0A=
+ var n=3Dnavigator;=0A=
+ if (self.screen) {=0A=
+  sr=3Dscreen.width+"x"+screen.height;=0A=
+  sc=3Dscreen.colorDepth+"-bit";=0A=
+ } else if (self.java) {=0A=
+  var j=3Djava.awt.Toolkit.getDefaultToolkit();=0A=
+  var s=3Dj.getScreenSize();=0A=
+  sr=3Ds.width+"x"+s.height;=0A=
+ }=0A=
+ if (n.language) { ul=3Dn.language.toLowerCase(); }=0A=
+ else if (n.browserLanguage) { ul=3Dn.browserLanguage.toLowerCase(); }=0A=
+ je=3Dn.javaEnabled()?1:0;=0A=
+ if (_uflash) fl=3D_uFlash();=0A=
+ if (_ubd.characterSet) cs=3D_uES(_ubd.characterSet);=0A=
+ else if (_ubd.charset) cs=3D_uES(_ubd.charset);=0A=
+ return =
+"&utmcs=3D"+cs+"&utmsr=3D"+sr+"&utmsc=3D"+sc+"&utmul=3D"+ul+"&utmje=3D"+j=
+e+"&utmfl=3D"+fl;=0A=
+}=0A=
+function __utmSetTrans() {=0A=
+ var e;=0A=
+ if (_ubd.getElementById) e=3D_ubd.getElementById("utmtrans");=0A=
+ else if (_ubd.utmform && _ubd.utmform.utmtrans) =
+e=3D_ubd.utmform.utmtrans;=0A=
+ if (!e) return;=0A=
+ var l=3De.value.split("UTM:");=0A=
+ var i,i2,c;=0A=
+ if (_userv=3D=3D0 || _userv=3D=3D2) i=3Dnew Array();=0A=
+ if (_userv=3D=3D1 || _userv=3D=3D2) { i2=3Dnew Array(); c=3D_uGCS(); }=0A=
+=0A=
+ for (var ii=3D0;ii<l.length;ii++) {=0A=
+  l[ii]=3D_uTrim(l[ii]);=0A=
+  if (l[ii].charAt(0)!=3D'T' && l[ii].charAt(0)!=3D'I') continue;=0A=
+  var r=3DMath.round(Math.random()*2147483647);=0A=
+  if (!_utsp || _utsp=3D=3D"") _utsp=3D"|";=0A=
+  var f=3Dl[ii].split(_utsp),s=3D"";=0A=
+  if (f[0].charAt(0)=3D=3D'T') {=0A=
+   s=3D"&utmt=3Dtran"+"&utmn=3D"+r;=0A=
+   f[1]=3D_uTrim(f[1]); if(f[1]&&f[1]!=3D"") =
+s+=3D"&utmtid=3D"+_uES(f[1]);=0A=
+   f[2]=3D_uTrim(f[2]); if(f[2]&&f[2]!=3D"") =
+s+=3D"&utmtst=3D"+_uES(f[2]);=0A=
+   f[3]=3D_uTrim(f[3]); if(f[3]&&f[3]!=3D"") =
+s+=3D"&utmtto=3D"+_uES(f[3]);=0A=
+   f[4]=3D_uTrim(f[4]); if(f[4]&&f[4]!=3D"") =
+s+=3D"&utmttx=3D"+_uES(f[4]);=0A=
+   f[5]=3D_uTrim(f[5]); if(f[5]&&f[5]!=3D"") =
+s+=3D"&utmtsp=3D"+_uES(f[5]);=0A=
+   f[6]=3D_uTrim(f[6]); if(f[6]&&f[6]!=3D"") =
+s+=3D"&utmtci=3D"+_uES(f[6]);=0A=
+   f[7]=3D_uTrim(f[7]); if(f[7]&&f[7]!=3D"") =
+s+=3D"&utmtrg=3D"+_uES(f[7]);=0A=
+   f[8]=3D_uTrim(f[8]); if(f[8]&&f[8]!=3D"") =
+s+=3D"&utmtco=3D"+_uES(f[8]);=0A=
+  } else {=0A=
+   s=3D"&utmt=3Ditem"+"&utmn=3D"+r;=0A=
+   f[1]=3D_uTrim(f[1]); if(f[1]&&f[1]!=3D"") =
+s+=3D"&utmtid=3D"+_uES(f[1]);=0A=
+   f[2]=3D_uTrim(f[2]); if(f[2]&&f[2]!=3D"") =
+s+=3D"&utmipc=3D"+_uES(f[2]);=0A=
+   f[3]=3D_uTrim(f[3]); if(f[3]&&f[3]!=3D"") =
+s+=3D"&utmipn=3D"+_uES(f[3]);=0A=
+   f[4]=3D_uTrim(f[4]); if(f[4]&&f[4]!=3D"") =
+s+=3D"&utmiva=3D"+_uES(f[4]);=0A=
+   f[5]=3D_uTrim(f[5]); if(f[5]&&f[5]!=3D"") =
+s+=3D"&utmipr=3D"+_uES(f[5]);=0A=
+   f[6]=3D_uTrim(f[6]); if(f[6]&&f[6]!=3D"") =
+s+=3D"&utmiqt=3D"+_uES(f[6]);=0A=
+  }=0A=
+  if (_udl.hostname && _udl.hostname!=3D"") =
+s+=3D"&utmhn=3D"+_uES(_udl.hostname);=0A=
+  if (_usample && _usample !=3D 100) s+=3D"&utmsp=3D"+_uES(_usample);=0A=
+=0A=
+  if ((_userv=3D=3D0 || _userv=3D=3D2) && _uSP()) {=0A=
+   i[ii]=3Dnew Image(1,1);=0A=
+   i[ii].src=3D_ugifpath+"?"+"utmwv=3D"+_uwv+s;=0A=
+   i[ii].onload=3Dfunction() { _uVoid(); }=0A=
+  }=0A=
+  if ((_userv=3D=3D1 || _userv=3D=3D2) && _uSP()) {=0A=
+   i2[ii]=3Dnew Image(1,1);=0A=
+   =
+i2[ii].src=3D_ugifpath2+"?"+"utmwv=3D"+_uwv+s+"&utmac=3D"+_uacct+"&utmcc=3D=
+"+c;=0A=
+   i2[ii].onload=3Dfunction() { _uVoid(); }=0A=
+  }=0A=
+ }=0A=
+ return;=0A=
+}=0A=
+function _uFlash() {=0A=
+ var f=3D"-",n=3Dnavigator;=0A=
+ if (n.plugins && n.plugins.length) {=0A=
+  for (var ii=3D0;ii<n.plugins.length;ii++) {=0A=
+   if (n.plugins[ii].name.indexOf('Shockwave Flash')!=3D-1) {=0A=
+    f=3Dn.plugins[ii].description.split('Shockwave Flash ')[1];=0A=
+    break;=0A=
+   }=0A=
+  }=0A=
+ } else {=0A=
+  var fl;=0A=
+  try {=0A=
+   fl =3D new ActiveXObject("ShockwaveFlash.ShockwaveFlash.7");=0A=
+   f =3D fl.GetVariable("$version");=0A=
+  } catch(e) {}=0A=
+  if (f =3D=3D "-") {=0A=
+   try {=0A=
+    fl =3D new ActiveXObject("ShockwaveFlash.ShockwaveFlash.6");=0A=
+    f =3D "WIN 6,0,21,0";=0A=
+    fl.AllowScriptAccess =3D "always";=0A=
+    f =3D fl.GetVariable("$version");=0A=
+   } catch(e) {}=0A=
+  }=0A=
+  if (f =3D=3D "-") {=0A=
+   try {=0A=
+    fl =3D new ActiveXObject("ShockwaveFlash.ShockwaveFlash");=0A=
+    f =3D fl.GetVariable("$version");=0A=
+   } catch(e) {}=0A=
+  }=0A=
+  if (f !=3D "-") {=0A=
+   f =3D f.split(" ")[1].split(",");=0A=
+   f =3D f[0] + "." + f[1] + " r" + f[2];=0A=
+  }=0A=
+ }=0A=
+ return f;=0A=
+}=0A=
+function __utmLinkerUrl(l,h) {=0A=
+ var p,k,a=3D"-",b=3D"-",c=3D"-",x=3D"-",z=3D"-",v=3D"-";=0A=
+ var dc=3D_ubd.cookie;=0A=
+ var iq =3D l.indexOf("?");=0A=
+ var ih =3D l.indexOf("#");=0A=
+ var url=3Dl;=0A=
+ if (dc) {=0A=
+  a=3D_uES(_uGC(dc,"__utma=3D"+_udh+".",";"));=0A=
+  b=3D_uES(_uGC(dc,"__utmb=3D"+_udh,";"));=0A=
+  c=3D_uES(_uGC(dc,"__utmc=3D"+_udh,";"));=0A=
+  x=3D_uES(_uGC(dc,"__utmx=3D"+_udh,";"));=0A=
+  z=3D_uES(_uGC(dc,"__utmz=3D"+_udh+".",";"));=0A=
+  v=3D_uES(_uGC(dc,"__utmv=3D"+_udh+".",";"));=0A=
+  k=3D(_uHash(a+b+c+x+z+v)*1)+(_udh*1);=0A=
+  =
+p=3D"__utma=3D"+a+"&__utmb=3D"+b+"&__utmc=3D"+c+"&__utmx=3D"+x+"&__utmz=3D=
+"+z+"&__utmv=3D"+v+"&__utmk=3D"+k;=0A=
+ }=0A=
+ if (p) {=0A=
+  if (h && ih>-1) return;=0A=
+  if (h) { url=3Dl+"#"+p; }=0A=
+  else {=0A=
+   if (iq=3D=3D-1 && ih=3D=3D-1) url=3Dl+"?"+p;=0A=
+   else if (ih=3D=3D-1) url=3Dl+"&"+p;=0A=
+   else if (iq=3D=3D-1) url=3Dl.substring(0,ih-1)+"?"+p+l.substring(ih);=0A=
+   else url=3Dl.substring(0,ih-1)+"&"+p+l.substring(ih);=0A=
+  }=0A=
+ }=0A=
+ return url;=0A=
+}=0A=
+function __utmLinker(l,h) {=0A=
+ if (!_ulink || !l || l=3D=3D"") return;=0A=
+ _udl.href=3D__utmLinkerUrl(l,h);=0A=
+}=0A=
+function __utmLinkPost(f,h) {=0A=
+ if (!_ulink || !f || !f.action) return;=0A=
+ f.action=3D__utmLinkerUrl(f.action, h);=0A=
+ return;=0A=
+}=0A=
+function __utmSetVar(v) {=0A=
+ if (!v || v=3D=3D"") return;=0A=
+ if (!_udo || _udo =3D=3D "") {=0A=
+  _udh=3D_uDomain();=0A=
+  if (_udn && _udn!=3D"") { _udo=3D" domain=3D"+_udn+";"; }=0A=
+ }=0A=
+ if (!_uVG()) return;=0A=
+ var r=3DMath.round(Math.random() * 2147483647);=0A=
+ _ubd.cookie=3D"__utmv=3D"+_udh+"."+_uES(v)+"; path=3D"+_utcp+"; =
+expires=3D"+_uNx()+";"+_udo;=0A=
+ var s=3D"&utmt=3Dvar&utmn=3D"+r;=0A=
+ if (_usample && _usample !=3D 100) s+=3D"&utmsp=3D"+_uES(_usample);=0A=
+ if ((_userv=3D=3D0 || _userv=3D=3D2) && _uSP()) {=0A=
+  var i=3Dnew Image(1,1);=0A=
+  i.src=3D_ugifpath+"?"+"utmwv=3D"+_uwv+s;=0A=
+  i.onload=3Dfunction() { _uVoid(); }=0A=
+ }=0A=
+ if ((_userv=3D=3D1 || _userv=3D=3D2) && _uSP()) {=0A=
+  var i2=3Dnew Image(1,1);=0A=
+  =
+i2.src=3D_ugifpath2+"?"+"utmwv=3D"+_uwv+s+"&utmac=3D"+_uacct+"&utmcc=3D"+=
+_uGCS();=0A=
+  i2.onload=3Dfunction() { _uVoid(); }=0A=
+ }=0A=
+}=0A=
+function _uGCS() {=0A=
+ var t,c=3D"",dc=3D_ubd.cookie;=0A=
+ if ((t=3D_uGC(dc,"__utma=3D"+_udh+".",";"))!=3D"-") =
+c+=3D_uES("__utma=3D"+t+";+");=0A=
+ if ((t=3D_uGC(dc,"__utmx=3D"+_udh,";"))!=3D"-") =
+c+=3D_uES("__utmx=3D"+t+";+");=0A=
+ if ((t=3D_uGC(dc,"__utmz=3D"+_udh+".",";"))!=3D"-") =
+c+=3D_uES("__utmz=3D"+t+";+");=0A=
+ if ((t=3D_uGC(dc,"__utmv=3D"+_udh+".",";"))!=3D"-") =
+c+=3D_uES("__utmv=3D"+t+";");=0A=
+ if (c.charAt(c.length-1)=3D=3D"+") c=3Dc.substring(0,c.length-1);=0A=
+ return c;=0A=
+}=0A=
+function _uGC(l,n,s) {=0A=
+ if (!l || l=3D=3D"" || !n || n=3D=3D"" || !s || s=3D=3D"") return "-";=0A=
+ var i,i2,i3,c=3D"-";=0A=
+ i=3Dl.indexOf(n);=0A=
+ i3=3Dn.indexOf("=3D")+1;=0A=
+ if (i > -1) {=0A=
+  i2=3Dl.indexOf(s,i); if (i2 < 0) { i2=3Dl.length; }=0A=
+  c=3Dl.substring((i+i3),i2);=0A=
+ }=0A=
+ return c;=0A=
+}=0A=
+function _uDomain() {=0A=
+ if (!_udn || _udn=3D=3D"" || _udn=3D=3D"none") { _udn=3D""; return 1; }=0A=
+ if (_udn=3D=3D"auto") {=0A=
+  var d=3D_ubd.domain;=0A=
+  if (d.substring(0,4)=3D=3D"www.") {=0A=
+   d=3Dd.substring(4,d.length);=0A=
+  }=0A=
+  _udn=3Dd;=0A=
+ }=0A=
+ _udn =3D _udn.toLowerCase(); =0A=
+ if (_uhash=3D=3D"off") return 1;=0A=
+ return _uHash(_udn);=0A=
+}=0A=
+function _uHash(d) {=0A=
+ if (!d || d=3D=3D"") return 1;=0A=
+ var h=3D0,g=3D0;=0A=
+ for (var i=3Dd.length-1;i>=3D0;i--) {=0A=
+  var c=3DparseInt(d.charCodeAt(i));=0A=
+  h=3D((h << 6) & 0xfffffff) + c + (c << 14);=0A=
+  if ((g=3Dh & 0xfe00000)!=3D0) h=3D(h ^ (g >> 21));=0A=
+ }=0A=
+ return h;=0A=
+}=0A=
+function _uFixA(c,s,t) {=0A=
+ if (!c || c=3D=3D"" || !s || s=3D=3D"" || !t || t=3D=3D"") return "-";=0A=
+ var a=3D_uGC(c,"__utma=3D"+_udh+".",s);=0A=
+ var lt=3D0,i=3D0;=0A=
+ if ((i=3Da.lastIndexOf(".")) > 9) {=0A=
+  _uns=3Da.substring(i+1,a.length);=0A=
+  _uns=3D(_uns*1)+1;=0A=
+  a=3Da.substring(0,i);=0A=
+  if ((i=3Da.lastIndexOf(".")) > 7) {=0A=
+   lt=3Da.substring(i+1,a.length);=0A=
+   a=3Da.substring(0,i);=0A=
+  }=0A=
+  if ((i=3Da.lastIndexOf(".")) > 5) {=0A=
+   a=3Da.substring(0,i);=0A=
+  }=0A=
+  a+=3D"."+lt+"."+t+"."+_uns;=0A=
+ }=0A=
+ return a;=0A=
+}=0A=
+function _uTrim(s) {=0A=
+  if (!s || s=3D=3D"") return "";=0A=
+  while ((s.charAt(0)=3D=3D' ') || (s.charAt(0)=3D=3D'\n') || =
+(s.charAt(0,1)=3D=3D'\r')) s=3Ds.substring(1,s.length);=0A=
+  while ((s.charAt(s.length-1)=3D=3D' ') || =
+(s.charAt(s.length-1)=3D=3D'\n') || (s.charAt(s.length-1)=3D=3D'\r')) =
+s=3Ds.substring(0,s.length-1);=0A=
+  return s;=0A=
+}=0A=
+function _uEC(s) {=0A=
+  var n=3D"";=0A=
+  if (!s || s=3D=3D"") return "";=0A=
+  for (var i=3D0;i<s.length;i++) {if (s.charAt(i)=3D=3D" ") n+=3D"+"; =
+else n+=3Ds.charAt(i);}=0A=
+  return n;=0A=
+}=0A=
+function __utmVisitorCode(f) {=0A=
+ var r=3D0,t=3D0,i=3D0,i2=3D0,m=3D31;=0A=
+ var a=3D_uGC(_ubd.cookie,"__utma=3D"+_udh+".",";");=0A=
+ if ((i=3Da.indexOf(".",0))<0) return;=0A=
+ if ((i2=3Da.indexOf(".",i+1))>0) r=3Da.substring(i+1,i2); else return =
+"";  =0A=
+ if ((i=3Da.indexOf(".",i2+1))>0) t=3Da.substring(i2+1,i); else return =
+"";  =0A=
+ if (f) {=0A=
+  return r;=0A=
+ } else {=0A=
+  var c=3Dnew =
+Array('A','B','C','D','E','F','G','H','J','K','L','M','N','P','R','S','T'=
+,'U','V','W','X','Y','Z','1','2','3','4','5','6','7','8','9');=0A=
+  return =
+c[r>>28&m]+c[r>>23&m]+c[r>>18&m]+c[r>>13&m]+"-"+c[r>>8&m]+c[r>>3&m]+c[((r=
+&7)<<2)+(t>>30&3)]+c[t>>25&m]+c[t>>20&m]+"-"+c[t>>15&m]+c[t>>10&m]+c[t>>5=
+&m]+c[t&m];=0A=
+ }=0A=
+}=0A=
+function _uIN(n) {=0A=
+ if (!n) return false;=0A=
+ for (var i=3D0;i<n.length;i++) {=0A=
+  var c=3Dn.charAt(i);=0A=
+  if ((c<"0" || c>"9") && (c!=3D".")) return false;=0A=
+ }=0A=
+ return true;=0A=
+}=0A=
+function _uES(s,u) {=0A=
+ if (typeof(encodeURIComponent) =3D=3D 'function') {=0A=
+  if (u) return encodeURI(s);=0A=
+  else return encodeURIComponent(s);=0A=
+ } else {=0A=
+  return escape(s);=0A=
+ }=0A=
+}=0A=
+function _uUES(s) {=0A=
+ if (typeof(decodeURIComponent) =3D=3D 'function') {=0A=
+  return decodeURIComponent(s);=0A=
+ } else {=0A=
+  return unescape(s);=0A=
+ }=0A=
+}=0A=
+function _uVG() {=0A=
+ if((_udn.indexOf("www.google.") =3D=3D 0 || _udn.indexOf(".google.") =
+=3D=3D 0 || _udn.indexOf("google.") =3D=3D 0) && _utcp=3D=3D'/' && =
+_udn.indexOf("google.org")=3D=3D-1) {=0A=
+  return false;=0A=
+ }=0A=
+ return true;=0A=
+}=0A=
+function _uSP() {=0A=
+ var s=3D100;=0A=
+ if (_usample) s=3D_usample;=0A=
+ if(s>=3D100 || s<=3D0) return true;=0A=
+ return ((__utmVisitorCode(1)%10000)<(s*100));=0A=
+}=0A=
+function urchinPathCopy(p){=0A=
+ var d=3Ddocument,nx,tx,sx,i,c,cs,t,h,o;=0A=
+ cs=3Dnew Array("a","b","c","v","x","z");=0A=
+ h=3D_uDomain(); if (_udn && _udn!=3D"") o=3D" domain=3D"+_udn+";";=0A=
+ nx=3D_uNx()+";";=0A=
+ tx=3Dnew Date(); tx.setTime(tx.getTime()+(_utimeout*1000));=0A=
+ tx=3Dtx.toGMTString()+";";=0A=
+ sx=3Dnew Date(); sx.setTime(sx.getTime()+(_ucto*1000));=0A=
+ sx=3Dsx.toGMTString()+";";=0A=
+ for (i=3D0;i<6;i++){=0A=
+  t=3D" expires=3D";=0A=
+  if (i=3D=3D1) t+=3Dtx; else if (i=3D=3D2) t=3D""; else if (i=3D=3D5) =
+t+=3Dsx; else t+=3Dnx;=0A=
+  c=3D_uGC(d.cookie,"__utm"+cs[i]+"=3D"+h,";");=0A=
+  if (c!=3D"-") d.cookie=3D"__utm"+cs[i]+"=3D"+c+"; path=3D"+p+";"+t+o;=0A=
+ }=0A=
+}=0A=
+function _uCO() {=0A=
+ if (!_utk || _utk=3D=3D"" || _utk.length<10) return;=0A=
+ var d=3D'www.google.com';=0A=
+ if (_utk.charAt(0)=3D=3D'!') d=3D'analytics.corp.google.com';=0A=
+ _ubd.cookie=3D"GASO=3D"+_utk+"; path=3D"+_utcp+";"+_udo;=0A=
+ var sc=3Ddocument.createElement('script');=0A=
+ sc.type=3D'text/javascript';=0A=
+ sc.id=3D"_gasojs";=0A=
+ =
+sc.src=3D'https://'+d+'/analytics/reporting/overlay_js?gaso=3D'+_utk+'&'+=
+Math.random();=0A=
+ document.getElementsByTagName('head')[0].appendChild(sc);  =0A=
+}=0A=
+function _uGT() {=0A=
+ var h=3Dlocation.hash, a;=0A=
+ if (h && h!=3D"" && h.indexOf("#gaso=3D")=3D=3D0) {=0A=
+  a=3D_uGC(h,"gaso=3D","&");=0A=
+ } else {=0A=
+  a=3D_uGC(_ubd.cookie,"GASO=3D",";");=0A=
+ }=0A=
+ return a;=0A=
+}=0A=
+var _utk=3D_uGT();=0A=
+if (_utk && _utk!=3D"" && _utk.length>10 && _utk.indexOf("=3D")=3D=3D-1) =
+{=0A=
+ if (window.addEventListener) {=0A=
+  window.addEventListener('load', _uCO, false); =0A=
+ } else if (window.attachEvent) { =0A=
+  window.attachEvent('onload', _uCO);=0A=
+ }=0A=
+}=0A=
+=0A=
+function _uNx() {=0A=
+  return (new Date((new Date()).getTime()+63072000000)).toGMTString();=0A=
+}=0A=
+
+------=_NextPart_000_0000_01CEF769.A08B6600--

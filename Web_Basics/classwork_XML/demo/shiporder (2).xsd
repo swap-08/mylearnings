@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="iso-8859-9"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  
+  <!--definition of simple elements-->
+  
+  <xs:element name="orderperson" type="xs:string"/>
+  <xs:element name="name" type="refname"/>
+  <xs:element name="address" type="refaddress"/>
+  <xs:element name="city" type="xs:string"/>
+  <xs:element name="country" type="xs:string"/>
+
+  <xs:element name="title" type="xs:string"/>
+  <xs:element name="note" type="xs:string"/>
+  <xs:element name="quantity" type="xs:positiveInteger"/>
+  <xs:element name="price" type="xs:decimal"/>
+  
+  <!--definition of attribute-->
+  
+  <xs:attribute name="orderid" type="xs:decimal"/>
+  
+  <!--definition of complex elements-->
+  
+  <xs:element name="shiporder">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="orderperson"/>
+        
+        <xs:element name="shipto" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:choice>
+              <xs:element ref="name"/>
+              <xs:element ref="address"/>
+              <xs:element ref="city"/>
+              <xs:element ref="country"/>
+            </xs:choice>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="item" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="title"/>
+              <xs:element ref="note"/>
+              <xs:element ref="quantity"/>
+              <xs:element ref="price"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>      
+     
+      </xs:sequence>
+      <xs:attribute ref="orderid" use="required"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:simpleType name="refname">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[a-zA-Z]*.[a-zA-Z]*@igate.com"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="refaddress">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="male|female"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+</xs:schema>
+
+
+
+<!--
+<xs:pattern value="([a-z][A-Z])+"/>    
+
+each pair consisting of a lower case letter followed by an upper case letter.
+For example, "sToP" will be validated by this pattern, but not "Stop" or "STOP" or "stop":
+
+<xs:pattern value="male|female"/>
+
+
+<xs:pattern value="[a-zA-Z0-9]{8}"/>
+
+The next example defines an element called "password" with a restriction.
+There must be exactly eight characters in a row and those characters must 
+be lowercase or uppercase letters from a to z, or a number from 0 to 9:
+-->
+
+<!--
+
+This example defines an element called "address" with a restriction.
+The whiteSpace constraint is set to "preserve", which means that the 
+XML processor WILL NOT remove any white space characters:
+
+<xs:element name="address">
+  <xs:simpleType>
+    <xs:restriction base="xs:string">
+      <xs:whiteSpace value="preserve"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:element>
+
+This example also defines an element called "address" with a restriction.
+The whiteSpace constraint is set to "replace", which means that the XML 
+processor WILL REPLACE all white space characters (line feeds, tabs, spaces,
+and carriage returns) with spaces:
+
+<xs:element name="address">
+  <xs:simpleType>
+    <xs:restriction base="xs:string">
+      <xs:whiteSpace value="replace"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:element>
+
+This example also defines an element called "address" with a restriction.
+The whiteSpace constraint is set to "collapse", which means that the XML
+processor WILL REMOVE all white space characters (line feeds, tabs, spaces, 
+carriage returns are replaced with spaces, leading and trailing spaces are 
+removed, and multiple spaces are reduced to a single space):
+
+<xs:element name="address">
+  <xs:simpleType>
+    <xs:restriction base="xs:string">
+      <xs:whiteSpace value="collapse"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:element>
+
+-->

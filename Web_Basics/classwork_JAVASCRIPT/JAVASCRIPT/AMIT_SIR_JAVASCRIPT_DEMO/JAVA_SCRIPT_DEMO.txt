@@ -1,0 +1,649 @@
+<html>
+	<head> 
+	</head>
+<body>
+	<h1>Hello World</h1>
+	
+</body>
+</html>
+
+<html>
+	<head> 
+	</head>
+<body>
+	<script type="text/javascript">
+	document.write("<H1>Hello World!</H1>")
+	</script>
+</body>
+</html>
+
+
+
+<html>
+	<head> 
+	</head>
+<body>
+	<h1>Hello World</h1><br>
+	<script type="text/javascript">
+	document.write("<H1>Hello World!</H1>")
+	</script>	
+</body>
+</html>
+
+
+<html>
+	<head> 
+	</head>
+<body>
+	<h1>Hello World</h1><br>
+	<script type="text/javascript">
+	<!-- 
+	document.write("<H1>Hello World!</H1>")
+	document.write("<H1>Hello World!</H1>")
+	document.write("<H1>Hello World!</H1>")
+	//-->
+	</script>		
+</body>
+</html>
+
+
+<html>
+<head>
+<script type="text/javascript">
+function message()
+{
+alert("This alert box was called with the onload event");
+}
+</script>
+</head>
+
+<body onload="message()">
+
+</body>
+</html>
+
+
+
+<html>
+<head><title>script tag in external file</title>
+<script src="common.js">
+<!-- no javascript statements can be written here -->
+</script>
+</head>
+<body> <script type="text/javascript">
+document.write("<h1>display value of a variable</h1>"+msg)
+</script> </body>
+</html>
+
+
+
+<html>
+<head>
+<script type="text/javascript">
+   function myConcat(separator) {
+	result = "" 
+	for(var i=1; i<arguments.length;i++) {
+		result += arguments[i] + separator
+	}
+	return result
+    }
+</script>
+</head>
+
+<body>
+<script type="text/javascript">
+document.write(myConcat( "," , "red" , "orange" , "blue"));
+</script>
+</body>
+</html>
+
+
+
+
+------------------------------------------
+
+<html>
+	<head>
+	</head>
+<body>
+
+<script>
+var str="Every man in the world! Every woman on earth!";
+var patt=/man/g;
+var str2=str.replace(patt,"person");
+document.write(str2+"<br>");
+</script>
+
+</body>
+</html>
+
+
+<html>
+	<head>
+	</head>
+<body>
+
+<script>
+var str="replace or and orandor normal!";
+var patt=/\bor\b/;
+var str2=str.replace(patt,"person");
+document.write(str2+"<br>");
+</script>
+
+</body>
+</html>
+
+
+<html>
+	<head>
+	</head>
+<body>
+
+<script>
+var str="replace or and orandor normal!";
+var patt=/\Bor/;
+var str2=str.replace(patt,"person");
+document.write(str2+"<br>");
+</script>
+
+</body>
+</html>
+
+
+
+<html>
+<body>
+
+<script type="text/javascript">
+var str="Visit Pace";
+var patt=new RegExp("Microsoft");
+
+document.write("Test if we find " + patt + " in " + str + ": ")
+
+//document.write(patt.test(str))
+if (patt.test(str)==true)
+  {
+  document.write("Match found!")
+  }
+else
+  {
+  document.write("Match not found")
+  }
+
+//patt=/Pace/;
+patt.compile("Pace");
+
+document.write("<br />")
+document.write("Test if we find " + patt + " in " + str + ": ")
+
+if (patt.test(str)==true)
+  {
+  document.write("Match found!")
+  }
+else
+  {
+  document.write("Match not found")
+  }
+
+</script>
+
+</body>
+</html>
+
+
+<html>
+<body>
+
+<script>
+
+var str="Hello world!";
+//look for "Hello"
+var patt=/Hello/g;
+var result=patt.exec(str);
+document.write("Returned value: " + result);
+
+//look for "W3Schools"
+patt=/W3Schools/g;
+result=patt.exec(str);
+document.write("<br>Returned value: " + result);
+
+</script>
+
+</body>
+</html>
+
+
+-------------------------------------
+
+<html>
+<body><script type="text/javascript">
+	document.write("<br>protocol :  " + unescape(location.protocol)+"</br>");
+	document.write("<br>hostname :  " + unescape(location.hostname)+"</br>");
+	document.write("<br>port :  " + unescape(location.port)+"</br>");
+	document.write("<br>host :  " + unescape(location.host)+"</br>");
+	document.write("<br>pathname : " + unescape(location.pathname)+"</br>");
+	document.write("<br>hash :  " + unescape(location.hash)+"</br>");
+	document.write("<br>href :  " + unescape(location.href)+"</br>");
+</script></body>
+</html>
+
+
+<html>
+<head>
+<script>
+function newDoc()
+  {
+  	//window.location.assign("http://www.google.com")
+  	//location.reload()
+  	window.location.replace("http://www.google.com")
+  }
+</script>
+</head>
+<body>
+
+<input type="button" value="Load new document" onclick="newDoc()">
+
+</body>
+</html>
+
+
+
+
+
+<html>
+<head>
+<script>
+function goBack()
+  {
+  window.history.back()
+  }
+
+</script>
+</head>
+<body>
+
+<input type="button" value="Back" onclick="goBack()">
+
+</body>
+</html>
+
+
+--------------------------------------------
+
+<html>
+<body>
+
+<a name="html" href="www.google.com">HTML Tutorial</a><br>
+<a name="css" href="www.rediff.com">CSS Tutorial</a><br>
+<a name="xml">XML Tutorial</a><br>
+
+<script>
+document.write("<BR> Number of Links : " + document.links.length+"<BR>");
+</script></p>
+
+</body>
+</html>
+
+
+document.write("<BR> Number of Links : " + document.links[0].name+"<BR>");
+
+
+
+<html>
+<body>
+
+<a name="html">HTML Tutorial</a><br>
+<a name="css">CSS Tutorial</a><br>
+<a name="xml">XML Tutorial</a><br>
+
+<p>Number of anchors:
+<script>
+document.write(document.anchors.length);
+</script></p>
+
+</body>
+</html>
+
+
+<html>
+<body>
+
+<a name="html">HTML Tutorial</a><br>
+<a name="css">CSS Tutorial</a><br>
+<a name="xml">XML Tutorial</a><br>
+
+<p>innerHTML of first anchor:
+<script>
+document.write(document.anchors[0].name);
+</script></p>
+
+</body>
+</html>
+
+
+
+
+
+----------------------------------------------------------------------------
+
+<html>
+<head>
+<script>
+function formReset()
+{
+document.getElementById("frm1").reset();
+}
+</script>
+</head>
+<body>
+
+<form id="frm1">
+First name: <input type="text" name="fname"><br>
+Last name: <input type="text" name="lname"><br>
+<input type="button" onclick="formReset()" value="Reset form">
+</form>
+
+</body>
+</html>
+
+
+<html>
+<head>
+<script>
+function formReset()
+{
+document.getElementById("frm1").reset();
+}
+function formReset1()
+{
+document.write ("Hiii"+"<BR>");
+}
+</script>
+</head>
+<body>
+
+<form id="frm1" onReset="formReset1()">
+First name: <input type="text" name="fname"><br>
+Last name: <input type="text" name="lname"><br>
+<input type="button" onclick="formReset()" value="Reset form">
+</form>
+
+</body>
+</html>
+
+
+
+<html>
+<head>
+<script>
+function formSubmit()
+{
+document.getElementById("frm1").submit();
+}
+</script>
+</head>
+<body>
+
+<form id="frm1" action="form_action.asp">
+First name: <input type="text" name="fname"><br>
+Last name: <input type="text" name="lname"><br>
+<input type="button" onclick="formSubmit()" value="Submit form">
+</form>
+
+</body>
+</html>
+
+
+
+-----------------------------------------------------------------------
+
+<html>
+<head>
+<script>
+function formSubmit()
+{
+document.getElementById("frm1").submit();
+}
+</script>
+</head>
+<body>
+
+<form id="frm1" action="form_action.asp">
+First name: <input type="text" name="fname"><br>
+Last name: <input type="text" name="lname"><br>
+<input type="button" onclick="formSubmit()" value="Submit form">
+</form>
+
+</body>
+</html>
+
+
+
+<html>
+<head>
+<script>
+function greeting()
+{
+alert("Welcome " + document.forms["frm1"]["fname"].value + "!")
+}
+</script>
+</head>
+<body>
+
+What is your name?<br>
+<form name="frm1" action="submit.htm" onsubmit="greeting()">
+<input type="text" name="fname">
+<input type="submit" value="Submit">
+</form>
+
+</body>
+</html>
+
+
+<html>
+<body>
+
+<form id="frm1" action="form_action.asp">
+First name: <input type="text" name="fname" value="Donald"><br>
+Last name: <input type="text" name="lname" value="Duck"><br>
+<input type="submit" value="Submit">
+</form>
+
+<script>
+var x=document.getElementById("frm1");
+for (var i=0;i<x.length;i++)
+  {
+  document.write(x.elements[i].value);
+  document.write("<br>");
+  }
+</script>
+
+</body>
+</html>
+
+
+
+<html>
+<head>
+<script>
+function myFunction()
+{
+document.getElementById("email").select();
+}
+</script>
+</head>
+<body>
+
+<form>
+Email: <input type="text" id="email" value="someone@example.com">
+</form>
+
+<button type="button" onclick="myFunction()">Select content</button>
+
+</body>
+</html>
+
+
+
+<html>
+<head>
+<script>
+function displayResult()
+{
+var x=document.getElementById("email").defaultValue;
+alert(x);
+}
+</script>
+</head>
+<body>
+
+<form>
+Email: <input type="text" id="email" value="someone@example.com">
+</form>
+
+<button type="button" onclick="displayResult()">Display default value</button>
+
+</body>
+</html> 
+
+
+
+
+<html>
+<head>
+<script>
+function check()
+  {
+  document.getElementById("check1").checked=true
+  }
+function uncheck()
+  {
+  document.getElementById("check1").checked=false
+  }
+</script>
+</head>
+<body>
+
+<form>
+<input type="checkbox" id="check1">Do you like summer?
+</form>
+
+<button onclick="check()">Check Checkbox</button>
+<button onclick="uncheck()">Uncheck Checkbox</button>
+
+</body>
+</html>
+
+
+<html>
+<head>
+<script>
+function check()
+  {
+  document.getElementById("red").checked=true
+  }
+function uncheck()
+  {
+  document.getElementById("red").checked=false
+  }
+</script>
+</head>
+<body>
+
+<form>
+What color do you prefer?<br>
+<input type="radio" name="colors" id="red">Red<br>
+<input type="radio" name="colors" id="blue">Blue<br>
+<input type="radio" name="colors" id="green">Green
+</form>
+
+<button type="button" onclick="check()">Check "Red"</button>
+<button type="button" onclick="uncheck()">Uncheck "Red"</button>
+
+</body>
+</html>
+
+
+
+
+<html>
+<head>
+<script>
+function displayResult()
+{
+alert(document.getElementById("mySelect").length);
+}
+</script>
+</head>
+<body>
+
+<form>
+<select id="mySelect">
+  <option>Apple</option>
+  <option>Pear</option>
+  <option>Banana</option>
+  <option>Orange</option>
+</select>
+</form>
+
+<button type="button" onclick="displayResult()">How many options?</button>
+
+</body>
+</html> 
+
+
+
+
+
+
+
+
+
+<HTML>
+<HEAD>
+<TITLE> Form Methods</TITLE>
+</HEAD>
+<BODY bgcolor="cyan">
+<FORM action="mailto:edude@patni.com" name="ab" method="post"
+enctype="multipart/form-data">
+<P>
+<LABEL>Enter the password
+<INPUT type="password" name="USERNAME" size ="20" value="abc"
+tabindex="3"></LABEL>
+<INPUT type="hidden" name="coname" value="PCS">
+Enter your surname :
+<INPUT type="text" name="surname" SIZE ="20" readonly value=”Sukuru
+” tabindex="2" maxlength="30">
+<BR><BR>
+Address : <TEXTAREA name="addr" Rows="5" cols="40" tabindex="0"
+accesskey="A">Enter ur address </TEXTAREA>
+<BR><BR>
+Select the training programs attended : <BR>
+<INPUT type="checkbox" name="s-cobol"> COBOL
+<INPUT type="checkbox" name="s-idms" checked> IDMS
+<INPUT type="checkbox" name="s-java"> Java
+<BR><BR>
+Select the group you belong to :
+<SPACER type="VERTICAL" size="150">
+<INPUT type="radio" name="s-grp" value="grp1"> Group 1
+<INPUT type="radio" name="s-grp" value="grp2" checked> Group 2
+<INPUT type="radio" name="s-grp" value="grp3"> Group 3
+<INPUT type="radio" name="s-grp" value="oth"> Others
+<BR><BR>
+Which training program would you like to attend ?
+<SELECT Name="pref">
+<OPTION value="JS">JavaScript
+<OPTION value="CORBA">CORBA
+<OPTION value="VB6">Visual Basic 6
+</SELECT>
+</P>
+<INPUT type="file" name="fnm" size=15 value="fonts.html">
+<BR>
+<INPUT type="button" name="but" value="Exit">
+<INPUT type="Submit" Value="Save" name="s-but">
+<INPUT type="reset" Value="Reset">
+</FORM>
+</BODY>
+</HTML>
+
+

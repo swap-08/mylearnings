@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<employee xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="practice.xsd">
+  <emp id="101">
+    <name>
+      <first>swapnil</first>
+      <last>kadam</last>
+    </name>
+    <hiredate>12/12/2013</hiredate>
+    <email>swa.kadam@igate.com</email>
+  </emp>
+  <emp id="102">
+    <name>
+      <first>aditya</first>
+      <last>kadam</last>
+    </name>
+    <hiredate>12/12/2013</hiredate>
+    <email>swa.kadam@igate.com</email>
+  </emp>
+</employee>

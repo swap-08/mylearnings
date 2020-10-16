@@ -1,0 +1,17 @@
+<html>
+<body>
+<script>
+function show(){
+var d=new Date();
+document.frm.t1.value=d;
+window.status=d;
+}
+setInterval('show',1000);
+setTimeout("alert('Hello')",5000);
+</script>
+<h2>clock</h2>
+<form name="frm">
+Time<input type="text" name="t1" size="30">
+</form>
+</body>
+</html>

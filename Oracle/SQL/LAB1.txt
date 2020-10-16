@@ -1,0 +1,881 @@
+SQL> SELECT
+  2   *
+  3  FROM
+  4   emp;
+
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 09-DEC-82       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 12-JAN-83       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+14 rows selected.
+
+*************************************************************************************
+QUERY1
+
+
+
+SQL> SELECT
+  2   ename,sal,deptno
+  3  FROM
+  4   emp
+  5  WHERE
+  6   deptno IN(20,30,40)
+  7  ORDER
+  8  BY
+  9   deptno;
+
+ENAME             SAL     DEPTNO
+---------- ---------- ----------
+SMITH             800         20
+JONES            2975         20
+SCOTT            3000         20
+FORD             3000         20
+ADAMS            1100         20
+ALLEN            1600         30
+JAMES             950         30
+TURNER           1500         30
+BLAKE            2850         30
+MARTIN           1250         30
+WARD             1250         30
+
+11 rows selected.
+
+**************************************************************************
+QUERY2
+
+SELECT
+	student_code,
+	subject1,
+	subject2,
+	subject3,
+	subject1 + subject2 + subject3
+AS	"Total Marks"
+FROM	Student_Marks;
+
+
+
+SQL> SELECT
+  2   student_code,
+  3   subject1,
+  4   subject2,
+  5   subject3,
+  6   subject1 + subject2 + subject3
+  7  AS "Total Marks"
+  8  FROM Student_Marks;
+
+STUDENT_CODE   SUBJECT1   SUBJECT2   SUBJECT3 Total Marks
+------------ ---------- ---------- ---------- -----------
+        1001         55         45         78         178
+        1002         66         74         88         228
+        1003         87         54         65         206
+        1004         65         64         90         219
+        1005         78         88         65         231
+        1006         65         86         54         205
+        1007         67         79         49         195
+        1008         72         55         55         182
+        1009         71         59         58         188
+        1010         68         44         92         204
+        1011         89         96         78         263
+        1012         78         56         55         189
+        1013         75         58         65         198
+        1014         73         74         65         212
+        1015         66         45         74         185
+        1016         68         78         74         220
+        1017         69         44         52         165
+        1018         65         78         56         199
+        1019         78         58         74         210
+        1020         45         55         65         165
+        1021         78         79         78         235
+        1001         68         44         92         204
+        1002         89         96         78         263
+        1003         78         56         55         189
+        1004         75         58         65         198
+        1005         73         74         65         212
+        1006         66         45         74         185
+        1007         68         78         74         220
+        1008         69         44         52         165
+        1009         65         78         56         199
+        1010         78         58         74         210
+        1011         45         55         65         165
+        1012         78         79         78         235
+        1013         66         74         88         228
+        1014         65         64         90         219
+        1015         78         88         65         231
+        1016         65         86         54         205
+        1017         67         79         49         195
+        1018         72         55         55         182
+        1019         71         59         58         188
+        1020         55         45         78         178
+        1021         87         54         65         206
+        1001         55         45         78         178
+        1002         66         74         88         228
+        1003         87         54         65         206
+        1004         65         64         90         219
+        1005         78         88         65         231
+        1006         65         86         54         205
+        1007         67         79         49         195
+        1008         72         55         55         182
+        1009         71         59         58         188
+        1010         68         44         92         204
+        1011         89         96         78         263
+        1012         78         56         55         189
+        1013         75         58         65         198
+        1014         73         74         65         212
+        1015         66         45         74         185
+        1016         68         78         74         220
+        1017         69         44         52         165
+        1018         65         78         56         199
+        1019         78         58         74         210
+        1020         45         55         65         165
+        1021         78         79         78         235
+        1001         68         44         92         204
+        1002         89         96         78         263
+        1003         78         56         55         189
+        1004         75         58         65         198
+        1005         73         74         65         212
+        1006         66         45         74         185
+        1007         68         78         74         220
+        1008         69         44         52         165
+        1009         65         78         56         199
+        1010         78         58         74         210
+        1011         45         55         65         165
+        1012         78         79         78         235
+        1013         66         74         88         228
+        1014         65         64         90         219
+        1015         78         88         65         231
+        1016         65         86         54         205
+        1017         67         79         49         195
+        1018         72         55         55         182
+        1019         71         59         58         188
+        1020         55         45         78         178
+        1021         87         54         65         206
+
+84 rows selected.
+
+**************************************************************************
+
+
+
+SQL> SELECT *
+  2  FROM staff_masters;
+
+STAFF_CODE STAFF_NAME                                         DESIGN_CODE  DEPT_CODE STAFF_DOB HIREDATE    MGR_CODE  STAFF_SAL STA
+---------- -------------------------------------------------- ----------- ---------- --------- -----
+    100001 Arvind                                                     102         30 15-JAN-80 15-JAN-03     100006      17000 Bangalore
+    100003 Mohan                                                      102         10 23-MAR-80 19-JAN-02     100006      24000 Mumbai
+    100004 Anil                                                       102         20 22-APR-77 11-MAR-01     100006      50000 Hyderabad
+    100005 John                                                       106         10 22-MAY-76 21-JAN-01     100007      32000 Bangalore
+    100006 Allen                                                      103         30 22-JAN-80 23-APR-01     100005     100000 Chennai
+    100007 Smith                                                      103         20 19-JUL-73 12-MAR-02     100005      92000 Mumbai
+    100008 Raviraj                                                    102         40 17-JUN-80 11-JAN-03     100006      18000 Bangalore
+    100009 Rahul                                                      102         20 16-JAN-78 11-DEC-03     100006      52000 Hyderabad
+    100010 RAM                                                        103         30 17-JAN-79 17-JAN-02     100007      32000 Bangalore
+      9998 asah                                                                   10                                      3000
+      1001 asha                                                                                                          20000
+      1010 varun                                                                                                         22000
+
+12 rows selected.
+
+*************************************************
+QUERY3
+
+
+
+SELECT
+	staff_name,
+	design_code
+FROM
+	staff_masters
+WHERE	hiredate < TO_DATE('01-JAN-03','DD-MON-YY')
+AND
+	staff_sal
+BETWEEN 12000
+AND	25000;
+
+
+
+
+SQL> SELECT
+  2   staff_name,
+  3   design_code
+  4  FROM
+  5   staff_masters
+  6  WHERE hiredate < TO_DATE('01-JAN-03','DD-MON-YY')
+  7  AND
+  8   staff_sal
+  9  BETWEEN 12000
+ 10  AND 25000;
+
+STAFF_NAME                                         DESIGN_CODE
+-------------------------------------------------- -----------
+Mohan                                                      102
+
+**********************************************************************
+QUERY4
+
+
+SELECT
+	staff_code,
+	staff_name,
+	dept_code,
+	(TRUNC(SYSDATE)-hiredate)/365 EXPERIENCE
+FROM
+	staff_masters
+WHERE (TRUNC(SYSDATE)-hiredate)/365 >= 10
+ORDER BY hiredate;
+
+
+SQL> SELECT
+  2   staff_code,
+  3   staff_name,
+  4   dept_code,
+  5   (TRUNC(SYSDATE)-hiredate)/365 EXPERIENCE
+  6  FROM
+  7   staff_masters
+  8  WHERE (TRUNC(SYSDATE)-hiredate)/365 >= 10
+  9  ORDER BY hiredate;
+
+STAFF_CODE STAFF_NAME                                          DEPT_CODE EXPERIENCE
+---------- -------------------------------------------------- ---------- ----------
+    100005 John                                                       10 12.8027397
+    100004 Anil                                                       20 12.6684932
+    100006 Allen                                                      30 12.5506849
+    100010 RAM                                                        30 11.8136986
+    100003 Mohan                                                      10 11.8082192
+    100007 Smith                                                      20 11.6657534
+    100008 Raviraj                                                    40  10.830137
+    100001 Arvind                                                     30 10.8191781
+
+
+
+8 rows selected.
+
+
+
+****************************************************************************
+
+
+
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 09-DEC-82       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 12-JAN-83       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+14 rows selected.
+
+
+***********************************************************************
+QUERY5
+
+
+SELECT
+	ename,
+	job,
+	deptno,
+	(sal+nvl(comm,0))*120 as "Income"
+FROM
+	emp
+WHERE	(TRUNC(CURRENT_DATE)-hiredate)/365 >= 10
+AND	deptno
+IN	(10,30);
+
+
+SQL> SELECT
+  2   ename,
+  3   job,
+  4   deptno,
+  5   (sal+nvl(comm,0))*120 as "Income"
+  6  FROM
+  7   emp
+  8  WHERE (TRUNC(CURRENT_DATE)-hiredate)/365 >= 10
+  9  and deptno
+ 10  IN (10,30);
+
+ENAME      JOB           DEPTNO     Income
+---------- --------- ---------- ----------
+ALLEN      SALESMAN          30     228000
+WARD       SALESMAN          30     210000
+MARTIN     SALESMAN          30     318000
+BLAKE      MANAGER           30     342000
+CLARK      MANAGER           10     294000
+KING       PRESIDENT         10     600000
+TURNER     SALESMAN          30     180000
+JAMES      CLERK             30     114000
+MILLER     CLERK             10     156000
+
+9 rows selected.
+
+
+***************************************************************************************
+
+
+SQL> select * from student_masters;
+
+STUDENT_CODE STUDENT_NAME                                        DEPT_CODE STUDENT_D STUDENT_ADDRESS
+------------ -------------------------------------------------- ---------- --------- ---------------
+        1001 Amit                                                       10 11-JAN-80 chennai
+        1002 Ravi                                                       10 01-NOV-81 New Delhi
+        1003 Ajay                                                       20 13-JAN-82
+        1004 Raj                                                        30 14-JAN-79 Mumbai
+        1005 Arvind                                                     40 15-JAN-83 Bangalore
+        1006 Rahul                                                      50 16-JAN-81 Delhi
+        1007 Mehul                                                      20 17-JAN-82 Chennai
+        1008 Dev                                                        10 11-MAR-81 Bangalore
+        1009 Vijay                                                      30 19-JAN-80 Bangalore
+        1010 Rajat                                                      40 20-JAN-80 Bangalore
+        1011 Sunder                                                     50 21-JAN-80 Chennai
+        1012 Rajesh                                                     30 22-JAN-80
+        1013 Anil                                                       20 23-JAN-80 Chennai
+        1014 Sunil                                                      10 15-FEB-85
+        1015 Kapil                                                      40 18-MAR-81 Mumbai
+        1016 Ashok                                                      40 26-NOV-80
+        1017 Ramesh                                                     30 27-DEC-80
+        1018 Amit Raj                                                   50 28-SEP-80 New Delhi
+        1019 Ravi Raj                                                   50 29-MAY-81 New Delhi
+        1020 Amrit                                                      10 11-NOV-80
+        1021 Sumit                                                      20 01-JAN-80 Chennai
+        1022 asma                                                          27-MAR-91 mumbai
+
+22 rows selected.
+
+*****************************************************************************
+QUERY6
+
+
+SELECT
+	student_name,
+	dept_code,
+	student_name||','||' '||dept_code as "Student Info"
+FROM
+	student_masters;
+
+
+
+SQL> SELECT
+  2   student_name,
+  3   dept_code,
+  4   student_name||','||' '||dept_code as "Student Info"
+  5  FROM
+  6   student_masters;
+
+STUDENT_NAME                                        DEPT_CODE Student Info
+-------------------------------------------------- ---------- ----------------------
+Amit                                                       10 Amit, 10
+Ravi                                                       10 Ravi, 10
+Ajay                                                       20 Ajay, 20
+Raj                                                        30 Raj, 30
+Arvind                                                     40 Arvind, 40
+Rahul                                                      50 Rahul, 50
+Mehul                                                      20 Mehul, 20
+Dev                                                        10 Dev, 10
+Vijay                                                      30 Vijay, 30
+Rajat                                                      40 Rajat, 40
+Sunder                                                     50 Sunder, 50
+Rajesh                                                     30 Rajesh, 30
+Anil                                                       20 Anil, 20
+Sunil                                                      10 Sunil, 10
+Kapil                                                      40 Kapil, 40
+Ashok                                                      40 Ashok, 40
+Ramesh                                                     30 Ramesh, 30
+Amit Raj                                                   50 Amit Raj, 50
+Ravi Raj                                                   50 Ravi Raj, 50
+Amrit                                                      10 Amrit, 10
+Sumit                                                      20 Sumit, 20
+asma                                                          asma,
+
+22 rows selected.
+
+******************************************************************
+QUERY7
+
+
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 09-DEC-82       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 12-JAN-83       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+14 rows selected.
+
+SELECT
+	ename
+FROM
+	emp
+WHERE	
+	mgr IS NULL;
+
+SQL> SELECT
+  2   ename
+  3  FROM
+  4   emp
+  5  WHERE 
+  6   mgr IS NULL;
+
+ENAME
+----------
+KING
+
+
+
+SQL> select * from staff_masters;
+
+STAFF_CODE STAFF_NAME                                         DESIGN_CODE  DEPT_CODE STAFF_DOB HIREDATE    MGR_CODE  STAFF_SAL STA
+---------- -------------------------------------------------- ----------- ---------- --------- -----
+    100001 Arvind                                                     102         30 15-JAN-80 15-JAN-03     100006      17000 Bangalore
+    100003 Mohan                                                      102         10 23-MAR-80 19-JAN-02     100006      24000 Mumbai
+    100004 Anil                                                       102         20 22-APR-77 11-MAR-01     100006      50000 Hyderabad
+    100005 John                                                       106         10 22-MAY-76 21-JAN-01     100007      32000 Bangalore
+    100006 Allen                                                      103         30 22-JAN-80 23-APR-01     100005     100000 Chennai
+    100007 Smith                                                      103         20 19-JUL-73 12-MAR-02     100005      92000 Mumbai
+    100008 Raviraj                                                    102         40 17-JUN-80 11-JAN-03     100006      18000 Bangalore
+    100009 Rahul                                                      102         20 16-JAN-78 11-DEC-03     100006      52000 Hyderabad
+    100010 RAM                                                        103         30 17-JAN-79 17-JAN-02     100007      32000 Bangalore
+      9998 asah                                                                   10                                      3000
+      1001 asha                                                                                                          20000
+      1010 varun                                                                                                         22000
+    100011 Swapnil_Kadam
+
+13 rows selected.
+
+
+
+SELECT
+	staff_name
+FROM
+	staff_masters
+WHERE	
+	mgr_code IS NULL;
+
+SQL> SELECT
+  2   staff_name
+  3  FROM
+  4   staff_masters
+  5  WHERE 
+  6   mgr_code IS NULL;
+
+STAFF_NAME
+--------------------------------------------------
+asah
+asha
+varun
+Swapnil_Kadam
+
+
+
+
+
+
+
+*********************************************************************************
+QUERY8
+
+
+
+SELECT
+	student_name,
+	dept_code,
+	student_dob
+FROM	student_masters
+WHERE	student_dob
+BETWEEN	(TO_DATE('01-JAN-1981','DD-MON-YYYY'))
+AND	(TO_DATE('31-MAR-1983','DD-MON-YYYY'))
+ORDER BY (student_dob);
+
+
+
+SQL> SELECT
+  2   student_name,
+  3   dept_code,
+  4   student_dob
+  5  FROM student_masters
+  6  WHERE student_dob
+  7  BETWEEN (TO_DATE('01-JAN-1981','DD-MON-YYYY'))
+  8  AND (TO_DATE('31-MAR-1983','DD-MON-YYYY'))
+  9  ORDER BY (student_dob);
+
+STUDENT_NAME                                        DEPT_CODE STUDENT_D
+-------------------------------------------------- ---------- ---------
+Rahul                                                      50 16-JAN-81
+Dev                                                        10 11-MAR-81
+Kapil                                                      40 18-MAR-81
+Ravi Raj                                                   50 29-MAY-81
+Ravi                                                       10 01-NOV-81
+Ajay                                                       20 13-JAN-82
+Mehul                                                      20 17-JAN-82
+Arvind                                                     40 15-JAN-83
+
+8 rows selected.
+
+***************************************************************************************
+QUERY9
+
+
+
+SELECT
+	sum(staff_sal)
+FROM	staff_masters
+WHERE	staff_code
+IN(
+SELECT	staff_code
+FROM	staff_masters
+MINUS
+SELECT	mgr_code
+FROM	staff_masters) AND staff_sal>20000;
+
+
+SQL> SELECT
+  2   sum(staff_sal)
+  3  FROM staff_masters
+  4  WHERE staff_code
+  5  IN(
+  6  SELECT staff_code
+  7  FROM staff_masters
+  8  MINUS
+  9  SELECT mgr_code
+ 10  FROM staff_masters) AND staff_sal>20000;
+
+
+
+SUM(STAFF_SAL)
+--------------
+        180000
+
+
+**
+SELECT
+	dept_code,
+	sum(staff_sal)
+FROM	staff_masters
+WHERE	staff_code
+IN(
+SELECT	staff_code
+FROM	staff_masters
+MINUS
+SELECT	mgr_code
+FROM	staff_masters) AND staff_sal>20000
+group BY dept_code;
+
+
+
+SQL> SELECT
+  2   dept_code,
+  3   sum(staff_sal)
+  4  FROM staff_masters
+  5  WHERE staff_code
+  6  IN(
+  7  SELECT staff_code
+  8  FROM staff_masters
+  9  MINUS
+ 10  SELECT mgr_code
+ 11  FROM staff_masters) AND staff_sal>20000
+ 12  group BY dept_code;
+
+ DEPT_CODE SUM(STAFF_SAL)
+---------- --------------
+        10          24000
+        20         102000
+        30          32000
+                    22000
+
+
+
+
+
+****************************************************************************************
+QUERY10
+
+SQL> SELECT
+  2   *
+  3  FROM  book_masters;
+
+ BOOK_CODE BOOK_NAME                                          BOOK_PUB_YEAR BOOK_PUB_AUTHOR
+---------- -------------------------------------------------- ------------- ------------------------
+  10000001 Let Us C++                                                  2000  Yashavant Kanetkar
+  10000002 Mastersing VC++                                             2005 P.J Allen
+  10000003 JAVA Complete Reference                                     2004 H.Schild
+  10000004 J2EE Complete Reference                                     2000 H. Schild
+  10000005 Relational DBMS                                             2000 B.C. Desai
+  10000006 Let Us C                                                    2000 Yashavant Kanetkar
+  10000007 Intoduction To Algorithams                                  2001 Cormen
+  10000008 Computer Networks                                           2000 Tanenbaum
+  10000009 Introduction to O/S                                         2001 Millan
+
+9 rows selected.
+
+
+
+
+SELECT
+	book_code,
+	book_name,
+	book_pub_year,
+	book_pub_author
+FROM 	book_masters
+WHERE	book_pub_year
+BETWEEN	'2001'
+AND	'2004';
+
+SQL> SELECT
+  2   book_code,
+  3   book_name,
+  4   book_pub_year,
+  5   book_pub_author
+  6  FROM  book_masters
+  7  WHERE book_pub_year
+  8  BETWEEN '2001'
+  9  AND '2004';
+
+ BOOK_CODE BOOK_NAME                                          BOOK_PUB_YEAR BOOK_PUB_AUTHOR
+---------- -------------------------------------------------- ------------- ------------------------
+  10000003 JAVA Complete Reference                                     2004 H.Schild
+  10000007 Intoduction To Algorithams                                  2001 Cormen
+  10000009 Introduction to O/S                                         2001 Millan
+
+
+SELECT
+	book_code,
+	book_name,
+	book_pub_year,
+	book_pub_author
+FROM 	book_masters
+WHERE	book_name
+LIKE	('%&%');
+
+
+SQL> SELECT
+  2   book_code,
+  3   book_name,
+  4   book_pub_year,
+  5   book_pub_author
+  6  FROM  book_masters
+  7  WHERE book_name
+  8  LIKE ('%&%');
+
+no rows selected
+
+***********************************************************************************************
+
+QUERY11
+
+
+SELECT
+	book_code,
+	book_name,
+	book_pub_year,
+	book_pub_author
+FROM 	book_masters
+WHERE	book_name
+LIKE	('%Comp%');
+
+
+
+
+SQL> SELECT
+  2   book_code,
+  3   book_name,
+  4   book_pub_year,
+  5   book_pub_author
+  6  FROM  book_masters
+  7  WHERE book_name
+  8  LIKE ('%Comp%');
+
+ BOOK_CODE BOOK_NAME                                          BOOK_PUB_YEAR BOOK_PUB_AUTHOR
+---------- -------------------------------------------------- ------------- ------------------------
+  10000003 JAVA Complete Reference                                     2004 H.Schild
+  10000004 J2EE Complete Reference                                     2000 H. Schild
+  10000008 Computer Networks                                           2000 Tanenbaum
+
+
+
+
+************************************************************************************************
+
+QUERY12
+
+
+SELECT
+	staff_code,
+	staff_name,
+	design_code,
+	dept_code,
+	hiredate,
+	staff_dob,
+	staff_address,
+	mgr_code,
+	staff_sal
+FROM
+	staff_masters
+WHERE
+	staff_name LIKE	'A%S' OR staff_name LIKE '_N%' OR staff_name LIKE '__N%N' OR staff_name LIKE '%S';
+
+SQL> SELECT
+  2   staff_code,
+  3   staff_name,
+  4   design_code,
+  5   dept_code,
+  6   hiredate,
+  7   staff_dob,
+  8   staff_address,
+  9   mgr_code,
+ 10   staff_sal
+ 11  FROM
+ 12   staff_masters
+ 13  WHERE
+ 14   staff_name LIKE 'A%S' OR staff_name LIKE '_N%' OR staff_name LIKE '__N%N' OR staff_name LIKE '
+%S';
+
+no rows selected
+
+
+
+
+SELECT
+	empno,
+	ename
+FROM
+	emp
+WHERE
+	ename LIKE 'A%S' OR ename LIKE '_N%' OR ename LIKE '__N%N' OR ename LIKE '%S';
+
+
+SQL> SELECT
+  2   empno,
+  3   ename
+  4  FROM
+  5   emp
+  6  WHERE
+  7   ename LIKE 'A%S' OR ename LIKE '_N%' OR ename LIKE '__N%N' OR ename LIKE '%S';
+
+     EMPNO ENAME
+---------- ----------
+      7566 JONES
+      7876 ADAMS
+      7900 JAMES
+
+
+
+
+
+
+***********************************************************************************************
+
+QUERY13
+
+
+
+SELECT
+	staff_name
+FROM
+	staff_masters
+WHERE
+	staff_name
+LIKE	'%\_%' ESCAPE('\');
+
+
+
+SQL> select * from staff_masters;
+
+STAFF_CODE STAFF_NAME                                         DESIGN_CODE  DEPT_CODE STAFF_DOB HIREDATE    MGR_CODE  STAFF_SAL STA
+---------- -------------------------------------------------- ----------- ---------- --------- -----
+    100001 Arvind                                                     102         30 15-JAN-80 15-JAN-03     100006      17000 Bangalore
+    100003 Mohan                                                      102         10 23-MAR-80 19-JAN-02     100006      24000 Mumbai
+    100004 Anil                                                       102         20 22-APR-77 11-MAR-01     100006      50000 Hyderabad
+    100005 John                                                       106         10 22-MAY-76 21-JAN-01     100007      32000 Bangalore
+    100006 Allen                                                      103         30 22-JAN-80 23-APR-01     100005     100000 Chennai
+    100007 Smith                                                      103         20 19-JUL-73 12-MAR-02     100005      92000 Mumbai
+    100008 Raviraj                                                    102         40 17-JUN-80 11-JAN-03     100006      18000 Bangalore
+    100009 Rahul                                                      102         20 16-JAN-78 11-DEC-03     100006      52000 Hyderabad
+    100010 RAM                                                        103         30 17-JAN-79 17-JAN-02     100007      32000 Bangalore
+      9998 asah                                                                   10                                      3000
+      1001 asha                                                                                                          20000
+      1010 varun                                                                                                         22000
+
+12 rows selected.
+
+
+INSERT
+INTO	staff_masters(staff_code,staff_name)
+VALUES	(100011,'Swapnil_Kadam');
+
+SQL> INSERT
+  2  INTO staff_masters(staff_code,staff_name)
+  3  VALUES (100011,'Swapnil_Kadam');
+
+1 row created.
+
+SQL> select * from staff_masters;
+
+STAFF_CODE STAFF_NAME                                         DESIGN_CODE  DEPT_CODE STAFF_DOB HIREDATE    MGR_CODE  STAFF_SAL STA
+---------- -------------------------------------------------- ----------- ---------- --------- -----
+    100001 Arvind                                                     102         30 15-JAN-80 15-JAN-03     100006      17000 Bangalore
+    100003 Mohan                                                      102         10 23-MAR-80 19-JAN-02     100006      24000 Mumbai
+    100004 Anil                                                       102         20 22-APR-77 11-MAR-01     100006      50000 Hyderabad
+    100005 John                                                       106         10 22-MAY-76 21-JAN-01     100007      32000 Bangalore
+    100006 Allen                                                      103         30 22-JAN-80 23-APR-01     100005     100000 Chennai
+    100007 Smith                                                      103         20 19-JUL-73 12-MAR-02     100005      92000 Mumbai
+    100008 Raviraj                                                    102         40 17-JUN-80 11-JAN-03     100006      18000 Bangalore
+    100009 Rahul                                                      102         20 16-JAN-78 11-DEC-03     100006      52000 Hyderabad
+    100010 RAM                                                        103         30 17-JAN-79 17-JAN-02     100007      32000 Bangalore
+      9998 asah                                                                   10                                      3000
+      1001 asha                                                                                                          20000
+      1010 varun                                                                                                         22000
+    100011 Swapnil_Kadam
+
+13 rows selected.
+
+
+
+SQL> SELECT
+  2   staff_name
+  3  FROM
+  4   staff_masters
+  5  WHERE
+  6   staff_name
+  7  LIKE '%\_%' ESCAPE('\');
+
+STAFF_NAME
+--------------------------------------------------
+Swapnil_Kadam
+
+*******************************************************************************************************************

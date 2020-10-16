@@ -1,0 +1,27 @@
+<HTML>
+<HEAD>
+<TITLE>Using functions</TITLE>
+<script language="Javascript">
+
+   function evaluate()
+    {
+      if(isNaN(arguments[0]))
+      	{
+	  		document.write("<br>TRUE  :"+arguments[0] );
+  	   }
+	  else
+	  {
+		//x=parseInt(arguments[0]);
+		document.write("<br>FALSE  :"+arguments[0] );
+		document.write("<br>"+(x+10)+"<br>");
+	  }
+}
+
+</script>
+</HEAD>
+<BODY>
+<script>
+evaluate("10.22");
+</script>
+</BODY>
+</HTML>

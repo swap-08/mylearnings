@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet type="text/xsl" href="lab4.xsl"?>
+<!-- root element -->
+<movies>
+
+<movie type="comedy" rating="A3" review="6" year="1987">
+<title>Raising Arizona</title>
+<writer>ethen coen</writer>
+<producer>ethan coen</producer>
+<director>joel coen</director>
+<actor>nocolas cage</actor>
+<actor>holly hunter</actor>
+<actor>john goodman</actor>
+<comments>a classic love story</comments>
+</movie>
+
+<movie type="comedy" rating="B3" review="6" year="1998">
+<title>midnight run</title>
+<writer>george gallo</writer>
+<producer>martin brest</producer>
+<director>martin brest</director>
+<actor>robert</actor>
+<actor>charles</actor>
+<comments>a classic comedy</comments>
+</movie>
+</movies>

@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<empdetails xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="lab5.2.xsd">
+  <employee>
+    <EMPNO>7369</EMPNO>
+    <ENAME>SMITH</ENAME>
+    <JOB>CLERK</JOB>
+    <MGR>7902</MGR>
+    <HIREDATE>17-DEC-80</HIREDATE>
+    <SAL>1100</SAL>
+    <COMM>200</COMM>
+    <DEPTNO>20</DEPTNO>
+  </employee>
+  <employee>
+    <EMPNO>7499</EMPNO>
+    <ENAME>ALLEN</ENAME>
+    <JOB>SALESMAN</JOB>
+    <MGR>7698</MGR>
+    <HIREDATE>20-FEB-81</HIREDATE>
+    <SAL>1600</SAL>
+    <COMM>24820</COMM>
+    <DEPTNO>30</DEPTNO>
+  </employee>
+  <employee>
+    <EMPNO>7566</EMPNO>
+    <ENAME>JONES</ENAME>
+    <JOB>MANAGER</JOB>
+    <MGR>7839</MGR>
+    <HIREDATE>02-APR-81</HIREDATE>
+    <SAL>3175</SAL>
+    <COMM></COMM>
+    <DEPTNO>20</DEPTNO>
+  </employee>
+  <employee>
+    <EMPNO>7889</EMPNO>
+    <ENAME>KING</ENAME>
+    <JOB>PRESIDENT</JOB>
+    <MGR></MGR>
+    <HIREDATE>17-11-81</HIREDATE>
+    <SAL>5000</SAL>
+    <COMM></COMM>
+    <DEPTNO>10</DEPTNO>
+  </employee>
+</empdetails>

@@ -1,0 +1,11 @@
+DOM:
+Consider the entire file
+Put it in Ram
+To / fo travel possible
+Change is possible
+small file
+
+SAX:
+Big File
+Tag by Tag
+Event (Open a tag, close attribute etc)

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<employee xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="module.xsd">
+	<name>
+	<firstname>SWAPNIL</firstname>
+	<lastname>KADAM</lastname>
+	</name>
+<empid>sk816216</empid>
+<trainee>ABC</trainee>
+<domain>J2EE</domain>
+<email>sswapnil.akadam@igate.com</email>
+<mpt>75</mpt>
+<mtt>75</mtt>
+<assign>75</assign>
+<total>75</total>
+</employee>

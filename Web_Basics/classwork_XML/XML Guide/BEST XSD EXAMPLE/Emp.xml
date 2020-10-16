@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?xml:stylesheet type="text/xsl" href="emp.xsl" ?>
+
+
+<empList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="emp.xsd">
+
+
+<emp empno="101">
+ <fname>Preeti</fname>
+ <lname>Solanki</lname>
+ <salary> 30000</salary>
+ <dept>IT</dept>
+ <comm>500.90</comm>
+ <DOJ>10-02-1991</DOJ>
+  <phone>
+ <mobile>98333333333</mobile>
+ </phone>
+ 
+</emp>
+
+<emp empno="102">
+ <fname>Pree</fname>
+ <lname>MJ</lname>
+ <salary> 40000</salary>
+ <dept>IT</dept>
+  <comm>500.67</comm>
+  <DOJ>10-02-1991</DOJ>
+   <phone>
+ <landline>0229833</landline>
+ </phone>
+ </emp>
+
+</empList>

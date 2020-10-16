@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<emplist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="BEST_EXAMPLE.xsd">
+
+
+<emp empno="101">
+<name>
+ <fname>Preeti</fname>
+ <lname>Solanki</lname>
+ </name>
+ <salary> 30000</salary>
+  <dept>HUMAN</dept>
+   <phone>98333333333 </phone>
+ <comm>500.90</comm>
+ <DOJ>10-02-1991</DOJ>
+ 
+ 
+</emp>
+
+<emp empno="102">
+ <name>
+ <fname>Pree</fname>
+ <lname>MJ</lname>
+ </name>
+  <salary> 40000</salary>
+  <dept>Finance</dept>
+ <phone> 0229833 </phone>
+  <comm>500.67</comm>
+  <DOJ>10-23-1991</DOJ>
+  
+ </emp>
+
+</emplist>

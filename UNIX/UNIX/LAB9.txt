@@ -1,0 +1,91 @@
+WRITING AND EXECUTING C AND C++ PROGRAMS
+
+
+STEPS:
+gcc -c pi.c     			#use to create pi.o file
+gcc -c hello.c    			#use to create hello.o file
+gcc -lm -o hello hello.o pi.o	     	#use to link object file to create executable file hello
+./hello					#execute
+
+-----------------------------------------------------------------------------------------------
+1>
+
+
+[user15@DELL0708S-02VM7 lab9]$ vi pi.c
+#include<math.h>
+mypi()
+{
+printf("pi = %.5f\n",4 * atan(1.0));
+}
+
+
+[user15@DELL0708S-02VM7 lab9]$ vi hello.c
+#include<stdio.h>
+int main()
+{
+mypi();
+return 0;
+}
+
+
+[user15@DELL0708S-02VM7 lab9]$ gcc -c pi.c
+
+[user15@DELL0708S-02VM7 lab9]$ gcc -c hello.c
+
+
+[user15@DELL0708S-02VM7 lab9]$ ls
+hello.c  hello.o  pi.c  pi.o
+
+[user15@DELL0708S-02VM7 lab9]$ gcc -lm -o hello hello.o pi.o
+
+[user15@DELL0708S-02VM7 lab9]$ ./hello
+pi = 3.14159
+
+-------------------------------------------------------------------------------
+STRETCHED ASSIGNMENT
+
+2>
+# CALCULATE AVERAGE..
+awk '{sum+=$6} END { print "Average = ",sum/NR}' emp.lst
+
+[user15@DELL0708S-02VM7 assignment1]$ awk -F"|" '{sum+=$6} END { print "Average = ",sum/NR}' emp.lst
+Average =  25500
+
+
+
+[user15@DELL0708S-02VM7 assignment1]$ vi assignment.sh
+echo "EMP.LST FILE"
+cat emp.lst
+
+echo "PART 1"
+echo "Enter department number"
+read dept_number
+echo "entered department number is:$dept_number"
+
+awk /$dept_number/{print} emp.lst
+
+#grep "$dept_number" emp.lst && echo "Found.."
+#grep "$dept_number" emp.lst || echo "Not Found.."
+
+echo "PART 2"
+echo "Count of people in each department"
+
+awk -F"|" '{print $1 $2}' emp.lst|cut -c1-4|uniq -c
+
+echo "PART 3"
+echo "All Systems list
+Enter earning of user"
+read earning
+
+awk -F"|" '$6>$earning {print $1 $2 $4 $5 $6}' emp.lst|grep -i 'system'
+
+echo "PART 4"
+echo "Enter designation of user"
+read designation
+awk /$designation/{print} emp.lst
+
+
+echo "PART 5"
+echo "Employees whos salary greater than average salary"
+awk '{sum+=$6} END { print "Average = ",sum/NR}' emp.lst
+

@@ -1,0 +1,29 @@
+<html>
+<head>
+<script type="text/javascript">
+function getRegInput()
+{
+	var patt1 = new RegExp("W3");
+	var str = document.frm1.txtinput.value;
+	patt1.test(str);
+
+	if(RegExp.input)
+  	{
+		alert("The input is: " + RegExp.input);
+  	}
+	else
+	{
+		alert("The input does not contain W3");
+  	}
+}
+</script>
+</head>
+<boby>
+	<form name="frm1">
+		Enter some Text and click outside:
+		<input type="text" name="txtinput" onChange='getRegInput()'>
+		<br>
+		Input will only show if text contains W3.
+	</form>
+</body>
+</html>

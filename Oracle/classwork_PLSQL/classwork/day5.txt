@@ -1,0 +1,906 @@
+PLSQL
+
+
+begin
+dbms_output.put_line('Hello World');
+end;
+
+
+SQL> begin
+  2  dbms_output.put_line('Hello World');
+  3  end;
+  4  /
+
+PL/SQL procedure successfully completed.
+
+
+SQL> set serveroutput on;
+SQL> /
+Hello World
+
+PL/SQL procedure successfully completed.
+
+begin
+dbms_output.put_line('Hello World1');
+dbms_output.put_line('Hello World2');
+end;
+/
+
+
+SQL> begin
+  2  dbms_output.put_line('Hello World1');
+  3  dbms_output.put_line('Hello World2');
+  4  end;
+  5  /
+Hello World1
+Hello World2
+
+PL/SQL procedure successfully completed.
+
+
+begin
+dbms_output.put('Hello World1');
+dbms_output.put('Hello World2');
+end;
+/							no output
+
+
+
+
+begin
+dbms_output.put('Hello World1');
+dbms_output.put('Hello World2');
+dbms_output.put_line('');
+end;
+/
+
+
+
+
+
+
+declare
+	name varchar2(30);
+begin
+	name:='sumit';
+	dbms_output.put_line('My name is');
+	dbms_output.put_line(name);
+end;
+/
+
+
+declare
+	name varchar2(30);
+begin
+	name:='sumit';
+	dbms_output.put('My name is');
+	dbms_output.put_line(name);
+end;
+/
+
+
+declare
+	name varchar2(30);
+begin
+	name:='sumit';
+	dbms_output.put_line('My name is'||' '||name);
+end;
+/
+
+SQL> declare
+  2   name varchar2(30);
+  3  begin
+  4   name:='sumit';
+  5   dbms_output.put_line('My name is'||' '||name);
+  6  end;
+  7  /
+My name is sumit
+
+PL/SQL procedure successfully completed.
+
+
+declare
+	name varchar2(30):= 'sumit';
+begin
+	--name:='sumit';
+	dbms_output.put_line('My name is'||name);
+end;
+/
+
+
+
+declare
+	name varchar2(30) NOT NULL;
+begin
+	name:='sumit';
+	dbms_output.put_line('My name is'||name);
+end;
+/				--ERROR
+
+
+declare
+	name varchar2(30)NOT NULL := 'sumita';
+begin
+	--name:='sumit';
+	dbms_output.put_line('My name is' || name);
+end;
+/
+
+
+
+
+
+declare
+	name varchar2(30)default 'sumita';
+begin
+	--name:='sumit';
+	dbms_output.put_line('My name is' || name);
+end;
+/
+
+
+SQL> declare
+  2   name varchar2(30)default 'sumita';
+  3  begin
+  4   --name:='sumit';
+  5   dbms_output.put_line('My name is' || name);
+  6  end;
+  7  /
+My name issumita
+
+PL/SQL procedure successfully completed.
+
+
+
+
+
+
+********
+constant
+
+
+declare
+	name CONSTANT varchar2(30);
+begin
+	name:='sumit';
+	dbms_output.put_line('My name is' || name);
+end;
+/			ERROR  VALUE MUST BE GIVEN AT DEFINITION
+
+
+
+declare
+	name CONSTANT varchar2(30) :='sumit';
+begin
+	
+	dbms_output.put_line('My name is' || name);
+end;
+/
+
+SQL> declare
+  2   name CONSTANT varchar2(30) :='sumit';
+  3  begin
+  4   
+  5   dbms_output.put_line('My name is' || name);
+  6  end;
+  7  /
+My name issumit
+
+PL/SQL procedure successfully completed.
+
+
+
+
+
+
+
+
+declare
+	--name CONSTANT varchar2(30) :='sumit';
+begin
+	INSERT INTO dept VALUES(50,'FINANCE','MUMBAI');
+	--dbms_output.put_line('My name is' || name);
+end;
+/
+
+
+SQL> declare
+  2   --name CONSTANT varchar2(30) :='sumit';
+  3  begin
+  4   INSERT INTO dept VALUES(50,'FINANCE','MUMBAI');
+  5   --dbms_output.put_line('My name is' || name);
+  6  end;
+  7  /
+
+PL/SQL procedure successfully completed.
+
+SQL> SELECT * FROM DEPT;
+
+    DEPTNO DNAME          LOC
+---------- -------------- -------------
+        10 ACCOUNTING     NEW YORK
+        20 RESEARCH       DALLAS
+        30 SALES          CHICAGO
+        40 OPERATIONS     BOSTON
+        50 FINANCE        MUMBAI
+
+
+
+
+
+
+
+
+
+declare
+	dno NUMBER(2);
+	dname varchar2(40);
+	location varchar2(30);
+begin
+	dno:=60;
+	dname:='HR';
+	location:='BANGLORE';
+	INSERT INTO dept VALUES(dno,dname,location);
+	--INSERT INTO dept VALUES(50,'FINANCE','MUMBAI');
+	--dbms_output.put_line('My name is' || name);
+end;
+/
+
+
+SQL> declare
+  2   dno NUMBER(2);
+  3   dname varchar2(40);
+  4   location varchar2(30);
+  5  begin
+  6   dno:=60;
+  7   dname:='HR';
+  8   location:='BANGLORE';
+  9   INSERT INTO dept VALUES(dno,dname,location);
+ 10   --dbms_output.put_line('My name is' || name);
+ 11  end;
+ 12  /
+
+PL/SQL procedure successfully completed.
+
+SQL> SELECT * FROM DEPT;
+
+    DEPTNO DNAME          LOC
+---------- -------------- -------------
+        10 ACCOUNTING     NEW YORK
+        20 RESEARCH       DALLAS
+        30 SALES          CHICAGO
+        40 OPERATIONS     BOSTON
+        50 FINANCE        MUMBAI
+        60 HR             BANGLORE
+
+6 rows selected.
+
+
+
+
+
+
+
+
+declare
+	dno dept.deptno%TYPE;--NUMBER(2);
+	dname dept.dname%TYPE;--varchar2(40);
+	location dept.loc%TYPE;--varchar2(30);
+begin
+	dno:=70;
+	dname:='HR1';
+	location:='BANGLORE';
+	INSERT INTO dept VALUES(dno,dname,location);
+	--dbms_output.put_line('My name is' || name);
+end;
+/
+
+
+SQL> declare
+  2   dno dept.deptno%TYPE;--NUMBER(2);
+  3   dname dept.dname%TYPE;--varchar2(40);
+  4   location dept.loc%TYPE;--varchar2(30);
+  5  begin
+  6   dno:=70;
+  7   dname:='HR1';
+  8   location:='BANGLORE';
+  9   INSERT INTO dept VALUES(dno,dname,location);
+ 10   --dbms_output.put_line('My name is' || name);
+ 11  end;
+ 12  /
+
+PL/SQL procedure successfully completed.
+
+
+
+declare
+	--dno NUMBER(2);
+	--dname varchar2(40);
+	--location varchar2(30);
+	deptrow dept%ROWTYPE;
+begin
+	--dno:=60;
+	deptrow.deptno:=80;
+	--dname:='HR';
+	deptrow.dname:='HR3';	
+	--location:='BANGLORE';
+	deptrow.loc:='BANGLORE';
+	--INSERT INTO dept VALUES(dno,dname,location);
+	--INSERT INTO dept VALUES(50,'FINANCE','MUMBAI');
+	--dbms_output.put_line('My name is' || name);
+	INSERT INTO deptrow;
+end;
+/
+
+
+
+**********************
+structure  called as RECORD...
+
+
+declare
+	TYPE erecord IS RECORD
+	(
+	dno dept.deptno%TYPE,
+	dname dept.dname%TYPE,
+	location dept.loc%TYPE
+	);
+	erow erecord;
+begin
+	erow.dno :=88;
+	erow.dname :='HR1';
+	erow.location :='BANGLORE';
+	INSERT INTO dept values erow;
+end;
+/
+
+
+SQL> declare
+  2   TYPE erecord IS RECORD
+  3   (
+  4   dno dept.deptno%TYPE,
+  5   dname dept.dname%TYPE,
+  6   location dept.loc%TYPE
+  7   );
+  8   erow erecord;
+  9  begin
+ 10   erow.dno :=88;
+ 11   erow.dname :='HR1';
+ 12   erow.location :='BANGLORE';
+ 13   INSERT INTO dept values erow;
+ 14  end;
+ 15  /
+
+PL/SQL procedure successfully completed.
+
+
+***************************************
+
+ARRAY....  NOT POSSIBLE TO CREATE ARRAY IN TABLE SO TEMPARORY TABLE CONCEPT IS USED
+
+
+declare
+	TYPE etable IS TABLE OF dept%ROWTYPE INDEX BY BINARY_INTEGER;
+	erow etable;
+begin
+	erow(10).deptno :=99;
+	erow(10).dname :='HR4';
+	erow(10).loc :='BANGLORE';
+	INSERT INTO dept values erow(10);
+end;
+/
+
+
+UPDATE
+
+
+declare
+begin
+	DELETE from dept where deptno= 40;			//DO NOT USE := IN SQL STATEMENTS
+end;
+/
+
+
+declare
+begin
+	ALTER dept
+	SET dname='swapnil' where deptno=10;
+end;
+/
+
+
+***********************************
+
+if else
+
+
+DECLARE
+	dno number:=55;
+begin
+if(dno=55) then
+	begin
+	select deptno,dname,loc into dno,dnm,dloc from dept
+	where deptno=40;
+	--dbms_output.put_line(dno);
+	end;
+end if;
+end;
+/
+
+
+************
+
+
+DECLARE
+	d1 number:=55;
+
+begin
+	if(d1>55 AND d1>d3) then
+	begin
+	--select deptno,dname,loc into dno,dnm,dloc from dept where deptno=40;
+	dbms_output.put_line(d1);
+	end;
+	elsif(d2>50) then
+	begin
+	dbms_output.put_line(d2);
+	end;
+	else
+	begin
+	dbms_output.put_line(d3);
+	end;
+end if;
+end;
+/
+
+
+
+
+DECLARE
+	a NUMBER;
+BEGIN
+a:=10;
+loop
+	exit when a=10;
+
+dbms_output.put_line(a);
+a:=a+1;
+end loop;
+end;
+/
+
+
+DECLARE
+	a NUMBER;
+BEGIN
+for a IN 1..10
+loop
+	dbms_output.put_line(a);
+
+end loop;
+end;
+/
+
+
+SQL> DECLARE
+  2   a NUMBER;
+  3  BEGIN
+  4  for a IN 1..10
+  5  loop
+  6   dbms_output.put_line(a);
+  7  --a:=a+1;
+  8  end loop;
+  9  end;
+ 10  /
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+
+PL/SQL procedure successfully completed.
+
+
+
+DECLARE
+	a NUMBER;
+BEGIN
+for a IN REVERSE 1..10
+loop
+	dbms_output.put_line(a);
+--a:=a+1;
+end loop;
+end;
+/
+
+
+SQL> DECLARE
+  2   a NUMBER;
+  3  BEGIN
+  4  for a IN REVERSE 1..10
+  5  loop
+  6   dbms_output.put_line(a);
+  7  --a:=a+1;
+  8  end loop;
+  9  end;
+ 10  /
+
+10
+9
+8
+7
+6
+5
+4
+3
+2
+1
+
+PL/SQL procedure successfully completed.
+
+
+
+
+DECLARE
+	a NUMBER;
+	b NUMBER;
+BEGIN
+a:=1;
+b:=1;
+<<outer_loop>>
+	while(b<11)
+loop
+<<inner_loop>>
+	while(a<11)
+	loop
+	dbms_output.put_line(a);
+	a:=a+1;
+	exit outer_loop when a=5;
+	end loop;
+	b:=b+1;
+end loop;
+end;
+/
+
+
+SQL> DECLARE
+  2   a NUMBER;
+  3   b NUMBER;
+  4  BEGIN
+  5  a:=1;
+  6  b:=1;
+  7  <<outer_loop>>
+  8   while(b<11)
+  9  loop
+ 10  <<inner_loop>>
+ 11   while(a<11)
+ 12   loop
+ 13   dbms_output.put_line(a);
+ 14   a:=a+1;
+ 15   exit outer_loop when a=5;
+ 16   end loop;
+ 17   b:=b+1;
+ 18  end loop;
+ 19  end;
+ 20  /
+1
+2
+3
+4
+
+PL/SQL procedure successfully completed.
+
+
+
+declare
+	dno number(2);
+	dloc varchar2(30);
+BEGIN
+select deptno,loc into dno,dloc from dept where deptno=10;
+dbms_output.put_line(dno);
+
+
+declare
+	dno number(2);
+	dloc varchar2(30);
+BEGIN
+select deptno,loc into dno,dloc from dept where deptno=10;
+dbms_output.put_line(dno||dloc);
+--dbms_output.put_line(dloc);
+end;
+/
+
+
+declare
+	dno number(2);
+	dloc varchar2(30);
+BEGIN
+select deptno,loc into dno,dloc from dept;
+dbms_output.put_line(dno);
+dbms_output.put_line(dloc);
+end;
+/
+
+
+*************************************
+
+
+CURSOR
+
+**********************
+
+declare
+	cursor cdept IS
+	select deptno,dname,loc from dept;
+	dno number;
+	dloc varchar2(50);
+	dnam varchar2(50);
+BEGIN
+	open cdept;
+loop
+	fetch cdept into dno,dnam,dloc;
+	exit when cdept%NOTFOUND;
+	dbms_output.put_line(dno||dnam||dloc);
+end loop;
+close cdept;
+end;
+/
+
+
+
+
+declare
+	cursor cdept IS
+	select deptno,dname,loc from dept;
+	dno number;
+	dloc varchar2(50);
+	dnam varchar2(50);
+BEGIN
+	open cdept;
+dbms_output.put_line(CDEPT%rowcount);				//ans==0  no fetch
+	fetch cdept into dno,dnam,dloc;
+while(cdept%FOUND)
+loop
+dbms_output.put_line(CDEPT%rowcount);				//ans no of rows
+	exit when cdept%NOTFOUND;
+	dbms_output.put_line(dno||dnam||dloc);
+	fetch cdept into dno,dnam,dloc;
+end loop;
+close cdept;
+end;
+/
+
+CDEPT%rowcount
+
+
+
+BEGIN
+	UPDATE dept
+	set dname='system'
+	where deptno=45;
+	IF SQL%NOTFOUND THEN
+	dbms_output.put_line('data not found');
+	end if;
+end;
+/
+
+
+
+DECLARE
+	dnname varchar2(50);
+BEGIN
+	SELECT dname into dnname from dept
+	where deptno=45;
+	IF SQL%NOTFOUND THEN
+	dbms_output.put_line(dnname);
+	end if;
+end;
+/			//error
+
+
+**************************************************************
+
+without using fetch,open,close only for loop use
+**best loop for cursor***
+*************************
+
+
+declare
+	cursor cdept IS
+	select deptno,dname,loc from dept;
+
+BEGIN
+for rdept in cdept
+loop
+	dbms_output.put_line(rdept.deptno||rdept.dname||rdept.loc);
+end loop;
+end;
+/
+
+
+
+**************************************************************
+parameterised cursor
+*********************
+
+declare
+	cursor cdept(p1 number) IS
+	select deptno,dname,loc from dept where deptno>p1;
+BEGIN
+for rdept in cdept(20)
+loop
+	dbms_output.put_line(rdept.deptno||rdept.dname||rdept.loc);
+end loop;
+end;
+/
+
+***************************************************************
+
+declare
+	cursor cdept(p1 number,p2 varchar2) IS
+	select deptno,dname,loc from dept where deptno>p1 AND dname=p2;
+BEGIN
+for rdept in cdept(20,'SALES')
+loop
+	dbms_output.put_line(rdept.deptno||rdept.dname||rdept.loc);
+end loop;
+end;
+/
+SQL> declare
+  2   cursor cdept(p1 number,p2 varchar2) IS
+  3   select deptno,dname,loc from dept where deptno>p1 AND dname=p2;
+  4  BEGIN
+  5  for rdept in cdept(20,'SALES')
+  6  loop
+  7   dbms_output.put_line(rdept.deptno||rdept.dname||rdept.loc);
+  8  end loop;
+  9  end;
+ 10  /
+30SALESCHICAGO
+
+PL/SQL procedure successfully completed.
+
+
+
+
+********************************************************************
+TAKING INPUT FROM USER
+********************************************************************
+
+
+declare
+	cursor cdept(p1 number,p2 varchar2) IS
+	select deptno,dname,loc from dept where deptno>p1 AND dname=p2;
+BEGIN
+for rdept in cdept(&u1,&u2)
+loop
+	dbms_output.put_line(rdept.deptno||rdept.dname||rdept.loc);
+end loop;
+end;
+/
+
+
+
+SQL> declare
+  2   cursor cdept(p1 number,p2 varchar2) IS
+  3   select deptno,dname,loc from dept where deptno>p1 AND dname=p2;
+  4  BEGIN
+  5  for rdept in cdept(&u1,&u2)
+  6  loop
+  7   dbms_output.put_line(rdept.deptno||rdept.dname||rdept.loc);
+  8  end loop;
+  9  end;
+ 10  /
+Enter value for u1: 20
+Enter value for u2: 'SALES'
+old   5: for rdept in cdept(&u1,&u2)
+new   5: for rdept in cdept(20,'SALES')
+30SALESCHICAGO
+
+PL/SQL procedure successfully completed.
+
+
+
+declare
+	cursor cdept(p1 number,p2 varchar2) IS
+	select deptno,dname,loc from dept where deptno>p1 AND dname=p2;
+BEGIN
+for rdept in cdept(&u1,'&u2')
+loop
+	dbms_output.put_line(rdept.deptno||rdept.dname||rdept.loc);
+end loop;
+end;
+/
+
+
+SQL> declare
+  2   cursor cdept(p1 number,p2 varchar2) IS
+  3   select deptno,dname,loc from dept where deptno>p1 AND dname=p2;
+  4  BEGIN
+  5  for rdept in cdept(&u1,'&u2')
+  6  loop
+  7   dbms_output.put_line(rdept.deptno||rdept.dname||rdept.loc);
+  8  end loop;
+  9  end;
+ 10  /
+Enter value for u1: 20
+Enter value for u2: SALES
+old   5: for rdept in cdept(&u1,'&u2')
+new   5: for rdept in cdept(20,'SALES')
+30SALESCHICAGO
+
+PL/SQL procedure successfully completed.
+
+
+*****************************************************************
+
+
+declare
+	cursor csenior_clerk IS
+	select empno,job from emp where job='CLERK' AND sal>1000;
+	for update of job NOWAIT;
+BEGIN
+	for V_Emp in csenior_clerk
+loop
+	update emp
+	set job='SR.CLERK',sal=1.1*sal
+	where currentof csenior_clerk
+	dbms_output.put_line(rdept.deptno||rdept.dname||rdept.loc);
+end loop;
+end;
+/
+
+
+********************************************************************
+//weak reference cursor
+
+
+
+DECLARE
+	TYPE cref IS REF CURSOR;
+	vref cref;
+	dno number;
+	dnm varchar2(200);
+	dloc varchar2(200);
+begin
+	open vref for &stmt;
+	--open vref for select * from dept;
+	fetch vref into dno,dnm,dloc;
+	while(vref#FOUND)
+	loop
+	dbms_output.put_line(dno||dnm||dloc);
+	fetch vref into dno,dnm,dloc;
+	end loop;
+	close vref;
+end;
+/
+	
+
+
+//strong reference cursor	
+
+
+
+DECLARE
+	TYPE cref IS REF CURSOR RETURN dept%Rowtype;
+	vref cref;
+	dno number;
+	dnm varchar2(200);
+	dloc varchar2(200);
+begin
+	open vref for &stmt;
+	--open vref for select * from dept;
+	fetch vref into dno,dnm,dloc;
+	while(vref#FOUND)
+	loop
+	dbms_output.put_line(dno||dnm||dloc);
+	fetch vref into dno,dnm,dloc;
+	end loop;
+	close vref;
+end;
+/

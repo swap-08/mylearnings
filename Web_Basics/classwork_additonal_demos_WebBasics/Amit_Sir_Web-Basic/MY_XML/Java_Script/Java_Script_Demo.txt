@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<h1>Hello World</h1>
+	</body>
+</html>
+
+
+<!DOCTYPE html>
+<html>
+	<body>
+		<script type="text/javascript">
+			document.write("<h1>Hello World</h1>");
+		</script>			
+	</body>
+</html> 
+
+
+<!DOCTYPE html>
+<html>
+	<body>
+		<script type="text/javascript">
+		<!-- hide script
+			for (i=1; i<=10; i++)
+			{
+				sq=i*i
+				document.write("number: " + i + " square: " + sq + "<BR>")
+			}
+		// end script hiding -->
+		</script>
+	</body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="text/javascript">
+			function message()
+			{
+				alert("Hello World")
+			}
+		</script>
+	</head>
+	<body onload="message()">
+	</body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html>
+	<head>
+	<script src="message.js">
+	</script>
+	</head>
+	<body>
+		<script type="text/javascript">
+			message();
+		</script>
+	</body>
+</html>
+
+
+message.js
+function message()
+	{
+		alert("Hello World")
+	}
+
+
+
+<!DOCTYPE html>
+<html>
+	<head>
+	<script src="message.js">
+	</script>
+	</head>
+	<body>
+		<script type="text/javascript">
+			document.write(myConcat( ",","red","orange", "blue"));
+		</script>
+	</body>
+</html>
+
+
+function myConcat(separator) 
+{
+	delimiter = arguments[0];
+	result = "";
+	for(var i=1; i<arguments.length;i++) 
+	{
+		result += arguments[i] + delimiter
+	}
+	return result
+}
+
+
+
+
+<!DOCTYPE html>
+<html>
+	<head>
+	<script src="message.js">
+	</script>
+	</head>
+	<body>
+		<input TYPE="button" NAME="button1" onClick="message()">
+	</body>
+</html>
+
+
+

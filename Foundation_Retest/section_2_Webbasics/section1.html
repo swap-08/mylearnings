@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Customer Registration Form</title>
+<script type="text/javascript" src="a.js"></script>
+
+<!-- Cascading style sheet-->
+
+<style type="text/css">
+
+body {
+	background-color: blue;
+	color: lime;
+	font-family: sans-serif;
+}
+
+h3 {
+	font: cursive;
+	color: aqua;
+}
+</style>
+
+
+</head>
+<body>
+
+<form action="print.html" name="cust_form"
+	onsubmit="return validateForm()">
+
+<center><h3><strong>Customer Registration Form</strong></h3></center>
+<table border="2" align="center">
+
+	<tr>
+		<th>Title </th>
+		<td><select id="title_cust">
+			<option value="-1">Please Select</option>
+			<option value="Mr">Mr</option>
+			<option value="Mrs">Mrs</option>
+			<option value="Dr">Dr</option>
+		</select>
+		</td>
+	</tr>
+	<tr>
+		<th>First Name</th>
+		<td><input type="text" name="cust_name"></td>
+	</tr>
+	
+	<tr>
+		<th>Last Name</th>
+		<td><input type="text" name="cust_surname"/></td>
+	</tr>
+	
+	<tr>		
+		<th>Mobile Number</th>
+		<td><input type="text" name="mobile_number" size="10"/></td>
+	</tr>
+
+	<tr>
+			<th>Email:</th>
+			<td><input type="text" name="cust_email"></td>
+	</tr>
+	
+	<tr>
+		<th>State</th>
+		<td><select id="cust_stat">
+			<option value="-1">Select Period</option>
+			<option value="Karnataka">Karnataka</option>
+			<option value="Maharashtra">Maharashtra</option>
+			<option value="Delhi">Delhi</option>
+			<option value="Assam">Assam</option>
+		</select>
+		</td>
+	</tr>
+
+	<tr>
+		<th>City </th>
+		<td><select id="cust_city">
+			<option value="-1">Select Period</option>
+			<option value="Bangalore">Bangalore</option>
+			<option value="Mumbai">Mumbai</option>
+			<option value="Gandhinagar">Gandhinagar</option>
+			<option value="Pune">Pune</option>
+		</select></td>
+	</tr>
+
+	<tr>
+	<td colspan="2" align="center">
+	<input type="submit" value="Register" style="background-color: yellow">
+	</td>
+	</tr>
+
+</table>
+</form>
+</body>
+</html>

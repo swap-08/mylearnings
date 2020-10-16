@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+
+<lib xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="5.4.xsd">
+
+
+<book>
+<title>Death to the World</title>
+<author>Harris</author>
+<publisher>ABC</publisher>
+<cover cover_type="Hardbook"></cover>
+<category cat_type="Horror"></category>
+<isbn isbn_num="z1"></isbn>
+<rate rate_val="5"></rate>
+<price>$13.97</price>
+<comments>Good Luck</comments>
+
+</book>
+
+<book>
+
+<title>Gardens</title>
+<author>Steven</author>
+<publisher>XYZ</publisher>
+<cover cover_type="Softbook"></cover>
+
+<category cat_type="SCI FI"></category>
+
+<isbn isbn_num="z3"></isbn>
+
+<rate rate_val="4"></rate>
+
+<price>$17.97</price>
+<comments>Good Luck again</comments>
+</book>
+
+
+
+
+</lib>

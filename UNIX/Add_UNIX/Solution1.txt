@@ -1,0 +1,97 @@
+
+#  1. To run a shell script "merge.sh" at the background
+
+
+[user15@DELL0708S-02VM7 moduletest]$ sh merge.sh &			# & indicates background process 
+
+Steps:
+
+[user15@DELL0708S-02VM7 moduletest]$ vi merge.sh
+[user15@DELL0708S-02VM7 moduletest]$ cat merge.sh
+echo "Hello UNIX SHELL PROGRAMMING"
+
+[user15@DELL0708S-02VM7 moduletest]$ sh merge.sh &		#executing shell script
+[1] 5084
+[user15@DELL0708S-02VM7 moduletest]$ Hello UNIX SHELL PROGRAMMING
+
+[1]+  Done                    sh merge.sh
+
+-------------------------------------------------------------------------------------------------------------------
+#  2. To find out lines which contains '^M' characters at the end of every line of the file called sample.txt
+
+
+[user15@DELL0708S-02VM7 moduletest]$ grep 'M$' sample.txt
+
+Steps:
+
+[user15@DELL0708S-02VM7 moduletest]$ vi sample.txt
+[user15@DELL0708S-02VM7 moduletest]$ cat sample.txt
+Sumana|2012|20000|M
+Rajashree|2000|50000|M
+Ramprasad|2013|13000|M
+
+[user15@DELL0708S-02VM7 moduletest]$ grep 'M$' sample.txt
+Sumana|2012|20000|M
+Rajashree|2000|50000|M
+Ramprasad|2013|13000|M
+
+-------------------------------------------------------------------------------------------------------------------
+#  3. To sort a pipe de-limited file as per its third column
+
+
+[user15@DELL0708S-02VM7 moduletest]$ sort -t"|" -n +2 sample.txt	# +2 indicates 3rd column
+Ramprasad|2013|13000|M
+Sumana|2012|20000|M
+Rajashree|2000|50000|M
+
+
+-------------------------------------------------------------------------------------------------------------------
+#  4.To find out all the files with the extension ".dat", in a current directory 
+
+
+[user15@DELL0708S-02VM7 moduletest]$ find *.dat		# *.dat starting with 0 or more charactes
+
+Steps:
+
+[user15@DELL0708S-02VM7 moduletest]$ touch a.dat
+[user15@DELL0708S-02VM7 moduletest]$ touch b.dat
+[user15@DELL0708S-02VM7 moduletest]$ touch c.dat
+[user15@DELL0708S-02VM7 moduletest]$ ls
+a.dat  b.dat  c.dat  merge.sh  sample.txt
+
+[user15@DELL0708S-02VM7 moduletest]$ find *.dat
+a.dat
+b.dat
+c.dat
+
+
+-------------------------------------------------------------------------------------------------------------------
+#  5. To rempve three directories with single command which is in following structure
+#      |-----Project
+#		    |-----Analysis
+#		    |-----Design
+
+# first remove child directory then parent directory
+
+[user15@DELL0708S-02VM7 moduletest]$ rmdir Design/Project Analysis/Project Project	
+							
+
+Steps:
+#creating parent and child directories
+
+[user15@DELL0708S-02VM7 moduletest]$ mkdir Project Project/Analysis Project/Design  
+[user15@DELL0708S-02VM7 moduletest]$ ls
+a.dat  b.dat  c.dat  merge.sh  Project  sample.txt
+
+[user15@DELL0708S-02VM7 moduletest]$ cd Project
+[user15@DELL0708S-02VM7 Project]$ ls
+Analysis  Design
+
+[user15@DELL0708S-02VM7 Project]$ cd ..
+
+#removing parent and child directories
+
+[user15@DELL0708S-02VM7 moduletest]$ rmdir Project/Design Project/Analysis Project
+
+[user15@DELL0708S-02VM7 moduletest]$ ls
+a.dat  b.dat  c.dat  merge.sh  sample.txt

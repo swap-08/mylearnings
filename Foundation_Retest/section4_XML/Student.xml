@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="iso-8859-9"?>
+<student stud_id="101" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:noNamespaceSchemaLocation="Student.xsd">
+  <name>
+    <first_name>Aditya</first_name>
+    <last_name>Kadam</last_name>
+  </name>
+  <phone>
+    <mobile_number>9865324710</mobile_number>
+  </phone>
+  <address>Mumbai</address>
+  <department_number>20</department_number>
+  
+</student>

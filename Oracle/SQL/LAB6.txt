@@ -1,0 +1,341 @@
+DATA MANIPULATION LANGUAGE
+**************************
+
+query1
+
+SQL> CREATE TABLE EMPLOYEE2 AS
+  2  SELECT * FROM EMP WHERE 1=3;
+Table created.
+SQL> DESC EMPLOYEE2;
+ Name                        Null?    Type
+ --------------------------- -------- -----------
+ EMPNO                       NOT NULL NUMBER(4)
+ ENAME                                VARCHAR2(10)
+ JOB                                  VARCHAR2(9)
+ MGR                                  NUMBER(4)
+ HIREDATE                             DATE
+ SAL                                  NUMBER(7,2)
+ COMM                                 NUMBER(7,2)
+ DEPTNO                               NUMBER(2)
+
+SQL> SELECT * FROM EMPLOYEE2;
+no rows selected
+
+-------------------------------------------------------------------------------------------------------------------------
+query2
+
+
+SQL> INSERT INTO EMPLOYEE2(EMPNO,ENAME,SAL,DEPTNO)
+  2  SELECT EMPNO,ENAME,SAL,DEPTNO FROM EMP;
+18 rows created.
+SQL> SELECT
+  2  *
+  3  FROM EMPLOYEE2;
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH                                            800                    20
+      7499 ALLEN                                           1600                    30
+      7521 WARD                                            1250                    30
+      7566 JONES                                           2975                    20
+      7654 MARTIN                                          1250                    30
+      7698 BLAKE                                           2850                    30
+      7782 CLARK                                           2450                    10
+      7788 SCOTT                                           3000                    20
+      7839 KING                                            5000                    10
+      7844 TURNER                                          1500                    30
+      7876 ADAMS                                           1100                    20
+      7900 JAMES                                            950                    30
+      7902 FORD                                            3000                    20
+      7934 MILLER                                          1300                    10
+      1001 ANUJ                                           20000                    10
+      1002 GANESH                                         20000                    10
+      1003 NEERAJ                                         20000                    10
+      1004 SRIRAJ                                         20000                    10
+18 rows selected.
+
+-------------------------------------------------------------------------------------------------------------------------
+query3
+
+ 
+SQL> CREATE TABLE EMPLOYEE3 AS
+  2  SELECT * FROM EMP;
+Table created.
+SQL> SELECT * FROM EMPLOYEE3;
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 09-DEC-82       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 12-JAN-83       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+      1001 ANUJ       SOFTWARE        7499 17-OCT-13      20000          0         10
+      1002 GANESH     SOFTWARE        7499 17-OCT-13      20000          0         10
+      1003 NEERAJ     SOFTWARE        7499 17-OCT-13      20000          0         10
+      1004 SRIRAJ     SOFTWARE        7499 17-OCT-13      20000          0         10
+18 rows selected.
+
+SQL> UPDATE EMPLOYEE3
+  2  SET JOB=(SELECT JOB FROM EMPLOYEE3 WHERE EMPNO=7788),DEPTNO=(SELECT DEPTNO FROM EMPLOYEE3 WHERE
+ EMPNO=7788)
+  3  WHERE EMPNO=7698;
+1 row updated.
+
+SQL> SELECT * FROM EMPLOYEE3;
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      ANALYST         7839 01-MAY-81       2850                    20
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 09-DEC-82       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 12-JAN-83       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+      1001 ANUJ       SOFTWARE        7499 17-OCT-13      20000          0         10
+      1002 GANESH     SOFTWARE        7499 17-OCT-13      20000          0         10
+      1003 NEERAJ     SOFTWARE        7499 17-OCT-13      20000          0         10
+      1004 SRIRAJ     SOFTWARE        7499 17-OCT-13      20000          0         10
+18 rows selected.
+
+-------------------------------------------------------------------------------------------------------------------------
+query4
+
+SQL> DELETE FROM EMPLOYEE3
+  2  WHERE DEPTNO = (SELECT DEPTNO FROM DEPT WHERE DNAME='SALES');
+5 rows deleted.
+
+SQL> SELECT * FROM EMPLOYEE3;
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7698 BLAKE      ANALYST         7839 01-MAY-81       2850                    20
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 09-DEC-82       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7876 ADAMS      CLERK           7788 12-JAN-83       1100                    20
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+      1001 ANUJ       SOFTWARE        7499 17-OCT-13      20000          0         10
+      1002 GANESH     SOFTWARE        7499 17-OCT-13      20000          0         10
+      1003 NEERAJ     SOFTWARE        7499 17-OCT-13      20000          0         10
+      1004 SRIRAJ     SOFTWARE        7499 17-OCT-13      20000          0         10
+13 rows selected.
+
+------------------------------------------------------------------------------------------------------------------------
+query5
+
+SQL> UPDATE EMPLOYEE3
+  2  SET DEPTNO=(SELECT DEPTNO FROM EMPLOYEE3 WHERE EMPNO=7698)
+  3  WHERE EMPNO=7788;
+1 row updated.
+
+SQL> SELECT * FROM EMPLOYEE3;
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7698 BLAKE      ANALYST         7839 01-MAY-81       2850                    20
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 09-DEC-82       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7876 ADAMS      CLERK           7788 12-JAN-83       1100                    20
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+      1001 ANUJ       SOFTWARE        7499 17-OCT-13      20000          0         10
+      1002 GANESH     SOFTWARE        7499 17-OCT-13      20000          0         10
+      1003 NEERAJ     SOFTWARE        7499 17-OCT-13      20000          0         10
+      1004 SRIRAJ     SOFTWARE        7499 17-OCT-13      20000          0         10
+13 rows selected.
+
+--------------------------------------------------------------------------------------------------------------------------
+query6
+
+
+INSERT INTO EMPLOYEE3 VALUES (&EMPNO,'&ENAME','&JOB',&MGR,TO_DATE('&HIREDATE','DD-MON-YY'),&SAL,&COMM,&DEPTNO);
+
+
+SQL> INSERT INTO EMPLOYEE3 VALUES (&EMPNO,'&ENAME','&JOB',&MGR,TO_DATE('&HIREDATE','DD-MON-YYYY'),&S
+AL,&COMM,&DEPTNO);
+Enter value for empno: 1000
+Enter value for ename: ALLEN
+Enter value for job: CLERK
+Enter value for mgr: 1001
+Enter value for hiredate: 12-JAN-01
+Enter value for sal: 3000
+Enter value for comm: 2
+Enter value for deptno: 10
+old   1: INSERT INTO EMPLOYEE3 VALUES (&EMPNO,'&ENAME','&JOB',&MGR,TO_DATE('&HIREDATE','DD-MON-YYYY'
+new   1: INSERT INTO EMPLOYEE3 VALUES (1000,'ALLEN','CLERK',1001,TO_DATE('12-JAN-01','DD-MON-YYYY'),
+1 row created.
+
+
+SQL> INSERT INTO EMPLOYEE3 VALUES (&EMPNO,'&ENAME','&JOB',&MGR,TO_DATE('&HIREDATE','DD-MON-YY'),&SAL
+,&COMM,&DEPTNO);
+Enter value for empno: 1001
+Enter value for ename: GEORGE
+Enter value for job: ANALYST
+Enter value for mgr: NULL
+Enter value for hiredate: 08-SEP-92
+Enter value for sal: 2800
+Enter value for comm: 0
+Enter value for deptno: 10
+old   1: INSERT INTO EMPLOYEE3 VALUES (&EMPNO,'&ENAME','&JOB',&MGR,TO_DATE('&HIREDATE','DD-MON-YY'),
+new   1: INSERT INTO EMPLOYEE3 VALUES (1001,'GEORGE','ANALYST',NULL,TO_DATE('08-SEP-92','DD-MON-YY')
+1 row created.
+
+
+SQL> INSERT INTO EMPLOYEE3 VALUES (&EMPNO,'&ENAME','&JOB',&MGR,TO_DATE('&HIREDATE','DD-MON-YY'),&SAL
+,&COMM,&DEPTNO);
+Enter value for empno: 1002
+Enter value for ename: BECKER
+Enter value for job: MANAGER
+Enter value for mgr: 1000
+Enter value for hiredate: 04-NOV-92
+Enter value for sal: 5000
+Enter value for comm: 4
+Enter value for deptno: 10
+old   1: INSERT INTO EMPLOYEE3 VALUES (&EMPNO,'&ENAME','&JOB',&MGR,TO_DATE('&HIREDATE','DD-MON-YY'),
+new   1: INSERT INTO EMPLOYEE3 VALUES (1002,'BECKER','MANAGER',1000,TO_DATE('04-NOV-92','DD-MON-YY')
+1 row created.
+
+
+SQL> INSERT INTO EMPLOYEE3 VALUES (&EMPNO,'&ENAME','&JOB',&MGR,TO_DATE('&HIREDATE','DD-MON-YY'),&SAL
+,&COMM,&DEPTNO);
+Enter value for empno: 1003
+Enter value for ename: BILL
+Enter value for job: CLERK
+Enter value for mgr: 1002
+Enter value for hiredate: 04-NOV-92
+Enter value for sal: 3000
+Enter value for comm: 0
+Enter value for deptno: 20
+old   1: INSERT INTO EMPLOYEE3 VALUES (&EMPNO,'&ENAME','&JOB',&MGR,TO_DATE('&HIREDATE','DD-MON-YY'),
+new   1: INSERT INTO EMPLOYEE3 VALUES (1003,'BILL','CLERK',1002,TO_DATE('04-NOV-92','DD-MON-YY'),300
+1 row created.
+
+
+SQL> SELECT * FROM EMPLOYEE3;
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7698 BLAKE      ANALYST         7839 01-MAY-81       2850                    20
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 09-DEC-82       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7876 ADAMS      CLERK           7788 12-JAN-83       1100                    20
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+      1001 ANUJ       SOFTWARE        7499 17-OCT-13      20000          0         10
+      1002 GANESH     SOFTWARE        7499 17-OCT-13      20000          0         10
+      1003 NEERAJ     SOFTWARE        7499 17-OCT-13      20000          0         10
+      1004 SRIRAJ     SOFTWARE        7499 17-OCT-13      20000          0         10
+      1000 ALLEN      CLERK           1001 12-JAN-01       3000          2         10
+      1001 GEORGE     ANALYST              08-SEP-92       2800          0         10
+      1002 BECKER     MANAGER         1000 04-NOV-92       5000          4         10
+      1003 BILL       CLERK           1002 04-NOV-92       3000          0         20
+17 rows selected.
+--------------------------------------------------------------------------------------
+
+query7
+
+CREATE TABLE PROJECT_TABLE
+   (PROJID VARCHAR2(10) NOT NULL,
+    PROJ_NAME VARCHAR2(25),
+    START_DATE DATE,
+    END_DATE DATE);
+ INSERT INTO PROJECT_TABLE VALUES('IND_001','GE1',TO_DATE('17-OCT-2013','DD-MON-YYYY'),TO_DATE('13-JAN-2014','DD-MON-YYYY'));
+ INSERT INTO PROJECT_TABLE VALUES('IND_002','EMC2',TO_DATE('13-JAN-2014','DD-MON-YYYY'),TO_DATE('17-MAY-2014','DD-MON-YYYY'));
+ INSERT INTO PROJECT_TABLE VALUES('IND_003','McD',TO_DATE('14-NOV-2013','DD-MON-YYYY'),TO_DATE('17-FEB-2014','DD-MON-YYYY'));
+ INSERT INTO PROJECT_TABLE VALUES('IND_004','McD2',TO_DATE('14-NOV-2013','DD-MON-YYYY'),TO_DATE('17-FEB-2014','DD-MON-YYYY'));
+ INSERT INTO PROJECT_TABLE VALUES('IND_005','GE2',TO_DATE('14-NOV-2013','DD-MON-YYYY'),TO_DATE('17-FEB-2014','DD-MON-YYYY'));
+
+
+SQL> CREATE TABLE PROJECT_TABLE
+  2     (PROJID VARCHAR2(10) NOT NULL,
+  3      PROJ_NAME VARCHAR2(25),
+  4      START_DATE DATE,
+  5      END_DATE DATE);
+Table created.
+
+
+SQL>  INSERT INTO PROJECT_TABLE VALUES('IND_001','GE1',TO_DATE('17-OCT-2013','DD-MON-YYYY'),TO_DATE(
+'13-JAN-2014','DD-MON-YYYY'));
+1 row created.
+
+
+SQL>  INSERT INTO PROJECT_TABLE VALUES('IND_002','EMC2',TO_DATE('13-JAN-2014','DD-MON-YYYY'),TO_DATE
+('17-MAY-2014','DD-MON-YYYY'));
+1 row created.
+
+
+SQL>  INSERT INTO PROJECT_TABLE VALUES('IND_003','McD',TO_DATE('14-NOV-2013','DD-MON-YYYY'),TO_DATE(
+'17-FEB-2014','DD-MON-YYYY'));
+1 row created.
+
+
+SQL>  INSERT INTO PROJECT_TABLE VALUES('IND_004','McD2',TO_DATE('14-NOV-2013','DD-MON-YYYY'),TO_DATE
+('17-FEB-2014','DD-MON-YYYY'));
+1 row created.
+
+
+SQL>  INSERT INTO PROJECT_TABLE VALUES('IND_005','GE2',TO_DATE('14-NOV-2013','DD-MON-YYYY'),TO_DATE(
+'17-FEB-2014','DD-MON-YYYY'));
+1 row created.
+
+
+SQL> SELECT * FROM PROJECT_TABLE;
+PROJID     PROJ_NAME                 START_DAT END_DATE
+---------- ------------------------- --------- ---------
+IND_001    GE1                       17-OCT-13 13-JAN-14
+IND_002    EMC2                      13-JAN-14 17-MAY-14
+IND_003    McD                       14-NOV-13 17-FEB-14
+IND_004    McD2                      14-NOV-13 17-FEB-14
+IND_005    GE2                       14-NOV-13 17-FEB-14
+ 
+
+CREATE TABLE EMPLOYEE_PROJECT_TABLE
+ (
+ EMPNO NUMBER(4),
+ PROJID VARCHAR2(10),
+ PRIMARY KEY (EMPNO,PROJID)
+ );
+
+
+SQL> CREATE TABLE EMPLOYEE_PROJECT_TABLE
+  2   (
+  3   EMPNO NUMBER(4),
+  4   PROJID VARCHAR2(10),
+  5   PRIMARY KEY (EMPNO,PROJID)
+  6   );
+Table created.
+
+
+INSERT INTO EMPLOYEE_PROJECT_TABLE VALUES ((SELECT EMPNO FROM EMPLOYEE3 WHERE ENAME='SMITH'),(SELECT PROJID FROM PROJECT_TABLE WHERE PROJ_NAME='GE1'));
+
+
+SQL> INSERT INTO EMPLOYEE_PROJECT_TABLE VALUES ((SELECT EMPNO FROM EMPLOYEE3 WHERE ENAME='SMITH'),(S
+ELECT PROJID FROM PROJECT_TABLE WHERE PROJ_NAME='GE1'));
+1 row created.
+
+
+SQL> SELECT * FROM EMPLOYEE_PROJECT_TABLE;
+     EMPNO PROJID
+---------- ----------
+      7369 IND_001

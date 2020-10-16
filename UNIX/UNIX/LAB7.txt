@@ -1,0 +1,32 @@
+PROCESS RELATED COMMANDS
+
+1>
+
+
+[user15@DELL0708S-02VM7 lab7]$ ps u
+USER       PID %CPU %MEM   VSZ  RSS TTY      STAT START   TIME COMMAND
+user15    6385  0.0  0.1  4548 1432 pts/9    Ss   09:13   0:00 -bash
+user15    7910  0.0  0.2 10472 2904 pts/9    S    09:33   0:00 vim practice
+user15    7952  0.0  0.1  5048 1448 pts/9    S    09:34   0:00 /bin/bash
+user15   19173  0.0  0.0  4112  760 pts/9    R+   11:39   0:00 ps u
+
+
+
+2>
+
+[user15@DELL0708S-02VM7 lab7]$ ps a
+
+
+3>
+
+
+[user15@DELL0708S-02VM7 swapnil]$ sleep 10 &
+[1] 20004
+
+[user15@DELL0708S-02VM7 swapnil]$ ps u
+USER       PID %CPU %MEM   VSZ  RSS TTY      STAT START   TIME COMMAND
+user15    6385  0.0  0.1  4548 1432 pts/9    Ss   09:13   0:00 -bash
+user15    7910  0.0  0.2 10472 2904 pts/9    S    09:33   0:00 vim practice
+user15    7952  0.0  0.1  5048 1452 pts/9    S    09:34   0:00 /bin/bash
+user15   20004  0.0  0.0  4112  524 pts/9    S    11:50   0:00 sleep 10
+user15   20017  0.0  0.0  3712  764 pts/9    R+   11:50   0:00 ps -u

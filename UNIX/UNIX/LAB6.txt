@@ -1,0 +1,96 @@
+SED COMMANDS
+
+
+1>
+
+[user15@DELL0708S-02VM7 lab6]$ cat Employee.dat
+James   76382   PACE    Chennai
+John    34228   GRIT    Hyderabad
+Peter   22321   GE      Bangalore
+Albert  32342   PACE    Mumbai
+Richard 23232   ACS     Pune
+--------------------------------------------------------------------------------
+
+a>
+[user15@DELL0708S-02VM7 lab6]$ sed -n '2,2p; /[pP]une$/p' Employee.dat
+John    34228   GRIT    Hyderabad
+Albert  32342   PACE    Pune
+Richard 23232   ACS     Pune
+
+
+--------------------------------------------------------------------------------
+
+b>
+
+[user15@DELL0708S-02VM7 lab6]$ sed 5q Employee.dat
+James   76382   PACE    Chennai
+John    34228   GRIT    Hyderabad
+Peter   22321   GE      Bangalore
+Albert  32342   PACE    Mumbai
+Richard 23232   ACS     Pune
+
+
+--------------------------------------------------------------------------------
+
+c>
+
+[user15@DELL0708S-02VM7 lab6]$ sed 5q Employee.dat
+James   76382   PACE    Chennai
+John    34228   GRIT    Hyderabad
+Peter   22321   GE      Bangalore
+Albert  32342   PACE    Mumbai
+Richard 23232   ACS     Pune
+
+
+[user15@DELL0708S-02VM7 lab6]$ sed 's/Chennai/Pune/' Employee.dat
+James   76382   PACE    Pune
+John    34228   GRIT    Hyderabad
+Peter   22321   GE      Bangalore
+Albert  32342   PACE    Mumbai
+Richard 23232   ACS     Pune
+
+--------------------------------------------------------------------------------
+
+d>
+
+
+[user15@DELL0708S-02VM7 lab6]$ sed -e 's/e/UNIX/g' Employee.dat
+JamUNIXs        76382   PACE    ChUNIXnnai
+John    34228   GRIT    HydUNIXrabad
+PUNIXtUNIXr     22321   GE      BangalorUNIX
+AlbUNIXrt       32342   PACE    Mumbai
+Richard 23232   ACS     PunUNIX
+
+
+--------------------------------------------------------------------------------
+e>
+
+[user15@DELL0708S-02VM7 lab6]$ sed '/^$/d' Employee.dat
+James   76382   PACE    Chennai
+John    34228   GRIT    Hyderabad
+Peter   22321   GE      Bangalore
+Albert  32342   PACE    Mumbai
+Richard 23232   ACS     Pune
+
+--------------------------------------------------------------------------------
+f>
+
+
+[user15@DELL0708S-02VM7 lab6]$ sed '3,5d' Employee.dat
+James   76382   PACE    Chennai
+John    34228   GRIT    Hyderabad
+
+
+
+--------------------------------------------------------------------------------
+2>
+
+[user15@DELL0708S-02VM7 lab6]$ grep -i 'pace' Employee.dat > PACE.dat
+
+[user15@DELL0708S-02VM7 lab6]$ cat PACE.dat
+James   76382   PACE    Chennai
+Mathew  23222   PACE    Mumbai
+
+[user15@DELL0708S-02VM7 lab6]$ vi PACE.dat
+James   76382   PACE    Chennai
+Mathew  23222   PACE    Mumbai

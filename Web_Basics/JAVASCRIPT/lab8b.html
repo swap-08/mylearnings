@@ -1,0 +1,41 @@
+<head>
+<script>
+function mailme() 
+{
+	x=f.cc.value.match(/@/g).length;
+	y=f.bcc.value.match(/@/g).length;
+	p=f.cc.value.match(/./g).length;
+	q=f.bcc.value.match(/./g).length;
+	if(f.msg.value=="" || f.cc.value=="" || f.bcc.value=="")
+	{
+	alert("Field is empty");
+	}
+	else if( x>1 || y>1)
+	{
+	alert("entered email id exceeds more then one");
+	}
+	else if( p>1 || q>1)
+	{
+	alert("Incorrect email address");
+	}
+	else
+	{
+	e="mailto:swapnil@igate.com?cc=f.cc.value & bcc=f.bcc.value & sub=f.msg.value";
+	a=window.open();
+	a.window.location.href=e;
+	}
+}
+</script>
+</head>
+<body>
+<form name="f">
+    Subject of Message:<br/>
+    <input type="text" size="30" name="msg"/><br/>
+    Send cc to:<br/>
+    <input type="text" size="30" name="cc"/><br/>
+    Send blind cc to:<br />
+    <input type="text" size="30" name="bcc"/>
+   <input type="button" value="submit" onclick="mailme()"/>
+</form>
+</body>
+</html>

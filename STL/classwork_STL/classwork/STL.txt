@@ -1,0 +1,410 @@
+STACK
+QUEUE
+DQUEUE
+LIST
+VECTOR
+
+MAP
+SET
+MULTISET
+MULTIMAP
+
+
+--------------------------------------------------
+
+ADAPTERS CONTAINER (STACK,QUEUE,PRIORITY QUEUE) no iterartor
+******************
+
+
+STACK
+
+Stacks are only accessed at their top. 
+
+/********
+	top=returns value
+	size=returns size
+	push
+	pop=no return
+	empty
+*********/
+
+
+
+
+#include <stack>					//standard template also called as container;
+
+#include <iostream>
+using namespace std;
+
+// Simple example uses type int
+int main()
+{   
+		
+		stack<int> s;
+		const int n = 5;
+
+    	//Put characters from x onto the stack
+
+ 		   for(int i=0; i<n; ++i)
+ 			s.push(i);
+
+    	//take characters off of stack and put them back into x
+
+ 		   for(int i=0; !s.empty(); ++i, s.pop())
+ 			cout<<s.top()<<endl; 					//s.top() -> value s.pop() -> command to pop not actual pop is done	
+		cin.get();
+		return 0;
+}
+
+
+/*****************************************/
+
+
+QUEUE
+
+Queues allow data to be added at one end and taken out of the other end.
+
+push  rear
+pop   front
+
+/********
+	back=returns rear value
+	top=returns value
+	size=returns size
+	push
+	pop=no return
+	empty
+*********/
+
+
+#include <queue>
+#include <iostream>
+using namespace std;
+
+// Simple example uses type int
+int main()
+{   
+			queue<char> q;
+ 			q.push('a');
+ 			q.push('b');
+ 			q.push('c');
+ 			cout << q.front();
+ 			q.pop();
+ 			cout << q.front();
+ 			q.pop();
+ 			cout << q.front();
+ 			q.pop(); 	
+		cin.get();
+		return 0;
+}
+
+
+
+/**************************************
+	SEQUENTISL CONTAINER(LIST,DEQUEU,VECTOR)..USE OF ITERATOR
+***************************************/
+
+Lists
+*****
+
+push 
+pop
+at both the ends
+insert at any place in middle
+No random access is allowed
+
+/*****************************
+	push_front
+	push_back
+	use of iterator to  display
+*******************************/
+#include <list>
+#include <iostream>
+using namespace std;
+
+// Simple example uses type int
+int main()
+{   
+ 	list<int> a;
+
+    //Put 9,8,7,6,5,4,3,2,1 onto the list
+
+ 	for(int i=0; i<9;++i)
+ 		a.push_back(9-i);	// put new element after all the others
+
+    list<int>::iterator i;			//smart pointer
+ 
+   for(i=a.begin(); i != a.end(); ++i) 
+        cout << *i << " ";
+	cout<<endl;
+
+ 	a.sort();//in the <list> library!
+ 	
+    for(i=a.begin(); i != a.end(); ++i) 
+       cout << *i << " ";
+	cout<<endl;
+
+	cin.get();
+	return 0;
+}
+
+
+/************************
+
+Vectors
+*************************/
+
+
+Vectors are good when we have an unknown sequence of items to store but we want to access the by their sequence numbers.
+
+
+deque and vector provide random access.
+list provides only linear accesses (front and back).
+
+deque and vector provide insertion/removal at the beginning and end of the sequence.
+use list if you need efficient insertion anywhere.
+
+
+Vector : Items is in contigious memory location
+deque : Items is NOT in contigious memory location
+
++	1
+
+vector: A dynamic-array class. The internal memory allocation makes sure that it always creates an array. 
+********
+Useful when the size of the data is known and is known to not change too often. It is also good when you
+
+ want to have random-access to elements.
+
+
+
+deque: A double-ended queue that can act as a stack or queue. Good for when you are not sure about the number of elements and when accessing data-element are always in a serial manner. They are fast when 
+*******elements are added/removed from front and end but not when they're added/removed to/from the middle.
+
+
+
+
+list: A double-linked list that can be used to create a 'list' of data. The advantage of a list is that
+***** elements can be inserted or deleted from any part of the list without affecting an iterator that is pointing to a list memeber (and is still a member of the list after deletion). Useful when you know
+ that elements will be deleted very often from any part of the list.
+
+
+
+
+map: A dictionary that maps a 'key' to a 'value'. Useful for applications like 'arrays' whose index are not an integer. Basically can be used to create a map-list of name to an element,
+***** like a map that stores name-to-widget relationship.
+
+set: A list of 'unique' data values. For e.g. if you insert 1, 2, 2, 1, 3, the list will only have the elements 1, 2, 3. Note that the elements in this list are always ordered.
+***** Internally, they're usually implemented as binary search trees (like map).
+
+
+
+MAP:
+Key value pair
+
+/***************
+	
+   for( map<int,string>::iterator ii=Employees.begin(); ii!=Employees.end(); ++ii)
+   {
+       cout << (*ii).first << ": " << (*ii).second << endl;
+   }
+
+******************/
+
+#include <string.h>
+#include <iostream>
+#include <map>
+#include <utility>
+
+using namespace std;
+
+int main()
+{
+   map<int, string> Employees;
+
+   
+   Employees[5234] = "Mike C.";
+   Employees[3374] = "Charlie M.";
+   Employees[1923] = "David D.";
+   Employees[7582] = "John A.";
+   Employees[5328] = "Peter Q.";
+
+   cout << "Employees[3374]=" << Employees[3374] << endl << endl;
+
+   cout << "Map size: " << Employees.size() << endl;
+
+   for( map<int,string>::iterator ii=Employees.begin(); ii!=Employees.end(); ++ii)
+   {
+       cout << (*ii).first << ": " << (*ii).second << endl;
+   }
+}
+
+
+•STL map: Associative key-value pair held in balanced binary tree structure. Each key is unique. 
+•STL multimap: Same as an STL map except that duplicate keys are allowed
+
+
+
+
+set (duplicate data not allowed in set), 
+multiset (duplication allowed): Collection of ordered data in a balanced binary tree structure. Fast search. 
+
+***************************
+
+Set :  use ::insert
+***************************
+
+
+//multiset::insert (C++98)
+
+
+#include <iostream>
+#include <set>
+using namespace std;
+
+int main ()
+{
+  std::set<int> mymultiset;
+  std::set<int>::iterator it;
+
+  // set some initial values:
+  for (int i=1; i<=5; i++) mymultiset.insert(i*10);  // 10 20 30 40 50
+
+	mymultiset.insert(25);
+	mymultiset.insert(25);
+
+mymultiset.insert (27);    // max efficiency inserting
+mymultiset.insert (29);    // max efficiency inserting
+mymultiset.insert (27);    // no max efficiency inserting (24<29)
+
+
+  std::cout << "mymultiset contains:";
+  for (it=mymultiset.begin(); it!=mymultiset.end(); ++it)
+    std::cout << ' ' << *it;
+  std::cout << '\n';
+  cin.get(); 
+  return 0;
+} 
+
+
+
+Multi-Set
+
+// multiset::insert (C++98)
+
+******************
+
+#include <iostream>
+#include <set>
+using namespace std;
+
+int main ()
+{
+  std::multiset<int> mymultiset;
+  std::multiset<int>::iterator it;
+
+  // set some initial values:
+  for (int i=1; i<=5; i++) mymultiset.insert(i*10);  // 10 20 30 40 50
+
+  it=mymultiset.insert(25);
+   it=mymultiset.insert(25);
+
+  it=mymultiset.insert (it,27);    // max efficiency inserting
+  it=mymultiset.insert (it,29);    // max efficiency inserting
+  it=mymultiset.insert (it,24);    // no max efficiency inserting (24<29)
+
+  int myints[]= {5,10,15};
+  mymultiset.insert (myints,myints+3);
+
+  std::cout << "mymultiset contains:";
+  for (it=mymultiset.begin(); it!=mymultiset.end(); ++it)
+    std::cout << ' ' << *it;
+  std::cout << '\n';
+  cin.get(); 
+  return 0;
+} 
+
+
+
+
+------------------------------------------
+
+DQUEUE:
+Added and deleted from Both the ends
+Not at the middle position
+
+#include <algorithm>
+#include <iostream>
+#include <deque>
+using namespace std;
+int main()
+{
+        deque<int> v;
+        for (int i = 0; i < 25; i++)
+               v.push_back(i);
+        //random_shuffle(v.begin(), v.end());
+        for (int j = 0; j < 25; j++) {
+                 cout << v.front() << " " ;
+				 v.pop_front();
+         }
+        cout << endl;
+		cin.get();
+         return 0;
+}
+
+-------------------------------------------
+
+#include <iostream>
+#include <deque>
+using namespace std;  
+int main() 
+{  
+//  create an empty deque and fill with ints using push_back()  
+deque<int> dq;  
+for (int i=0; i<5; ++i) 
+{  
+	dq.push_back(i);  
+}  
+//  display to screen  
+for (int i=0; i<(signed)dq.size(); ++i) 
+	cout << dq.at(i);  
+cout << endl;  
+//  add 3 copies of the number 8 to the front of the deque using push_front()  
+for (int i=0; i<3; ++i) 
+{  
+	dq.push_front(8); 
+}  
+
+//  display to screen  
+
+for (int i=0; i<(signed)dq.size(); ++i) 
+cout << dq.at(i);  
+cout << endl;  
+
+//  remove first and last elements with pop_back() and pop_front()  
+
+dq.pop_front();
+dq.pop_back();  
+
+//  display to screen  
+
+for (int i=0; i<(signed)dq.size(); ++i) 
+cout << dq.at(i);  
+
+cout << endl;  
+cin.get();
+return 0;  
+
+} 
+
+
+---------------------------------------------------------
+
+LIST:
+Added and deleted from Both the ends
+Even at the middle position
+
+
+
+
+

@@ -1,0 +1,32 @@
+Ans-1.
+[testuser6@pace ~]$ chmod u+x chap1
+[testuser6@pace ~]$ ls -l chap1
+-rwxrw-r-- 1 testuser6 testuser6 29 Oct 16 19:26 chap1
+
+Ans-2.
+[testuser6@pace ~]$ chmod ugo+x add.c
+[testuser6@pace ~]$ ls -l add.c
+-rwxrwxr-x 1 testuser6 testuser6 6 Oct 16 19:28 add.c
+
+Ans-3.
+[testuser6@pace ~]$ chmod u-x,go+r add.c
+[testuser6@pace ~]$ ls -l add.c
+-rw-rwxr-x 1 testuser6 testuser6 6 Oct 16 19:28 add.c
+
+Ans-4.
+[testuser6@pace ~]$ chmod u+x a.c kk.c nato myfile
+[testuser6@pace ~]$ ls -l a.c kk.c nato myfile
+-rwxrw-r-- 1 testuser6 testuser6 7 Oct 16 19:36 a.c
+-rwxrw-r-- 1 testuser6 testuser6 7 Oct 16 19:36 kk.c
+-rwxrw-r-- 1 testuser6 testuser6 4 Oct 16 19:37 myfile
+-rwxrw-r-- 1 testuser6 testuser6 4 Oct 16 19:36 nato
+
+Ans-5.
+[testuser6@pace ~]$ cd /
+[testuser6@pace /]$ cd bin
+[testuser6@pace bin]$ cd /
+[testuser6@pace /]$ cd etc
+[testuser6@pace etc]$ cd /
+[testuser6@pace /]$ cd usr
+[testuser6@pace usr]$ cd /
+[testuser6@pace /]$

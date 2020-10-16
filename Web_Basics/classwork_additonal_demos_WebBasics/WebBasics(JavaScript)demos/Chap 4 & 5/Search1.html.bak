@@ -1,0 +1,15 @@
+<html>
+<body>
+
+<script type="text/javascript">
+
+var str="Visit Pace!";
+
+document.write(str.search(/pace/)+"<br>");//str.search("pace") 
+document.write(str.search(/pace/i));
+
+</script>
+
+</body>
+</html>
+

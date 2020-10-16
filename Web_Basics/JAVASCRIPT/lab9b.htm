@@ -1,0 +1,93 @@
+<html>
+<head>
+    <title>form validation</title>
+<script>
+function ValidateNonEmpty(name,e1) 
+{
+	if(name.length==0)
+	{
+	var er1=document.getElementById("e1");
+	er1.innerHTML="<font color='red'>Name is mandatory</font>";
+	return false;
+	}
+	/*if(name.length<3 || name.length>=10)
+	{
+	var er1=document.getElementById("e1");
+	er1.innerHTML="<font color='red'>Name field should be between 3 to 10</font>";
+	return false;
+	}
+	re =/([a-z0-9_\.\_])+\@+([a-zA-Z\.])+([a-zA-Z){2,4})+$/;
+	if(!re.test(name))
+	{
+	alert("wrong");
+	}*/
+	return true;
+}
+
+function ValidateByPattern(dob,e2) 
+{
+	if(dob.length==0)
+	{
+	var er1=document.getElementById("e2");
+	er1.innerHTML="<font color='red'>Date of Birth is mandatory</font>";
+	return false;
+	}
+	
+	dateReg =/([a-z0-9_\.\_])+\@+([a-zA-Z\.])+([a-zA-Z){2,4})+$/;
+	var re=new RegExp(dateReg,"g");
+	if(match=re.test(dob))
+	{
+	return true;
+	}
+	else
+	{
+	var er1=document.getElementById("e2");
+	er1.innerHTML="<font color='red'>Incorrect Date of Birth format</font>";
+	return false;
+	}
+
+	return true;
+}
+
+</script>
+</head>
+<body>
+<form name="f" action="register.html" return="validate()">
+    <center>FORM VALIDATION</center>
+        <br />
+         <table align="center">
+            <tr>
+                <td>
+                    <span style="color: #ff0000">*</span>Name</td>
+                <td>
+                   <input type="text" name="name" onfocus="getElementById('e1').innerHTML=' '" onblur="ValidateNonEmpty(f.name.value,e1)"/>
+	<span Id="e1"></span></td>
+            </tr>
+            <tr>
+                <td>
+                    <span style="color: #ff0000">*</span>Date of Birth</td>
+                <td>
+                    <input type="text" name="dob"onfocus="getElementById('e2').innerHTML=' '" onblur="ValidateByPattern(f.dob.value,e2)"/>
+	<span Id="e2"></span></td>
+            </tr>
+            <tr>
+                <td>
+                    <span style="color: #ff0000">*</span>Phone Number</td>
+                <td>
+                    <input id="Text3" type="text" name="phnum" /></td>
+            </tr>
+            <tr>
+                <td>
+                    <span style="color: #ff3300">*</span>Email</td>
+                <td>
+                    <input id="Text4" type="text" name="email" /></td>
+            </tr>
+        </table>
+        <br />
+        <br />
+       <center>
+	<input style="width: 94px" type="submit" value="Click to Submit" onclick="return Submit1_onclick()" />
+       </center>
+</form>
+</body>
+</html>

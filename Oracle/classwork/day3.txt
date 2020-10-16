@@ -1,0 +1,544 @@
+ select distinct job from emp;
+
+SQL> select distinct job from emp;
+
+JOB
+---------
+ANALYST
+CLERK
+MANAGER
+PRESIDENT
+SALESMAN
+
+SQL> desc dept;
+ Name                                                                                                  Null?    Type
+ ---------------------------------------------------------------------------------------------------
+ DEPTNO                                                                                                         NUMBER(2)
+ DNAME                                                                                                          VARCHAR2(14)
+ LOC                                                                                                            VARCHAR2(13)
+
+SQL> select * from dept;
+
+    DEPTNO DNAME          LOC
+---------- -------------- -------------
+        10 ACCOUNTING     NEW YORK
+        20 RESEARCH       DALLAS
+        30 SALES          CHICAGO
+        40 OPERATIONS     BOSTON
+
+
+
+SQL> insert into dept values(50,'HR','MUMBAI');
+
+1 row created.
+
+SQL> SELECT * FROM dept;
+
+    DEPTNO DNAME          LOC
+---------- -------------- -------------
+        10 ACCOUNTING     NEW YORK
+        20 RESEARCH       DALLAS
+        30 SALES          CHICAGO
+        40 OPERATIONS     BOSTON
+        50 HR             MUMBAI
+
+
+insert into dept(loc,deptno,dname) values( ,60,'FIN');    --error
+
+
+
+insert into dept(loc,deptno,dname) values(null,80,'abc');
+
+
+
+insert into dept(loc,deptno,dname) values(null,80,'abc');
+
+insert into dept(loc,dname) values('chn','abc');
+
+
+
+************************************************
+rollback
+
+
+SQL> select * from dept;
+
+    DEPTNO DNAME          LOC
+---------- -------------- -------------
+        10 ACCOUNTING     NEW YORK
+        20 RESEARCH       DALLAS
+        30 SALES          CHICAGO
+        40 OPERATIONS     BOSTON
+        50 HR             MUMBAI
+        50 HR             MUMBAI
+        60 FIN            BANGLORE
+        70 MARK
+        80 abc
+
+9 rows selected.
+
+SQL> insert into dept(loc,dname) values('chn','abc');
+
+1 row created.
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select * from dept;
+
+    DEPTNO DNAME          LOC
+---------- -------------- -------------
+        10 ACCOUNTING     NEW YORK
+        20 RESEARCH       DALLAS
+        30 SALES          CHICAGO
+        40 OPERATIONS     BOSTON
+
+SQL> 
+
+
+
+SQL> select * from dept;
+
+    DEPTNO DNAME          LOC
+---------- -------------- -------------
+        10 ACCOUNTING     NEW YORK
+        20 RESEARCH       DALLAS
+        30 SALES          CHICAGO
+        40 OPERATIONS     BOSTON
+
+SQL> delete from dept where deptno=40;
+
+1 row deleted.
+
+
+
+
+SQL> select * from dept;
+
+    DEPTNO DNAME          LOC
+---------- -------------- -------------
+        10 ACCOUNTING     NEW YORK
+        20 RESEARCH       DALLAS
+        30 SALES          CHICAGO
+
+SQL> delete from dept;
+
+3 rows deleted.
+
+
+
+
+**************************
+
+
+
+
+
+update dept
+set dname='ACCOUNTS'
+where dname='ACCOUNTING'
+
+
+SQL> select * from dept;
+
+    DEPTNO DNAME          LOC
+---------- -------------- -------------
+        10 ACCOUNTING     NEW YORK
+        20 RESEARCH       DALLAS
+        30 SALES          CHICAGO
+        40 OPERATIONS     BOSTON
+
+SQL> update dept
+  2  set dname='ACCOUNTS'
+  3  where dname='ACCOUNTING'
+  4  ;
+
+1 row updated.
+
+SQL> SELECT * FROM DEPT;
+
+    DEPTNO DNAME          LOC
+---------- -------------- -------------
+        10 ACCOUNTS       NEW YORK
+        20 RESEARCH       DALLAS
+        30 SALES          CHICAGO
+        40 OPERATIONS     BOSTON
+
+
+update dept
+set dname='ACCOUNTS'
+where deptno > 10;
+
+SQL> update dept
+  2  set dname='ACCOUNTS'
+  3  where deptno > 10;
+
+3 rows updated.
+
+SQL> select * from dept;
+
+    DEPTNO DNAME          LOC
+---------- -------------- -------------
+        10 ACCOUNTS       NEW YORK
+        20 ACCOUNTS       DALLAS
+        30 ACCOUNTS       CHICAGO
+        40 ACCOUNTS       BOSTON
+
+
+update dept
+set dname='hr',loc='hyd'
+where deptno > 10;
+
+SQL> update dept
+  2  set dname='hr',loc='hyd'
+  3  where deptno > 10;
+
+3 rows updated.
+
+SQL> select * from dept;
+
+    DEPTNO DNAME          LOC
+---------- -------------- -------------
+        10 ACCOUNTS       NEW YORK
+        20 hr             hyd
+        30 hr             hyd
+        40 hr             hyd
+
+
+*******************************************************
+DAtA DEFINITION LANGUAGE................
+
+
+
+drop table dept2;
+
+create table dept2
+(
+deptno	number(2),
+dname	varchar2(200),
+loc	varchar2(200));
+
+
+
+
+insert into dept2(loc,deptno,dname) values('MUMBAI',10,'abc');
+insert into dept2(loc,deptno,dname) values(NULL,10,'abc');
+
+insert into dept2(loc,deptno,dname) values(NULL,NULL,NULL);
+
+
+
+
+
+
+
+*************************************
+CONSTRAINTS.....
+
+create table dept2
+(
+deptno	number(2) NOT NULL,
+dname	varchar2(200),
+loc	varchar2(200));
+
+
+
+insert into dept2(loc,deptno,dname) values(NULL,NULL,'abc');
+
+
+DROP TABLE DEPT2;
+
+
+create table dept2
+(
+deptno	number(2) UNIQUE,
+dname	varchar2(200) NOT NULL,
+loc	varchar2(200));
+
+insert into dept2(deptno,dname,loc) values(20,'xyz','BANGLORE');
+
+insert into dept2(deptno,dname,loc) values(20,'xyz','BANGLORE');	//ERROR
+
+DROP TABLE DEPT2;
+
+****************************************
+
+create table dept2
+(
+deptno	number(2) UNIQUE,
+dname	varchar2(200)NOT NULL,
+loc	varchar2(200)DEFAULT 'BANG');
+
+
+insert into dept2 values(20,'xyz','BANGLORE');
+
+insert into dept2 (deptno,dname) values(30,'xyz');
+
+insert into dept2 values(10,'xyz',null);
+insert into dept2 values(40,'xyz','mnp');
+
+
+SQL> select * from dept2;
+
+    DEPTNO
+----------
+DNAME
+----------------------------
+LOC
+----------------------------
+        20
+xyz
+BANGLORE
+
+        10
+xyz
+
+
+        30
+xyz
+BANG
+
+        40
+xyz
+mnp
+
+
+create table dept2
+(
+deptno	number(2) UNIQUE check (deptno>0),
+dname	varchar2(200)NOT NULL,
+loc	varchar2(200)DEFAULT 'BANG');
+
+insert into dept2 values(-10,'xyz','BANGLORE');				--error
+
+
+****************************
+primary key
+
+
+
+create table dept2
+(
+deptno	number(2) PRIMARY KEY,
+dname	varchar2(200)NOT NULL,
+loc	varchar2(200)DEFAULT 'BANG');
+
+
+insert into dept2 values(NULL,'xyz','BANGLORE');		--ERROR NULL
+
+************************************************************
+
+
+
+INSERT INTO emp
+VALUES(7325,'SWAPNIL','PRESIDENT',NULL,'17-OCT-13',2300,300,99);
+
+
+
+
+
+
+
+
+
+
+create table emp2
+(
+empno	number(5) PRIMARY KEY,
+ename	varchar2(200) NOT NULL,
+sal	varchar2(10),
+deptno	number(2));
+
+
+create table dept2
+(
+deptno	number(2) PRIMARY KEY,
+dname	varchar2(200)NOT NULL,
+loc	varchar2(200)DEFAULT 'BANG');
+
+
+insert into dept2 values(10,'HR','MUM');
+
+insert into dept2 values(20,'FIN','BANG');
+
+INSERT INTO emp2
+VALUES(7325,'SWAPNIL',2300,10);
+
+INSERT INTO emp2
+VALUES(7326,'SWAPNIL',2500,99);
+
+
+
+**********************************
+FOREIGN KEY
+
+
+create table dept2
+(
+deptno	number(2) PRIMARY KEY,
+dname	varchar2(200)NOT NULL,
+loc	varchar2(200)DEFAULT 'BANG');
+
+
+create table emp2
+(
+empno	number(5) PRIMARY KEY,
+ename	varchar2(200) NOT NULL,
+sal	varchar2(10),
+deptno	number(2) REFERENCEs dept2(deptno));		--FOREIGN KEY
+
+
+insert into dept2 values(10,'HR','MUM');
+
+insert into dept2 values(20,'FIN','BANG');
+
+INSERT INTO emp2
+VALUES(7325,'SWAPNIL',2300,10);
+
+INSERT INTO emp2
+VALUES(7326,'SWAPNIL',2500,99);		//---error 
+
+
+DROP TABLE DEPT2;		///ERROR  unique/primary keys in table referenced by foreign keys
+
+DELETE FROM DEPT2 WHERE deptno=10;		///ERROR  unique/primary keys in table referenced by foreign keys
+
+
+///CASCADE CONSTRAINTS
+
+
+drop table dept2 cascade constraints;		//
+
+
+************************************
+
+create table dept2
+(
+deptno	number(2) PRIMARY KEY,
+dname	varchar2(200)NOT NULL,
+loc	varchar2(200)DEFAULT 'BANG');
+
+
+ALTER TABLE DEPT2 ADD (job varchar2(20));
+
+ALTER TABLE DEPT2 drop job;		//error
+
+ALTER TABLE DEPT2 drop column job;
+
+
+
+insert into dept2 values(10,'HR','MUM');
+
+insert into dept2 values(20,'FIN','BANG');
+
+insert into dept2 values(999,'FIN','BANG');		--error
+
+ALTER TABLE DEPT2 modify(deptno number(3));
+
+insert into dept2 values(999,'FIN','BANG');	--no error
+
+ALTER TABLE DEPT2 modify(deptno number(1));	--error records with length more then 1 present
+
+
+
+DELETE FROM DEPT2;
+
+ALTER TABLE DEPT2 modify(deptno number(1));
+
+ALTER TABLE DEPT2 modify(deptno varchar2(2));
+
+insert into dept2 values(20,'FIN','BANG');
+
+
+
+***********************************************************************/////
+
+
+alter table dept2 add constraints c_name check(deptno>0);
+
+alter table dept2 drop constraints c_name;
+
+***********************************************************************////
+
+truncate..........
+
+
+truncate table dept2;
+
+
+SQL> truncate table dept2;
+
+Table truncated.
+
+SQL> select * from dept2;
+
+no rows selected
+
+********************************
+BACKUP...
+
+
+SQL> create table emp2 as select * from emp;
+
+Table created.
+
+SQL> select * from emp2;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 09-DEC-82       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 12-JAN-83       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+      7325 SWAPNIL    PRESIDENT            17-OCT-13       2300        300         99
+
+15 rows selected.
+
+
+*********************************************************
+setoperation
+
+
+
+select ename,empno,sal
+from emp where deptno>10
+union
+select ename,empno,sal
+from emp2 where deptno>20;
+
+select ename,empno,sal
+from emp where deptno>10
+union all
+select ename,empno,sal
+from emp2 where deptno>20;
+
+
+
+DELETE FROM emp2 WHERE deptno=99;
+
+DELETE FROM emp WHERE deptno=99;
+
+
+select ename,empno,sal
+from emp where deptno>10
+minus
+select ename,empno,sal
+from emp2 where deptno>20;
+
+
+select ename,empno,sal
+from emp where deptno>10
+union
+select ename,empno,deptno
+from emp2 where deptno>20;

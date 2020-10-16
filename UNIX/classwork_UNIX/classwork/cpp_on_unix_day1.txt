@@ -1,0 +1,91 @@
+main.c
+------
+#include<stdio.h>
+#include "message.h"
+
+int main (void)
+{
+      welcome ("John");
+      success ();
+      return 0;
+}
+/**********************/
+success.c
+---------
+#include <stdio.h>
+#include "message.h"
+void success (void)
+{
+  printf ("Congratulations on your best performance!\n");
+}
+
+/*********************/
+welcome.c
+---------
+#include <stdio.h>
+#include "message.h"
+void welcome (const char * name)
+{
+       printf ("Hello, %s!\n", name);
+}
+/**********************/
+message.h
+---------
+void welcome (const char * name);
+void success (void);
+
+/**********************/
+static linking library
+
+
+[user15@DELL0708S-02VM7 cpponunix]$ gcc -c welcome.c success.c
+[user15@DELL0708S-02VM7 cpponunix]$ ar -cr libmessage.a welcome.o success.o
+[user15@DELL0708S-02VM7 cpponunix]$ gcc -L. -o main.o main.c -lmessage
+[user15@DELL0708S-02VM7 cpponunix]$ ./main.o
+
+/**********************/
+dynamic linking library 
+
+[user15@DELL0708S-02VM7 cpponunix]$ gcc -Wall -fPIC -c welcome.c success.c
+[user15@DELL0708S-02VM7 cpponunix]$ gcc -shared -o libsentence.so welcome.o success.o
+[user15@DELL0708S-02VM7 cpponunix]$ LD_RUN_PATH=/home/user15/swapnil/lab8/cpponunix export LD_RUN_PATH
+[user15@DELL0708S-02VM7 cpponunix]$ gcc -o main.o main.c -L/home/user15/swapnil/lab8/cpponunix -lmessage
+[user15@DELL0708S-02VM7 cpponunix]$ ./main.o
+
+/**********************/
+debugging
+gdb
+
+[user15@DELL0708S-02VM7 lab8]$ gcc -g -o hello hello.c
+
+[user15@DELL0708S-02VM7 lab8]$ gdb
+GNU gdb Red Hat Linux (6.3.0.0-0.31rh)
+Copyright 2004 Free Software Foundation, Inc.
+GDB is free software, covered by the GNU General Public License, and you are
+welcome to change it and/or distribute copies of it under certain conditions.
+Type "show copying" to see the conditions.
+There is absolutely no warranty for GDB.  Type "show warranty" for details.
+This GDB was configured as "i386-redhat-linux-gnu".
+(gdb) file hello
+Reading symbols from /home/user15/swapnil/lab8/hello...done.
+Using host libthread_db library "/lib/tls/libthread_db.so.1".
+(gdb) Quit
+
+
+/*** run
+(gdb) run
+Starting program: /home/user15/swapnil/lab8/hello
+Hello, world..
+
+Program exited normally.
+
+
+/*** break point
+
+
+(gdb) break hello.c:4
+Breakpoint 1 at 0x8048384: file hello.c, line 4.
+
+
+
+(gdb) continue   -->to go to next breakpoint(multiple breakpoint)

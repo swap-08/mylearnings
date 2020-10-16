@@ -1,0 +1,24 @@
+Ans-1.
+[testuser6@pace sapnadubey]$ ps -u
+Warning: bad syntax, perhaps a bogus '-'? See /usr/share/doc/procps-3.2.7/FAQ
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+506       1092  0.0  0.0   4764  1488 pts/3    Ss   19:14   0:00 -bash
+506       2116  0.0  0.0   4352   956 pts/3    R+   20:03   0:00 ps -u
+
+
+Ans-2.
+[testuser6@pace sapnadubey]$ ps -a
+  PID TTY          TIME CMD
+ 2102 pts/2    00:00:00 vim
+ 2119 pts/3    00:00:00 ps
+
+
+Ans-3.
+[testuser6@pace sapnadubey]$ sort -o emp.lst emp.lst&
+[1] 2141
+[testuser6@pace sapnadubey]$ ps -u
+Warning: bad syntax, perhaps a bogus '-'? See /usr/share/doc/procps-3.2.7/FAQ
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+506       1092  0.0  0.0   4764  1492 pts/3    Ss   19:14   0:00 -bash
+506       2142  0.0  0.0   4352   964 pts/3    R+   20:06   0:00 ps -u
+[1]+  Done                    sort -o emp.lst emp.lst

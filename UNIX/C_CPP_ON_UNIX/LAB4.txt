@@ -1,0 +1,84 @@
+MAKEFILE UTILITY
+
+
+main1.c,
+2.c,
+3.c,
+
+b.h,
+c.h
+
+---------------------------------------------------
+
+b.h
+
+[user15@DELL0708S-02VM7 cpponunix]$ vi b.h
+#include<stdio.h>
+void function_two();
+
+---------------------------------------------------
+
+c.h
+
+[user15@DELL0708S-02VM7 cpponunix]$ vi c.h
+#include<stdio.h>
+void function_three();
+---------------------------------------------------
+
+2.c
+
+[user15@DELL0708S-02VM7 cpponunix]$ vi 2.c
+#include "b.h"
+void function_two()
+{
+printf("Hello function two");
+}
+
+---------------------------------------------------
+
+3.c
+
+[user15@DELL0708S-02VM7 cpponunix]$ vi 3.c
+#include "c.h"
+void function_three()
+{
+printf("Hello function three");
+}
+
+---------------------------------------------------
+main1.c
+
+[user15@DELL0708S-02VM7 cpponunix]$ vi main1.c
+#include<stdio.h>
+#include "b.h"
+#include "c.h"
+void main()
+{
+ function_two();
+ function_three();
+}
+
+---------------------------------------------------
+makefile
+
+myapp: main1.o 2.o 3.o
+gcc -o myapp main1.o 2.o 3.o
+
+main1.o: main1.c
+gcc -c main1.c
+
+2.o: 2.c b.h
+gcc -c 2.c
+
+3.o: 3.c c.h
+gcc -c 3.c
+
+
+[user15@DELL0708S-02VM7 cpponunix]$ make
+gcc -c main1.c
+gcc -c 2.c
+gcc -c 3.c
+gcc -o myapp main1.o 2.o 3.o
+
+[user15@DELL0708S-02VM7 cpponunix]$ ./myapp
+

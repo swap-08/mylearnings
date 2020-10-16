@@ -1,0 +1,278 @@
+INDEX......
+
+
+
+CREATE
+INDEX staff_sal_index ON staff_masters(staff_sal);
+
+SELECT
+	*
+FROM 	staff_masters;
+
+
+SQL> SELECT
+  2   *
+  3  FROM  staff_masters;
+
+STAFF_CODE STAFF_NAME                                         DESIGN_CODE  DEPT_CODE STAFF_DOB HIREDATE    MGR_CODE  STAFF_SAL STA
+---------- -------------------------------------------------- ----------- ---------- --------- -----
+    100001 Arvind                                                     102         30 15-JAN-80 15-JAN-03     100006      17000 Bangalore
+    100003 Mohan                                                      102         10 23-MAR-80 19-JAN-02     100006      24000 Mumbai
+    100004 Anil                                                       102         20 22-APR-77 11-MAR-01     100006      50000 Hyderabad
+    100005 John                                                       106         10 22-MAY-76 21-JAN-01     100007      32000 Bangalore
+    100006 Allen                                                      103         30 22-JAN-80 23-APR-01     100005     100000 Chennai
+    100007 Smith                                                      103         20 19-JUL-73 12-MAR-02     100005      92000 Mumbai
+    100008 Raviraj                                                    102         40 17-JUN-80 11-JAN-03     100006      18000 Bangalore
+    100009 Rahul                                                      102         20 16-JAN-78 11-DEC-03     100006      52000 Hyderabad
+    100010 RAM                                                        103         30 17-JAN-79 17-JAN-02     100007      32000 Bangalore
+      9998 asah                                                                   10                                      3000
+      1001 asha                                                                                                          20000
+      1010 varun                                                                                                         22000
+
+12 rows selected.
+
+******************************************************************
+
+
+SYNONYMS;			//NO TABLE IS CREATED ONLY SECOND NAME IS GIVEN
+
+
+
+CREATE SYNONYM emp_data FOR emp;
+
+SELECT * FROM emp_data;
+
+
+INSERT
+INTO	emp_data(empno,ename)
+VALUES	(7326,'swapnil');
+
+
+CREATE PUBLIC SYNONYM emp_data FOR emp;		//ERROR insufficient privileges
+
+
+*****************************************************************
+
+SEQUENCE
+
+DROP SEQUENCE s1;
+
+
+CREATE SEQUENCE s1
+	INCREMENT BY 1
+	START WITH 1
+	MAXVALUE 10000
+	NOCYCLE;
+
+
+insert
+
+
+
+
+
+
+
+
+
+
+********************************************
+view.......				virtual table n no memeory allocation
+
+
+
+CREATE
+VIEW	empe_view
+AS
+SELECT	ename,empno,sal
+FROM	emp
+WHERE	sal>2000;
+
+
+SQL> CREATE
+  2  VIEW empe_view
+  3  AS
+  4  SELECT ename,empno,sal
+  5  FROM emp
+  6  WHERE sal>2000;
+
+View created.
+
+SQL> select* from empe_view;
+
+ENAME           EMPNO        SAL
+---------- ---------- ----------
+JONES            7566       2975
+BLAKE            7698       2850
+CLARK            7782       2450
+SCOTT            7788       3000
+KING             7839       5000
+FORD             7902       3000
+SWAPNIL          7325       2300
+
+7 rows selected.
+
+
+
+SELECT rowid,ename from emp;
+
+
+SQL> SELECT rowid,ename from emp;
+
+ROWID              ENAME
+------------------ ----------
+AABmOEAAGAAAAjqAAA SMITH
+AABmOEAAGAAAAjqAAB ALLEN
+AABmOEAAGAAAAjqAAC WARD
+AABmOEAAGAAAAjqAAD JONES
+AABmOEAAGAAAAjqAAE MARTIN
+AABmOEAAGAAAAjqAAF BLAKE
+AABmOEAAGAAAAjqAAG CLARK
+AABmOEAAGAAAAjqAAH SCOTT
+AABmOEAAGAAAAjqAAI KING
+AABmOEAAGAAAAjqAAJ TURNER
+AABmOEAAGAAAAjqAAK ADAMS
+AABmOEAAGAAAAjqAAL JAMES
+AABmOEAAGAAAAjqAAM FORD
+AABmOEAAGAAAAjqAAN MILLER
+AABmOEAAGAAAAjqAAO SWAPNIL
+AABmOEAAGAAAAjqAAP swapnil
+
+16 rows selected.
+
+
+SELECT rowid,ename from emp where rownum<4;
+
+
+SQL> SELECT rowid,ename from emp where rownum<4;
+
+ROWID              ENAME
+------------------ ----------
+AABmOEAAGAAAAjqAAA SMITH
+AABmOEAAGAAAAjqAAB ALLEN
+AABmOEAAGAAAAjqAAC WARD
+
+**************************
+
+
+INLINE VIEW.....
+
+
+
+SELECT	name,loc
+FROM	emp,(select deptno,loc from dept)sdept
+WHERE	emp.deptno=sdept.deptno;
+
+
+
+SQL> SELECT ename,loc from emp,(select deptno,loc from dept)sdept
+  2  where emp.deptno=sdept.deptno;
+
+ENAME      LOC
+---------- -------------
+CLARK      NEW YORK
+KING       NEW YORK
+MILLER     NEW YORK
+SMITH      DALLAS
+ADAMS      DALLAS
+FORD       DALLAS
+SCOTT      DALLAS
+JONES      DALLAS
+ALLEN      CHICAGO
+BLAKE      CHICAGO
+MARTIN     CHICAGO
+JAMES      CHICAGO
+TURNER     CHICAGO
+WARD       CHICAGO
+
+14 rows selected.
+
+
+drop view sdept;
+
+************************************************************
+GRANT
+
+
+
+select * from lab01trg15.emp;				//use synonyms
+
+
+GRANT SELECT ON EMP TO lab01trg16;
+
+
+
+SQL> GRANT SELECT ON EMP TO lab01trg16;
+
+Grant succeeded.
+
+SQL> select * from lab01trg14.emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 09-DEC-82       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 12-JAN-83       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+        25 SHAILESh   sdfdsf          2548 12-JAN-45       2500          0         99
+        25 SHAILESH   HR                 1 17-OCT-13       2500          0         99
+
+16 rows selected.
+
+
+////////cannot insert.......
+
+
+REVOKE
+
+
+
+
+REVOKE select ON EMP FROM lab01trg16;
+
+
+
+
+
+
+********************************************************
+
+CREATE SYNONYM shailesh FOR lab01trg14.emp;
+
+
+GRANT SELECT ON EMP TO lab01trg14;
+
+
+
+*********************************************************************************
+
+
+
+NORMALIZATION...
+
+
+
+
+R={ student id, last name,First name,Course section,course name,grade,professor last name,professor first name,bldg,office#)
+
+
+1NF={student id,last name,First name,bldg}		{student id,Course section,course name,grade,professor last name,professor first name,office#
+
+
+2NF={student id,last name,First name}
+		{student id,Course section,grade,professor last name,professor first name,bldg,office#}
+		{Course section,course name}
+
+3NF={student id,last name,First name}
+		{student id,Course section,grade,professor last name,professor first name,bldg,office#}
+		{Course section,course name}

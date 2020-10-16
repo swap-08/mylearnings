@@ -1,0 +1,20 @@
+<html>
+<head>
+<script type="text/javascript">
+function goBack()
+  {
+	var val=frm1.getData.value;
+	//window.history.go(val);
+  	window.history.go("http://www.google.co.in/")
+	document.write("hiiii");
+  }
+</script>
+</head>
+<body>
+<form name=frm1 method=post>
+Enter URL <input type="text" size=80 name=getData id=getData>
+<br><br>
+<input type="button" align=center value="Go" onclick="goBack()" />
+</form>
+</body>
+</html>

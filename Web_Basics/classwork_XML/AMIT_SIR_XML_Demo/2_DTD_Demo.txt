@@ -1,0 +1,447 @@
+<!DOCTYPE root-element [element-declarations]> 
+
+<?xml version="1.0"?>
+<!DOCTYPE note [
+<!ELEMENT note (to,from,heading,body)>
+<!ELEMENT to (#PCDATA)>
+<!ELEMENT from (#PCDATA)>
+<!ELEMENT heading (#PCDATA)>
+<!ELEMENT body (#PCDATA)>
+]>
+<note>
+<to>Tove</to>
+<from>Jani</from>
+<heading>Reminder</heading>
+<body>Don't forget me this weekend</body>
+</note>
+
+•!DOCTYPE note defines that the root element of this document is note
+•!ELEMENT note defines that the note element contains four elements: "to,from,heading,body"
+•!ELEMENT to defines the to element  to be of type "#PCDATA"
+•!ELEMENT from defines the from element to be of type "#PCDATA"
+•!ELEMENT heading defines the heading element to be of type "#PCDATA"
+•!ELEMENT body defines the body element to be of type "#PCDATA"
+
+--------------------------------------------------------------------------------
+<!DOCTYPE root-element SYSTEM "filename"> 
+
+<?xml version="1.0"?>
+<!DOCTYPE note SYSTEM "note.dtd">
+<note>
+  <to>Tove</to>
+  <from>Jani</from>
+  <heading>Reminder</heading>
+  <body>Don't forget me this weekend!</body>
+</note>
+
+
+<!ELEMENT note (to,from,heading,body)>
+<!ELEMENT to (#PCDATA)>
+<!ELEMENT from (#PCDATA)>
+<!ELEMENT heading (#PCDATA)>
+<!ELEMENT body (#PCDATA)>
+
+System : External entity
+-------------------------------------------------------
+
+Seen from a DTD point of view, all XML documents (and HTML documents) are made up by the following building blocks:
+
+•Elements
+	<body>some text</body>
+	<message>some text</message>
+
+•Attributes
+	<img src="computer.gif" />
+
+•Entities
+	Entity References Character 
+	&lt; < 
+	&gt; > 
+	&amp; & 
+	&quot; " 
+	&apos; ' 
+
+•PCDATA
+	PCDATA means parsed character data.
+
+	Think of character data as the text found between the start tag and the end tag of an XML element.
+
+	PCDATA is text that WILL be parsed by a parser. The text will be examined by the parser for entities and markup.
+
+	Tags inside the text will be treated as markup and entities will be expanded.
+
+	However, parsed character data should not contain any &, <, or > characters; these need to be represented by the &amp; &lt; and &gt; entities, respectively.
+
+•CDATA
+
+	CDATA means character data.
+
+	CDATA is text that will NOT be parsed by a parser. Tags inside the text will NOT be treated as markup and entities will not be expanded.
+
+-------------------------------------------------------------------------
+
+Declaring Elements
+
+<!ELEMENT element-name category>
+or
+<!ELEMENT element-name (element-content)>
+
+
+<!ELEMENT note (to,from,heading,body)>
+<!ELEMENT to (#PCDATA)>
+
+
+Empty Elements
+<!ELEMENT element-name EMPTY>
+Example:
+<!ELEMENT br EMPTY>
+
+XML example:
+<br /> 
+
+
+Elements with Parsed Character Data
+
+<!ELEMENT element-name (#PCDATA)>
+Example:
+<!ELEMENT from (#PCDATA)>
+
+
+
+Elements with any Contents
+<!ELEMENT element-name ANY>
+Example:
+<!ELEMENT note ANY>
+
+
+
+Elements with Children (sequences)
+
+<!ELEMENT element-name (child1)>
+or
+<!ELEMENT element-name (child1,child2,...)>
+
+Example:
+
+<!ELEMENT note (to,from,heading,body)>
+
+
+
+
+<!ELEMENT note (to,from,heading,body)>
+<!ELEMENT to (#PCDATA)>
+<!ELEMENT from (#PCDATA)>
+<!ELEMENT heading (#PCDATA)>
+<!ELEMENT body (#PCDATA)>
+
+
+
+-----------------------------------------------------------
+
+Declaring Only One Occurrence of an Element
+<!ELEMENT note (message)> 
+
+Minimum One Occurrence of an Element
+<!ELEMENT note (message)+>
+
+Zero or More Occurrences of an Element
+<!ELEMENT note (message, xyz*)*>
+
+Zero or One Occurrences of an Element 
+<!ELEMENT note (message?)> 
+
+Declaring either/or Content
+<!ELEMENT note (to,from,header,(message|body))>
+
+Declaring Mixed Content
+<!ELEMENT note (#PCDATA|to|from|header|message)*> 
+--------------------------------------------------------------------------------
+
+####Declaring Attributes
+
+<!ATTLIST element-name attribute-name attribute-type default-value>
+
+DTD example:
+<!ATTLIST payment type CDATA "cheque">
+
+XML example:
+<payment type="cheque" />
+
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE note[ 
+  <!ELEMENT note (to,from,heading,body)>
+  <!ELEMENT to (#PCDATA)>
+  <!ELEMENT from (#PCDATA)>
+  <!ELEMENT heading (#PCDATA)>
+  <!ELEMENT body (#PCDATA)>
+  <!ATTLIST heading dear CDATA "MyDear">
+  ]>
+<note>
+    <to>Tove0</to>    
+    <from>Jani</from>
+    <heading dear="Respected Sir">Reminder</heading>
+    <body>Don't forget me this weekend</body>
+</note>
+
+
+
+#####attribute-type can be one of the following:
+
+Type Description 
+CDATA 		The value is character data 
+(en1|en2|..) 	The value must be one from an enumerated list 
+		<!ATTLIST gender type (male|female)>
+ID 		The value is a unique id  
+IDREF 		The value is the id of another element 
+IDREFS 		The value is a list of other ids 
+NMTOKEN 	The value is a valid XML name 
+NMTOKENS 	The value is a list of valid XML names 
+ENTITY 		The value is an entity  
+ENTITIES 	The value is a list of entities 
+NOTATION 	The value is a name of a notation 
+xml: 		The value is a predefined xml value
+
+
+<!ATTLIST heading dear (MyDear|Sweet|Funny) "MyDear">
+
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE note[ 
+  <!ELEMENT note (to,from,heading,body)+>
+  <!ELEMENT to (#PCDATA)>
+  <!ELEMENT from (#PCDATA)>
+  <!ELEMENT heading (#PCDATA)>
+  <!ELEMENT body (#PCDATA)>
+  <!ATTLIST heading dear ID #REQUIRED>
+  ]>
+<note>
+    <to>Tove0</to>    
+    <from>Jani</from>
+    <heading dear="sweet">Reminder</heading>
+    <body>Don't forget me this weekend</body>
+    <to>Tove0</to>
+    <from>Jani</from>
+    <heading dear="sweet1">Reminder</heading>
+    <body>Don't forget me this weekend</body>
+</note>
+
+
+The default-value can be one of the following:
+
+Value Explanation 
+value 		The default value of the attribute  :<!ATTLIST square width CDATA "0">
+#REQUIRED 	The attribute is required    : DTD:
+		<!ATTLIST person number CDATA #REQUIRED>
+	
+		Valid XML:
+		<person number="5677" />
+
+		Invalid XML:
+		<person />
+
+#IMPLIED 	The attribute is not required :
+		Use the #IMPLIED keyword if you don't want to force the author to include an 		attribute, and you don't have an option for a default value.
+
+		DTD:
+		<!ATTLIST contact fax CDATA #IMPLIED>
+
+		Valid XML:
+		<contact fax="555-667788" />
+
+		Valid XML:
+		<contact />
+
+#FIXED 		value The attribute value is fixed 
+ 
+		DTD:
+		<!ATTLIST sender company CDATA #FIXED "Microsoft">
+
+		Valid XML:
+		<sender company="Microsoft" />
+
+		Invalid XML:
+		<sender company="W3Schools" /> 
+
+
+--------------------------------------------------------------------
+
+Enumerated Attribute Values
+
+DTD:
+<!ATTLIST payment type (check|cash) "cash">
+
+XML example:
+<payment type="check" />
+or
+<payment type="cash" />
+
+----------------------------------------------------
+
+An Internal Entity Declaration
+Syntax
+<!ENTITY entity-name "entity-value"> Example
+DTD Example:
+
+<!ENTITY writer "Donald Duck.">
+<!ENTITY copyright "Copyright W3Schools.">
+
+XML example:
+
+<author>&writer;&copyright;</author> 
+
+Note: An entity has three parts: an ampersand (&), an entity name, and a semicolon (;).
+
+
+--------------------------------------------------------------------------------
+An External Entity Declaration
+Syntax
+<!ENTITY entity-name SYSTEM "URI/URL"> Example
+DTD Example:
+
+<!ENTITY writer SYSTEM "http://www.w3schools.com/entities.dtd">
+<!ENTITY copyright SYSTEM "http://www.w3schools.com/entities.dtd">
+
+XML example:
+
+<author>&writer;&copyright;</author> 
+
+
+-------------------------------------------------------------------------------
+
+TV Schedule DTD
+
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE TVSCHEDULE [
+
+<!ELEMENT TVSCHEDULE (CHANNEL+)>
+<!ELEMENT CHANNEL (BANNER,DAY+)>
+<!ELEMENT BANNER (#PCDATA)>
+<!ELEMENT DAY (DATE,(HOLIDAY|PROGRAMSLOT+)+)>
+<!ELEMENT HOLIDAY (#PCDATA)>
+<!ELEMENT DATE (#PCDATA)>
+<!ELEMENT PROGRAMSLOT (TIME,TITLE,DESCRIPTION?)>
+<!ELEMENT TIME (#PCDATA)>
+<!ELEMENT TITLE (#PCDATA)> 
+<!ELEMENT DESCRIPTION (#PCDATA)>
+
+<!ATTLIST TVSCHEDULE NAME CDATA #REQUIRED>
+<!ATTLIST CHANNEL CHAN CDATA #REQUIRED>
+<!ATTLIST PROGRAMSLOT VTR CDATA #IMPLIED>
+<!ATTLIST TITLE RATING CDATA #IMPLIED>
+<!ATTLIST TITLE LANGUAGE CDATA #IMPLIED>
+]> 
+
+	
+
+--------------------------------------------------------------------------------
+
+Newspaper Article DTD
+
+<!DOCTYPE NEWSPAPER [
+<!ELEMENT NEWSPAPER (ARTICLE+)>
+<!ELEMENT ARTICLE (HEADLINE,BYLINE,LEAD,BODY,NOTES)>
+<!ELEMENT HEADLINE (#PCDATA)>
+<!ELEMENT BYLINE (#PCDATA)>
+<!ELEMENT LEAD (#PCDATA)>
+<!ELEMENT BODY (#PCDATA)>
+<!ELEMENT NOTES (#PCDATA)>
+
+<!ATTLIST ARTICLE AUTHOR CDATA #REQUIRED>
+<!ATTLIST ARTICLE EDITOR CDATA #IMPLIED>
+<!ATTLIST ARTICLE DATE CDATA #IMPLIED>
+<!ATTLIST ARTICLE EDITION CDATA #IMPLIED>
+
+<!ENTITY NEWSPAPER "Vervet Logic Times">
+<!ENTITY PUBLISHER "Vervet Logic Press">
+<!ENTITY COPYRIGHT "Copyright 1998 Vervet Logic Press">
+
+]> 
+
+--------------------------------------------------------------------------------
+
+Product Catalog DTD
+
+<!DOCTYPE CATALOG [
+
+<!ENTITY AUTHOR "John Doe">
+<!ENTITY COMPANY "JD Power Tools, Inc.">
+<!ENTITY EMAIL "jd@jd-tools.com">
+
+<!ELEMENT CATALOG (PRODUCT+)>
+
+<!ELEMENT PRODUCT
+(SPECIFICATIONS+,OPTIONS?,PRICE+,NOTES?)>
+<!ATTLIST PRODUCT
+NAME CDATA #IMPLIED
+CATEGORY (HandTool|Table|Shop-Professional) "HandTool"
+PARTNUM CDATA #IMPLIED
+PLANT (Pittsburgh|Milwaukee|Chicago) "Chicago"
+INVENTORY (InStock|Backordered|Discontinued) "InStock">
+
+<!ELEMENT SPECIFICATIONS (#PCDATA)>
+<!ATTLIST SPECIFICATIONS
+WEIGHT CDATA #IMPLIED
+POWER CDATA #IMPLIED>
+
+<!ELEMENT OPTIONS (#PCDATA)>
+<!ATTLIST OPTIONS
+FINISH (Metal|Polished|Matte) "Matte"
+ADAPTER (Included|Optional|NotApplicable) "Included"
+CASE (HardShell|Soft|NotApplicable) "HardShell">
+
+<!ELEMENT PRICE (#PCDATA)>
+<!ATTLIST PRICE
+MSRP CDATA #IMPLIED
+WHOLESALE CDATA #IMPLIED
+STREET CDATA #IMPLIED
+SHIPPING CDATA #IMPLIED>
+
+<!ELEMENT NOTES (#PCDATA)>
+
+]>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

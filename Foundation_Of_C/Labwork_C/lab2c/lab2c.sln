@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lab2b", "lab2b\lab2b.vcproj", "{FD82CF7C-5A59-4AE3-9814-92C37E1092A5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FD82CF7C-5A59-4AE3-9814-92C37E1092A5}.Debug|Win32.ActiveCfg = Debug|Win32
+		{FD82CF7C-5A59-4AE3-9814-92C37E1092A5}.Debug|Win32.Build.0 = Debug|Win32
+		{FD82CF7C-5A59-4AE3-9814-92C37E1092A5}.Release|Win32.ActiveCfg = Release|Win32
+		{FD82CF7C-5A59-4AE3-9814-92C37E1092A5}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,758 @@
+
+
+SELECT
+	12*23*33
+FROM
+DUAL;
+
+
+SELECT
+CEIL	 (9.9)	--10
+FROM
+DUAL;
+
+SELECT
+FLOOR	 (9.9)	--9
+FROM
+DUAL;
+
+SELECT
+ROUND	 (9.9)	--10
+FROM
+DUAL;
+
+SELECT
+ROUND	 (9.2)	--9
+FROM
+DUAL;
+
+SELECT
+ROUND	 (9.5)	--10
+FROM
+DUAL;
+
+SELECT
+ROUND	 (9.49)	--9
+FROM
+DUAL;
+
+SELECT
+ROUND	 (9.9456,2)		--9.95
+FROM
+DUAL;
+
+SELECT
+ROUND	 (9.9556,2)
+FROM
+DUAL;
+
+
+SELECT
+ROUND	(sal*1.4)
+FROM emp;
+
+SELECT
+POWER	(3.3,2)
+FROM
+DUAL;
+
+SELECT
+POWER	(3.3,2.1)
+FROM
+DUAL;
+
+SELECT
+SQRT	(4.4)
+FROM
+DUAL;
+
+SELECT
+SQRT	(4.4)
+FROM
+DUAL;
+
+SELECT
+TRUNC	(15.81,1)
+FROM
+DUAL;		--15.8
+
+SELECT
+TRUNC	(155.816,2)
+FROM
+DUAL;		--155.81
+
+SELECT
+LOWER	('sUmIt')
+FROM
+DUAL;	--sumit
+
+SELECT
+LOWER	(ename)
+FROM emp;
+
+SELECT
+INITCAP	('sUmIt pATIL')
+FROM
+DUAL;	--Sumit Patil
+
+SELECT
+CONCAT	('sUmIt','pATIL')
+FROM
+DUAL;	--sUmItpATIL
+
+SELECT
+CONCAT	(ename,job)
+FROM emp;
+
+
+SELECT
+	ename || job
+FROM emp;		--CONCATINATION OPERATOR
+
+SELECT
+SUBSTR	('sUmIt pATIL',2,4)
+FROM
+DUAL;		--UmIt
+
+SELECT
+LTRIM	('     sUmItpATIL') || 'x'
+FROM
+DUAL;		--sUmItpATILx
+
+SELECT
+RTRIM	('     sUmItpATIL        ') || 'x'
+FROM
+DUAL;		--    sUmItpATILx
+
+SELECT
+TRIM	('     sUmItpATIL        ') || 'x'
+FROM
+DUAL;		--sUmItpATILx
+
+
+SELECT
+RTRIM	(LTRIM('     sUmItpATIL        ')) || 'x'
+FROM
+DUAL;		--sUmItpATILx
+
+SELECT
+RTRIM	('$$$$sUmItpATIL$$$$','$')
+FROM
+DUAL;		--$$$$sUmItpATIL  ---NOT 
+
+SELECT
+LPAD	('sUmIt',10,'$')
+FROM
+DUAL;		--$$$$$sUmIt
+
+**************************************************************
+
+SELECT
+SYSDATE
+FROM
+DUAL;		--07-NOV-13
+
+SELECT
+ADD_MONTHS(SYSDATE,4)
+FROM
+DUAL;		--07-MAR-14			--NOV+4=MAR
+
+
+SELECT
+ADD_MONTHS(SYSDATE,4)
+FROM
+DUAL;
+
+SELECT
+ADD_DAYS(SYSDATE,4)
+FROM
+DUAL;		--ERROR
+
+SELECT
+SYSDATE+4
+FROM
+DUAL;
+
+SQL> 
+SQL> SELECT
+  2  SYSDATE+4
+  3  FROM
+  4  DUAL;
+
+SYSDATE+4
+---------
+13-NOV-13				---DAY+4  9+4=13-NOV
+
+SELECT
+MONTHS_BETWEEN(SYSDATE,'31-Dec-2013')		--SYSDATE=-07-NOV-13
+FROM
+DUAL;
+
+MONTHS_BETWEEN(SYSDATE,'31-DEC-2013')
+-------------------------------------
+                           -1.7609076
+
+SELECT
+MONTHS_BETWEEN('31-Dec-2013',SYSDATE)
+FROM
+DUAL;
+
+SELECT
+MONTHS_BETWEEN('31-12-2013',SYSDATE)
+FROM
+DUAL;		---ERROR
+
+
+SELECT
+MONTHS_BETWEEN(TO_DATE('31-12-2013','DD-MM-YYYY'),SYSDATE)
+FROM
+DUAL;
+
+MONTHS_BETWEEN(TO_DATE('31-12-2013','DD-MM-YYYY'),SYSDATE)
+----------------------------------------------------------
+                                                  1.760768
+
+SELECT
+LAST_DAY(SYSDATE)
+FROM
+DUAL;
+
+
+SELECT
+NEXT_DAY(SYSDATE,'MONDAY')
+FROM
+DUAL;
+
+
+SELECT
+CURRENT_DATE
+FROM
+DUAL;
+
+SELECT
+CURRENT_TIMESTAMP
+FROM
+DUAL;		----RETURNS SERVER TIMESTAMP (NOT SYSTEMS TIMESTAMP)
+
+SQL> SELECT
+  2  CURRENT_TIMESTAMP
+  3  FROM
+  4  DUAL;
+
+CURRENT_TIMESTAMP
+--------------------------------------
+09-NOV-13 03.35.20.858000 PM +05:30
+
+******************************************
+
+
+SELECT
+SYSDATE
+FROM
+DUAL;
+
+
+TO_CHAR(S
+---------
+07-NOV-13
+
+
+
+SELECT
+TO_CHAR(SYSDATE,'DD-MON-YYYY')
+FROM
+DUAL;
+
+
+
+TO_CHAR(SYS
+-----------
+07-NOV-2013
+
+SELECT
+TO_CHAR(SYSDATE,'DD-MON-YYYY HH:MI:SS')
+FROM
+DUAL;
+
+TO_CHAR(SYSDATE,'DD-
+--------------------
+07-NOV-2013 10:17:12
+
+SELECT
+TO_DATE('23-Nov-2013','DD-MON-YYYY')
+FROM
+DUAL;
+
+
+SELECT
+DECODE(deptno,10,'GHI',20,'ABC',30,'DEF')
+FROM emp;
+
+
+SELECT sal,deptno,
+DECODE(deptno,10,'HR',20,'FIN')
+FROM emp;
+
+       SAL     DEPTNO DEC
+---------- ---------- ---
+       800         20 FIN
+      1600         30
+      1250         30
+      2975         20 FIN
+      1250         30
+      2850         30
+      2450         10 HR
+      3000         20 FIN
+      5000         10 HR
+      1500         30
+      1100         20 FIN
+       950         30
+      3000         20 FIN
+      1300         10 HR
+      2300         99
+
+15 rows selected.
+
+
+SQL> SELECT sal,deptno,
+  2  DECODE(deptno,10,'HR',20,'FIN','OTHER')
+  3  FROM emp;
+
+       SAL     DEPTNO DECOD
+---------- ---------- -----
+       800         20 FIN
+      1600         30 OTHER
+      1250         30 OTHER
+      2975         20 FIN
+      1250         30 OTHER
+      2850         30 OTHER
+      2450         10 HR
+      3000         20 FIN
+      5000         10 HR
+      1500         30 OTHER
+      1100         20 FIN
+       950         30 OTHER
+      3000         20 FIN
+      1300         10 HR
+      2300         99 OTHER
+
+15 rows selected.
+
+
+
+
+SELECT sal + NVL(comm,0)
+FROM emp;
+
+
+SELECT sal ,
+CASE deptno
+WHEN 10
+THEN 'TEN'
+ELSE 'OTHER'
+END
+FROM emp;
+
+
+SQL> SELECT sal ,
+  2  CASE deptno
+  3  WHEN 10
+  4  THEN 'TEN'
+  5  ELSE 'OTHER'
+  6  END
+  7  FROM emp;
+
+
+       SAL CASED
+---------- -----
+       800 OTHER
+      1600 OTHER
+      1250 OTHER
+      2975 OTHER
+      1250 OTHER
+      2850 OTHER
+      2450 TEN
+      3000 OTHER
+      5000 TEN
+      1500 OTHER
+      1100 OTHER
+       950 OTHER
+      3000 OTHER
+      1300 TEN
+      2300 OTHER
+
+15 rows selected.
+
+
+--******************************************
+--CARTESIAN/CROSS JOIN
+
+
+SELECT
+	empno,ename,loc
+FROM	emp,dept;			emp(i)*dept(all)
+
+
+SELECT
+	empno,ename,loc
+FROM	emp,dept
+ORDER BY empno;
+
+
+SELECT
+	empno,ename,loc
+FROM	emp,dept
+WHERE deptno=deptno
+ORDER BY empno;		---ERROR
+
+--EQUI JOIN(=) USE OF "="
+
+
+SELECT
+	empno,ename,loc
+FROM	emp,dept
+WHERE emp.deptno=dept.deptno
+ORDER BY empno;
+
+SELECT
+	empno,ename,loc,dept.deptno,emp.deptno
+FROM	emp,dept
+WHERE emp.deptno=dept.deptno
+ORDER BY empno;
+
+--NON EQUIJOIN (NOT USE OF "=")
+
+
+
+SELECT
+	empno,ename,loc,dept.deptno,emp.deptno
+FROM	emp,dept
+WHERE emp.deptno>=dept.deptno
+ORDER BY empno;
+
+
+
+     EMPNO ENAME      LOC               DEPTNO     DEPTNO
+---------- ---------- ------------- ---------- ----------
+      7325 SWAPNIL    NEW YORK              10         99
+      7325 SWAPNIL    DALLAS                20         99
+      7325 SWAPNIL    CHICAGO               30         99
+      7325 SWAPNIL    BOSTON                40         99
+      7369 SMITH      NEW YORK              10         20
+      7369 SMITH      DALLAS                20         20
+      7499 ALLEN      NEW YORK              10         30
+      7499 ALLEN      DALLAS                20         30
+      7499 ALLEN      CHICAGO               30         30
+      7521 WARD       NEW YORK              10         30
+      7521 WARD       CHICAGO               30         30
+      7521 WARD       DALLAS                20         30
+      7566 JONES      NEW YORK              10         20
+      7566 JONES      DALLAS                20         20
+      7654 MARTIN     NEW YORK              10         30
+      7654 MARTIN     CHICAGO               30         30
+      7654 MARTIN     DALLAS                20         30
+      7698 BLAKE      NEW YORK              10         30
+      7698 BLAKE      CHICAGO               30         30
+      7698 BLAKE      DALLAS                20         30
+      7782 CLARK      NEW YORK              10         10
+      7788 SCOTT      NEW YORK              10         20
+      7788 SCOTT      DALLAS                20         20
+      7839 KING       NEW YORK              10         10
+      7844 TURNER     NEW YORK              10         30
+      7844 TURNER     DALLAS                20         30
+      7844 TURNER     CHICAGO               30         30
+      7876 ADAMS      NEW YORK              10         20
+      7876 ADAMS      DALLAS                20         20
+      7900 JAMES      NEW YORK              10         30
+      7900 JAMES      CHICAGO               30         30
+      7900 JAMES      DALLAS                20         30
+      7902 FORD       NEW YORK              10         20
+      7902 FORD       DALLAS                20         20
+      7934 MILLER     NEW YORK              10         10
+
+35 rows selected.
+
+
+--SELF JOIN
+
+
+SELECT
+	e.empno,e.ename,m.ename
+FROM	emp e,
+	emp m
+WHERE e.mgr=m.empno;
+
+--OUTER JOIN
+
+SELECT
+	e.empno,e.ename,m.ename
+FROM	emp e,
+	emp m
+WHERE e.mgr=m.empno(+);		--LEFT OUTER JOIN : ALL ROWS OF LEFT TABLE
+
+
+
+SELECT
+	e.empno,e.ename,m.ename
+FROM	emp e,
+	emp m
+WHERE e.mgr(+)=m.empno;		--RIGHT OUTER JOIN
+
+
+
+
+SELECT
+	e.empno,e.ename "EMPLOYEE",m.ename "MANAGER"
+FROM	emp e,
+	emp m
+WHERE e.mgr=m.empno(+);
+
+
+
+
+SELECT
+	e.empno "EMPLOYEE TABLE",e.ename "EMPLOYEE TABLE",m.ename "MANAGER TABLE"
+FROM	emp e,
+	emp m
+WHERE e.mgr(+)=m.empno;
+
+
+
+SELECT
+	e.empno,e.ename,m.ename
+FROM	emp e,
+	emp m
+WHERE e.mgr(+)=m.empno(+);		--FULL OUTER JOIN
+
+
+
+*****************************************
+SUB QUERY
+
+
+
+
+SELECT
+	empno,ename,deptno
+FROM	emp
+WHERE 	deptno=(
+SELECT
+	deptno
+FROM	emp
+WHERE 	ename='SMITH');
+
+
+     EMPNO ENAME          DEPTNO
+---------- ---------- ----------
+      7369 SMITH              20
+      7566 JONES              20
+      7788 SCOTT              20
+      7876 ADAMS              20
+      7902 FORD               20
+
+
+
+
+SELECT
+	empno,ename,deptno
+FROM	emp
+WHERE deptno=(
+SELECT
+	deptno
+FROM	emp
+WHERE ename='SMITH'
+OR ename='ALLEN');			---ERROR
+
+
+
+SELECT
+	empno,ename,deptno
+FROM	emp
+WHERE deptno IN(
+SELECT
+	deptno
+FROM	emp
+WHERE ename ='SMITH'
+OR ename='ALLEN');		--USE OF IN
+
+
+     EMPNO ENAME          DEPTNO
+---------- ---------- ----------
+      7369 SMITH              20
+      7876 ADAMS              20
+      7902 FORD               20
+      7788 SCOTT              20
+      7566 JONES              20
+      7499 ALLEN              30
+      7698 BLAKE              30
+      7654 MARTIN             30
+      7900 JAMES              30
+      7844 TURNER             30
+      7521 WARD               30
+
+11 rows selected.
+
+
+
+SELECT
+	empno,ename,deptno
+FROM	emp
+WHERE 	deptno= ANY(
+SELECT
+	deptno
+FROM	emp
+WHERE 	ename IN 'SMITH'
+OR	ename='ALLEN');
+
+
+
+
+--****************
+--ANY OPERATOR
+
+SELECT
+	empno,ename,deptno
+FROM	emp
+WHERE deptno > ANY(
+SELECT
+	deptno
+FROM	emp
+WHERE	ename ='SMITH'
+OR ename='ALLEN');
+
+
+     EMPNO ENAME          DEPTNO
+---------- ---------- ----------
+      7499 ALLEN              30
+      7521 WARD               30
+      7654 MARTIN             30
+      7698 BLAKE              30
+      7844 TURNER             30
+      7900 JAMES              30
+      7325 SWAPNIL            99
+
+7 rows selected.
+
+
+--*********************
+--ALL OPERATOR
+
+
+SELECT
+	empno,ename,deptno
+FROM	emp
+WHERE 	deptno > ALL(
+SELECT
+	deptno
+FROM	emp
+WHERE 	ename ='SMITH'
+OR 	ename='CLARK');
+
+
+
+     EMPNO ENAME          DEPTNO
+---------- ---------- ----------
+      7499 ALLEN              30
+      7521 WARD               30
+      7654 MARTIN             30
+      7698 BLAKE              30
+      7844 TURNER             30
+      7900 JAMES              30
+      7325 SWAPNIL            99
+
+7 rows selected.
+
+
+--*******************
+--EXISTS
+
+
+SELECT
+	empno,ename,deptno
+FROM	emp
+WHERE EXISTS(
+SELECT
+	deptno
+FROM	emp
+WHERE deptno =30);
+
+     EMPNO ENAME          DEPTNO
+---------- ---------- ----------
+      7369 SMITH              20
+      7499 ALLEN              30
+      7521 WARD               30
+      7566 JONES              20
+      7654 MARTIN             30
+      7698 BLAKE              30
+      7782 CLARK              10
+      7788 SCOTT              20
+      7839 KING               10
+      7844 TURNER             30
+      7876 ADAMS              20
+      7900 JAMES              30
+      7902 FORD               20
+      7934 MILLER             10
+      7325 SWAPNIL            99
+
+15 rows selected.
+
+
+
+SELECT
+	empno,ename,deptno
+FROM	emp
+WHERE EXISTS(
+SELECT
+	1
+FROM	emp
+WHERE deptno =30);
+
+
+
+
+SELECT
+	empno,ename,deptno
+FROM	emp
+WHERE NOT EXISTS(
+SELECT
+	1
+FROM	emp
+WHERE deptno =30);
+
+
+no rows selected
+
+SQL> 
+
+
+--**********************************
+NESTED SUB QUERRIES
+
+
+SELECT
+	ename,
+	empno,
+	deptno
+FROM	emp e
+WHERE deptno = (
+SELECT
+	deptno
+FROM	emp m
+WHERE e.mgr=m.empno);
+
+
+ENAME           EMPNO     DEPTNO
+---------- ---------- ----------
+SMITH            7369         20
+ALLEN            7499         30
+WARD             7521         30
+MARTIN           7654         30
+CLARK            7782         10
+SCOTT            7788         20
+TURNER           7844         30
+ADAMS            7876         20
+JAMES            7900         30
+FORD             7902         20
+MILLER           7934         10
+
+11 rows selected.

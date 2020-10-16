@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!ELEMENT emplist (emp+)>
+<!ELEMENT emp (ename,salary,dept,comm)>
+<!ELEMENT ename (#PCDATA)>
+<!ELEMENT salary (#PCDATA)>
+<!ELEMENT dept (#PCDATA)>
+<!ELEMENT comm (#PCDATA)>
+<!ELEMENT DOJ (#PCDATA)>
+<!ATTLIST emp empno CDATA #REQUIRED>

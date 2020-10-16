@@ -1,0 +1,67 @@
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+struct hall_list 
+{
+	char name[20];
+	struct node *next;
+};
+
+struct hall_list *getNode()
+{
+	struct hall_list *newrec;
+	newrec = (struct hall_list *)malloc(sizeof(struct hall_list));
+	newrec ->next = NULL;
+	printf("\nEnter name\n");
+	scanf("%s",&newrec ->name);
+	return (newrec);
+}
+
+struct hall_list *push(struct hall_list *top,struct hall_list *newrec)
+{
+	newrec->next=top;
+	top=newrec;
+	return top;
+}
+
+void display(struct hall_list *top)
+{
+	struct hall_list *temp;
+	for(temp = top;temp!=NULL;temp=temp->next)
+	{
+		printf("%s\n",temp->name);
+	}
+}
+
+int main(void)
+{
+	struct hall_list *top,*newrec;
+	int choice;
+	char option;
+	top=NULL;
+	do
+	{
+		printf("1.Add person name in list\n2.Display list\n");
+		scanf("%d",&choice);
+		switch(choice)
+		{
+		case 1:
+			newrec=getNode();
+			if(top==NULL)
+				top=newrec;
+			else
+				top=push(top,newrec);
+			break;
+		case 2:
+			display(top);
+			break;
+		default:
+			printf("Invalid choice\n");
+		}
+		printf("Do you want to continue?\n");
+		fflush(stdin);
+		scanf("%c",&option);
+	}while(option == 'Y' || option == 'y');
+	getch();
+	return 0;
+}

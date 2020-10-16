@@ -1,0 +1,117 @@
+create table temp01
+(
+   value varchar2(200),
+   id number(10)
+);
+
+**********************************
+create or replace trigger trg_first
+after insert on dept2
+begin
+dbms_output.put_line('after');
+insert into temp01 values (to_char(sysdate),10);
+end;
+/
+
+insert into dept2 values(70,'ADMIN','SAN FRANSISCO');
+
+---------------------------------------------
+
+create or replace trigger trg_first
+after insert on dept2
+begin
+dbms_output.put_line('after');
+insert into temp01 values (to_char(sysdate),10);
+end;
+/
+
+create or replace trigger trg_second
+before insert on dept2
+begin
+dbms_output.put_line('before');
+insert into temp01 values (to_char(sysdate),10);
+end;
+/
+
+insert into dept2 values(70,'ADMIN','SAN FRANSISCO');
+
+-------------------------------------------------------
+
+create or replace trigger trg_first
+after insert or delete or update on dept
+begin
+dbms_output.put_line('after');
+insert into temp01 values (to_char(sysdate),10);
+end;
+/
+
+
+insert into dept values(50,'NEW DEPT','DALLAS');
+delete from dept2 where deptno = 70;
+update dept set deptno=40 where deptno=20;
+
+******************************************************
+create or replace trigger trg_first
+before insert or delete or update on dept
+for each row
+begin
+dbms_output.put_line('after');
+insert into temp01 values (to_char(sysdate),10);
+end;
+/
+
+insert into dept values(50,'NEW DEPT','DALLAS');
+delete from dept2 where deptno = 60;
+update dept set deptno=20 where deptno=40;
+
+
+**********************************************************
+create or replace trigger trg_first
+after insert or delete or update on dept
+begin
+if inserting then
+insert into temp01 values (to_char(sysdate) || 'insert',10);
+elsif updating then
+insert into temp01 values (to_char(sysdate) || 'update',10);
+else
+insert into temp01 values (to_char(sysdate) || 'delete',10);
+end if;
+end;
+/
+
+insert into temp01 values (to_char(sysdate),40);
+insert into dept values(50,'NEW DEPT','DALLAS',12323);
+
+******************************************************************
+create or replace trigger trg_first
+after insert or delete or update on dept
+for each row
+begin
+if updating then
+	if (:old.deptno=20) then
+		dbms_output.put_line('sensitive data');
+	else
+		insert into temp01 values (to_char(sysdate) || 'update',10);
+	end if;	
+end if;
+
+end;
+/
+
+create or replace trigger trg_first
+after insert or delete or update on dept
+for each row
+when (new.deptno=30)
+begin
+if updating then
+	if (:old.deptno=20) then
+	dbms_output.put_line('sensitive data');
+	end if;
+	insert into temp01 values (to_char(sysdate) || 'update',10);
+end if;
+end;
+/
+
+
+sequecne of firing of triggers
+Mutating tables

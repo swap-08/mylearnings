@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mail>
+<email>
+	<to>Swapnil</to>
+	<from>Sandesh</from>
+	<cc> PS</cc>
+	<bcc>MJ</bcc>
+	<subject>Hello</subject>
+	<body>This is body</body>
+</email>
+
+<email>
+	<to>Ayush</to>
+	<from>Aditya</from>
+	<cc> Sid</cc>
+	<bcc>Mumbai</bcc>
+	<subject>Hello</subject>
+	<body>This is body</body>
+</email>
+
+</mail>

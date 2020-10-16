@@ -1,0 +1,1 @@
+document.write("<h1>Message in Javascript</h1>");

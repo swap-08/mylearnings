@@ -1,0 +1,436 @@
+/****************************<File Header>**********************************/
+/*!
+@File: prog1.c
+@brief Abstract: <ABSTARCT>
+
+@Description: Program to perform array operations using functions
+@Author: Neeraj D. Narkar
+@Date: 23-11-2013
+@Change History: <change history>
+*/
+/****************************************************************************/
+
+#include <stdio.h>
+#include "array_operations.h" //include array_operations header file to use array functions
+#define SIZE 20
+
+//declaration of functions
+
+void read_array(int *,int);
+void display_array(int *,int);
+void sort_array(int *,int);
+void reverse_array(int *,int);
+int count_odd(int *,int);
+int count_even(int *,int);
+int count_prime(int *,int);
+int largest_element(int *,int,int *,int *);
+int smallest_element(int *,int,int *,int *);
+int search_element(int *,int,int,int *);
+
+int main (void)
+{
+	//declaration of variables
+
+	int arr[SIZE],len,num,loc,min,max,min_position,max_position,flag,even_no,odd_no,prime_no;
+
+	//taking inputs from the user
+
+	printf("\nEnter the length of the array:");
+	scanf("%d",&len);
+
+	//calling read function
+
+	read_array(arr,len);
+
+	//displaying entered array
+
+	display_array(arr,len);
+
+	//sorting the array
+
+	sort_array(arr,len);
+
+	//displaying array
+
+	printf("After Sorting : ");
+	display_array(arr,len);
+
+	//reversing the array
+
+	reverse_array(arr,len);
+
+	//displaying array
+
+	printf("After Reversing : ");
+	display_array(arr,len);
+
+	//counting odd numbers
+
+	odd_no=count_odd(arr,len);
+	printf("Odd numbers in the array : %d\n\n",odd_no);
+
+	//counting odd numbers
+
+	even_no=count_even(arr,len);
+	printf("Even numbers in the array : %d\n\n",even_no);
+
+	//counting prime numbers
+
+	prime_no=count_prime(arr,len);
+	printf("Prime numbers in the array : %d\n\n",prime_no);
+
+	//largest integer of the array
+	
+	flag=0;
+	flag=largest_element(arr,len,&max,&max_position);
+
+	if (flag==1)
+	{
+		printf("Largest Number from the array is %d which is at location %d.\n\n",max,max_position);
+	}
+
+	//smallest integer of the array
+
+	flag=0;
+	flag=smallest_element(arr,len,&min,&min_position);
+	
+	if (flag==1)
+	{
+		printf("Smallest Number from the array is %d which is at location %d.\n\n",min,min_position);
+
+	}
+
+	//searching an element
+
+	printf("Enter element to be searched : ");
+	scanf("%d",&num);
+
+	flag=0;
+	flag=search_element(arr,len,num,&loc);
+
+	if (flag==1)
+	{
+		printf("Number found in the array at location %d.\n\n",loc);
+	}
+
+	return 0;
+}
+***************************************************************
+void read_array(int *,int);
+void display_array(int *,int);
+void sort_array(int *,int);
+void reverse_array(int *,int);
+int count_odd(int *,int);
+int count_even(int *,int);
+int count_prime(int *,int);
+int largest_element(int *,int,int *,int *);
+int smallest_element(int *,int,int *,int *);
+int search_element(int *,int,int,int *);
+
+/****************************<Function Header>**********************************/
+/*!
+@Fm: read_array
+@brief Abstract: <ABSTARCT>
+
+@Description: reads an array
+@Param: array using pointer & array length
+@Return: void
+@Remark: <remark>
+@Warning: <warning>
+@Change History: <change history>
+*/
+/****************************************************************************/
+
+void read_array(int *a,int length)
+{
+	int i;
+	printf("\nEnter the elements of the  array:\n\n");
+	for (i=0;i<length;i++)
+	{
+		printf("Enter the element no. %d :",i+1);
+		scanf("%d",&a[i]);
+	}
+}
+
+/****************************<Function Header>**********************************/
+/*!
+@Fm: display_array
+@brief Abstract: <ABSTARCT>
+
+@Description: displays array
+@Param: array using pointer & array length
+@Return: void
+@Remark: <remark>
+@Warning: <warning>
+@Change History: <change history>
+*/
+/****************************************************************************/
+
+void display_array (int *a,int const length)
+{
+	int i;
+	printf("\nArray elements are:\n\n");
+	for (i=0;i<length;i++)
+	{
+		printf("%d\t",a[i]);
+	}
+    printf("\n\n");
+}
+
+/****************************<Function Header>**********************************/
+/*!
+@Fm: sort_array
+@brief Abstract: <ABSTARCT>
+
+@Description: sorts an array in ascending order
+@Param: array using pointer & array length
+@Return: void
+@Remark: <remark>
+@Warning: <warning>
+@Change History: <change history>
+*/
+/****************************************************************************/
+void sort_array(int *a,int length)
+{
+	int i,j;
+	for(i=0;i<length-1;i++)
+	{
+		for (j=0;j<length-1;j++)
+		{
+			if (a[j]>a[j+1])
+			{
+				int temp=a[j];
+				a[j]=a[j+1];
+				a[j+1]=temp;
+			}
+		}
+	}
+}
+
+
+/****************************<Function Header>**********************************/
+/*!
+@Fm: reverse_array
+@brief Abstract: <ABSTARCT>
+
+@Description: reverses an array
+@Param: array using pointer & array length
+@Return: void
+@Remark: <remark>
+@Warning: <warning>
+@Change History: <change history>
+*/
+/****************************************************************************/
+
+void reverse_array(int *a,int length)	
+{
+	int i,j;
+	i=0;
+	j=length-1;
+	while(i<=j)
+	{
+		int temp;
+		temp=a[i];
+		a[i]=a[j];
+		a[j]=temp;
+		i++;
+		j--;
+	}
+}
+
+/****************************<Function Header>**********************************/
+/*!
+@Fm: count_odd
+@brief Abstract: <ABSTARCT>
+
+@Description: counts odd numbers in an array
+@Param: array using pointer & array length
+@Return: intger value that is equal to number of odd numbers
+@Remark: <remark>
+@Warning: <warning>
+@Change History: <change history>
+*/
+/****************************************************************************/
+
+int count_odd(int *a,int length)
+{
+	int i,count=0;
+	for(i=0;i<length;i++)
+	{
+		if(a[i]%2!=0)
+		{
+			count++;
+		}
+	}
+	return count;
+}
+
+/****************************<Function Header>**********************************/
+/*!
+@Fm: count_even
+@brief Abstract: <ABSTARCT>
+
+@Description: counts even numbers in an array
+@Param: array using pointer & array length
+@Return: intger value that is equal to number of even numbers
+@Remark: <remark>
+@Warning: <warning>
+@Change History: <change history>
+*/
+/****************************************************************************/
+
+int count_even(int *a,int length)
+	{
+		int i,count=0;
+		for(i=0;i<length;i++)
+		{
+			if(a[i]%2==0)
+			{
+				count++;
+			}
+		}
+		return count;
+	}
+
+/****************************<Function Header>**********************************/
+/*!
+@Fm: count_prime
+@brief Abstract: <ABSTARCT>
+
+@Description: counts prime numbers in an array
+@Param: array using pointer & array length
+@Return: intger value that is equal to number of prime numbers
+@Remark: <remark>
+@Warning: <warning>
+@Change History: <change history>
+*/
+/****************************************************************************/
+
+int count_prime(int *a,int length)
+{
+	int i,j,count=0,flag;
+	for (i=0;i<length;i++) 
+	{
+		flag=0;
+		for (j=1;j<=a[i];j++)
+		{
+			if (a[i]%j==0)
+			{
+				flag++;
+			}
+		} 
+		if(flag==2)
+		{
+			count++;
+		}
+	}
+	return count;
+}
+
+
+/****************************<Function Header>**********************************/
+/*!
+@Fm: largest_element
+@brief Abstract: <ABSTARCT>
+
+@Description: finds out largest element of the array
+@Param: array using pointer,array length and variables largest,large_position 
+		using pointer
+@Return: returns 1 after execution
+@Remark: <remark>
+@Warning: <warning>
+@Change History: <change history>
+*/
+/****************************************************************************/
+
+int largest_element(int *a,int length,int *largest,int *large_position)
+	
+{
+	int i;
+	*largest=a[1];
+	*large_position=1;
+	for (i=0;i<length;i++)
+	{
+		if (a[i]>*largest)
+		{
+			*largest=a[i];
+			*large_position=i+1;
+		}
+	}
+	return 1;
+}
+
+/****************************<Function Header>**********************************/
+/*!
+@Fm: smallest_element
+@brief Abstract: <ABSTARCT>
+
+@Description: finds out smallest element of the array
+@Param: array using pointer,array length and variables smallest,small_position 
+		using pointer
+@Return: returns 1 after execution
+@Remark: <remark>
+@Warning: <warning>
+@Change History: <change history>
+*/
+/****************************************************************************/
+
+
+int smallest_element(int *a,int length,int *smallest,int *small_position)
+	
+{
+	int i;
+	*smallest=a[1];
+	*small_position=1;
+	for (i=0;i<length;i++)
+	{
+		if (a[i]<*smallest)
+		{
+			*smallest=a[i];
+			*small_position=i+1;
+		}
+		
+	}
+	return 1;
+}
+
+/****************************<Function Header>**********************************/
+/*!
+@Fm:search_element
+@brief Abstract: <ABSTARCT>
+
+@Description: searches for an element in the array
+@Param: array using pointer,array length and variables number and location using 
+		pointer
+@Return: returns 1 if element found else returns zero after execution
+@Remark: <remark>
+@Warning: <warning>
+@Change History: <change history>
+*/
+/****************************************************************************/
+
+int search_element(int *a,int length,int number,int *location)
+{
+	int i,flag=0;
+	for(i=0;i<length;i++)
+	{
+		if (a[i]==number)
+		{
+			*location=i+1;
+			flag=1;
+			break;
+		}
+	}
+	if(flag==1)
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+
+
+

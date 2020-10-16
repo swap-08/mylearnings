@@ -1,0 +1,95 @@
+<html>
+<script>
+function calculate()
+{
+a=f.doll.value;
+b=f.cal.value;
+c=f.phone.value;
+d=f.dvd.value;
+if(f.doll.value=="" && f.dvd.value=="" && f.cal.value=="" && f.phone.value=="")
+{
+alert("no item selected");
+}
+else
+{
+	x=window.open("","","height="+500+"width="+500+"left="+500+"top="+500);
+	x.document.write("<center>INVOICE<center>");
+	x.document.write("<table border=5><tr><th>Name</th><th>Quantity</th><th>Price</th><th>Total</th></tr>");
+if(f.doll.value>0)
+{
+	x.document.write("<tr><td>Barbie Doll</td>	<td>");
+	x.document.write(a);
+	x.document.write("</td><td>");
+	x.document.write("20</td><td>");
+	x.document.write(20*a);
+	x.document.write("</td></tr>");
+}
+if(f.cal.value>0)
+{
+	x.document.write("<tr><td>Calculator</td><td>");
+	x.document.write(b);
+	x.document.write("</td><td>");
+	x.document.write("30</td><td>");
+	x.document.write(30*b);
+	x.document.write("</td></tr>");
+}
+if(f.phone.value>0)
+{
+	
+	x.document.write("<tr><td>Mobile Phone</td><td>");
+	x.document.write(c);
+	x.document.write("</td><td>");
+	x.document.write("40</td><td>");
+	x.document.write(40*c);
+	x.document.write("</td></tr>");
+}
+if(f.dvd.value>0)
+{
+	x.document.write("<tr><td>LG DVD</td><td>");
+	x.document.write(d);
+	x.document.write("</td><td>");
+	x.document.write("50</td><td>");
+	x.document.write(50*d);
+	x.document.write("</td></tr>");
+}
+x.document.write("</table>");
+}
+}
+</script>
+<form name="f">
+<table border=5 align=center height=60% width=100%>
+	<tr>
+		<th>Name</th>
+		<th>Description</th>
+		<th>Price</th>
+		<th>Qty</th>
+	</tr>	
+	<tr>
+		<td>Barbie Doll</td>
+		<td>Beautiful</td>
+		<td>20</td>
+		<td><input type="textbox" size=2 name="doll" ></td>
+	</tr>
+	<tr>
+
+		<td>Calculator</td>
+		<td>Calculator with latest features</td>
+		<td>30</td>
+		<td><input type="textbox" size=2 name="cal" ></td>
+	</tr>
+	<tr>
+		<td>Mobile Phone</td>
+		<td>Camera,Java Games,GPRS</td>
+		<td>40</td>
+		<td><input type="textbox" size=2 name="phone" ></td>
+	</tr>
+	<tr>
+		<td>LG DVD</td>
+		<td>5 disc changer</td>
+		<td>50</td>
+		<td><input type="textbox" size=2 name="dvd" ></td>
+	</tr>
+	</table>
+	<input type="button" value="ORDER" onclick="calculate()">
+</form>
+</html>

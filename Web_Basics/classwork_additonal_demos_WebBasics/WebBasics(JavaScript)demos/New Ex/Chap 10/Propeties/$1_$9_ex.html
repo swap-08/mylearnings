@@ -1,0 +1,24 @@
+<html>
+    <body>
+    <script language="JavaScript1.2">
+  
+    function swap()
+    {
+        re = /(\w+)\D(\w+)\D(\w+)\D(\w+)/;
+        str = document.form1.text1.value;
+        newstr=str.replace(re, "$3, $2");
+        document.form1.text2.value = newstr;
+    }
+    
+    </script>
+    <form name="form1">
+    Enter your 7 digit phone number in the form xxx-xxxx-xxx-xxx
+    <br><br><br>
+    Phone Number (7 digits):<input type="text" name="text1" size=20>
+    <br><br>
+    <input type="button" value="Swap" onClick='swap()'>
+    <br><br><br>
+    Output: <input type="text" name="text2" size=10
+    </form>
+    </body>
+    </html>

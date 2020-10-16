@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="emp.xsl"?>
+<emplist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="emp.xsd">
+<emp empno="102">
+		<firstname>Manish</firstname>
+		<lastname>paul</lastname>
+		<salary>20</salary>
+		<dept>SOFTWARE</dept>
+		<comm>500</comm>
+		<DOJ>12-02-2013</DOJ>
+		<phone>
+			<mobile>8025215120</mobile>
+		</phone>
+</emp>
+<emp empno="101">
+		<firstname>Karthik</firstname>
+		<lastname>paul</lastname>
+		<salary>5000</salary>
+		<dept>SOFTWARE</dept>
+		<comm>500</comm>
+		<DOJ>25-02-2012</DOJ>
+		<phone>
+		<landline>258964654</landline>
+		</phone>
+</emp>
+</emplist>

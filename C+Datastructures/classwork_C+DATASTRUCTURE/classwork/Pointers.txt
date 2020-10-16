@@ -1,0 +1,435 @@
+#include<stdio.h>
+#include<conio.h>
+
+int add(int a,int b)
+{
+	return (a+b);
+}
+
+int sub(int a,int b)
+{
+	return (a-b);
+}
+
+void main()
+{
+	int c,d;
+	//int *func_ptr(int,int);
+	int (*func_ptr)(int,int);
+	//int *(*func_ptr)(int,int);
+	int *(*func_ptr)(int *,int *);
+	func_ptr=add;
+	//c=add(30,20);
+	c=func_ptr(30,20);
+	printf("Addition %d\n",c);
+	func_ptr=sub;
+	//d=sub(30,20);
+	d=func_ptr(30,20);
+	printf("Subtraction %d\n",d);
+	getch();
+}
+
+
+-----------------------------------------
+
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+
+int *add(int *a,int *b)
+{
+	/*int *temp = (int *)malloc(sizeof(int));
+	int *temp;
+	temp = (int *)malloc(sizeof(int));
+	*temp = a+b;
+	return (temp);*/
+	//int *temp = (int *)malloc(sizeof(int));
+	a = a+b;
+	return (a);
+
+}
+
+int *XYZ(int *(*Test)(int,int),int *)
+{
+}
+
+
+void main()
+{
+	int c,d;
+	//int *func_ptr(int,int);
+	//int (*func_ptr)(int,int);
+	//int *(*func_ptr)(int,int);
+	
+	int *(*func_ptr)(int *(*Test)(int,int),int *);
+	int *ptr;
+
+	xyz(add,20,30);
+	xyz(sub,20,30);
+
+	//func_ptr=add;
+	ptr=add(&x,&y);
+	//c=func_ptr(30,20);
+	printf("Addition %d\n",*ptr);
+	/*func_ptr=sub;
+	//d=sub(30,20);
+	d=func_ptr(30,20);
+	printf("Subtraction %d\n",d);*/
+	getch();
+}
+------------------------------------------------
+
+
+
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+
+void display(int *ptr)
+{
+	int i;
+	for (i=0;i<3;i++)
+	{
+		printf("%d\n",ptr[i]);
+	}
+}
+
+
+void main()
+{
+	int a[5]={20,30,10,15,25};
+	int b[5];
+	int *ap;
+	int i;
+	ap=a;	
+	//for (i=0;i<5;i++)
+	{
+		//printf("%u %d %d %d\n",ap,*ap,*ap+1,*(ap+1));
+	}
+	//display(a+2);
+	//display(&a[2]);
+	display(&*(a+2));
+	getch();
+}
+
+
+----------------------------
+
+
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+
+/*
+void display(int ptr[][])
+{
+	int i;
+	for (i=0;i<6;i++)
+	{
+		printf("%d\n",ptr[i]);
+	}
+}
+*/
+
+void main()
+{
+	int a[2][3]={20,30,10,15,25};
+	int b[5];
+	int **ap;
+	int i,j;
+	//ap=a;	
+	
+	for (i=0;i<2;i++)
+	{
+		for (j=0;j<3;j++)
+			{
+				printf("%d     ",*(*(a+i)+j));
+			}
+		printf("\n");
+	}
+	
+	printf("%u   %d   %d    \n",a,**a+1);
+	//printf("%d    %d",sizeof(a),sizeof(int));
+
+	//display(a+2);
+	//display(&a[2]);
+	//display(a);
+	getch();
+}
+
+/*
+a[i]
+*(a+i)
+
+a[i][j]
+*(a[i]+j)
+*(*(a+i)+j)
+a
+*a+1
+*(a+1)
+
+int *a 
+a+1
+int a[5]
+
+
+*/
+
+---------------------------
+
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+
+/*
+void display(int ptr[][3])
+{
+	int i,j;
+	for (i=0;i<2;i++)
+	{
+		for (j=0;j<3;j++)
+			{
+				printf("%d     ",*(*(ptr+i)+j));
+			}
+		printf("\n");
+	}
+}
+*/
+
+void display(int ptr[])
+{
+	int i,j;
+	for (i=0;i<3;i++)
+	{
+				printf("%d     ",*(ptr+i));
+		printf("\n");
+	}
+}
+
+
+void main()
+{
+	int a[2][3]={20,30,10,15,25};
+	int b[5];
+	int **ap;
+	int i,j;
+	//ap=a;	
+	
+
+	
+	//printf("%u   %d   %d    \n",a,**a+1);
+	//printf("%d    %d",sizeof(a),sizeof(int));
+
+	//display(a+2);
+	//display(&a[2]);
+	display(*(a+1));
+	getch();
+}
+
+/*
+a[i]
+*(a+i)
+
+a[i][j]
+*(a[i]+j)
+*(*(a+i)+j)
+a
+*a+1
+*(a+1)
+
+int *a 
+a+1
+int a[5]
+
+
+*/
+
+---------------------------
+
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+
+
+void display(int ptr[][])
+{
+	int i,j;
+	for (i=0;i<2;i++)
+	{
+		for (j=0;j<3;j++)
+			{
+				printf("%d     ",*(*(ptr+i)+j));
+			}
+		printf("\n");
+	}
+}
+/*
+
+void display(int ptr[])
+{
+	int i,j;
+	for (i=0;i<3;i++)
+	{
+				printf("%d     ",*(ptr+i));
+		printf("\n");
+	}
+}
+*/
+
+void main()
+{
+	int a[][3]={{20,30,10}
+				,{15,25}};
+	int b[5];
+	int **ap;
+	int i,j;
+	//ap=a;	
+	
+
+	
+	//printf("%u   %d   %d    \n",a,**a+1);
+	//printf("%d    %d",sizeof(a),sizeof(int));
+
+	//display(a+2);
+	//display(&a[2]);
+	//display(*(a+1));
+	display(a);
+	getch();
+}
+
+/*
+a[i]
+*(a+i)
+
+a[i][j]
+*(a[i]+j)
+*(*(a+i)+j)
+a
+*a+1
+*(a+1)
+
+int *a 
+a+1
+int a[5]
+
+
+*/
+
+---------------------------
+
+char *argv[]
+char (*argv)[]
+
+-------------------------
+
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+
+
+void main(int argc, char *argv[])
+{
+	int a,b,c;
+	printf("argc %d\n ",argc);
+	printf(" %s\n ",argv[0]);
+	printf(" %s\n ",argv[1]);
+	printf(" %s\n ",argv[2]);
+
+	//printf("Enter first no ");
+	//scanf("%d",&a);
+	//printf("Enter second no ");
+	//scanf("%d",&b);
+	c= argv[1]+ (int )argv[2];
+	printf("The addition is %d",c);
+	getch();
+}
+
+
+-----------------------------------
+
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+
+struct student
+{
+	char name[30];
+	int no;
+};
+
+void main(int argc, char *argv[])
+{
+	student s;
+	student *sptr;
+	sptr = &s;
+	printf("Enter Name  ");
+	scanf("%s",(*sptr).name);
+	printf("Enter No  ");
+	scanf("%d",&sptr->no);
+
+	printf("The details \n");
+	printf("Name : %s \n",(*sptr).name);
+	printf("Roll no %d \n",sptr->no);
+	getch();
+}
+
+
+
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+
+struct student
+{
+	char name[30];
+	int no;
+};
+
+void main(int argc, char *argv[])
+{
+	student s[5];
+	student *sptr;
+	//sptr = &s;
+	printf("Enter Name  ");
+	scanf("%s",(*(s+3)).name);
+	printf("Enter No  ");
+	scanf("%d",&(*(s+3)).no);
+
+	printf("The details \n");
+	printf("Name : %s \n",(*(s+3)).name);
+	printf("Roll no %d \n",(*(s+3)).no);
+	getch();
+}
+
+
+
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+
+struct student
+{
+	char name[30];
+	int no;
+};
+
+void main(int argc, char *argv[])
+{
+	student s[5];
+	student *sptr;
+	sptr = s;
+	printf("Enter Name  ");
+	scanf("%s",(sptr+3)->name);
+	printf("Enter No  ");
+	scanf("%d",&(*(sptr+3)).no);
+
+	printf("The details \n");
+	printf("Name : %s \n",(*(sptr+3)).name);
+	printf("Roll no %d \n",(*(sptr+3)).no);
+	getch();
+}
+
+
+
+
+

@@ -1,0 +1,552 @@
+Ans-1.
+[testuser6@pace sapnadubey]$ echo $PS1 $PS2
+[\u@\h \W]\$ >
+
+
+Ans-2.
+[testuser6@pace sapnadubey]$ PS1=sapna
+sapna
+
+
+Ans-4.
+[testuser6@pace sapnadubey]$ continent="Africa"
+[testuser6@pace sapnadubey]$ echo "$continent"
+Africa
+[testuser6@pace sapnadubey]$ sh
+sh-3.2$ echo "$continent"
+
+sh-3.2$ exit
+exit
+[testuser6@pace sapnadubey]$ echo "$continent"
+Africa
+[testuser6@pace sapnadubey]$ sh
+sh-3.2$ echo "$continent"
+
+sh-3.2$ exit
+exit
+
+
+Ans-5.
+[testuser6@pace sapnadubey]$ continent="Africa"
+[testuser6@pace sapnadubey]$ export continent
+[testuser6@pace sapnadubey]$ echo "$continent"
+Africa
+[testuser6@pace sapnadubey]$ sh
+sh-3.2$ echo "$continent"
+Africa
+sh-3.2$ continent="Asia"
+sh-3.2$ echo "$continent"
+Asia
+sh-3.2$ exit
+exit
+[testuser6@pace sapnadubey]$ echo "$continent"
+Africa
+
+
+Ans-6.
+[testuser6@pace sapnadubey]$ sh log.sh
+Enter username
+testuser6
+testuser6 pts/9        2013-10-19 10:52 (10.216.53.95)
+testuser6 Logged in
+
+
+Ans-7.
+[testuser6@pace sapnadubey]$ vi log1.sh
+echo "Enter file name"
+read name
+cat $name
+
+[testuser6@pace sapnadubey]$ sh log3.sh
+Enter file name
+log.sh
+echo "Enter username"
+read name
+if who|grep "$name"
+then
+        echo "$name Logged in"
+else
+        echo "$name Not logged in"
+fi
+
+
+Ans-8.
+[testuser6@pace sapnadubey]$ vi filename.sh
+
+echo "Enter filename:"
+read filename
+if [ -f $filename]
+then
+        echo "Error:file not present"
+else
+        echo `ls -l $filename|cut -c1-10`
+fi
+
+[testuser6@pace sapnadubey]$ sh filename.sh
+Enetr filename:
+file2
+-rw-rw-r--
+
+
+Ans-9.[testuser6@pace sapnadubey]$ vi pattern.sh
+[testuser6@pace sapnadubey]$ vi pass.sh
+echo $1
+echo $2
+echo $3
+if [ $1 -gt $2 -a $1 -gt $3 ]
+then
+        echo "$1 is largest"
+elif [ $2 -gt $1 -a $2 -gt $3 ]
+then
+        echo "$2 is largest"
+elif [ $3 -gt $1 -a $3 -gt $2 ]
+then
+        echo "$3 is largest"
+else
+        echo "Numbers are equal"
+fi
+
+[testuser6@pace sapnadubey]$ sh pass.sh 4 2 9
+4
+2
+9
+9 is largest
+[testuser6@pace sapnadubey]$ sh pass.sh 4 4 4
+4
+4
+4
+Numbers are equal
+
+
+Ans-10.
+[testuser6@pace sapnadubey]$ vi pattern.sh
+echo "Enter the pattern to be searched:"
+read pattern
+echo "Enter the filename in which pattern is to be searched"
+read filename
+if grep $pattern $filename
+then
+        echo "Pattern is present"
+else
+        echo "Pattern is not present"
+fi
+
+[testuser6@pace sapnadubey]$ sh pattern.sh
+Enter the pattern to be searched:
+line
+Enter the filename in which pattern is to be searched
+file2
+Pattern is not present
+[testuser6@pace sapnadubey]$ sh pattern.sh
+Enter the pattern to be searched:
+du
+Enter the filename in which pattern is to be searched
+file2
+bindu
+Pattern is present
+
+
+Ans-11.
+[testuser33@pace sam]$ vi filemenu.sh
+
+Enter your choice:
+filecreate()
+{
+ echo "Enter filename: "
+ read fname
+ if [ -f "$fname" ]
+ then
+    echo "File already exist"
+ else
+    cat > "$fname"
+ fi
+echo "file created!!"
+}
+
+filecopy()
+{
+ echo "Enter the filename to be copied: "
+ read copyfile;
+ if [ -f "$copyfile" ]
+ then
+    echo "Enter destination file: "
+    read dfile
+    if [ -f "$dfile" ]
+    then
+       echo "Desination file already exist!!"
+       echo "Do you want to overwrite it[y/n]: "
+       read ch
+       if [ $ch -eq y -o $ch -eq Y ]
+       then
+                cp "$sfile" "$dfile"
+        else
+                echo "Can't be overwritten"
+       fi
+    else
+       cp "$sfile" "$dfile"
+    fi
+ else
+    echo "Source file does not exist!!!"
+ fi
+echo "File copied successfully"
+}
+
+filemove()
+{
+ echo "Enter filename which is  to be moved: "
+ read fname
+ if [ -f "$fname" ]
+ then
+    echo "Enter the directory in which file is to be moved: "
+    read dname
+    if [ -d "$dname" ]
+    then
+        mv "$fname" "$dname"
+    else
+       echo "Directory does not exist!!!"
+    fi
+ else
+  echo "File does not exist!!!"
+ fi
+echo "File moved successfully"
+}
+
+dircreate()
+{
+ echo "Enter name of directory: "
+ read dname
+ if [ -d "$dname" ]
+ then
+     echo "Directory already exists!!!"
+ else
+    mkdir "$dname"
+ fi
+echo "Directory created!!!"
+}
+
+while [ 1 ]
+do
+echo "1.Create file"
+echo "2.Create Directory"
+echo "3.Copy file"
+echo "4.Move file"
+echo "5.Exit"
+echo "Enter your choice:"
+read choice
+case $choice in
+1)filecreate;;
+2)dircreate;;
+3)filecopy;;
+4)filemove;;
+5)exit;;
+esac
+done
+
+
+1.Create file
+2.Create Directory
+3.Copy file
+4.Move file
+5.Exit
+Enter your choice:
+1
+Enter filename:
+a1
+File already exist
+file created!!
+1.Create file
+2.Create Directory
+3.Copy file
+4.Move file
+5.Exit
+Enter your choice:
+2
+Enter name of directory:
+a3
+Directory created!!!
+1.Create file
+2.Create Directory
+3.Copy file
+4.Move file
+5.Exit
+Enter your choice:
+3
+Enter the filename to be copied:
+a1
+Enter destination file:
+a2
+Desination file already exist!!
+Do you want to overwrite it[y/n]:
+y
+filemenu.sh: line 30: [: y: integer expression expected
+Can't be overwritten
+File copied successfully
+1.Create file
+2.Create Directory
+3.Copy file
+4.Move file
+5.Exit
+Enter your choice:
+5
+[testuser6@pace sapnadubey]$
+
+
+Ans-12.
+[testuser6@pace sapnadubey]$ vi delete.sh
+
+yesno()
+{
+        echo "$*"
+        echo "Answer?: "
+        read ans
+if [ "$ans" = "y" ]
+then
+        return 0;
+else
+        return 1;
+fi
+}
+yesno "Do you want to delete file?"
+if [ $? -eq 0 ]
+then
+        echo "Enter the filename to delete: "
+        read fname
+        if [ -d "$fname" ]
+        then
+                echo "It is a directory: "
+                rm -r "$fname"
+                echo "$fname directory deleted"
+        else
+                echo "It is a file: "
+                rm "$fname"
+                echo "$fname file deleted"
+        fi
+else
+        echo "You entered NO"
+fi
+
+
+[testuser6@pace sapnadubey]$ sh delete.sh
+delete.sh: line 1: [testuser33@pace: command not found
+Do you want to delete file?
+Answer?:
+n
+You entered NO
+[testuser6@pace sapnadubey]$ sh delete.sh
+delete.sh: line 1: [testuser33@pace: command not found
+Do you want to delete file?
+Answer?:
+y
+Enter the filename to delete:
+a1
+It is a file:
+a1 file deleted
+
+
+
+Ans-13.
+[testuser6@pace sapnadubey]$ vi users.sh
+echo "Enter 1st user: "
+read user1
+echo "Enter 2nd user: "
+read user2
+echo "Enter 3rd user: "
+read user3
+echo "Enter 4th user: "
+read user4
+who|grep -w "$user1" >>/dev/null && echo "$user1 logged in" || echo "$user1 not logged in"
+who|grep -w "$user2" >>/dev/null && echo "$user2 logged in" || echo "$user2 not logged in"
+who|grep -w "$user3" >>/dev/null && echo "$user3 logged in" || echo "$user3 not logged in"
+who|grep -w "$user4" >>/dev/null && echo "$user4 logged in" || echo "$user4 not logged in"
+fi
+
+[testuser6@pace sapnadubey]$ sh users.sh
+Enter 1st user:
+testuser6
+Enter 2nd user:
+testuser49
+Enter 3rd user:
+testuser4
+Enter 4th user:
+testuser47
+testuser6 logged in
+testuser49 logged in
+testuser4 not logged in
+testuser47 not logged in
+
+
+Ans-14.
+[testuser6@pace sapnadubey]$ vi fl.sh
+
+echo "Enter your first name:"
+read fname
+echo "Enter your last name:"
+read lname
+echo "Hi! fname lname"
+
+[testuser6@pace sapnadubey]$ sh fl.sh
+Enter your first name:
+sapna
+Enter your last name:
+dubey
+Hi! sapna dubey
+
+
+Ans-15.
+[testuser6@pace sapnadubey]$ find -mtime -1
+.
+./log1.sh
+./log.sh
+./script2.sh
+./fl.sh
+./delete.sh
+./a2
+./pass.sh
+./dept.lst
+./a3
+./filemenu.sh
+./emp.lst
+./users.sh
+./PACE.dat
+./cfile2
+./srtf
+./filename.sh
+./cfile1
+./desig.lst
+./cfile4
+./pattern.sh
+
+
+
+Ans-16.
+[testuser6@pace sapnadubey]$ ls -l|grep "^-"
+-rw-rw-r-- 1 testuser6 testuser6    2 Oct 19 12:05 a2
+-rw-rw-r-- 1 testuser6 testuser6   24 Oct 16 15:08 case1
+-rw-rw-r-- 1 testuser6 testuser6    0 Oct 18 16:07 cfile1
+-rw-rw-r-- 1 testuser6 testuser6  155 Oct 18 16:06 cfile2
+-rw-rw-r-- 1 testuser6 testuser6  310 Oct 18 16:58 cfile4
+-rw-rw-r-- 1 testuser6 testuser6   25 Oct 16 20:46 chap1
+-rw-rw-r-- 1 testuser6 testuser6  598 Oct 19 13:10 delete.sh
+-rw-rw-r-- 1 testuser6 testuser6   84 Oct 18 15:05 dept.lst
+-rw-rw-r-- 1 testuser6 testuser6   66 Oct 18 15:52 desig.lst
+-rw-rw-r-- 1 testuser6 testuser6  147 Oct 18 08:45 Employee.dat
+-rw-rw-r-- 1 testuser6 testuser6  310 Oct 18 20:06 emp.lst
+-rw-rw-r-- 1 testuser6 testuser6   38 Oct 16 14:44 file2
+-rw-rw-r-- 1 testuser6 testuser6   70 Oct 16 14:49 file3
+-rw-rw-r-- 1 testuser6 testuser6 1594 Oct 19 11:48 filemenu.sh
+-rw-rw-r-- 1 testuser6 testuser6  136 Oct 19 11:16 filename.sh
+-rw-rw-r-- 1 testuser6 testuser6    0 Oct 17 15:37 files
+-rw-rw-r-- 1 testuser6 testuser6    8 Oct 16 17:20 file.unix
+-rw-rw-r-- 1 testuser6 testuser6  107 Oct 19 13:40 fl.sh
+-rw-rw-r-- 1 testuser6 testuser6   91 Oct 16 19:21 friends
+-rw-rw-r-- 1 testuser6 testuser6   44 Oct 19 11:12 log1.sh
+-rw-rw-r-- 1 testuser6 testuser6  118 Oct 19 11:03 log.sh
+-rw-rw-r-- 1 testuser6 testuser6   41 Oct 16 14:16 myfile
+-rw-rw-r-- 1 testuser6 testuser6   91 Oct 16 19:23 newfreinds
+-rw-rw-r-- 1 testuser6 testuser6   73 Oct 18 14:14 PACE.dat
+-rw-rw-r-- 1 testuser6 testuser6  233 Oct 19 11:27 pass.sh
+-rw-rw-r-- 1 testuser6 testuser6  228 Oct 19 11:36 pattern.sh
+-rw-rw-r-- 1 testuser6 testuser6  175 Oct 17 15:39 perms
+-rw-rw-r-- 1 testuser6 testuser6    6 Oct 16 14:34 prog
+-rw-rw-r-- 1 testuser6 testuser6   32 Oct 16 14:47 result
+-rw-rw-r-- 1 testuser6 testuser6   53 Oct 19 10:21 script2.sh
+-rw-rw-r-- 1 testuser6 testuser6   81 Oct 17 15:55 sizes
+-rw-rw-r-- 1 testuser6 testuser6  259 Oct 18 16:16 srtf
+-rw-rw-r-- 1 testuser6 testuser6  281 Oct 16 19:35 user1
+-rw-rw-r-- 1 testuser6 testuser6  111 Oct 16 19:30 users
+-rw-rw-r-- 1 testuser6 testuser6  505 Oct 19 13:23 users.sh
+
+
+
+Ans-17.
+[testuser6@pace sapnadubey]$ vi path.sh
+echo "Enter first path:"
+read path1
+echo "Enter second path:"
+read path2
+for file in $path1 $path2
+do
+        ls -l $file >>pathfile
+        more pathfile
+done
+
+
+[testuser6@pace sapnadubey]$ sh path.sh
+Enter first path:
+file2
+Enter second path:
+file3
+-rw-rw-r-- 1 testuser6 testuser6 38 Oct 16 14:44 file2
+-rw-rw-r-- 1 testuser6 testuser6 38 Oct 16 14:44 file2
+-rw-rw-r-- 1 testuser6 testuser6 70 Oct 16 14:49 file3
+
+[testuser6@pace sapnadubey]$ cat pathfile
+-rw-rw-r-- 1 testuser6 testuser6 38 Oct 16 14:44 file2
+-rw-rw-r-- 1 testuser6 testuser6 70 Oct 16 14:49 file3
+
+
+Ans-18.
+[testuser6@pace sapnadubey]$ vi shell.sh
+
+echo "Name of Shell:$0"
+echo "PID of shell:$$"
+
+[testuser6@pace sapnadubey]$ sh shell.sh
+Name of Shell:shell.sh
+PID of shell:12640
+
+
+Ans-19.
+[testuser6@pace sapnadubey]$ vi concat.sh
+
+echo "The destination file is:$1"
+echo "The first source file is:$2"
+echo "The second source file is:$3"
+paste $2 $3 >$1
+cat $1
+
+[testuser6@pace sapnadubey]$ sh concat.sh file2 file3 files
+The destination file is:file2
+The first source file is:file3
+The second source file is:files
+sapna
+bindu
+kuldeep
+vikram
+anku
+shikha2 12 60
+4 14 62
+6 16 64
+8 18 66
+
+
+Ans-22.
+[testuser6@pace sapnadubey]$ vi list.sh
+
+for i in `ls  *.lst`
+do
+cat $i
+done
+
+[testuser6@pace sapnadubey]$ sh list.sh
+10|Sapna         |Mech
+20|Kuldeep       |Elec
+30|Bindu         |Comp
+40|Vishal        |Comp
+50|Vikram        |Mech
+Dr|Bindu Chandrappa
+Er|Kuldeep
+Dr|Sapna Dubey
+Er|Vikram
+Dr|Vishal
+1000|kuldeep            |Engineer |Mechanical|10/08/89|20000
+2000|Bindu Chandrappa   |Doctor   |Cardiac   |30/03/88|50000
+3000|Vishal             |Intern   |Cardiac   |29/02/80|10000
+4000|Vikram             |Marketing|Mys Sandal|12/08/87|80000
+5000|Sapna              |Surgeon  |Orthopedic|04/08/89|60000
+6000|rajitha            |Doctor   |Physician |11/06/82|15000
+
+
+
+Ans-23.
+

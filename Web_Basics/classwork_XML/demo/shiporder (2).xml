@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="iso-8859-9"?>
+<?xml-stylesheet type="text/xsl" href="shiporder.xsl"?>
+<shiporder orderid="2532" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="shiporder.xsd">
+  <orderperson>swapnil</orderperson>
+  <shipto>
+    <name>swas.swa@igate.com</name>
+    <address>male</address>
+    <city>dadar</city>
+    <country>india</country>
+  </shipto>
+  <shipto>
+    <name>sswas.swa@igate.com</name>
+    <address>female</address>
+    <city>dadar</city>
+    <country>india</country>
+  </shipto>
+  <item>
+    <title>swa</title>
+    <note>swa</note>
+    <quantity>2</quantity>
+    <price>25</price>
+  </item>
+  <item>
+    <title>swas</title>
+    <note>swass</note>
+    <quantity>2</quantity>
+    <price>2</price>
+  </item>
+</shiporder>

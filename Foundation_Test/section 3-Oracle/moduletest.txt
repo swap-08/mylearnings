@@ -1,0 +1,92 @@
+select * from trainee;
+
+
+create table trainee
+(
+emplouee_code	number,
+employee_name	varchar2(20),
+mpt	number(3),
+mtt	number(3),
+assignment_number	number(3),
+score	number(1)
+);
+
+insert into trainee
+values(101,'SWAPNIL',75,75,75,4);
+
+
+insert into trainee
+values(102,'SANDSEH',55,55,55,2);
+
+
+insert into trainee
+values(103,'SACHIN',65,50,50,3);
+
+
+insert into trainee
+values(104,'SIDDHANT',50,20,25,1);
+
+
+insert into trainee
+values(104,'SIDDHANT',90,70,75,5);
+
+
+SQL> SELECT * FROM TRAINEE;
+
+EMPLOUEE_CODE EMPLOYEE_NAME               MPT        MTT ASSIGNMENT_NUMBER      SCORE
+------------- -------------------- ---------- ---------- ----------------- ----------
+          101 SWAPNIL                      75         75                75          3
+          102 SANDSEH                      55         55                55          2
+          103 SACHIN                       65         50                50          3
+          104 SIDDHANT                     50         20                25          1
+          104 SIDDHANT                     90         70                75          5
+
+
+--------------------------------------------------------
+
+QUERY2
+
+
+SELECT
+	COUNT(employee_name)
+FROM	trainee
+where score
+having min(score)
+
+
+
+
+
+--------------------------------------------------------
+QUERY1
+
+
+CREATE OR REPLACE PROCEDURE MODULE(e_code IN NUMBER)
+As
+CURSOR C_MODULE IS
+	
+SELECT 
+	EMPLOYEE_CODE,
+	EMPLOYEE_NAME,
+	S.DEPT_CODE,
+	M.STAFF_NAME AS MANAGER
+FROM	STAFF_MASTERS S,
+	STAFF_MASTERS M
+WHERE	S.MGR_CODE=M.STAFF_CODE AND
+	S.DEPT_CODE=e_code;
+
+begin
+
+	for v in c
+loop
+	dbms_output.put_line(v.manager||'  '||v.staff_name);
+end loop;
+
+exception
+when TOO_MANY_ROWS then
+dbms_output.put_line('MULTIPLE ROWS EXCEPTION!!');	
+when OTHERS then
+dbms_output.put_line('MULTIPLE ROWS EXCEPTION!!');
+end;
+/
+	

@@ -1,0 +1,47 @@
+Q5_1.a
+
+[testuser6@pace sapnadubey]$ vi replace
+//Enter the below data in editor: 
+
+A network is a group of computers that can communicate with each other, share
+resources, and access remote hosts or other networks. Netware is a computer
+network operating system designed to connect, manage, and maintain a network and
+its services. Some of the network services are Netware Directory Services (NDS), file
+system, printing and security.
+
+//now replace Netware word with Novell Netware by the following command in command mode:
+
+:s/Netware/Novell Netware
+
+A network is a group of computers that can communicate with each other, share
+resources, and access remote hosts or other networks. Novell Netware is a computer
+network operating system designed to connect, manage, and maintain a network and
+its services. Some of the network services are Netware Directory Services (NDS), file
+system, printing and security.
+
+Q5_1.b
+
+a---->append text to the right of cursor and insert the given text
+
+A network is a group of computers that can communicate with each other, shared
+resources hard disks and printers, and access remote hosts or other networks. Novell netware is a computer
+network operating system designed to connect, manage, and maintain a network and
+its services. Some of the network services are Netware Directory Services (NDS), file
+system, printing and security.
+
+
+Q5_1.c
+
+A network is a group of computers that can communicate with each other, shared
+resources hard disks and printers, and access remote hosts or other networks. Novell netware is a computer
+network operating system designed to connect, manage, and maintain a network and
+its services. Some of the network services are Netware Directory Services (NDS), file
+system, printing and security.
+
+A----->append text at the end of line and insert the text at the end
+
+A network is a group of computers that can communicate with each other, shared
+resources hard disks and printers , and access remote hosts or other networks. Novell netware is a computer network operating system designed to connect, manage, and maintain a network and its
+rervices. Some of the network services are Netware Directory Services (NDS), file system, printing and security. Managing NDS is afundamental administrator role
+because NDS provides a single point for accessing and managing most network reso
+urces.

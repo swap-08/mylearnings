@@ -1,0 +1,17 @@
+<html>
+<body>
+<script>
+	name=prompt("Enter your full name ");
+	var arr=new Array();
+	arr=name.split(' ');
+	n=arr.length;
+		document.write("<br>First name is   "+arr[0]);
+		document.write("<br>Middle name is   ");
+		for(i=1;i<n-1;i++)
+		{
+			document.write(" "+arr[i]);
+		}
+		document.write("<br>Last name is   "+arr[1]);
+</script>
+</body>
+</html>

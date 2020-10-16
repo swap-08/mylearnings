@@ -1,0 +1,258 @@
+elements  : note to from heading
+Attribute : Category  
+
+
+
+<note>
+<to>Tove</to>
+<from>Jani</from>
+<heading>Reminder</heading>
+<body>Don't forget me this weekend!</body>
+</note>
+
+
+
+<master>
+<note >
+	<to>Tove</to>
+	<from>Jani</from>
+	<heading>Reminder</heading>
+	<body>Don't forget me this weekend!</body>
+</note>
+<note >
+	<to>Tove</to>
+	<from>Jani</from>
+	<heading>Reminder</heading>
+	<body>Don't forget me this weekend!</body>
+</note>
+</master>
+
+
+------------------------------------------------------
+
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<note>
+  <to>Tove</to>
+  <from>Jani</from>
+  <heading>Reminder</heading>
+  <body>Don't forget me this weekend!</body>
+</note>
+
+
+The first line is the XML declaration. It defines the XML version (1.0) and the encoding used (ISO-8859-1 = Latin-1/West European character set).
+
+
+
+root element 
+child elements 
+
+Form a Tree Structure
+<root>
+  <child>
+    <subchild>.....</subchild>
+  </child>
+</root>
+
+-------------------------------------------------------
+
+<bookstore>
+  <book category="COOKING">
+    <title lang="en">Everyday Italian</title>
+    <author>Giada De Laurentiis</author>
+    <year>2005</year>
+    <price>30.00</price>
+  </book>
+  <book category="CHILDREN">
+    <title lang="en">Harry Potter</title>
+    <author>J K. Rowling</author>
+    <year>2005</year>
+    <price>29.99</price>
+  </book>
+  <book category="WEB">
+    <title lang="en">Learning XML</title>
+    <author>Erik T. Ray</author>
+    <year>2003</year>
+    <price>39.95</price>
+  </book>
+</bookstore>
+
+element 
+attribute
+values
+text
+
+root child
+
+complex simple
+
+
+All XML Elements Must Have a Closing Tag
+<p>This is a paragraph.</p>
+<br />
+
+
+Case Sensitive
+<Message>This is incorrect</message>
+<message>This is correct</message>
+
+
+Properly Nested
+<b><i>This text is bold and italic</b></i>
+
+Must Have a Root Element
+<root>
+  <child>
+    <subchild>.....</subchild>
+  </child>
+</root>
+
+
+XML Attribute Values Must be Quoted
+
+<note date="12/11/2007">
+  <to>Tove</to>
+  <from>Jani</from>
+</note>
+-----------------------------------------------------------------------
+
+
+Entity References
+
+<message>if salary < 1000 then</message>
+<message>if salary &lt; 1000 then</message>
+
+
+&lt; < less than 
+&gt; > greater than 
+&amp; & ampersand  
+&apos; ' apostrophe 
+&quot; " quotation mark 
+
+
+
+Comments in XML
+<!-- This is a comment -->
+
+
+<person gender="female">
+<person gender='female'>
+
+<gangster name='George "Shotgun" Ziegler'>
+<gangster name="George &quot;Shotgun&quot; Ziegler">
+
+--------------------------------------------------------------------------------
+
+<note date="10/01/2008">
+  <to>Tove</to>
+  <from>Jani</from>
+  <heading>Reminder</heading>
+  <body>Don't forget me this weekend!</body>
+</note>
+
+<note>
+  <date>10/01/2008</date>
+  <to>Tove</to>
+  <from>Jani</from>
+  <heading>Reminder</heading>
+  <body>Don't forget me this weekend!</body>
+</note>
+
+
+<note>
+  <date>
+    <day>10</day>
+    <month>01</month>
+    <year>2008</year>
+  </date>
+  <to>Tove</to>
+  <from>Jani</from>
+  <heading>Reminder</heading>
+  <body>Don't forget me this weekend!</body>
+</note>
+
+
+<note day="10" month="01" year="2008"
+to="Tove" from="Jani" heading="Reminder"
+body="Don't forget me this weekend!">
+</note>
+
+------------------------------------------------------------------------------
+
+XML Attributes for Metadata
+
+<messages>
+  <note id="501">
+    <to>Tove</to>
+    <from>Jani</from>
+    <heading>Reminder</heading>
+    <body>Don't forget me this weekend!</body>
+  </note>
+  <note id="502">
+    <to>Jani</to>
+    <from>Tove</from>
+    <heading>Re: Reminder</heading>
+    <body>I will not</body>
+  </note>
+</messages>
+
+
+--------------------------------------------------------------------------------
+
+•XML documents must have a root element
+•XML elements must have a closing tag
+•XML tags are case sensitive
+•XML elements must be properly nested
+•XML attribute values must be quoted
+
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<note>
+<to>Tove</to>
+<from>Jani</from>
+<heading>Reminder</heading>
+<body>Don't forget me this weekend!</body>
+</note>
+
+-----------------------------------------------------------------------
+
+Valid XML Documents
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE note SYSTEM "Note.dtd">
+<note>
+	<to>Tove</to>
+	<from>Jani</from>
+	<heading>Reminder</heading>
+	<body>Don't forget me this weekend!</body>
+</note>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

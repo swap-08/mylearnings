@@ -1,0 +1,123 @@
+# 1. Consider the following scenario
+#    (1) HR.c is dependant on employee.h
+#    (2) FIN.c is dependant on employee.h
+#    (3) BONUS.c is dependant on employee.h
+#     Create makefile
+
+
+#creating header files employee.h manager.h salary.h budget.h Global.h
+
+[user15@DELL0708S-02VM7 moduletest]$ touch employee.h manager.h salary.h budget.h Global.h
+
+-------------------------------------------------------------------------------------------
+# HR.c
+
+[user15@DELL0708S-02VM7 moduletest]$ vi HR.c
+
+[user15@DELL0708S-02VM7 moduletest]$ cat HR.c
+#include "employee.h"
+#include "manager.h"
+#include<stdio.h>
+#define MAX 20
+void employee_hr()
+{
+
+     //variable declaration
+       char employee_name[MAX]; 
+       char manager_name[MAX];
+
+     //taking values from users
+       printf("Enter name of the Employee:\n");
+       scanf("%s",employee_name);
+       printf("Enter name of the Managee:\n");
+       scanf("%s",manager_name);
+}
+
+--------------------------------------------------------
+# FIN.c
+
+[user15@DELL0708S-02VM7 moduletest]$ vi FIN.c
+
+[user15@DELL0708S-02VM7 moduletest]$ cat FIN.c
+#include "salary.h"
+#include "budget.h"
+#include<stdio.h>
+#include<math.h>
+#define BONUS 0.5
+void salary_bonus()
+{
+
+    //variable declaration
+      float employee_salary;
+      float employee_bonus;
+      float budget;
+      float totalsalary;
+
+    //taking values from users
+      printf("\nEnter Salary of Employee:\n");
+      scanf("%f",&employee_salary);
+      printf("Enter the budget:\n");
+      scanf("%f",&budget);
+      printf("\nBonus of Employee:");
+
+     //calculating bonus 
+     employee_bonus=employee_salary*BONUS;
+     printf("%0.2f",employee_bonus);
+
+    //calculating total salary
+     totalsalary=employee_bonus+employee_salary;
+     printf("\nTotal salary:%0.2f\n",totalsalary);
+}
+
+--------------------------------------------------------------------
+# BONUS.c
+
+[user15@DELL0708S-02VM7 moduletest]$ vi BONUS.c
+
+[user15@DELL0708S-02VM7 moduletest]$ cat BONUS.c
+extern void employee_hr();
+extern void salary_bonus();
+int main()
+{
+   //calling functions
+    employee_hr();
+    salary_bonus();
+    return 0;
+}
+
+
+--------------------------------------------------------------------
+# makefile
+
+
+[user15@DELL0708S-02VM7 moduletest]$ vi makefile
+
+[user15@DELL0708S-02VM7 moduletest]$ make
+gcc -c BONUS.c
+gcc -c HR.c
+gcc -c FIN.c
+gcc -o myapp BONUS.o HR.o FIN.o
+
+#****edited BONUS.c file and then make****#
+
+[user15@DELL0708S-02VM7 moduletest]$ make
+gcc -c BONUS.c
+gcc -o myapp BONUS.o HR.o FIN.o
+
+----------------------------------------------------------------------
+output:
+
+[user15@DELL0708S-02VM7 moduletest]$ ./myapp
+Enter name of the Employee:
+swapnil
+Enter name of the Managee:
+aditya
+
+Enter Salary of Employee:
+20000
+Enter the budget:
+100000
+
+Bonus of Employee:10000.00
+Total salary: 30000.00
+

@@ -1,0 +1,691 @@
+SHELL SCRIPT
+
+
+1>
+
+[user15@DELL0708S-02VM7 swapnil]$ echo $PS1 $PS2
+[\u@\h \W]\$ >
+
+[user15@DELL0708S-02VM7 swapnil]$ PS1=temporarily
+temporarily
+
+-------------------------------------------------------------------------------------
+4>
+
+
+[user15@DELL0708S-02VM7 lab8]$ continent="Africa"
+
+[user15@DELL0708S-02VM7 lab8]$ echo "$continent"
+Africa
+
+[user15@DELL0708S-02VM7 lab8]$ continent="Asia"
+
+[user15@DELL0708S-02VM7 lab8]$ echo "$continent"
+Asia
+
+[user15@DELL0708S-02VM7 lab8]$ sh
+sh-3.00$ echo "$continent"
+Asia
+sh-3.00$ exit
+
+[user15@DELL0708S-02VM7 lab8]$ echo "$continent"
+Asia
+
+[user15@DELL0708S-02VM7 lab8]$ sh
+sh-3.00$ echo "$continent"
+Asia
+sh-3.00$ exit
+
+
+
+
+-------------------------------------------------------------------------------------
+5>
+
+
+
+[user15@DELL0708S-02VM7 lab8]$ continent="Africa"
+
+[user15@DELL0708S-02VM7 lab8]$ export continent
+
+[user15@DELL0708S-02VM7 lab8]$ echo "$continent"
+
+Africa
+
+[user15@DELL0708S-02VM7 lab8]$ sh
+sh-3.00$ echo "$continent"
+Africa
+sh-3.00$ continent="Asia"
+sh-3.00$ echo "$continent"
+Asia
+sh-3.00$ exit
+
+[user15@DELL0708S-02VM7 lab8]$ echo "$continent"
+Africa
+
+
+--------------------------------------------------------------------------------------
+7>
+
+[user15@DELL0708S-02VM7 lab8]$ vi lab8_7.sh
+echo "Enter file name"
+read name
+echo "File name is $name"
+cat $name
+
+
+output:
+
+[user15@DELL0708S-02VM7 lab8]$ sh lab8_7.sh
+Enter file name
+hello.sh
+File name is hello.sh
+echo "Good Morning"
+
+
+-------------------------------------------------------------------------------------
+8>
+
+echo "Entered file name is $1"
+if find $1
+then
+ls -l
+else
+echo "file not present"
+fi
+
+
+output:
+
+[user15@DELL0708S-02VM7 lab8]$ sh lab8_8.sh user.txt
+Entered file name is user.txt
+user.txt
+total 24
+-rw-rw-r--  1 user15 user15   20 Dec 23 12:22 hello.sh
+-rw-rw-r--  1 user15 user15    1 Dec 23 12:51 lab8_6
+-rw-rw-r--  1 user15 user15  179 Dec 23 13:01 lab8_6.sh
+-rw-rw-r--  1 user15 user15   69 Dec 23 12:44 lab8_7.sh
+-rw-rw-r--  1 user15 user15   85 Dec 23 13:10 lab8_8.sh
+-rw-rw-r--  1 user15 user15 1682 Dec 23 13:02 user.txt
+
+
+-------------------------------------------------------------------------------------
+9>
+
+echo "Number1:   $1 Number2:    $2 Number3:     $3"
+if test $1 -gt $2;
+then
+        if test $1 -gt $2;
+        then
+
+        echo "Greater Number : $1"
+        fi
+else
+        if test $2 -gt $3;
+        then
+
+        echo "Greater Number : $2"
+
+        else
+
+        echo "Greater Number : $3"
+        fi
+fi
+
+
+output:
+
+[user15@DELL0708S-02VM7 lab8]$ sh lab8_9.sh 10 30 25
+Number1:   10 Number2:    30 Number3:     25
+Greater Number : 30
+
+
+-------------------------------------------------------------------------------------
+
+10>
+
+echo "Enter pattern :"
+read pattern
+echo "Enter file name :"
+read filename
+
+echo "pattern :  $pattern"
+echo "Enter file name :  $filename"
+
+grep -i $pattern $filename && echo "content present in file"
+grep -i $pattern $filename || echo "content not present"
+
+output:
+
+[user15@DELL0708S-02VM7 lab8]$ sh lab8_10.sh
+Enter pattern :
+sss
+Enter file name :
+user.txt
+pattern :  sss
+Enter file name :  user.txt
+content not present
+
+[user15@DELL0708S-02VM7 lab8]$ sh lab8_10.sh
+Enter pattern :
+user15
+Enter file name :
+user.txt
+pattern :  user15
+Enter file name :  user.txt
+user15   pts/5        Dec 23 12:16 (10.216.53.57)
+content present in file
+user15   pts/5        Dec 23 12:16 (10.216.53.57)
+
+
+
+-------------------------------------------------------------------------------------
+
+11> without using while/until 
+
+
+echo "Select Option
+1>Create a file
+2>Create a directory
+3>Copying a file
+4>Move a file
+5>Exit"
+read choice
+
+case $choice in
+
+1) echo "Enter file name to be created"
+   read filename
+   cat $filename && echo "File already present press ctrl+d to exit"
+   echo "
+         Enter file content press ctrl+d to save and exit"
+        cat >$filename
+  ;;
+2)echo "Enter directory name to be created"
+   read directoryname
+   mkdir $directoryname && echo "Directory created successfully"
+   ;;
+3)echo "Enter filename to be copied"
+  read file
+  echo "Enter location to be copied"
+  read location
+  cp file location
+  ;;
+4)echo "Enter filename to be moved"
+  read file
+  echo "Enter directory location to be moved"
+  read location
+  cp $file $location
+  ;;
+5)exit;;
+esac
+
+
+
+output:
+
+[user15@DELL0708S-02VM7 lab8]$ sh lab8_11.sh
+Select Option
+1>Create a file
+2>Create a directory
+3>Copying a file
+4>Move a file
+5>Exit
+1
+
+Enter file name to be created
+yyy
+swapnilFile created successfulle
+
+-------------------------------------------------------------------------------------
+11> using while/until
+
+
+#start of script
+ans="y"
+until [$ans ="N" -o $ans = "n"]
+do
+echo "Select Option
+1>Create a file
+2>Create a directory
+3>Copying a file
+4>Move a file
+5>Exit"
+read choice
+
+case $choice in
+
+1) echo "Enter file name to be created"
+   read filename
+   find $filename >a
+   if test -f $filename;
+   then
+       echo "filename exist"
+   else
+      echo "file created.."
+      vi $filename
+   fi
+  ;;
+2)echo "Enter directory name to be created"
+   read directoryname
+   find $directoryname >d
+   if test -d $directoryname;
+        then
+        echo "Directory already present"
+   else
+        echo "Directory created.."
+        mkdir $directoryname
+   fi
+  ;;
+3)echo "Enter filename to be copied"
+  read file
+  echo "Enter location to be copied"
+  read location
+  cp $file $location
+  ;;
+4)echo "Enter filename to be moved"
+  read file
+  echo "Enter directory location to be moved"
+  read location
+  cp $file $location
+  ;;
+5)exit;;
+esac
+echo "Want to continue (Y/N) :"
+read ans
+
+done
+#end of script
+
+
+
+output:
+
+[user15@DELL0708S-02VM7 lab8]$ sh lab8_11.sh
+
+Select Option
+1>Create a file
+2>Create a directory
+3>Copying a file
+4>Move a file
+5>Exit
+2
+Enter directory name to be created
+ddr
+find: ddr: No such file or directory
+Directory created..
+Want to continue (Y/N) :
+y
+
+Select Option
+1>Create a file
+2>Create a directory
+3>Copying a file
+4>Move a file
+5>Exit
+5
+
+
+
+-------------------------------------------------------------------------------------
+
+12>
+
+
+yesno()
+{
+echo "$*"
+read ans
+if [ $ans -le "y" ]
+ retuen 0;
+else
+ return 1;
+fi
+}
+
+
+echo "Function Calling"
+if yesno "Enter answer y or n"
+then
+ echo "Returned 0"
+else
+ echo "Returned 1"
+fi
+
+-------------------------------------------------------------------------------------
+13>
+
+Method 1:
+
+echo "Enter number of names to be checked"
+read number
+for((i=0 ; i< $number ; i++))
+do
+        echo "Enter name of the employee"
+        read employee
+        array[i]=$employee
+done
+
+who >currentuser
+
+for((i=0 ; i < $number ; i++))
+do
+        echo "Enter name of the employee   : ${array[i]}"
+        if grep "${array[i]}" currentuser
+        then
+             echo "${array[i]} User is currently loggin"
+        else
+             echo "${array[i]} User is offline"
+        fi
+done
+
+
+
+Method 2:
+
+echo "Enter number of names to be checked"
+read number
+for((i=0 ; i< $number ; i++))
+do
+        echo "Enter name of the employee"
+        read employee
+        array[i]=$employee
+done
+
+who >currentuser
+for((i=0 ; i < $number ; i++))
+do
+        echo "Enter name of the employee   : ${array[i]}"
+        grep "${array[i]}" currentuser && echo "${array[i]} User is currently loggin"
+        grep "${array[i]}" currentuser || echo "${array[i]} User is offline"
+done
+
+
+
+[user15@DELL0708S-02VM7 lab8]$ sh lab8_13.sh
+Enter number of names to be checked
+2
+Enter name of the employee
+swa
+Enter name of the employee
+user15
+Enter name of the employee   : swa
+swa User is offline
+Enter name of the employee   : user15
+user15   pts/5        Dec 23 12:16 (10.216.53.57)
+user15   pts/16       Dec 24 10:44 (10.216.53.57)
+user15 User is currently loggin
+user15   pts/5        Dec 23 12:16 (10.216.53.57)
+user15   pts/16       Dec 24 10:44 (10.216.53.57)
+
+
+-------------------------------------------------------------------------------------
+14>
+
+
+echo "Enter First Name :"
+read firstname
+name[0]=$firstname
+echo "Enter Last Name :"
+read lastname
+name[1]=$lastname
+echo "${name[@]}  //Name of the employee"
+
+
+[user15@DELL0708S-02VM7 lab8]$ vi lab8_14.sh
+[user15@DELL0708S-02VM7 lab8]$ sh lab8_14.sh
+Enter First Name :
+swapnil
+Enter Last Name :
+kadam
+swapnil kadam  //Name of the employee
+
+-------------------------------------------------------------------------------------
+15>
+
+
+[user15@DELL0708S-02VM7 lab8]$ ls -l|cut -c34-58 > date
+[user15@DELL0708S-02VM7 lab8]$ cat date
+
+Dec 24 06:55 cpponunix
+Dec 27 06:55 date
+Dec 24 09:25 hello.c
+Dec 23 12:22 hello.sh
+Dec 24 07:33 lab8_10.sh
+Dec 24 12:16 lab8_11.sh
+Dec 24 11:36 lab8_12.sh
+Dec 24 12:00 lab8_13.sh
+Dec 24 12:08 lab8_14.sh
+Dec 24 12:44 lab8_15.sh
+Dec 23 13:01 lab8_6.sh
+Dec 23 12:44 lab8_7.sh
+Dec 23 13:10 lab8_8.sh
+Dec 24 05:47 lab8_9.sh
+Dec 24 09:40 pract.sh
+Dec 24 04:55 square
+Dec 24 04:54 square.c
+Dec 24 09:14 sss
+Dec 24 05:00 user
+Dec 23 13:02 user.txt
+
+[user15@DELL0708S-02VM7 lab8]$ vi lab8_15.sh
+cat date|grep `date "+ %d %T"` date
+
+
+output:
+
+[user15@DELL0708S-02VM7 lab8]$ sh lab8_15.sh
+grep: 07:10:10: No such file or directory
+date:Dec 27 06:55 date
+
+
+-------------------------------------------------------------------------------------
+16>
+
+
+[user15@DELL0708S-02VM7 lab8]$ grep -v "\^*\/$" ls_all
+
+
+[user15@DELL0708S-02VM7 lab8]$ vi lab8_16.sh
+ls -F > ls_all
+grep -v "\^*\/$" ls_all
+
+
+output:
+
+
+[user15@DELL0708S-02VM7 lab8]$ sh lab8_16.sh
+date
+hello.c
+hello.sh
+lab8_10.sh
+lab8_11.sh
+lab8_12.sh
+lab8_13.sh
+lab8_14.sh
+lab8_15.sh
+lab8_16.sh
+lab8_6.sh
+lab8_7.sh
+lab8_8.sh
+lab8_9.sh
+ls_all
+pract.sh
+square*
+square.c
+user*
+user.txt
+
+-------------------------------------------------------------------------------------
+17>
+
+
+[user15@DELL0708S-02VM7 lab8]$ vi lab8_17.sh
+echo "Enter path1 for searchin particular files"
+read path1
+echo "Enter path2 for searchin particular files"
+read path2
+path[0]=$path1;
+path[1]=$path2;
+echo "Entered path1 is :  ${path[0]}
+Entered path2 is :  ${path[1]}"
+
+cat ${path[0]} && echo "content displayed"
+
+cat ${path[1]} && echo "content displayed"
+
+output:
+
+[user15@DELL0708S-02VM7 lab8]$ sh lab8_17.sh
+Enter path1 for searchin particular files
+/home/user15/swapnil/friends
+
+Enter path2 for searchin particular files
+/home/user15/swapnil/temp
+
+Entered path1 is :  /home/user15/swapnil/friends
+Entered path2 is :  /home/user15/swapnil/temp
+Madhu   6966456 09/07/68
+Jamil   2345215 08/09/67
+Ajay    5546785 01/04/66
+Mano    7820022 09/07/68
+David   8281292 09/09/60
+Simmi   7864563 12/12/70
+content displayed
+09/07/68
+08/09/67
+01/04/66
+09/07/68
+09/09/60
+12/12/70
+content displayed
+
+-------------------------------------------------------------------------------------
+
+18>
+
+[user15@DELL0708S-02VM7 lab8]$ vi lab8_18.sh
+ps u|tail -3|cut -c9-13,60-75
+
+output:
+
+[user15@DELL0708S-02VM7 lab8]$ sh lab8_18.sh
+ 3009:00 ps u
+ 3009:00 tail -3
+ 3009:00 cut -c9-13,6
+-------------------------------------------------------------------------------------
+
+19>
+
+
+[user15@DELL0708S-02VM7 lab8]$ vi lab8_19.sh
+echo "Destination file name : $1
+Source file1 name : $2
+Source file2 name : $3"
+
+cat <$2>>$1
+cat <$3>>$1
+
+echo "Files appended successfully"
+echo "Content of file.."
+cat $1
+
+output:
+
+[user15@DELL0708S-02VM7 lab8]$ sh lab8_19.sh destination date square.c
+Destination file name : destination
+Source file1 name : date
+Source file2 name : square.c
+Files appended successfully
+Content of file..
+
+Dec 24 06:55 cpponunix
+Dec 27 06:55 date
+Dec 24 09:25 hello.c
+Dec 23 12:22 hello.sh
+Dec 24 07:33 lab8_10.sh
+Dec 24 12:16 lab8_11.sh
+Dec 24 11:36 lab8_12.sh
+Dec 24 12:00 lab8_13.sh
+Dec 24 12:08 lab8_14.sh
+Dec 24 12:44 lab8_15.sh
+Dec 23 13:01 lab8_6.sh
+Dec 23 12:44 lab8_7.sh
+Dec 23 13:10 lab8_8.sh
+Dec 24 05:47 lab8_9.sh
+Dec 24 09:40 pract.sh
+Dec 24 04:55 square
+Dec 24 04:54 square.c
+Dec 24 09:14 sss
+Dec 24 05:00 user
+Dec 23 13:02 user.txt
+#include<stdio.h>
+int main(void)
+{
+int a=4;
+printf("Square of %d is %d/n",a,a*a);
+return 0;
+}
+
+------------------------------------------------------------------------
+STRETCHED ASSIGNMENT:
+
+20>
+
+ans="y"
+until [$ans ="N" -o $ans = "n"]
+do
+echo "Select Option
+1>Display Calendar of current month
+2>Search for pattern in all the files/subdirectories
+3>Count number of directories/sub directories in current directory
+4>Exit"
+read choice
+
+case $choice in
+
+1) echo "Calendar of current month :"
+   cal
+  ;;
+2)echo "Enter pattern to be search"
+   read pattern
+  echo "pattern is :$pattern"
+  grep -i "$pattern" `find *`
+  ;;
+3)echo "Number of directories are :"
+find *|grep "\^*\/*/"|cut -d"/" -f1|uniq|wc -l
+#find *|grep "\^*\/"|cut -d"/" -f1|uniq -d|wc -l
+  ;;
+4)exit
+  ;;
+*) echo "Invalid condition"
+esac
+echo "Want to continue (Y/N) :"
+read ans
+
+done
+
+
+output:
+
+
+Select Option
+1>Display Calendar of current month
+2>Search for pattern in all the files/subdirectories
+3>Count number of directories/sub directories in current directory
+4>Exit
+2
+Enter pattern to be search
+swapnil
+pattern is :swapnil
+sss/copy.txt:swapnil
+Want to continue (Y/N) :
+n
+
+Select Option
+1>Display Calendar of current month
+2>Search for pattern in all the files/subdirectories
+3>Count number of directories/sub directories in current directory
+4>Exit
+4
+

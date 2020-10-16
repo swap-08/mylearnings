@@ -1,0 +1,15 @@
+<HTML>
+<HEAD>
+<TITLE> History & Location  Object </TITLE>
+<script language="Javascript">
+function checkurl(){
+history.go(url.value)
+}
+</script>
+</HEAD>
+<BODY onload="alert('You have loaded the page '+location.href)">
+Enter url : <INPUT TYPE="text" NAME="url">
+<INPUT TYPE="button" value="check in history" onclick="checkurl()">
+<INPUT TYPE="button" value="go next in history" onclick="history.forward()">
+</BODY>
+</HTML>

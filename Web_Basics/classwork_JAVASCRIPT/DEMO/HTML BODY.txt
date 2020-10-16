@@ -1,0 +1,31 @@
+<html>
+<head>
+<body>
+<script type="text/javascript">
+function validate()
+{
+	var name=frm.uname.value;
+	var age=frm.age.value;
+	if(name.length==0){
+	alert("name is mandatory...");
+	return false;
+	}
+	if(age.length==0){
+	alert("age is mandatory...");
+	return false;
+	}
+return true;
+}
+
+</script>
+</head>
+<body>
+<form name="frm" action="first.html" onsubmit="return validate()">
+enter name
+<input type="text" name="uname" size="20"/><br>
+enter password
+<input type="text" name="age" size="20"/><br>
+<input type="submit" value="submit" onclick="check()"/><br>
+</form>
+</body>
+</html>

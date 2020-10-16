@@ -1,0 +1,15 @@
+<html>
+<h1>Browser information</h1>
+<script>
+document.write("<br>"+location.href)
+document.write("<br>"+unescape(location.href))
+function newdoc(){
+window.location.assign("http://ispace.igate.com");
+}
+</script>
+<body>
+<form>
+<input type="button" value="onLoad" onclick="newdoc()">
+</form>
+</body>
+</html>

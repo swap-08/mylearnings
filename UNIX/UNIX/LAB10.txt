@@ -1,0 +1,119 @@
+UNDERSTANDING MAKEFILE AND MAKE UTILITY
+STEPS:
+CREATE MAKE FILE
+
+-> pi.o:   pi.c
+        gcc -c pi.c		#object file generated
+   hello.o:        hello.c
+        gcc -c hello.c		#object file generated 
+   hello:  hello.o pi.o
+        gcc -lm -o hello hello.o pi.o	#linking
+
+-> make hello
+
+->./hello
+---------------------------------------------------------------------------------------------
+
+[user15@DELL0708S-02VM7 lab9]$ cp pi.c hello.c /home/user15/swapnil/lab10
+
+[user15@DELL0708S-02VM7 lab9]$ cd ..
+
+[user15@DELL0708S-02VM7 swapnil]$ cd lab10
+
+[user15@DELL0708S-02VM7 lab10]$ ls
+hello.c  pi.c
+
+1>
+
+[user15@DELL0708S-02VM7 lab10]$ vi makefile
+
+[user15@DELL0708S-02VM7 lab10]$ cat makefile
+pi.o:   pi.c
+        gcc -c pi.c
+hello.o:        hello.c
+        gcc -c hello.c
+hello:  hello.o pi.o
+        gcc -lm -o hello hello.o pi.o
+
+[user15@DELL0708S-02VM7 lab10]$ make hello
+gcc -c hello.c
+gcc -c pi.c
+gcc -lm -o hello hello.o pi.o
+
+[user15@DELL0708S-02VM7 lab10]$ ./hello
+pi = 3.14159
+
+
+
+-------------------------------------------------------------------------------
+10.2<TODO>
+
+
+hellocpp.cpp
+------------
+
+[user15@DELL0708S-02VM7 10_2todo]$ vi hellocpp.cpp
+#include<iostream.h>
+#include"picpp.cpp"
+using namespace std;
+int main()
+{
+        cout<<"hello main";
+        mypi();
+return 0;
+}
+
+picpp.cpp
+---------
+
+[user15@DELL0708S-02VM7 10_2todo]$ vi picpp.cpp
+void mypi()
+{
+cout<<"hello mypi cpp";
+}
+
+makefile1
+---------
+
+[user15@DELL0708S-02VM7 10_2todo]$ vi makefile1
+picpp.o:        picpp.cpp
+        g++ -c picpp.cpp				#object file generated
+hellocpp.o:     hellocpp.cpp
+        g++ -c hellocpp.cpp				#object file generated
+hellocpp:       hellocpp.o picpp.o		
+        g++ -lm -o hellocpp hellocpp.o picpp.o		#linking
+	
+
+[user15@DELL0708S-02VM7 10_2todo]$ make hellocpp
+
+
+[user15@DELL0708S-02VM7 10_2todo]$ ./hellocpp
+hello main hello mypi cpp
+
+# total number of files..
+
+[user15@DELL0708S-02VM7 10_2todo]$ ls
+hellocpp  hellocpp.cpp  makefile1  picpp.cpp
+
+
+
+*----- note: without using makefile (./a.out) -----*
+----------------------------------------------------
+
+[user15@DELL0708S-02VM7 10_2todo]$ g++ hellocpp.cpp
+
+[user15@DELL0708S-02VM7 10_2todo]$ ./a.out
+hellohello mypi cpp
+
+[user15@DELL0708S-02VM7 10_2todo]$ ls
+a.out  hellocpp  hellocpp.cpp  makefile1  picpp.cpp
+
+
+
+*------ note: without using makefile(-o demmo ->  ./demo) ----------*
+---------------------------------------------------------------------
+
+[user15@DELL0708S-02VM7 10_2todo]$ g++ -o demo hellocpp.cpp
+
+[user15@DELL0708S-02VM7 10_2todo]$ ./demo
+hellohello mypi cpp

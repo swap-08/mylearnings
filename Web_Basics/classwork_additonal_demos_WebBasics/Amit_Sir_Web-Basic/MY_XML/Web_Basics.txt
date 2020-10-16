@@ -1,0 +1,66 @@
+<script type="text/javascript">
+
+eval("x=10;y=20;document.write(x*y)");
+document.write("<br />" + eval("2+2"));
+document.write("<br />" + eval(x+17));
+
+</script> 
+
+200
+4
+27 
+
+
+
+
+<script type="text/javascript">
+
+document.write(parseInt("10") + "<br />");
+document.write(parseInt("10.33") + "<br />");
+document.write(parseInt("34 45 66") + "<br />");
+document.write(parseInt(" 60 ") + "<br />");
+document.write(parseInt("40 years") + "<br />");
+document.write(parseInt("He was 40") + "<br />");
+
+document.write("<br />");
+document.write(parseInt("10",10)+ "<br />");
+document.write(parseInt("010")+ "<br />");
+document.write(parseInt("10",8)+ "<br />");
+document.write(parseInt("0x10")+ "<br />");
+document.write(parseInt("10",16)+ "<br />");
+
+</script> 
+
+10
+10
+34
+60
+40
+NaN
+
+10
+8
+8
+16
+16
+
+
+<html>
+<body>
+
+<script type="text/javascript">
+window.defaultStatus="This is the default text in the status bar!!"
+</script>
+
+</body>
+</html>
+
+Status bar with msg :his is the default text in the status bar!!
+
+For Lab6 : Give example of W3School
+
+chapter 5 and 6
+
+A2087860P
+
+ 

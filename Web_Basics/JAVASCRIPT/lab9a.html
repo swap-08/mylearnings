@@ -1,0 +1,41 @@
+<html>
+<script language="javascript" type="text/javascript">
+function demomatchclick()
+{
+    var re=new RegExp(frm1.regexp.value,"g");
+    var teststring=frm1.str.value;
+    count=0;
+    while(match=re.exec(teststring))
+    {
+	count++;
+    }
+    if(count==0)
+    {
+   	alert("Match not found");
+    }
+     else
+   	alert("Successful Match");
+
+}
+function demoshowmatchclick()
+{
+    var re=new RegExp(frm1.regexp.value,"g");
+    var teststring=frm1.str.value;
+    count=0;
+    while(match=re.exec(teststring))
+    {
+	alert("Match Found at position :"+RegExp.lastMatch+" at "+match.index+"test");
+    }
+}
+</script>
+<body>
+<form name="frm1">
+    Regexp:
+    <input name="regexp" style="width: 307px" type="text" /><br />
+    Subject string:
+    <input name="str" style="width: 307px" type="text" /><br />
+    <input style="width: 83px" type="button" value="Test match" onclick="demomatchclick()" />
+    <input style="width: 83px" type="button" value="Show Match" onclick="demoshowmatchclick()"/><br />
+</form>
+</body>
+</html>

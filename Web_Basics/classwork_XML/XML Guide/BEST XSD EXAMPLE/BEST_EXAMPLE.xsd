@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+
+
+<xs:element name="fname" type="xs:string"/>
+<xs:element name="lname" type="xs:string"/>
+<xs:element name="salary" type="xs:decimal" />
+<xs:element name="dept" type="xs:string" />
+<xs:element name="phone" type="xs:integer"/>
+<xs:attribute name="empno" type="xs:integer" />
+<xs:element name="mobile" type="xs:integer"/>
+<xs:element name="landline" type="xs:integer"/>
+
+
+
+
+<xs:element name="comm">
+<xs:simpleType>
+<xs:restriction base="xs:decimal">
+<xs:minInclusive value="500"></xs:minInclusive>
+<xs:maxInclusive value="5000"></xs:maxInclusive>
+<xs:fractionDigits value="2"></xs:fractionDigits>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+
+<xs:element name="DOJ">
+<xs:simpleType >
+<xs:restriction base="xs:string">
+<xs:length value="10"/>
+<xs:pattern value="[0-9]{1,2}-[0-9]{1,2}-[0-9]{1,4}"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+
+<xs:element name="name">
+<xs:complexType>
+<xs:sequence>
+<xs:element ref="fname"/>
+<xs:element ref="lname"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+
+
+<xs:element name="emp">
+<xs:complexType>
+<xs:sequence>
+<xs:element ref="name"/>
+<xs:element ref="salary" />
+<xs:element ref="dept"  />
+<xs:element ref="phone" />
+<xs:element ref="comm"/>
+<xs:element ref="DOJ"/>
+</xs:sequence>
+<xs:attribute ref="empno" use="required" />
+</xs:complexType>
+</xs:element>
+
+
+<xs:element name="emplist">
+<xs:complexType>
+<xs:sequence>
+<xs:element ref="emp" minOccurs="1" maxOccurs="unbounded" />
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+
+</xs:schema>

@@ -1,0 +1,998 @@
+declare
+
+NUM1 Number;
+NUM2 Number;
+NUM3 Number;
+
+BEGIN
+NUM1:=20;
+NUM2:=0;
+NUM3:=NUM1/NUM2;
+DBMS_OUTPUT.PUT_LINE('HIII'||' '||NUM3);
+END;
+/
+
+		//error
+
+
+declare
+
+NUM1 Number;
+NUM2 Number;
+NUM3 Number;
+
+BEGIN
+NUM1:=20;
+NUM2:=10;
+NUM3:=NUM1/NUM2;
+DBMS_OUTPUT.PUT_LINE('HIII'||' '||NUM3);
+
+EXCEPTION
+WHEN ZERO_DIVIDE THEN
+DBMS_OUTPUT.PUT_LINE('PLEASE ENTER VALID DENOMINATOR');
+END;
+/
+
+
+SQL> declare
+  2  
+  3  NUM1 Number;
+  4  NUM2 Number;
+  5  NUM3 Number;
+  6  
+  7  BEGIN
+  8  NUM1:=20;
+  9  NUM2:=0;
+ 10  NUM3:=NUM1/NUM2;
+ 11  DBMS_OUTPUT.PUT_LINE('HIII'||' '||NUM3);
+ 12  
+ 13  EXCEPTION
+ 14  WHEN ZERO_DIVIDE THEN
+ 15  DBMS_OUTPUT.PUT_LINE('PLEASE ENTER VALID DENOMINATOR');
+ 16  END;
+ 17  /
+PLEASE ENTER VALID DENOMINATOR
+
+PL/SQL procedure successfully completed.
+
+
+
+
+declare
+
+NUM1 Number;
+NUM2 Number;
+NUM3 Number;
+dno Number;
+dnm varchar2(200);
+dloc varchar2(200);
+BEGIN
+NUM1:=20;
+NUM2:=10;
+NUM3:=NUM1/NUM2;
+DBMS_OUTPUT.PUT_LINE('HIII'||' '||NUM3);
+	select deptno,dname,loc into dno,dnm,dloc from dept where deptno<40;
+	dbms_output.put_line(dno);
+EXCEPTION
+WHEN ZERO_DIVIDE THEN
+DBMS_OUTPUT.PUT_LINE('PLEASE ENTER VALID DENOMINATOR');
+END;
+/
+
+*
+ERROR at line 1:
+ORA-01422: exact fetch returns more than requested number of rows
+ORA-06512: at line 14
+
+
+
+declare
+
+NUM1 Number;
+NUM2 Number;
+NUM3 Number;
+dno Number;
+dnm varchar2(200);
+dloc varchar2(200);
+BEGIN
+NUM1:=20;
+NUM2:=10;
+NUM3:=NUM1/NUM2;
+DBMS_OUTPUT.PUT_LINE('HIII'||' '||NUM3);
+	select deptno,dname,loc into dno,dnm,dloc from dept where deptno<40;
+	dbms_output.put_line(dno);
+EXCEPTION
+WHEN ZERO_DIVIDE THEN
+DBMS_OUTPUT.PUT_LINE('PLEASE ENTER VALID DENOMINATOR');
+WHEN TOO_MANY_ROWS THEN
+DBMS_OUTPUT.PUT_LINE('too many rows');
+END;
+/
+
+SQL> declare
+  2  
+  3  NUM1 Number;
+  4  NUM2 Number;
+  5  NUM3 Number;
+  6  dno Number;
+  7  dnm varchar2(200);
+  8  dloc varchar2(200);
+  9  BEGIN
+ 10  NUM1:=20;
+ 11  NUM2:=10;
+ 12  NUM3:=NUM1/NUM2;
+ 13  DBMS_OUTPUT.PUT_LINE('HIII'||' '||NUM3);
+ 14   select deptno,dname,loc into dno,dnm,dloc from dept where deptno<40;
+ 15   dbms_output.put_line(dno);
+ 16  EXCEPTION
+ 17  WHEN ZERO_DIVIDE THEN
+ 18  DBMS_OUTPUT.PUT_LINE('PLEASE ENTER VALID DENOMINATOR');
+ 19  WHEN TOO_MANY_ROWS THEN
+ 20  DBMS_OUTPUT.PUT_LINE('too many rows');
+ 21  END;
+ 22  /
+HIII 2
+too many rows
+
+PL/SQL procedure successfully completed.
+
+
+
+
+declare
+
+NUM1 Number;
+NUM2 Number;
+NUM3 Number;
+dno Number;
+dnm varchar2(200);
+dloc varchar2(200);
+BEGIN
+NUM1:=20;
+NUM2:=10;
+NUM3:=NUM1/NUM2;
+DBMS_OUTPUT.PUT_LINE('HIII'||' '||NUM3);
+	select deptno,dname,loc into dno,dnm,dloc from dept where deptno>40;
+	dbms_output.put_line(dno);
+EXCEPTION
+WHEN OTHERS THEN
+DBMS_OUTPUT.PUT_LINE('EXCEPTION IN CODE');
+WHEN TOO_MANY_ROWS THEN
+DBMS_OUTPUT.PUT_LINE('too many rows');
+WHEN ZERO_DIVIDE THEN
+DBMS_OUTPUT.PUT_LINE('PLEASE ENTER VALID DENOMINATOR');
+
+END;
+/							///////////ERROR 
+
+
+
+
+
+declare
+
+NUM1 Number;
+NUM2 Number;
+NUM3 Number;
+dno Number;
+dnm varchar2(200);
+dloc varchar2(200);
+BEGIN
+NUM1:=20;
+NUM2:=10;
+NUM3:=NUM1/NUM2;
+	DBMS_OUTPUT.PUT_LINE('HIII'||' '||NUM3);
+	select deptno,dname,loc into dno,dnm,dloc from dept where deptno>40;
+	dbms_output.put_line(dno);
+EXCEPTION
+
+WHEN TOO_MANY_ROWS THEN
+DBMS_OUTPUT.PUT_LINE('too many rows');
+WHEN ZERO_DIVIDE THEN
+DBMS_OUTPUT.PUT_LINE('PLEASE ENTER VALID DENOMINATOR');
+WHEN OTHERS THEN
+DBMS_OUTPUT.PUT_LINE('EXCEPTION IN CODE');
+END;
+/
+
+
+
+******************
+SQLCODE...SQLERRM
+******************
+
+
+
+
+declare
+
+NUM1 Number;
+NUM2 Number;
+NUM3 Number;
+dno Number;
+dnm varchar2(200);
+dloc varchar2(200);
+BEGIN
+NUM1:=20;
+NUM2:=10;
+NUM3:=NUM1/NUM2;
+DBMS_OUTPUT.PUT_LINE('HIII'||' '||NUM3);
+	select deptno,dname,loc into dno,dnm,dloc from dept where deptno>40;
+	dbms_output.put_line(dno);
+EXCEPTION
+
+WHEN TOO_MANY_ROWS THEN
+DBMS_OUTPUT.PUT_LINE('too many rows');
+WHEN ZERO_DIVIDE THEN
+DBMS_OUTPUT.PUT_LINE('PLEASE ENTER VALID DENOMINATOR');
+WHEN OTHERS THEN
+DBMS_OUTPUT.PUT_LINE('EXCEPTION IN CODE'||SQLCODE||SQLERRM);
+END;
+/
+
+
+
+SQL> declare
+  2  
+  3  NUM1 Number;
+  4  NUM2 Number;
+  5  NUM3 Number;
+  6  dno Number;
+  7  dnm varchar2(200);
+  8  dloc varchar2(200);
+  9  BEGIN
+ 10  NUM1:=20;
+ 11  NUM2:=10;
+ 12  NUM3:=NUM1/NUM2;
+ 13  DBMS_OUTPUT.PUT_LINE('HIII'||' '||NUM3);
+ 14   select deptno,dname,loc into dno,dnm,dloc from dept where deptno>40;
+ 15   dbms_output.put_line(dno);
+ 16  EXCEPTION
+ 17  
+ 18  WHEN TOO_MANY_ROWS THEN
+ 19  DBMS_OUTPUT.PUT_LINE('too many rows');
+ 20  WHEN ZERO_DIVIDE THEN
+ 21  DBMS_OUTPUT.PUT_LINE('PLEASE ENTER VALID DENOMINATOR');
+ 22  WHEN OTHERS THEN
+ 23  DBMS_OUTPUT.PUT_LINE('EXCEPTION IN CODE'||SQLCODE||SQLERRM);
+ 24  END;
+ 25  /
+HIII 2
+EXCEPTION IN CODE100ORA-01403: no data found
+
+PL/SQL procedure successfully completed.
+
+
+
+declare
+
+NUM1 Number;
+NUM2 Number;
+NUM3 Number;
+dno Number;
+dnm varchar2(200);
+dloc varchar2(200);
+BEGIN
+NUM1:=20;
+NUM2:=0;
+NUM3:=NUM1/NUM2;
+DBMS_OUTPUT.PUT_LINE('HIII'||' '||NUM3);
+	select deptno,dname,loc into dno,dnm,dloc from dept where deptno>40;
+	dbms_output.put_line(dno);
+EXCEPTION
+
+WHEN TOO_MANY_ROWS THEN
+DBMS_OUTPUT.PUT_LINE('too many rows');
+WHEN ZERO_DIVIDE THEN
+DBMS_OUTPUT.PUT_LINE('PLEASE ENTER VALID DENOMINATOR'||SQLCODE||SQLERRM);
+WHEN OTHERS THEN
+DBMS_OUTPUT.PUT_LINE('EXCEPTION IN CODE'||SQLCODE||SQLERRM);
+END;
+/
+
+**********
+ERROR MSG:
+*********
+
+PLEASE ENTER VALID DENOMINATOR-1476ORA-01476: divisor is equal to zero
+
+PL/SQL procedure successfully completed.
+
+
+
+
+
+***************************************
+user defined exception
+**************************************
+
+
+DECLARE
+	ezero EXCEPTION;
+	NUM3 Number;
+BEGIN
+	NUM3:=10;
+	SELECT COUNT(*) INTO NUM3 FROM EMP WHERE deptno=223;
+	if NUM3=0 then
+		RAISE ezero;
+	end if;
+		DBMS_OUTPUT.PUT_LINE(NUM3);
+EXCEPTION
+
+WHEN ezero THEN
+	DBMS_OUTPUT.PUT_LINE(SQLCODE||SQLERRM);
+END;
+/
+
+
+SQL> DECLARE
+  2   ezero EXCEPTION;
+  3   NUM3 Number;
+  4  BEGIN
+  5   NUM3:=10;
+  6   SELECT COUNT(*) INTO NUM3 FROM EMP WHERE deptno=223;
+  7   if NUM3=0 then
+  8    RAISE ezero;
+  9   end if;
+ 10    DBMS_OUTPUT.PUT_LINE(NUM3);
+ 11  EXCEPTION
+ 12  
+ 13  WHEN ezero THEN
+ 14   DBMS_OUTPUT.PUT_LINE(SQLCODE||SQLERRM);
+ 15  END;
+ 16  /
+1User-Defined Exception
+
+PL/SQL procedure successfully completed.
+
+******************************************
+
+
+
+DECLARE
+	ezero EXCEPTION;
+	NUM3 Number;
+	PRAGMA EXCEPTION_INIT(ezero,-20011);
+BEGIN
+	NUM3:=10;
+	SELECT COUNT(*) INTO NUM3 FROM EMP WHERE deptno=223;
+	if NUM3=0 then
+		RAISE_APPLICATION_ERROR(-20011,'APPLICATION RAISED ERROR');
+	end if;
+		DBMS_OUTPUT.PUT_LINE(NUM3);
+EXCEPTION
+
+	WHEN ezero THEN
+	DBMS_OUTPUT.PUT_LINE(SQLCODE||SQLERRM);
+	WHEN OTHERS THEN
+	DBMS_OUTPUT.PUT_LINE(SQLCODE||SQLERRM);
+END;
+/
+
+SQL> DECLARE
+  2   ezero EXCEPTION;
+  3   NUM3 Number;
+  4   PRAGMA EXCEPTION_INIT(ezero,-20011);
+  5  BEGIN
+  6   NUM3:=10;
+  7   SELECT COUNT(*) INTO NUM3 FROM EMP WHERE deptno=223;
+  8   if NUM3=0 then
+  9    RAISE_APPLICATION_ERROR(-20011,'APPLICATION RAISED ERROR');
+ 10   end if;
+ 11    DBMS_OUTPUT.PUT_LINE(NUM3);
+ 12  EXCEPTION
+ 13  
+ 14   WHEN ezero THEN
+ 15   DBMS_OUTPUT.PUT_LINE(SQLCODE||SQLERRM);
+ 16   WHEN OTHERS THEN
+ 17   DBMS_OUTPUT.PUT_LINE(SQLCODE||SQLERRM);
+ 18  END;
+ 19  /
+-20011ORA-20011: APPLICATION RAISED ERROR
+
+PL/SQL procedure successfully completed.
+
+
+
+DECLARE
+	ezero EXCEPTION;
+	NUM3 Number;
+	PRAGMA EXCEPTION_INIT(ezero,-20011);
+BEGIN
+	NUM3:=10;
+	SELECT COUNT(*) INTO NUM3 FROM EMP WHERE deptno=223;
+	if NUM3=0 then
+		RAISE_APPLICATION_ERROR(-20011,'APPLICATION RAISED ERROR');
+	end if;
+		DBMS_OUTPUT.PUT_LINE(NUM3);
+EXCEPTION
+	WHEN ezero THEN
+	DBMS_OUTPUT.PUT_LINE(SQLCODE||SQLERRM);
+	WHEN OTHERS THEN
+	DBMS_OUTPUT.PUT_LINE(SQLCODE||SQLERRM);
+END;
+/
+
+
+
+
+***************************
+DDL ERRORS
+***************************
+
+BEGIN
+CREATE table swap as select * from emp; 
+END;		//error cannot create
+
+
+BEGIN
+execute immediate 'CREATE table swap as select ename from emp';
+END;
+
+
+USE EXECUTE IMMEDIATE FOR DDL;
+******************************
+
+using variables..
+
+
+DECLARE
+	stmt VARCHAR2(200);
+	dnumber NUMBER(2);
+BEGIN
+	stmt:='select deptno from dept where deptno=30';
+	execute immediate stmt into dnumber;
+	dbms_output.put_line('result'||dnumber);
+end;
+/
+
+
+**************
+DECLARE
+	depnam VARCHAR2(20):='testing';
+	l_loc varcgar2(10):='dubai';
+BEGIN
+	execute immediate 'insert into dept values(:1,:2,:3) using 50,depname,l_loc;
+commit;
+end;
+/	error
+
+
+
+********************
+ANANOMOUS BLOCK....NO NAME JST ADDING AND EXITING
+
+declare
+
+NUM1 Number;
+NUM2 Number;
+NUM3 Number;
+dno Number;
+
+BEGIN
+NUM1:=10;
+NUM2:=20;
+NUM3:=NUM1+NUM2;
+
+DBMS_OUTPUT.PUT_LINE('addition'||NUM1||'AND'||NUM2||'IS'||NUM3);
+
+END;
+/
+
+***********
+PROCEDURE CREATION 
+
+
+
+CREATE OR REPLACE PROCEDURE FIRST_PROCEDURE
+AS
+NUM1 Number;
+NUM2 Number;
+NUM3 Number;
+dno Number;
+
+BEGIN
+NUM1:=10;
+NUM2:=20;
+NUM3:=NUM1+NUM2;
+
+DBMS_OUTPUT.PUT_LINE('addition'||NUM1||'AND'||NUM2||'IS'||NUM3);
+
+END;
+/
+
+
+**********
+EXECUTION
+**********
+2 WAYS...
+
+
+1)
+
+EXECUTE FIRST_PROCEDURE;
+
+
+SQL> EXECUTE FIRST_PROCEDURE;
+addition10AND20IS30
+
+PL/SQL procedure successfully completed.
+
+
+2)
+
+
+BEGIN
+FIRST_PROCEDURE;
+END;
+/
+
+SQL> BEGIN
+  2  FIRST_PROCEDURE;
+  3  END;
+  4  /
+addition10AND20IS30
+
+
+******************
+
+PARAMETERISED CPROCEDURE
+
+
+CREATE PROCEDURE FIRST_PROCEDURE(NUM1 Number)
+AS
+--NUM1 Number;
+NUM2 Number;
+NUM3 Number;
+dno Number;
+
+BEGIN
+--NUM1:=10;
+NUM2:=20;
+NUM3:=NUM1+NUM2;
+
+DBMS_OUTPUT.PUT_LINE('addition'||NUM1||'AND'||NUM2||'IS'||NUM3);
+
+END;
+/
+
+
+
+BEGIN
+FIRST_PROCEDURE(10);
+END;
+/
+
+
+
+DROP PROC IS NOT POSSIBLE;;
+***************************
+WITHOUT DROPING PROCEDURE
+
+
+CREATE OR REPLACE PROCEDURE FIRST_PROCEDURE(NUM1 Number)
+AS
+--NUM1 Number;
+NUM2 Number;
+NUM3 Number;
+dno Number;
+
+BEGIN
+--NUM1:=40;
+NUM2:=20;
+NUM3:=NUM1+NUM2;
+DBMS_OUTPUT.PUT_LINE('addition'||NUM1||'AND'||NUM2||'IS'||NUM3);
+END;
+/
+
+
+
+
+BEGIN
+FIRST_PROCEDURE(10);
+END;
+/
+
+
+DECLARE
+	TEMPNUM NUMBER(3);
+BEGIN
+TEMPNUM:=50;
+FIRST_PROCEDURE(TEMPNUM);
+DBMS_OUTPUT.PUT_LINE('addition IS'||TEMPNUM);
+END;
+/		//ERROR
+
+
+
+
+
+
+
+
+CREATE OR REPLACE PROCEDURE FIRST_PROCEDURE(NUM1 IN Number)
+AS
+--NUM1 Number;
+NUM2 Number;
+NUM3 Number;
+dno Number;
+
+BEGIN
+--NUM1:=40;
+NUM2:=20;
+NUM3:=NUM1+NUM2;
+DBMS_OUTPUT.PUT_LINE('addition'||NUM1||'AND'||NUM2||'IS'||NUM3);
+END;
+/
+
+
+
+
+
+
+***
+OUT
+***
+
+
+CREATE OR REPLACE PROCEDURE FIRST_PROCEDURE(NUM1 OUT Number)
+AS
+--NUM1 Number;
+NUM2 Number;
+NUM3 Number;
+dno Number;
+
+BEGIN
+NUM1:=40;
+NUM2:=20;
+NUM3:=NUM1+NUM2;
+DBMS_OUTPUT.PUT_LINE('addition'||NUM1||'AND'||NUM2||'IS'||NUM3);
+END;
+/
+
+
+
+DECLARE
+	TEMPNUM NUMBER(3);
+BEGIN
+TEMPNUM:=50;
+FIRST_PROCEDURE(TEMPNUM);
+DBMS_OUTPUT.PUT_LINE('TEMPNUM IS'||TEMPNUM);
+END;
+/
+
+
+
+
+
+
+
+
+CREATE OR REPLACE PROCEDURE FIRST_PROCEDURE(NUM1 IN OUT Number)
+AS
+--NUM1 Number;
+NUM2 Number;
+NUM3 Number;
+dno Number;
+
+BEGIN
+DBMS_OUTPUT.PUT_LINE('NUM1'||NUM1);
+--NUM1:=40;
+NUM2:=20;
+NUM3:=NUM1+NUM2;
+DBMS_OUTPUT.PUT_LINE('addition OF '||NUM1||'AND'||NUM2||'IS'||NUM3);
+END;
+/
+
+
+DECLARE
+	TEMPNUM NUMBER(3);
+BEGIN
+TEMPNUM:=50;
+FIRST_PROCEDURE(TEMPNUM);
+DBMS_OUTPUT.PUT_LINE('TEMPNUM IS'||TEMPNUM);
+END;
+/
+
+<<OUT OPERATION IS PERFORMED>>
+
+
+SQL> DECLARE
+  2   TEMPNUM NUMBER(3);
+  3  BEGIN
+  4  TEMPNUM:=50;
+  5  FIRST_PROCEDURE(TEMPNUM);
+  6  DBMS_OUTPUT.PUT_LINE('TEMPNUM IS'||TEMPNUM);
+  7  END;
+  8  /
+NUM150
+addition OF 40AND20IS60
+TEMPNUM IS40
+
+****************
+
+CREATE OR REPLACE PROCEDURE FIRST_PROCEDURE(NUM1 IN OUT Number)
+AS
+--NUM1 Number;
+NUM2 Number;
+NUM3 Number;
+dno Number;
+
+BEGIN
+DBMS_OUTPUT.PUT_LINE('NUM1'||NUM1);
+--NUM1:=40;
+NUM2:=20;
+NUM3:=NUM1+NUM2;
+DBMS_OUTPUT.PUT_LINE('addition OF '||NUM1||'AND'||NUM2||'IS'||NUM3);
+END;
+/
+
+
+
+
+
+****
+OUTPUT IS PERFORMED
+****************
+DECLARE
+	TEMPNUM NUMBER(3);
+BEGIN
+TEMPNUM:=50;
+FIRST_PROCEDURE(TEMPNUM);
+DBMS_OUTPUT.PUT_LINE('TEMPNUM IS'||TEMPNUM);
+END;
+/
+
+
+SQL> CREATE OR REPLACE PROCEDURE FIRST_PROCEDURE(NUM1 IN OUT Number)
+  2  AS
+  3  --NUM1 Number;
+  4  NUM2 Number;
+  5  NUM3 Number;
+  6  dno Number;
+  7  
+  8  BEGIN
+  9  DBMS_OUTPUT.PUT_LINE('NUM1'||NUM1);
+ 10  --NUM1:=40;
+ 11  NUM2:=20;
+ 12  NUM3:=NUM1+NUM2;
+ 13  DBMS_OUTPUT.PUT_LINE('addition OF '||NUM1||'AND'||NUM2||'IS'||NUM3);
+ 14  END;
+ 15  /
+
+Procedure created.
+
+SQL> DECLARE
+  2   TEMPNUM NUMBER(3);
+  3  BEGIN
+  4  TEMPNUM:=50;
+  5  FIRST_PROCEDURE(TEMPNUM);
+  6  DBMS_OUTPUT.PUT_LINE('TEMPNUM IS'||TEMPNUM);
+  7  END;
+  8  /
+NUM150
+addition OF 50AND20IS70
+TEMPNUM IS50
+
+PL/SQL procedure successfully completed.
+
+
+
+**********************************************
+
+function....
+
+
+
+CREATE OR REPLACE FUNCTION FIRST_FUNC(NUM1 IN OUT Number)
+RETURN NUMBER
+AS
+--NUM1 Number;
+NUM2 Number;
+NUM3 Number;
+dno Number;
+
+BEGIN
+DBMS_OUTPUT.PUT_LINE('NUM1'||NUM1);
+--NUM1:=40;
+NUM2:=20;
+NUM3:=NUM1+NUM2;
+DBMS_OUTPUT.PUT_LINE('addition OF '||NUM1||'AND'||NUM2||'IS'||NUM3);
+return num3;
+END;
+/
+
+
+DECLARE
+	TEMPNUM NUMBER(3);
+	NUM	NUMBER(3);
+BEGIN
+TEMPNUM:=30;
+NUM=FIRST_FUNC(TEMPNUM);
+DBMS_OUTPUT.PUT_LINE('ADDITION IS'||NUM);
+END;
+/
+
+*******************
+
+PACKAGE
+
+
+--PACKAGE CREATION
+
+CREATE OR REPLACE PACKAGE FIRST_pkg
+AS
+PROCEDURE FIRST_PROCEDURE(NUM1 IN OUT Number);
+FUNCTION FIRST_FUNC(NUM1 IN OUT Number) RETURN NUMBER;
+END FIRST_pkg;
+/
+
+
+
+
+*******************************************************************
+
+SQL> CREATE OR REPLACE PACKAGE FIRST_pkg
+  2  AS
+  3  PROCEDURE FIRST_PROCEDURE(NUM1 IN OUT Number);
+  4  FUNCTION FIRST_FUNC(NUM1 IN OUT Number) RETURN NUMBER;
+  5  END FIRST_pkg;
+  6  /
+
+Package created.
+
+
+
+
+--PACKAGE BODY CREATION
+
+CREATE OR REPLACE PACKAGE BODY FIRST_pkg AS
+
+--PROCEDURE
+
+PROCEDURE FIRST_PROCEDURE(NUM1 IN OUT Number)
+AS
+--NUM1 Number;
+NUM2 Number;
+NUM3 Number;
+
+BEGIN
+DBMS_OUTPUT.PUT_LINE('NUM1'||NUM1);
+--NUM1:=40;
+NUM2:=20;
+NUM3:=NUM1+NUM2;
+DBMS_OUTPUT.PUT_LINE('addition OF '||NUM1||'AND'||NUM2||'IS'||NUM3);
+END FIRST_PROCEDURE;
+
+--FUNCTION
+
+FUNCTION FIRST_FUNC(NUM1 IN OUT Number)
+RETURN NUMBER
+AS
+--NUM1 Number;
+NUM2 Number;
+NUM3 Number;
+dno Number;
+
+BEGIN
+DBMS_OUTPUT.PUT_LINE('NUM1'||NUM1);
+--NUM1:=40;
+NUM2:=20;
+NUM3:=NUM1+NUM2;
+DBMS_OUTPUT.PUT_LINE('addition OF '||NUM1||'AND'||NUM2||'IS'||NUM3);
+return num3;
+END FIRST_FUNC;
+END FIRST_pkg;
+/
+
+
+
+
+
+
+
+
+
+
+
+
+PRIVATE PROCEDURE SAY_HELLO....
+
+
+
+
+
+--***PACKAGE CREATION
+
+
+CREATE OR REPLACE PACKAGE FIRST_pkg
+AS
+PROCEDURE FIRST_PROCEDURE(NUM1 IN OUT Number,NUM2 IN OUT Number);
+FUNCTION FIRST_FUNC(NUM1 IN OUT Number) RETURN NUMBER;
+END FIRST_pkg;
+/
+
+
+--PACKAGE BODY CREATION
+
+CREATE OR REPLACE PACKAGE BODY FIRST_pkg AS
+
+--PRIVATE PACKAGE SAY_HELLO
+
+PROCEDURE SAY_HELLO
+AS
+BEGIN
+DBMS_OUTPUT.PUT_LINE('HELLO');
+END SAY_HELLO;
+
+--PROCEDURE
+
+PROCEDURE FIRST_PROCEDURE(NUM1 IN OUT Number,NUM2 IN OUT Number)
+AS
+
+--NUM1 Number;
+--NUM2 Number;
+NUM3 Number;
+
+BEGIN
+DBMS_OUTPUT.PUT_LINE('NUM1'||NUM1);
+--NUM1:=40;
+--NUM2:=20;
+NUM3:=NUM1+NUM2;
+DBMS_OUTPUT.PUT_LINE('addition OF '||NUM1||'AND'||NUM2||'IS'||NUM3);
+END FIRST_PROCEDURE;
+
+--FUNCTION
+
+FUNCTION FIRST_FUNC(NUM1 IN OUT Number)
+RETURN NUMBER
+AS
+--NUM1 Number;
+NUM2 Number;
+NUM3 Number;
+dno Number;
+
+BEGIN
+DBMS_OUTPUT.PUT_LINE('NUM1'||NUM1);
+--NUM1:=40;
+NUM2:=20;
+NUM3:=NUM1+NUM2;
+DBMS_OUTPUT.PUT_LINE('addition OF '||NUM1||'AND'||NUM2||'IS'||NUM3);
+return num3;
+END FIRST_FUNC;
+END FIRST_pkg;
+/
+
+
+
+
+
+
+
+
+*****************************
+AUTONOMOUS_TRANSACTION
+
+
+
+
+
+
+CREATE OR REPLACE PROCEDURE LOG_USAGE(EMPNO_IN IN NUMBER,MSG_IN IN VARCHAR2)
+IS
+PRAGMA AUTONOMOUS_TRANSACTION;
+BEGIN
+	INSERT INTO DEPT2 VALUES(10,'ERP','NAGPUR');
+	COMMIT;
+END LOG_USAGE;
+
+CREATE PROCEDURE CHG_EMP
+IS
+BEGIN
+	UPDATE EMP SET SAL=SAL+250 WHERE EMPNO=7566;
+	LOG_USAGE(7566,20);
+
+	UPDATE EMP SET SAL=SAL+100 WHERE EMPNO=7499;
+	ROLLBACK;
+END CHG_EMP;
+/

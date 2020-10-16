@@ -1,0 +1,1141 @@
+JOINS AND SUBQUERIES
+
+
+SELECT
+	s.staff_name,
+	s.dept_code,
+	d.dept_name,
+	s.staff_sal
+FROM	staff_masters s,department_masters d
+WHERE	s.dept_code=d.dept_code;
+
+
+
+
+SQL> SELECT
+  2   s.staff_name,
+  3   s.dept_code,
+  4   d.dept_name,
+  5   s.staff_sal
+  6  FROM staff_masters s,department_masters d
+  7  WHERE s.dept_code=d.dept_code;
+
+STAFF_NAME                                          DEPT_CODE DEPT_NAME                                           STAFF_SAL
+-------------------------------------------------- ---------- --------------------------------------
+Arvind                                                     30 Electronics                                             17000
+Mohan                                                      10 Computer Science                                        24000
+Anil                                                       20 Electricals                                             50000
+John                                                       10 Computer Science                                        32000
+Allen                                                      30 Electronics                                            100000
+Smith                                                      20 Electricals                                             92000
+Raviraj                                                    40 Mechanics                                               18000
+Rahul                                                      20 Electricals                                             52000
+RAM                                                        30 Electronics                                             32000
+asah                                                       10 Computer Science                                         3000
+
+10 rows selected.
+
+
+***********************************************************************************************************************
+query2
+
+
+SELECT
+	s.staff_code AS "#STAF",
+	s.mgr_code AS "#MGR",
+	m.staff_name AS "MGR",
+	s.staff_name AS "STAFF",
+	d.dept_name
+FROM	staff_masters s,staff_masters m,department_masters d
+WHERE	s.staff_code IN (
+SELECT	s.staff_code 
+FROM	staff_masters s,staff_masters m
+WHERE s.staff_code!=m.mgr_code)
+AND s.dept_code=d.dept_code and s.mgr_code=m.staff_code;
+
+
+
+
+SQL> SELECT
+  2   s.staff_code AS "#STAF",
+  3   s.mgr_code AS "#MGR",
+  4   m.staff_name AS "MGR",
+  5   s.staff_name AS "STAFF",
+  6   d.dept_name
+  7  FROM staff_masters s,staff_masters m,department_masters d
+  8  WHERE s.staff_code IN (
+  9  SELECT s.staff_code 
+ 10  FROM staff_masters s,staff_masters m
+ 11  WHERE s.staff_code!=m.mgr_code)
+ 12  AND s.dept_code=d.dept_code and s.mgr_code=m.staff_code;
+
+     #STAF       #MGR MGR                                                STAFF                                              DEPT_NAME
+---------- ---------- -------------------------------------------------- ---------------------------
+    100001     100006 Allen                                              Arvind                                             Electronics
+    100003     100006 Allen                                              Mohan                                              Computer Science
+    100004     100006 Allen                                              Anil                                               Electricals
+    100005     100007 Smith                                              John                                               Computer Science
+    100006     100005 John                                               Allen                                              Electronics
+    100007     100005 John                                               Smith                                              Electricals
+    100008     100006 Allen                                              Raviraj                                            Mechanics
+    100009     100006 Allen                                              Rahul                                              Electricals
+    100010     100007 Smith                                              RAM                                                Electronics
+
+9 rows selected.
+
+
+
+***************************************************
+query3
+
+
+SELECT 
+	s.student_code,	
+	s.student_name,
+	d.dept_name,
+	m.subject1,
+	m.subject2,
+	m.subject3
+FROM	student_masters s,department_masters d,student_marks m
+WHERE	s.student_code=m.student_code
+AND	s.dept_code=d.dept_code
+AND	s.dept_code in(20,30)
+AND	m.subject1>60 and m.subject2>60 and m.subject3>60;
+	
+SQL> SELECT 
+  2   s.student_code, 
+  3   s.student_name,
+  4   d.dept_name,
+  5   m.subject1,
+  6   m.subject2,
+  7   m.subject3
+  8  FROM student_masters s,department_masters d,student_marks m
+  9  WHERE s.student_code=m.student_code
+ 10  AND s.dept_code=d.dept_code
+ 11  AND s.dept_code in(20,30)
+ 12  AND m.subject1>60 and m.subject2>60 and m.subject3>60;
+
+STUDENT_CODE STUDENT_NAME                                       DEPT_NAME                                            SUBJECT1   SUBJECT2   SUBJECT3
+------------ -------------------------------------------------- ------------------------------------
+        1004 Raj                                                Electronics                                                65         64         90
+        1021 Sumit                                              Electricals                                                78         79         78
+        1007 Mehul                                              Electricals                                                68         78         74
+        1012 Rajesh                                             Electronics                                                78         79         78
+        1013 Anil                                               Electricals                                                66         74         88
+        1004 Raj                                                Electronics                                                65         64         90
+        1021 Sumit                                              Electricals                                                78         79         78
+        1007 Mehul                                              Electricals                                                68         78         74
+        1012 Rajesh                                             Electronics                                                78         79         78
+        1013 Anil                                               Electricals                                                66         74         88
+
+10 rows selected.
+
+************************************************************************
+
+QUERY4
+
+
+SELECT
+	s.student_name,
+	s.student_code,
+	m.book_name,
+	m.book_code
+FROM	student_masters s,book_transactions b,book_masters m
+WHERE	
+	s.student_code=b.student_code
+AND	m.book_code=b.book_code
+AND	b.book_expected_return_date=sysdate;
+
+
+
+
+
+
+INSERT INTO book_transactions (student_code,book_issue_date,book_expected_return_date,book_code)
+values(1012,'01-AUG-13','13-NOV-13',10000009);
+
+
+
+
+SQL> SELECT
+  2   s.student_name,
+  3   s.student_code,
+  4   m.book_name,
+  5   m.book_code
+  6  FROM student_masters s,book_transactions b,book_masters m
+  7  WHERE 
+  8   s.student_code=b.student_code
+  9  AND m.book_code=b.book_code
+ 10  AND b.book_expected_return_date=sysdate;
+
+
+***************************************************************************************
+QUERY5
+
+SELECT	
+	T.STAFF_CODE,
+	S.STAFF_NAME,
+	D.DEPT_NAME,
+	N.DESIGN_NAME,
+	B.BOOK_CODE,
+	B.BOOK_NAME,
+	T.BOOK_ISSUE_DATE
+FROM
+	STAFF_MASTERS S,
+	DEPARTMENT_MASTERS D,
+	DESIGNATION_MASTERS N,
+	BOOK_MASTERS B,
+	BOOK_TRANSACTIONS T
+WHERE	
+	S.DEPT_CODE=D.DEPT_CODE
+AND	S.DESIGN_CODE=N.DESIGN_CODE
+AND	S.STAFF_CODE=T.STAFF_CODE
+AND	B.BOOK_CODE=T.BOOK_CODE
+AND	(trunc(sysdate)-T.book_issue_date)<30;
+
+
+update book_transactions
+set book_issue_date='24-oct-13' where book_code=10000004;
+
+update book_transactions
+set book_issue_date='01-NOV-13' where STUDENT_code=1009;
+
+
+SELECT trunc(sysdate)-book_issue_date FROM BOOK_TRANSACTIONS;
+
+************************************************************************************
+QUERY6
+
+SELECT	DISTINCT
+	T.BOOK_CODE,
+	B.BOOK_NAME
+FROM	BOOK_TRANSACTIONS T,BOOK_MASTERS B
+WHERE	B.BOOK_CODE=T.BOOK_CODE;	
+
+SQL> SELECT DISTINCT
+  2   T.BOOK_CODE,
+  3   B.BOOK_NAME
+  4  FROM BOOK_TRANSACTIONS T,BOOK_MASTERS B
+  5  WHERE B.BOOK_CODE=T.BOOK_CODE;
+
+ BOOK_CODE BOOK_NAME
+---------- --------------------------------------------------
+  10000004 J2EE Complete Reference
+  10000005 Relational DBMS
+  10000006 Let Us C
+  10000007 Intoduction To Algorithams
+  10000008 Computer Networks
+  10000009 Introduction to O/S
+
+6 rows selected.
+
+****************************************
+QUERY7
+
+
+SELECT	
+	S.STAFF_CODE,
+	S.STAFF_NAME,
+	D.DEPT_NAME,
+	N.DESIGN_NAME
+FROM
+	STAFF_MASTERS S,
+	DEPARTMENT_MASTERS D,
+	DESIGNATION_MASTERS N
+WHERE	
+	S.DEPT_CODE=D.DEPT_CODE
+AND	S.DESIGN_CODE=N.DESIGN_CODE
+AND	Design_NAME IN (
+SELECT Design_NAME FROM DEsignation_MASTERS WHERE NOT DESIGN_NAME='HOD');
+
+SQL> SELECT 
+  2   S.STAFF_CODE,
+  3   S.STAFF_NAME,
+  4   D.DEPT_NAME,
+  5   N.DESIGN_NAME
+  6  FROM
+  7   STAFF_MASTERS S,
+  8   DEPARTMENT_MASTERS D,
+  9   DESIGNATION_MASTERS N
+ 10  WHERE 
+ 11   S.DEPT_CODE=D.DEPT_CODE
+ 12  AND S.DESIGN_CODE=N.DESIGN_CODE
+ 13  AND Design_NAME IN (
+ 14  SELECT Design_NAME FROM DEsignation_MASTERS WHERE NOT DESIGN_NAME='HOD');
+
+STAFF_CODE STAFF_NAME                                         DEPT_NAME                                          DESIGN_NAME
+---------- -------------------------------------------------- --------------------------------------
+    100001 Arvind                                             Electronics                                        Professor
+    100003 Mohan                                              Computer Science                                   Professor
+    100004 Anil                                               Electricals                                        Professor
+    100005 John                                               Computer Science                                   Director
+    100006 Allen                                              Electronics                                        Reader
+    100007 Smith                                              Electricals                                        Reader
+    100008 Raviraj                                            Mechanics                                          Professor
+    100009 Rahul                                              Electricals                                        Professor
+    100010 RAM                                                Electronics                                        Reader
+
+9 rows selected.
+
+
+*****************************************************************************
+QUERY8
+
+
+SELECT	
+	S.STUDENT_CODE,
+	S.STUDENT_NAME,	
+	D.DEPT_NAME,
+	M.SUBJECT1+M.SUBJECT2+M.SUBJECT3 AS "TOTAL"
+FROM
+	STUDENT_MASTERS S,
+	DEPARTMENT_MASTERS D,
+	STUDENT_MARKS M,
+	DESIGNATION_MASTERS L,
+	STAFF_MASTERS G
+WHERE
+	G.DEPT_CODE=S.DEPT_CODE	
+AND	S.DEPT_CODE=D.DEPT_CODE
+AND	S.STUDENT_CODE=M.STUDENT_CODE
+AND	G.DESIGN_CODE=L.DESIGN_CODE
+AND	G.DESIGN_CODE IN (
+SELECT DESIGN_CODE FROM DESIGNATION_MASTERS WHERE DESIGN_NAME='HOD')
+ORDER BY TOTAL;
+
+
+
+
+update STAFF_MASTERS
+set STAFF_NAME='HOD',DESIGN_CODE=101 where STAFF_NAME='HOD';
+
+
+SQL> SELECT 
+  2   S.STUDENT_CODE,
+  3   S.STUDENT_NAME, 
+  4   D.DEPT_NAME,
+  5   M.SUBJECT1+M.SUBJECT2+M.SUBJECT3 AS "TOTAL"
+  6  FROM
+  7   STUDENT_MASTERS S,
+  8   DEPARTMENT_MASTERS D,
+  9   STUDENT_MARKS M,
+ 10   DESIGNATION_MASTERS L,
+ 11   STAFF_MASTERS G
+ 12  WHERE
+ 13   G.DEPT_CODE=S.DEPT_CODE 
+ 14  AND S.DEPT_CODE=D.DEPT_CODE
+ 15  AND S.STUDENT_CODE=M.STUDENT_CODE
+ 16  AND G.DESIGN_CODE=L.DESIGN_CODE
+ 17  AND G.DESIGN_CODE IN (
+ 18  SELECT DESIGN_CODE FROM DESIGNATION_MASTERS WHERE DESIGN_NAME='HOD')
+ 19  ORDER BY TOTAL;
+
+STUDENT_CODE STUDENT_NAME                                       DEPT_NAME                                               TOTAL
+------------ -------------------------------------------------- ------------------------------------
+        1017 Ramesh                                             Electronics                                               165
+        1017 Ramesh                                             Electronics                                               165
+        1009 Vijay                                              Electronics                                               188
+        1009 Vijay                                              Electronics                                               188
+        1012 Rajesh                                             Electronics                                               189
+        1012 Rajesh                                             Electronics                                               189
+        1017 Ramesh                                             Electronics                                               195
+        1017 Ramesh                                             Electronics                                               195
+        1004 Raj                                                Electronics                                               198
+        1004 Raj                                                Electronics                                               198
+        1009 Vijay                                              Electronics                                               199
+        1009 Vijay                                              Electronics                                               199
+        1004 Raj                                                Electronics                                               219
+        1004 Raj                                                Electronics                                               219
+        1012 Rajesh                                             Electronics                                               235
+        1012 Rajesh                                             Electronics                                               235
+
+16 rows selected.
+
+
+**************************************************************
+QUERY9
+
+
+
+SELECT	
+	SM.STAFF_CODE,
+	SM.STAFF_NAME,	
+	DM.DESIGN_NAME,
+	DPM.DEPT_NAME,
+	BT.BOOK_CODE,
+	BM.BOOK_NAME,
+	(BT.BOOK_EXPECTED_RETURN_DATE-BT.BOOK_ACTUAL_RETURN_DATE)*5 AS FINE
+FROM
+	STAFF_MASTERS SM,
+	DEPARTMENT_MASTERS DPM,
+	DESIGNATION_MASTERS DM,
+	BOOK_MASTERS BM,
+	BOOK_TRANSACTIONS BT
+WHERE
+	SM.DESIGN_CODE=DM.DESIGN_CODE	
+AND	SM.DEPT_CODE=DPM.DEPT_CODE
+AND	BM.BOOK_CODE=BT.BOOK_CODE
+AND	SM.STAFF_CODE=BT.STAFF_CODE
+AND	BOOK_EXPECTED_RETURN_DATE>BOOK_ACTUAL_RETURN_DATE;
+
+
+
+SELECT TRUNC(CURRENT_DATE) FROM DUAL;
+
+SQL> SELECT 
+  2   SM.STAFF_CODE,
+  3   SM.STAFF_NAME, 
+  4   DM.DESIGN_NAME,
+  5   DPM.DEPT_NAME,
+  6   BT.BOOK_CODE,
+  7   BM.BOOK_NAME,
+  8   (BT.BOOK_EXPECTED_RETURN_DATE-BT.BOOK_ACTUAL_RETURN_DATE)*5 AS FINE
+  9  FROM
+ 10   STAFF_MASTERS SM,
+ 11   DEPARTMENT_MASTERS DPM,
+ 12   DESIGNATION_MASTERS DM,
+ 13   BOOK_MASTERS BM,
+ 14   BOOK_TRANSACTIONS BT
+ 15  WHERE
+ 16   SM.DESIGN_CODE=DM.DESIGN_CODE 
+ 17  AND SM.DEPT_CODE=DPM.DEPT_CODE
+ 18  AND BM.BOOK_CODE=BT.BOOK_CODE
+ 19  AND SM.STAFF_CODE=BT.STAFF_CODE
+ 20  AND BOOK_EXPECTED_RETURN_DATE>BOOK_ACTUAL_RETURN_DATE;
+
+STAFF_CODE STAFF_NAME
+---------- --------------------------------------------------
+DESIGN_NAME
+--------------------------------------------------
+DEPT_NAME                                           BOOK_CODE
+-------------------------------------------------- ----------
+BOOK_NAME                                                FINE
+-------------------------------------------------- ----------
+    100006 Allen
+Reader
+Electronics                                          10000008
+Computer Networks                                          10
+
+    100007 Smith
+Reader
+Electricals                                          10000007
+Intoduction To Algorithams                                  5
+
+    100006 Allen
+Reader
+Electronics                                          10000007
+Intoduction To Algorithams                                  5
+
+********************************************************************
+QUERY10
+
+
+SELECT
+	SM.STAFF_CODE,
+	SM.STAFF_NAME,
+	SM.STAFF_SAL
+FROM	STAFF_MASTERS SM
+WHERE
+	SM.STAFF_SAL <(
+	SELECT AVG(STAFF_SAL)FROM STAFF_MASTERS);
+
+
+
+
+
+
+SELECT STAFF_SAL
+FROM STAFF_MASTERS
+WHERE STAFF_SAL<AVG(STAFF_SAL);
+
+SQL> SELECT AVG(STAFF_SAL)
+  2  FROM STAFF_MASTERS;
+
+AVG(STAFF_SAL)
+--------------
+         38500
+
+
+
+
+SQL> SELECT
+  2   SM.STAFF_CODE,
+  3   SM.STAFF_NAME,
+  4   SM.STAFF_SAL
+  5  FROM STAFF_MASTERS SM
+  6  WHERE
+  7   SM.STAFF_SAL <(
+  8   SELECT AVG(STAFF_SAL)FROM STAFF_MASTERS);
+
+STAFF_CODE STAFF_NAME                                          STAFF_SAL
+---------- -------------------------------------------------- ----------
+      9998 asah                                                     3000
+    100001 Arvind                                                  17000
+    100008 Raviraj                                                 18000
+      1001 asha                                                    20000
+      1010 varun                                                   22000
+    100003 Mohan                                                   24000
+    100005 John                                                    32000
+    100010 RAM                                                     32000
+
+8 rows selected.
+
+*********************************************************************************
+query11
+
+SELECT
+	STAFF_CODE,
+	STAFF_NAME
+FROM	STAFF_MASTERS
+WHERE STAFF_CODE IN(
+SELECT	staff_code
+FROM	staff_masters
+MINUS
+SELECT	mgr_code
+FROM	staff_masters
+);
+
+
+SQL> SELECT
+  2   STAFF_CODE,
+  3   STAFF_NAME
+  4  FROM STAFF_MASTERS
+  5  WHERE STAFF_CODE IN(
+  6  SELECT staff_code
+  7  FROM staff_masters
+  8  MINUS
+  9  SELECT mgr_code
+ 10  FROM staff_masters
+ 11  );
+
+STAFF_CODE STAFF_NAME
+---------- --------------------------------------
+      1001 asha
+      1010 varun
+      9998 asah
+    100001 Arvind
+    100003 Mohan
+    100004 Anil
+    100008 Raviraj
+    100009 Rahul
+    100010 RAM
+
+9 rows selected.
+
+
+
+
+
+*******************************************************************************
+QUERY12
+
+
+ BOOK_CODE BOOK_NAME                                          BOOK_PUB_YEAR BOOK_PUB_AUTHOR
+---------- -------------------------------------------------- ------------- ------------------------
+  10000001 Let Us C++                                                  2000  Yashavant Kanetkar
+  10000002 Mastersing VC++                                             2005 P.J Allen
+  10000003 JAVA Complete Reference                                     2004 H.Schild
+  10000004 J2EE Complete Reference                                     2000 H. Schild
+  10000005 Relational DBMS                                             2000 B.C. Desai
+  10000006 Let Us C                                                    2000 Yashavant Kanetkar
+  10000007 Intoduction To Algorithams                                  2001 Cormen
+  10000008 Computer Networks                                           2000 Tanenbaum
+  10000009 Introduction to O/S                                         2001 Millan
+
+9 rows selected.
+
+
+
+SELECT DISTINCT
+	BOOK_PUB_AUTHOR,
+	BOOK_NAME
+FROM	BOOK_MASTERS
+WHERE	BOOK_PUB_AUTHOR
+IN
+(
+SELECT 
+A.BOOK_PUB_AUTHOR
+FROM	BOOK_MASTERS A,BOOK_MASTERS B
+WHERE	A.BOOK_CODE!=B.BOOK_CODE AND A.BOOK_PUB_AUTHOR=B.BOOK_PUB_AUTHOR
+);
+
+
+UPDATE BOOK_MASTERS SET BOOK_PUB_AUTHOR='Yashavant Kanetkar' WHERE BOOK_PUB_AUTHOR=' Yashavant Kanetkar';
+
+UPDATE BOOK_MASTERS SET BOOK_PUB_AUTHOR='H.Schild' WHERE BOOK_PUB_AUTHOR='H. Schild';
+SQL> SELECT DISTINCT
+  2   BOOK_PUB_AUTHOR,
+  3   BOOK_NAME
+  4  FROM BOOK_MASTERS
+  5  WHERE BOOK_PUB_AUTHOR
+  6  IN
+  7  (
+  8  SELECT 
+  9  A.BOOK_PUB_AUTHOR
+ 10  FROM BOOK_MASTERS A,BOOK_MASTERS B
+ 11  WHERE A.BOOK_CODE!=B.BOOK_CODE AND A.BOOK_PUB_AUTHOR=B.BOOK_PUB_AUTHOR
+ 12  );
+
+BOOK_PUB_AUTHOR                                    BOOK_NAME
+-------------------------------------------------- ----------------------------
+H.Schild                                           J2EE Complete Reference
+H.Schild                                           JAVA Complete Reference
+Yashavant Kanetkar                                 Let Us C
+Yashavant Kanetkar                                 Let Us C++
+
+
+
+****************************************************
+QUERY13
+
+
+SQL> select * from book_transactions;
+
+ BOOK_CODE STUDENT_CODE STAFF_CODE BOOK_ISSU BOOK_EXPE BOOK_ACTU
+---------- ------------ ---------- --------- --------- ---------
+  10000006         1012            02-FEB-11 30-MAY-13 06-JUN-13
+  10000008                  100006 10-MAR-11 17-MAR-11 15-MAR-11
+  10000009                  100010 01-APR-11 08-APR-11 10-APR-11
+  10000004         1015            12-FEB-11 19-FEB-11
+  10000005                  100007 14-MAR-11 21-MAR-11 21-MAR-11
+  10000007                  100007 01-APR-11 07-APR-11 06-APR-11
+  10000007                  100006 01-APR-10 07-APR-10 06-APR-10
+  10000005         1009            31-MAY-11 08-JUN-11 08-JUN-11
+
+8 rows selected.
+
+SQL> select * from staff_masters;
+
+STAFF_CODE STAFF_NAME                                         DESIGN_CODE  DEPT_CODE STAFF_DOB HIREDATE    MGR_CODE  STAFF_SAL STA
+---------- -------------------------------------------------- ----------- ---------- --------- -----
+    100001 Arvind                                                     102         30 15-JAN-80 15-JAN-03     100006      17000 Bangalore
+    100003 Mohan                                                      102         10 23-MAR-80 19-JAN-02     100006      24000 Mumbai
+    100004 Anil                                                       102         20 22-APR-77 11-MAR-01     100006      50000 Hyderabad
+    100005 John                                                       106         10 22-MAY-76 21-JAN-01     100007      32000 Bangalore
+    100006 Allen                                                      103         30 22-JAN-80 23-APR-01     100005     100000 Chennai
+    100007 Smith                                                      103         20 19-JUL-73 12-MAR-02     100005      92000 Mumbai
+    100008 Raviraj                                                    102         40 17-JUN-80 11-JAN-03     100006      18000 Bangalore
+    100009 Rahul                                                      102         20 16-JAN-78 11-DEC-03     100006      52000 Hyderabad
+    100010 RAM                                                        103         30 17-JAN-79 17-JAN-02     100007      32000 Bangalore
+      9998 asah                                                                   10                                      3000
+      1001 asha                                                                                                          20000
+      1010 varun                                                                                                         22000
+
+12 rows selected.
+
+
+SELECT	DISTINCT
+	SM.STAFF_CODE,
+	SM.STAFF_NAME,
+	DM.DEPT_NAME
+FROM	STAFF_MASTERS SM,
+	DEPARTMENT_MASTERS DM,
+	BOOK_TRANSACTIONS BT
+WHERE	SM.DEPT_CODE=DM.DEPT_CODE
+AND	SM.STAFF_CODE=BT.STAFF_CODE
+AND	SM.STAFF_CODE IN
+(
+SELECT	SM.STAFF_CODE
+FROM	BOOK_TRANSACTIONS BT,STAFF_MASTERS SM
+WHERE	SM.STAFF_CODE=BT.STAFF_CODE
+AND	BT.BOOK_CODE IN
+(
+SELECT	A.BOOK_CODE
+FROM	BOOK_TRANSACTIONS A,BOOK_TRANSACTIONS B
+WHERE	A.BOOK_CODE!=B.BOOK_CODE
+AND	A.STAFF_CODE=B.STAFF_CODE
+)
+);
+
+
+
+
+SQL> SELECT DISTINCT
+  2   SM.STAFF_CODE,
+  3   SM.STAFF_NAME,
+  4   DM.DEPT_NAME
+  5  FROM STAFF_MASTERS SM,
+  6   DEPARTMENT_MASTERS DM,
+  7   BOOK_TRANSACTIONS BT
+  8  WHERE SM.DEPT_CODE=DM.DEPT_CODE
+  9  AND SM.STAFF_CODE=BT.STAFF_CODE
+ 10  AND SM.STAFF_CODE IN
+ 11  (
+ 12  SELECT SM.STAFF_CODE
+ 13  FROM BOOK_TRANSACTIONS BT,STAFF_MASTERS SM
+ 14  WHERE SM.STAFF_CODE=BT.STAFF_CODE
+ 15  AND BT.BOOK_CODE IN
+ 16  (
+ 17  SELECT A.BOOK_CODE
+ 18  FROM BOOK_TRANSACTIONS A,BOOK_TRANSACTIONS B
+ 19  WHERE A.BOOK_CODE!=B.BOOK_CODE
+ 20  AND A.STAFF_CODE=B.STAFF_CODE
+ 21  )
+ 22  );
+
+
+STAFF_CODE STAFF_NAME                                         DEPT_NAME
+---------- -------------------------------------------------- -------------------------------
+    100006 Allen                                              Electronics
+    100007 Smith                                              Electricals
+
+
+***********************************************************************************************
+QUERY14
+
+
+
+SELECT	SM.STUDENT_NAME,
+	SM.STUDENT_CODE,
+	DM.DEPT_NAME,
+	MR.SUBJECT1,
+	MR.SUBJECT2,
+	MR.SUBJECT3,
+	(MR.SUBJECT1+MR.SUBJECT2+MR.SUBJECT3) AS TOTAL
+FROM	STUDENT_MASTERS SM,
+	DEPARTMENT_MASTERS DM,
+	STUDENT_MARKS MR
+WHERE	SM.DEPT_CODE=DM.DEPT_CODE
+AND	SM.STUDENT_CODE=MR.STUDENT_CODE
+AND	ROWNUM<11
+ORDER BY TOTAL DESC;
+
+
+
+SQL> SELECT SM.STUDENT_NAME,
+  2   SM.STUDENT_CODE,
+  3   DM.DEPT_NAME,
+  4   MR.SUBJECT1,
+  5   MR.SUBJECT2,
+  6   MR.SUBJECT3,
+  7   (MR.SUBJECT1+MR.SUBJECT2+MR.SUBJECT3) AS TOTAL
+  8  FROM STUDENT_MASTERS SM,
+  9   DEPARTMENT_MASTERS DM,
+ 10   STUDENT_MARKS MR
+ 11  WHERE SM.DEPT_CODE=DM.DEPT_CODE
+ 12  AND SM.STUDENT_CODE=MR.STUDENT_CODE
+ 13  AND ROWNUM<11
+ 14  ORDER BY TOTAL DESC;
+
+STUDENT_NAME                                       STUDENT_CODE DEPT_NAME                                            SUBJECT1   SUBJECT2   SUBJECT3      TOTAL
+-------------------------------------------------- ------------ ------------------------------------
+Arvind                                                     1005 Mechanics                                                  78         88         65        231
+Ravi                                                       1002 Computer Science                                           66         74         88        228
+Raj                                                        1004 Electronics                                                65         64         90        219
+Ajay                                                       1003 Electricals                                                87         54         65        206
+Rahul                                                      1006 Robotics                                                   65         86         54        205
+Rajat                                                      1010 Mechanics                                                  68         44         92        204
+Mehul                                                      1007 Electricals                                                67         79         49        195
+Vijay                                                      1009 Electronics                                                71         59         58        188
+Dev                                                        1008 Computer Science                                           72         55         55        182
+Amit                                                       1001 Computer Science                                           55         45         78        178
+
+10 rows selected.
+
+
+*******************************************************************************
+QUERY15
+SELECT * FROM STAFF_MASTERS;
+
+
+SELECT
+	SM.STAFF_NAME,
+	SM.STAFF_SAL,
+	DM.DEPT_NAME
+FROM	STAFF_MASTERS SM,
+	DEPARTMENT_MASTERS DM
+WHERE
+	DM.DEPT_CODE=SM.DEPT_CODE
+AND	SM.STAFF_SAL <
+(
+SELECT
+	AVG(A.STAFF_SAL)
+FROM	STAFF_MASTERS A
+WHERE	A.DEPT_CODE=DM.DEPT_CODE);
+
+
+SQL> SELECT
+  2   SM.STAFF_NAME,
+  3   SM.STAFF_SAL,
+  4   DM.DEPT_NAME
+  5  FROM STAFF_MASTERS SM,
+  6   DEPARTMENT_MASTERS DM
+  7  WHERE
+  8   DM.DEPT_CODE=SM.DEPT_CODE
+  9  AND SM.STAFF_SAL <
+ 10  (
+ 11  SELECT
+ 12   AVG(A.STAFF_SAL)
+ 13  FROM STAFF_MASTERS A
+ 14  WHERE A.DEPT_CODE=DM.DEPT_CODE);
+
+STAFF_NAME                                          STAFF_SAL DEPT_NAME
+-------------------------------------------------- ---------- --------------------------------------
+asah                                                     3000 Computer Science
+Anil                                                    50000 Electricals
+Rahul                                                   52000 Electricals
+Arvind                                                  17000 Electronics
+RAM                                                     32000 Electronics
+
+
+SQL> SELECT 
+  2   DEPT_CODE,
+  3   AVG(STAFF_SAL)
+  4  FROM STAFF_MASTERS
+  5  GROUP BY DEPT_CODE;
+
+ DEPT_CODE AVG(STAFF_SAL)
+---------- --------------
+        10     19666.6667
+        20     64666.6667
+        30     49666.6667
+        40          18000
+
+(B)
+
+
+
+SELECT
+	SM.STAFF_CODE,
+	SM.STAFF_NAME,
+	ROUND(MONTHS_BETWEEN(TRUNC(CURRENT_DATE),HIREDATE)/12) AS "EXPERIENCE"
+FROM	STAFF_MASTERS SM,DESIGNATION_MASTERS DM
+WHERE	
+	SM.DESIGN_CODE=DM.DESIGN_CODE
+AND	DM.DESIGN_CODE IN
+(
+SELECT	DESIGN_CODE
+FROM	DESIGNATION_MASTERS
+WHERE	DESIGN_NAME IN('Professor','Lecturer')
+);
+	
+SQL> SELECT
+  2   SM.STAFF_CODE,
+  3   SM.STAFF_NAME,
+  4   ROUND(MONTHS_BETWEEN(TRUNC(CURRENT_DATE),HIREDATE)/12) AS "EXPERIENCE"
+  5  FROM STAFF_MASTERS SM,DESIGNATION_MASTERS DM
+  6  WHERE 
+  7   SM.DESIGN_CODE=DM.DESIGN_CODE
+  8  AND DM.DESIGN_CODE IN
+  9  (
+ 10  SELECT DESIGN_CODE
+ 11  FROM DESIGNATION_MASTERS
+ 12  WHERE DESIGN_NAME IN('Professor','Lecturer')
+ 13  );
+
+STAFF_CODE STAFF_NAME                                         EXPERIENCE
+---------- -------------------------------------------------- ----------
+    100001 Arvind                                                     11
+    100003 Mohan                                                      12
+    100004 Anil                                                       13
+    100008 Raviraj                                                    11
+    100009 Rahul                                                      10
+
+
+SELECT * FROM DESIGNATION_MASTERS;
+
+SQL> SELECT * FROM DESIGNATION_MASTERS;
+
+DESIGN_CODE DESIGN_NAME
+----------- -----------------------------
+        101 HOD
+        102 Professor
+        103 Reader
+        104 Sr.Lecturer
+        105 Lecturer
+        106 Director
+
+6 rows selected.
+
+
+SQL> SELECT * FROM STAFF_MASTERS;
+
+STAFF_CODE STAFF_NAME                                         DESIGN_CODE  DEPT_CODE STAFF_DOB HIREDATE    MGR_CODE  STAFF_SAL STA
+---------- -------------------------------------------------- ----------- ---------- --------- -----
+    100001 Arvind                                                     102         30 15-JAN-80 15-JAN-03     100006      17000 Bangalore
+    100003 Mohan                                                      102         10 23-MAR-80 19-JAN-02     100006      24000 Mumbai
+    100004 Anil                                                       102         20 22-APR-77 11-MAR-01     100006      50000 Hyderabad
+    100005 John                                                       106         10 22-MAY-76 21-JAN-01     100007      32000 Bangalore
+    100006 Allen                                                      103         30 22-JAN-80 23-APR-01     100005     100000 Chennai
+    100007 Smith                                                      103         20 19-JUL-73 12-MAR-02     100005      92000 Mumbai
+    100008 Raviraj                                                    102         40 17-JUN-80 11-JAN-03     100006      18000 Bangalore
+    100009 Rahul                                                      102         20 16-JAN-78 11-DEC-03     100006      52000 Hyderabad
+    100010 RAM                                                        103         30 17-JAN-79 17-JAN-02     100007      32000 Bangalore
+      9998 asah                                                                   10                                      3000
+      1001 asha                                                                                                          20000
+      1010 varun                                                                                                         22000
+
+12 rows selected.
+
+***************************************************************
+QUERY17
+
+
+
+
+SELECT
+	DM.DEPT_CODE,
+	SM.STUDENT_NAME,
+	(MR.SUBJECT1+MR.SUBJECT2+MR.SUBJECT3) AS "TOTAL",
+	MR.SUBJECT1,
+	MR.SUBJECT2,
+	MR.SUBJECT3
+FROM
+	STUDENT_MARKS MR,
+	DEPARTMENT_MASTERS DM,
+	STUDENT_MASTERS SM
+WHERE	
+	SM.STUDENT_CODE=MR.STUDENT_CODE
+AND	SM.DEPT_CODE=DM.DEPT_CODE
+AND
+	MR.SUBJECT1=
+(
+SELECT	MAX(A.SUBJECT1)
+FROM 	STUDENT_MARKS A,DEPARTMENT_MASTERS B,STUDENT_MASTERS S
+WHERE	S.DEPT_CODE=B.DEPT_CODE
+AND
+S.STUDENT_CODE=A.STUDENT_CODE
+AND
+B.DEPT_CODE=
+	(
+	SELECT	DEPT_CODE
+	FROM 	DEPARTMENT_MASTERS
+	WHERE 	DEPT_NAME='Computer Science'
+	)
+)
+AND
+	MR.SUBJECT2=
+(
+SELECT	MAX(A.SUBJECT2)
+FROM 	STUDENT_MARKS A,DEPARTMENT_MASTERS B,STUDENT_MASTERS S
+WHERE	S.DEPT_CODE=B.DEPT_CODE
+AND
+S.STUDENT_CODE=A.STUDENT_CODE
+AND
+B.DEPT_CODE=
+	(
+	SELECT	DEPT_CODE
+	FROM 	DEPARTMENT_MASTERS
+	WHERE 	DEPT_NAME='Computer Science'
+	)
+);
+AND
+	MR.SUBJECT3=
+(
+SELECT	MAX(A.SUBJECT3)
+FROM 	STUDENT_MARKS A,DEPARTMENT_MASTERS B
+WHERE 	B.DEPT_CODE=
+	(
+	SELECT	DEPT_CODE
+	FROM 	DEPARTMENT_MASTERS
+	WHERE 	DEPT_NAME='Computer Science'
+	)
+)
+ORDER BY TOTAL;
+
+*******************************************************************************
+QUERY18
+
+
+SELECT * FROM STUDENT_MASTERS;
+
+SQL> SELECT * FROM STUDENT_MASTERS;
+
+STUDENT_CODE STUDENT_NAME                                        DEPT_CODE STUDENT_D STUDENT_ADDRESS
+------------ -------------------------------------------------- ---------- --------- ---------------
+        1001 Amit                                                       10 11-JAN-80 chennai
+        1002 Ravi                                                       10 01-NOV-81 New Delhi
+        1003 Ajay                                                       20 13-JAN-82
+        1004 Raj                                                        30 14-JAN-79 Mumbai
+        1005 Arvind                                                     40 15-JAN-83 Bangalore
+        1006 Rahul                                                      50 16-JAN-81 Delhi
+        1007 Mehul                                                      20 17-JAN-82 Chennai
+        1008 Dev                                                        10 11-MAR-81 Bangalore
+        1009 Vijay                                                      30 19-JAN-80 Bangalore
+        1010 Rajat                                                      40 20-JAN-80 Bangalore
+        1011 Sunder                                                     50 21-JAN-80 Chennai
+        1012 Rajesh                                                     30 22-JAN-80
+        1013 Anil                                                       20 23-JAN-80 Chennai
+        1014 Sunil                                                      10 15-FEB-85
+        1015 Kapil                                                      40 18-MAR-81 Mumbai
+        1016 Ashok                                                      40 26-NOV-80
+        1017 Ramesh                                                     30 27-DEC-80
+        1018 Amit Raj                                                   50 28-SEP-80 New Delhi
+        1019 Ravi Raj                                                   50 29-MAY-81 New Delhi
+        1020 Amrit                                                      10 11-NOV-80
+        1021 Sumit                                                      20 01-JAN-80 Chennai
+        1022 asma                                                          27-MAR-91 mumbai
+
+22 rows selected.
+
+
+SQL> SELECT * FROM DEPARTMENT_MASTERS;
+
+ DEPT_CODE DEPT_NAME
+---------- ---------------------------------
+        10 Computer Science
+        20 Electricals
+        30 Electronics
+        40 Mechanics
+        50 Robotics
+        60 CSE
+        70 IT
+        80 ECE
+
+8 rows selected.
+
+
+SELECT
+	SM.STUDENT_CODE,
+	SM.STUDENT_NAME,
+	DM.DEPT_NAME
+FROM	STUDENT_MASTERS SM,
+	DEPARTMENT_MASTERS DM
+WHERE	SM.DEPT_CODE=DM.DEPT_CODE
+AND	SM.DEPT_CODE=
+(	
+SELECT	DEPT_CODE
+FROM 	STUDENT_MASTERS
+HAVING 	COUNT(STUDENT_CODE)=
+(
+SELECT MAX(COUNT(STUDENT_CODE)
+)
+FROM 	STUDENT_MASTERS
+GROUP BY DEPT_CODE
+) 
+GROUP BY DEPT_CODE
+);
+
+SQL> SELECT
+  2   SM.STUDENT_CODE,
+  3   SM.STUDENT_NAME,
+  4   DM.DEPT_NAME
+  5  FROM STUDENT_MASTERS SM,
+  6   DEPARTMENT_MASTERS DM
+  7  WHERE SM.DEPT_CODE=DM.DEPT_CODE
+  8  AND SM.DEPT_CODE=
+  9  ( 
+ 10  SELECT DEPT_CODE
+ 11  FROM  STUDENT_MASTERS
+ 12  HAVING  COUNT(STUDENT_CODE)=
+ 13  (
+ 14  SELECT MAX(COUNT(STUDENT_CODE)
+ 15  )
+ 16  FROM  STUDENT_MASTERS
+ 17  GROUP BY DEPT_CODE
+ 18  ) 
+ 19  GROUP BY DEPT_CODE
+ 20  );
+
+STUDENT_CODE STUDENT_NAME                                       DEPT_NAME
+------------ -------------------------------------------------- -------------------------------
+        1001 Amit                                               Computer Science
+        1002 Ravi                                               Computer Science
+        1008 Dev                                                Computer Science
+        1014 Sunil                                              Computer Science
+        1020 Amrit                                              Computer Science
+
+
+********************************************************************************************
+QUERY19
+
+
+SELECT
+	SM.STAFF_CODE,
+	SM.STAFF_NAME,
+	DM.DEPT_NAME,
+	DS.DESIGN_NAME
+FROM	STAFF_MASTERS SM,
+	DEPARTMENT_MASTERS DM,
+	DESIGNATION_MASTERS DS
+WHERE	SM.DEPT_CODE=DM.DEPT_CODE
+AND	SM.DESIGN_CODE=DS.DESIGN_CODE
+AND	HIREDATE IN (SELECT HIREDATE FROM STAFF_MASTERS WHERE MONTHS_BETWEEN(TRUNC(CURRENT_DATE),HIREDATE)<3);
+
+
+SELECT * FROM STAFF_MASTERS;
+
+
+UPDATE STAFF_MASTERS SET HIREDATE='12-NOV-13' WHERE HIREDATE='11-DEC-03';
+
+SQL> SELECT
+  2   SM.STAFF_CODE,
+  3   SM.STAFF_NAME,
+  4   DM.DEPT_NAME,
+  5   DS.DESIGN_NAME
+  6  FROM STAFF_MASTERS SM,
+  7   DEPARTMENT_MASTERS DM,
+  8   DESIGNATION_MASTERS DS
+  9  WHERE SM.DEPT_CODE=DM.DEPT_CODE
+ 10  AND SM.DESIGN_CODE=DS.DESIGN_CODE
+ 11  AND HIREDATE IN (SELECT HIREDATE FROM STAFF_MASTERS WHERE MONTHS_BETWEEN(TRUNC(CURRENT_DATE),HI
+REDATE)<3);
+
+STAFF_CODE STAFF_NAME                                         DEPT_NAME                                          DESIGN_NAME
+---------- -------------------------------------------------- --------------------------------------
+    100010 RAM                                                Electronics                                        Reader
+    100009 Rahul                                              Electricals                                        Professor
+
+
+**************************************************************************************************
+QUERY20
+
+SQL> SELECT * FROM STAFF_MASTERS;
+
+STAFF_CODE STAFF_NAME                                         DESIGN_CODE  DEPT_CODE STAFF_DOB HIREDATE    MGR_CODE  STAFF_SAL STA
+---------- -------------------------------------------------- ----------- ---------- --------- -----
+    100001 Arvind                                                     102         30 15-JAN-80 15-JAN-03     100006      17000 Bangalore
+    100003 Mohan                                                      102         10 23-MAR-80 19-JAN-02     100006      24000 Mumbai
+    100004 Anil                                                       102         20 22-APR-77 11-MAR-01     100006      50000 Hyderabad
+    100005 John                                                       106         10 22-MAY-76 21-JAN-01     100007      32000 Bangalore
+    100006 Allen                                                      103         30 22-JAN-80 23-APR-01     100005     100000 Chennai
+    100007 Smith                                                      103         20 19-JUL-73 12-MAR-02     100005      92000 Mumbai
+    100008 Raviraj                                                    102         40 17-JUN-80 11-JAN-03     100006      18000 Bangalore
+    100009 Rahul                                                      102         20 16-JAN-78 11-DEC-03     100006      52000 Hyderabad
+    100010 RAM                                                        103         30 17-JAN-79 17-JAN-02     100007      32000 Bangalore
+      9998 asah                                                                   10                                      3000
+      1001 asha                                                                                                          20000
+      1010 varun                                                                                                         22000
+
+12 rows selected.
+
+
+
+SELECT
+	A.STAFF_NAME,
+	COUNT(MGR_CODE)
+FROM
+	STAFF_MASTERS A,STAFF_MASTERS B
+WHERE	A.STAFF_NAME IN
+(
+SELECT	STAFF_NAME
+FROM	STAFF_MASTERS
+WHERE	STAFF_NAME=A.STAFF_NAME
+)AND
+
+GROUP BY A.STAFF_NAME;
+
+
+
+SELECT
+	B.STAFF_NAME,
+	A.MGR_CODE,
+	COUNT(A.STAFF_CODE)
+FROM STAFF_MASTERS A,STAFF_MASTERS B
+WHERE	B.STAFF_CODE=A.MGR_CODE
+GROUP BY A.MGR_CODE,B.STAFF_NAME;
+
+SQL> SELECT
+  2   B.STAFF_NAME,
+  3   A.MGR_CODE,
+  4   COUNT(A.STAFF_CODE)
+  5  FROM STAFF_MASTERS A,STAFF_MASTERS B
+  6  WHERE B.STAFF_CODE=A.MGR_CODE
+  7  GROUP BY A.MGR_CODE,B.STAFF_NAME;
+
+STAFF_NAME                                           MGR_CODE COUNT(A.STAFF_CODE)
+-------------------------------------------------- ---------- -------------------
+John                                                   100005                   2
+Allen                                                  100006                   5
+Smith                                                  100007                   2
+
+                  2

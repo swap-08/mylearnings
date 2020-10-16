@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<!-- simple element -->
+<xs:element name="firstname" type="reff"/>
+<xs:element name="lastname" type="refl"/>
+<xs:element name="empid" type="xs:string"/>
+<xs:element name="trainee" type="xs:string"/>
+<xs:element name="domain" type="xs:string"/>
+<xs:element name="email" type="xs:string"/>
+<xs:element name="mpt" type="refmpt"/>
+<xs:element name="mtt" type="refmtt"/>
+<xs:element name="assign" type="refa"/>
+<xs:element name="total" type="reft"/>
+
+<!-- attribute element -->
+<xs:attribute name="empid" type="xs:integer"/>
+
+<!-- complex element -->
+
+<xs:element name="employee">
+<xs:complexType>
+<xs:sequence>
+
+	<xs:element name="name">
+	<xs:complexType>
+	<xs:sequence>
+	<xs:element ref="firstname"/>
+	<xs:element ref="lastname"/>
+	</xs:sequence>
+	</xs:complexType>
+	</xs:element>
+	
+<xs:element ref="empid"/>
+<xs:element ref="trainee"/>
+<xs:element ref="domain"/>
+<xs:element ref="email"/>
+<xs:element ref="mpt"/>
+<xs:element ref="mtt"/>
+<xs:element ref="assign"/>
+<xs:element ref="total"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+
+<!-- restriction on mpt -->
+
+<xs:simpleType name="refmpt">
+<xs:restriction base="xs:integer">
+<xs:totalDigits value="3"/>
+<xs:maxInclusive value="100"/>
+</xs:restriction>
+</xs:simpleType>
+
+
+<!-- restriction on mtt-->
+
+<xs:simpleType name="refmtt">
+<xs:restriction base="xs:integer">
+<xs:totalDigits value="3"/>
+<xs:maxInclusive value="100"/>
+</xs:restriction>
+</xs:simpleType>
+
+<!-- restriction on assign -->
+
+<xs:simpleType name="refa">
+<xs:restriction base="xs:integer">
+<xs:totalDigits value="3"/>
+<xs:maxInclusive value="100"/>
+</xs:restriction>
+</xs:simpleType>
+
+<!-- restriction on total -->
+<xs:simpleType name="reft">
+<xs:restriction base="xs:integer">
+<xs:totalDigits value="3"/>
+<xs:maxInclusive value="300"/>
+</xs:restriction>
+</xs:simpleType>
+
+
+<xs:simpleType name="reff">
+<xs:restriction base="xs:string">
+<xs:pattern value="[a-zA-Z]*"/>
+</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="refl">
+<xs:restriction base="xs:string">
+<xs:pattern value="[a-zA-Z]*"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:schema>

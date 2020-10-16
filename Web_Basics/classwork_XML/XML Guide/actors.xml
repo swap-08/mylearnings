@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?xml-stylesheet type="text/xsl" href="actors.xsl"?>
+
+<movies>
+
+<movie type="Love Stroy" rating="A3" review="6" year="1990">
+<title>DDLJ</title>
+<writer>Puri</writer>
+<writer>Roshan</writer>
+<producer>Johar</producer>
+<director>Khan</director>
+<actor>SRK</actor>
+<actor>Kajol</actor>
+<comments>EPIC</comments>
+</movie>
+
+<movie type="comedy" rating="A4" review="7" year="2000">
+<title>EMI</title>
+<writer>Dutt</writer>
+<writer>Roshan</writer>
+<producer>Johar</producer>
+<director>FarahKhan</director>
+<actor>Sanjay</actor>
+<actor>Kaj</actor>
+<comments>EPIC</comments>
+</movie>
+
+</movies>
+

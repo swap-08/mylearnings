@@ -1,0 +1,120 @@
+Function Template:
+
+// function template
+#include <iostream>
+using namespace std;
+
+template <class T>
+T GetMax (T a, T b) {
+  T result;
+  result = (a>b)? a : b;
+  return (result);
+}
+
+int main () {
+  int i=5, j=6, k;
+  long l=10, m=5, n;
+  k=GetMax<int>(i,j);
+  n=GetMax<long>(l,m);
+  cout << k << endl;
+  cout << n << endl;
+  return 0;
+}
+
+
+-----------------------------
+template <typename Type>
+Type max(Type a, Type b) {
+    return a > b ? a : b;
+}
+
+#include <iostream>
+ 
+int main()
+{
+  // This will call max <int> (by argument deduction)
+  std::cout << max(3, 7) << std::endl;
+  // This will call max<double> (by argument deduction)
+  std::cout << max(3.0, 7.0) << std::endl;
+  // This type is ambiguous, so explicitly instantiate max<double>
+  std::cout << max<double>(3, 7.0) << std::endl;
+  return 0;
+}
+
+-----------------------------------------
+Class Templates
+
+
+
+template <class T>
+class mypair {
+    T values [2];
+  public:
+    mypair (T first, T second)
+    {
+      values[0]=first; values[1]=second;
+    }
+}; 
+
+
+
+
+mypair<int> myobject (115, 36);
+mypair<double> myfloats (3.0, 2.18); 
+
+
+.........................
+
+//C++_Class_Templates.cpp
+
+#include <iostream.h>
+#include <vector>
+
+template <typename T>
+class MyQueue
+{
+     std::vector<T> data; 
+   public:
+     void Add(T const &);
+     void Remove();
+     void Print();
+};
+
+template <typename T> 
+void MyQueue<T> ::Add(T const &d)
+{
+     data.push_back(d);
+}
+
+template <typename T> 
+void MyQueue<T>::Remove()
+{
+     data.erase(data.begin( ) + 0,data.begin( ) + 1);
+}
+
+template <typename T> 
+void MyQueue<T>::Print()
+{
+     std::vector <int>::iterator It1;
+     It1 = data.begin();
+     for ( It1 = data.begin( ) ; It1 != data.end( ) ; It1++ )
+        cout << " " << *It1<<endl;
+
+}
+//Usage for C++ class templates
+void main()
+{
+     MyQueue<int> q;
+     q.Add(1);
+     q.Add(2);
+
+     cout<<"Before removing data"<<endl;
+     q.Print();
+
+     q.Remove();
+     cout<<"After removing data"<<endl;
+     q.Print();
+}
+
+
+

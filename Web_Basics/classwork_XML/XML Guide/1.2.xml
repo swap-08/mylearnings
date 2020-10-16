@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mail>
+<email>
+<to>Harshita</to>
+<from>Preeti</from>
+<cc> PS</cc>
+<bcc>MJ</bcc>
+<subject>Hello</subject>
+<body>FYI Its GM</body>
+</email>
+
+<email>
+<to>MJ</to>
+<from>PS</from>
+<cc> Chennai	</cc>
+<bcc>Mumbai</bcc>
+<subject>Hi</subject>
+<body>FYI Its GE</body>
+</email>
+
+<email>
+<to>ABC</to>
+<from>XYZ</from>
+<cc> PQR</cc>
+<bcc>THY </bcc>
+<subject>Heyyaaa</subject>
+<body>FYI Its GN </body>
+</email>
+
+
+
+</mail>

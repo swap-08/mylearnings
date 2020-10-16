@@ -1,0 +1,118 @@
+C++ PROGRAM DEVELOPMENT IN UNIX
+
+<<TO DO>> Assignment1
+
+[user15@DELL0708S-02VM7 lab2]$ vi shape.cpp
+#include<iostream>
+using namespace std;
+class shape
+{
+public:
+        virtual ~shape();
+        virtual void draw() = 0;
+};
+
+class circle : public shape
+{
+public:
+        virtual ~circle();
+        virtual void draw();
+};
+
+shape::~shape()
+{
+        cout<<"shape destructor"<<endl;
+}
+
+void shape::draw()
+{
+      cout<<"Shape::draw\n"<<endl;
+}
+
+circle::~circle()
+{
+       cout<<"circle destructor\n"<<endl;
+}
+
+void circle::draw()
+{
+        cout<<"circle::draw\n"<<endl;
+}
+
+int main()
+{
+        shape *shape1 = new circle;
+        shape1->draw();
+        delete shape1;
+
+        return 0;
+}
+
+
+output:
+
+[user15@DELL0708S-02VM7 lab2]$ g++ shape.cpp
+[user15@DELL0708S-02VM7 lab2]$ ./a.out
+circle::draw
+
+circle destructor
+
+shape destructor
+
+
+------------------------------------------------------------------------------------------
+<<TO DO>> Assignment2
+
+$ vi lab2_fibonacci.cpp
+
+#include<iostream>
+using namespace std;
+template<class T>
+T fibo(T);
+
+int main()
+{
+int n,i;
+cout<<"Enter the  elements in the series :\n ";
+cin>>n;
+cout<<"The Fibonacci series is:\n";
+
+for(i=0;i<n;i++)
+{
+ cout<<fibo(i)<<" ";
+}
+
+float n1;
+cout<<"\nEnter the number of elements :";
+cin>>n1;
+for(float j=0.0;j<n1;j++)
+{
+  cout<<fibo(j)<<" ";
+}
+return 0;
+}
+
+template <class T>
+
+T fibo(T n)
+{
+ if(n==0.0)
+ return 0;
+ else if(n==1.0)
+ return 1;
+ else
+ return fibo(n-1)+fibo(n-2);
+}
+
+
+output:
+
+[user15@DELL0708S-02VM7 lab2]$ vi lab2_fibonacci.cpp
+
+[user15@DELL0708S-02VM7 lab2]$ g++ -o fibo.o lab2_fibonacci.cpp
+
+[user15@DELL0708S-02VM7 lab2]$ ./fibo.o
+Enter the  elements in the series :
+ 15
+The Fibonacci series is:
+0 1 1 2 3 5 8 13 21 34 55 89 144 233 377

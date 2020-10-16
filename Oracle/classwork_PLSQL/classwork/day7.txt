@@ -1,0 +1,332 @@
+create table temp01
+(
+	value varchar2(200),
+	id number(10)
+);
+
+
+INSERT INTO DEPT VALUES(70,'ADMIN','SAN');
+
+SELECT * FROM TEMP01;
+
+TRIGGERS
+********
+
+
+TRG_FIRST
+
+
+CREATE OR REPLACE TRIGGER TRG_FIRST
+AFTER INSERT ON DEPT
+BEGIN
+DBMS_OUTPUT.PUT_LINE('AFTER');
+INSERT INTO TEMP01 VALUES (TO_CHAR(SYSDATE),S1.NEXTVAL);
+END;
+/
+
+DELETE TEMP01;
+
+
+
+TRG_SECOND
+
+CREATE OR REPLACE TRIGGER TRG_SECOND
+BEFORE INSERT ON DEPT
+BEGIN
+DBMS_OUTPUT.PUT_LINE('BEFORE');
+INSERT INTO TEMP01 VALUES (TO_CHAR(SYSDATE),S1.NEXTVAL);
+END;
+/
+
+INSERT INTO DEPT VALUES(70,'ADMIN','SAN');
+
+
+SQL> INSERT INTO DEPT VALUES(70,'ADMIN','SAN');
+BEFORE
+AFTER
+
+1 row created.
+
+
+SQL> SELECT * FROM TEMP01;
+
+VALUE                                   
+------------------------------------
+14-NOV-13                               
+14-NOV-13                               
+
+
+
+
+CREATE OR REPLACE TRIGGER TRG_THIRD
+BEFORE INSERT OR DELETE OR UPDATE ON DEPT
+BEGIN
+DBMS_OUTPUT.PUT_LINE('BEFORE');
+INSERT INTO TEMP01 VALUES (TO_CHAR(SYSDATE),s1.nextval);
+END;
+/
+
+
+
+
+CREATE OR REPLACE TRIGGER TRG_FIRST
+BEFORE INSERT OR DELETE OR UPDATE ON DEPT
+BEGIN
+IF INSERTING THEN
+INSERT INTO TEMP01 VALUES (TO_CHAR(SYSDATE)||'INSERT',10);
+ELSIF UPDATING THEN
+INSERT INTO TEMP01 VALUES (TO_CHAR(SYSDATE)||'UPDATE',10);
+ELSE
+INSERT INTO TEMP01 VALUES (TO_CHAR(SYSDATE)||'DELETE',10);
+END IF;
+END;
+/
+
+
+update dept set deptno=40 WHERE DEPTNO>10;
+
+
+drop trigger trg_second
+
+
+SQL> CREATE OR REPLACE TRIGGER TRG_FIRST
+  2  BEFORE INSERT OR DELETE OR UPDATE ON DEPT
+  3  BEGIN
+  4  IF INSERTING THEN
+  5  INSERT INTO TEMP01 VALUES (TO_CHAR(SYSDATE)||'INSERT',10);
+  6  ELSIF UPDATING THEN
+  7  INSERT INTO TEMP01 VALUES (TO_CHAR(SYSDATE)||'UPDATE',10);
+  8  ELSE
+  9  INSERT INTO TEMP01 VALUES (TO_CHAR(SYSDATE)||'DELETE',10);
+ 10  END IF;
+ 11  END;
+ 12  /
+
+Trigger created.
+
+SQL> delete temp01;
+
+2 rows deleted.
+
+SQL>  update dept set deptno=40 WHERE DEPTNO>10;
+
+10 rows updated.
+
+SQL> select * from temp01;
+
+VALUE                                                                                                                           
+----------------------------------------------------------------------------------------------------
+14-NOV-13UPDATE                                                                                     
+
+
+
+
+***************************
+USE OF FOR EACH...
+***************************
+
+
+CREATE OR REPLACE TRIGGER TRG_FIRST
+BEFORE INSERT OR DELETE OR UPDATE ON DEPT
+FOR EACH ROW
+BEGIN
+IF INSERTING THEN
+INSERT INTO TEMP01 VALUES (TO_CHAR(SYSDATE)||'INSERT',10);
+ELSIF UPDATING THEN
+INSERT INTO TEMP01 VALUES (TO_CHAR(SYSDATE)||'UPDATE',10);
+ELSE
+INSERT INTO TEMP01 VALUES (TO_CHAR(SYSDATE)||'DELETE',10);
+END IF;
+END;
+/
+    
+
+
+
+SQL> CREATE OR REPLACE TRIGGER TRG_FIRST
+  2  BEFORE INSERT OR DELETE OR UPDATE ON DEPT
+  3  FOR EACH ROW
+  4  BEGIN
+  5  IF INSERTING THEN
+  6  INSERT INTO TEMP01 VALUES (TO_CHAR(SYSDATE)||'INSERT',10);
+  7  ELSIF UPDATING THEN
+  8  INSERT INTO TEMP01 VALUES (TO_CHAR(SYSDATE)||'UPDATE',10);
+  9  ELSE
+ 10  INSERT INTO TEMP01 VALUES (TO_CHAR(SYSDATE)||'DELETE',10);
+ 11  END IF;
+ 12  END;
+ 13  /
+
+Trigger created.
+
+SQL> DELETE TEMP01;
+
+1 row deleted.
+
+SQL> update dept set deptno=40 WHERE DEPTNO>10;
+
+10 rows updated.
+
+SQL> SELECT * FROM TEMP01;
+
+VALUE                                                                                                                   
+----------------------------------------------------------------------------------------------------
+14-NOV-13UPDATE                                                                                                         
+14-NOV-13UPDATE                                                                                                         
+14-NOV-13UPDATE                                                                                                         
+14-NOV-13UPDATE                                                                                                         
+14-NOV-13UPDATE                                                                                                         
+14-NOV-13UPDATE                                                                                                         
+14-NOV-13UPDATE                                                                                                         
+14-NOV-13UPDATE                                                                                                         
+14-NOV-13UPDATE                                                                                                         
+14-NOV-13UPDATE                                                                                                         
+
+10 rows selected.                        
+
+
+
+
+CREATE OR REPLACE TRIGGER TRG_FIRST
+AFTER INSERT OR DELETE OR UPDATE ON DEPT
+FOR EACH ROW
+BEGIN
+IF UPDATING THEN
+	IF(:old.deptno=40) THEN
+	DBMS_OUTPUT.PUT_LINE('SENSITIVE DATE');
+	ELSE
+	INSERT INTO TEMP01 VALUES (TO_CHAR(SYSDATE)||'UPDATE',10);
+	END IF;
+END IF;
+END;
+/
+
+
+
+
+update dept set deptno=20 WHERE DEPTNO=40;
+
+
+
+
+
+
+
+**********************************
+FOR EACH ROW WHEN
+**********************************
+
+
+CREATE OR REPLACE TRIGGER TRG_FIRST
+AFTER INSERT OR DELETE OR UPDATE ON DEPT
+FOR EACH ROW
+WHEN (NEW.DEPTNO=30)
+BEGIN
+IF UPDATING THEN
+	IF(:old.deptno=20) THEN
+	DBMS_OUTPUT.PUT_LINE('SENSITIVE DATE');
+	ELSE
+	INSERT INTO TEMP01 VALUES (TO_CHAR(SYSDATE)||'UPDATE',10);
+	END IF;
+END IF;
+END;
+/
+
+
+
+UPDATE DEPT
+SET DEPTNO=30 WHERE DEPTNO=20;
+SQL> UPDATE DEPT
+  2  SET DEPTNO=30 WHERE DEPTNO=20;
+SENSITIVE DATE
+SENSITIVE DATE
+SENSITIVE DATE
+SENSITIVE DATE
+SENSITIVE DATE
+SENSITIVE DATE
+SENSITIVE DATE
+SENSITIVE DATE
+SENSITIVE DATE
+SENSITIVE DATE
+SENSITIVE DATE
+
+11 rows updated.
+
+
+*******************************************************************************
+
+
+
+
+
+SQL> CREATE OR REPLACE TRIGGER TRG_EMP
+  2  BEFORE INSERT OR DELETE OR UPDATE ON EMP
+  3  BEGIN
+  4  IF INSERTING THEN
+  5  --INSERT INTO TEMP01 VALUES (TO_CHAR(SYSDATE)||'INSERT',10);
+  6  
+  7  insert into EMP23 values(7854,'SWA','FIN',7902,'22-FEB-81',1250,500,20); 
+  8  ELSIF UPDATING THEN
+  9  INSERT INTO TEMP01 VALUES (TO_CHAR(SYSDATE)||'UPDATE',10);
+ 10  ELSE
+ 11  INSERT INTO TEMP01 VALUES (TO_CHAR(SYSDATE)||'DELETE',10);
+ 12  END IF;
+ 13  END;
+ 14  /
+
+Trigger created.
+
+SQL> 
+SQL> insert into EMP values(7855,'SWATI','FDEG',NULL,'22-FEB-81',1250,NULL,20); 
+
+1 row created.
+
+SQL> SELECT * FROM EMP;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 09-DEC-82       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 12-JAN-83       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+      7325 SWAPNIL    PRESIDENT            17-OCT-13       2300        300         99
+      7326 swapnil
+      7854 SWA        FIN             7902 22-FEB-81       1250        500         20
+      7855 SWATI      FDEG                 22-FEB-81       1250                    20
+
+18 rows selected.
+
+SQL> SELECT * FROM EMP23;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 09-DEC-82       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 12-JAN-83       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+      7325 SWAPNIL    PRESIDENT            17-OCT-13       2300        300         99
+      7326 swapnil
+      7854 SWA        FIN             7902 22-FEB-81       1250        500         20
+      7854 SWA        FIN             7902 22-FEB-81       1250        500         20
+
+18 rows selected.

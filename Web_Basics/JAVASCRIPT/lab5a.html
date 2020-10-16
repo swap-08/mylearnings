@@ -1,0 +1,42 @@
+<html>
+<body>
+<script>
+function new_window()
+{
+var w=f.width.value;
+var h=f.height.value;
+var l=f.left.value;
+var t=f.top.value;
+x=window.open("","NewWindow","width="+w+",height="+h+",left="+l+",top="+t);
+x.document.write("The window is open on clicking of the New button");
+}
+</script>
+<form name="f">
+<table border=5 align=center height=40% width=30%>
+	<tr>
+		<th colspan=4>Create a new window</th>
+	</tr>	
+	<tr>
+		<th colspan=4>Window Size</th>
+	</tr>
+	<tr>	
+		<th>Width</th>
+		<th><input type="textbox" size=5 name="width"></th>
+		<th>Height</th>
+		<th><input type="textbox" size=5 name="height"></th>
+	</tr>
+	<tr>
+		<th colspan=4>Position</th>
+	</tr>	
+	<tr>	
+		<th>Left</th>
+		<th><input type="textbox" size=5 name="left"></th>
+		<th>Top</th>
+		<th><input type="textbox" size=5 name="top"></th>
+	</tr>
+	<tr>
+		<th colspan=3><input type="button" value="New Window" onclick="new_window()" ></th>
+		<th><input type="reset" value="Reset"</th>
+	</tr>	
+</body>
+</html>

@@ -1,0 +1,235 @@
+Set Operators
+*************
+
+query1
+
+SQL> CREATE TABLE PREVIOUS_PRODUCTS
+  2  ( pid NUMBER(3),
+  3   name VARCHAR2(40),
+  4   unit VARCHAR2(40),
+  5   price NUMBER(5,2),
+  6   stock NUMBER(3));
+Table created.
+------------------------------------------
+
+SQL> CREATE TABLE CURRENT_PRODUCTS
+  2  ( pid NUMBER(3),
+  3   name VARCHAR2(40),
+  4   unit VARCHAR2(40),
+  5   price NUMBER(5,2),
+  6   stock NUMBER(3));
+Table created.
+---------------------------------------------
+
+
+INSERT INTO PREVIOUS_PRODUCTS VALUES (7,'Uncle Bob"s Organic Dried Pears','12-1 lb pkgs.',30.00,15);
+
+INSERT INTO PREVIOUS_PRODUCTS VALUES (8,'Northwoods Cranberry Sauce','12-12 oz jars.',40.00,6);
+
+INSERT INTO PREVIOUS_PRODUCTS VALUES (1,'Chang','24-12 oz bottles.',19.00,17);
+
+INSERT INTO PREVIOUS_PRODUCTS VALUES (3,'Aniseed Syrup','12-550 ml bottles.',10.00,13);
+
+INSERT INTO PREVIOUS_PRODUCTS VALUES (4,'Chef Anton"s Cajun Seasoning','48-6 oz jars.',22.00,53);
+
+INSERT INTO PREVIOUS_PRODUCTS VALUES (5,'Chef Anton"s Gumbo Mix','36 boxes',21.35,0);
+
+INSERT INTO PREVIOUS_PRODUCTS VALUES (6,'Grandmas"s Boysenberry Spread','12-8 oz jars.',25.00,120);
+
+
+SQL> INSERT INTO PREVIOUS_PRODUCTS VALUES (7,'Uncle Bob"s Organic Dried Pears','12-1 lb pkgs.',30.00,15);
+1 row created.
+
+
+SQL> INSERT INTO PREVIOUS_PRODUCTS VALUES (8,'Northwoods Cranberry Sauce','12-12 oz jars.',40.00,6);
+
+1 row created.
+
+
+SQL> INSERT INTO PREVIOUS_PRODUCTS VALUES (1,'Chang','24-12 oz bottles.',19.00,17);
+1 row created.
+
+
+SQL> INSERT INTO PREVIOUS_PRODUCTS VALUES (3,'Aniseed Syrup','12-550 ml bottles.',10.00,13);
+1 row created.
+
+
+SQL> INSERT INTO PREVIOUS_PRODUCTS VALUES (4,'Chef Anton"s Cajun Seasoning','48-6 oz jars.',22.00,53);
+1 row created.
+
+
+SQL> INSERT INTO PREVIOUS_PRODUCTS VALUES (5,'Chef Anton"s Gumbo Mix','36 boxes',21.35,0);
+1 row created.
+
+
+SQL> INSERT INTO PREVIOUS_PRODUCTS VALUES (6,'Grandmas"s Boysenberry Spread','12-8 oz jars.',25.00,120);
+1 row created.
+
+
+SQL> SELECT
+  2  *
+  3  FROM PREVIOUS_PRODUCTS;
+       PID NAME                                     UNIT                                          PRICE      STOCK
+---------- ---------------------------------------- ---------------------------------------- --------------- ----------
+         7 Uncle Bob"s Organic Dried Pears          12-1 lb pkgs.                                    30         15
+         8 Northwoods Cranberry Sauce               12-12 oz jars.                                   40          6
+         1 Chang                                    24-12 oz bottles.                                19         17
+         3 Aniseed Syrup                            12-550 ml bottles.                               10         13
+         4 Chef Anton"s Cajun Seasoning             48-6 oz jars.                                    22         53
+         5 Chef Anton"s Gumbo Mix                   36 boxes                                      21.35          0
+         6 Grandmas"s Boysenberry Spread            12-8 oz jars.                                    25        120
+7 rows selected.
+
+
+INSERT INTO CURRENT_PRODUCTS VALUES (7,'Uncle Bob"s Organic Dried Pears','12-1 lb pkgs.',30.00,15);
+
+
+INSERT INTO CURRENT_PRODUCTS VALUES (8,'Northwoods Cranberry Sauce','12-12 oz jars.',40.00,6);
+
+
+INSERT INTO CURRENT_PRODUCTS VALUES (9,'Mishi Kobe Niku','18-500 g pkgs.',97.00,29);
+
+
+INSERT INTO CURRENT_PRODUCTS VALUES (10,'Ikura','12-200 ml jar.',31.00,31);
+
+
+INSERT INTO CURRENT_PRODUCTS VALUES (11,'Queso Cabrales','1 kg pkg.',21.00,22);
+
+
+INSERT INTO CURRENT_PRODUCTS VALUES (5,'Chef Anton"s Gumbo Mix','36 boxes',21.35,0);
+
+
+INSERT INTO CURRENT_PRODUCTS VALUES (6,'Grandmas"s Boysenberry Spread','12-8 oz jars.',25.00,120);
+
+
+SQL> INSERT INTO CURRENT_PRODUCTS VALUES (7,'Uncle Bob"s Organic Dried Pears','12-1 lb pkgs.',30.00,15);
+1 row created.
+
+
+SQL> INSERT INTO CURRENT_PRODUCTS VALUES (8,'Northwoods Cranberry Sauce','12-12 oz jars.',40.00,6);
+1 row created.
+
+
+SQL> INSERT INTO CURRENT_PRODUCTS VALUES (9,'Mishi Kobe Niku','18-500 g pkgs.',97.00,29);
+1 row created.
+
+
+SQL> INSERT INTO CURRENT_PRODUCTS VALUES (10,'Ikura','12-200 ml jar.',31.00,31);
+1 row created.
+
+
+
+SQL> INSERT INTO CURRENT_PRODUCTS VALUES (11,'Queso Cabrales','1 kg pkg.',21.00,22);
+1 row created.
+
+
+
+SQL> INSERT INTO CURRENT_PRODUCTS VALUES (5,'Chef Anton"s Gumbo Mix','36 boxes',21.35,0);
+1 row created.
+
+
+SQL> INSERT INTO CURRENT_PRODUCTS VALUES (6,'Grandmas"s Boysenberry Spread','12-8 oz jars.',25.00,120);
+1 row created.
+
+
+SQL> SELECT 
+  2  *
+  3  FROM CURRENT_PRODUCTS;
+       PID NAME                                     UNIT                                          PRICE      STOCK
+---------- ---------------------------------------- ---------------------------------------- --------------- ---------
+         7 Uncle Bob"s Organic Dried Pears          12-1 lb pkgs.                                    30         15
+         8 Northwoods Cranberry Sauce               12-12 oz jars.                                   40          6
+         9 Mishi Kobe Niku                          18-500 g pkgs.                                   97         29
+        10 Ikura                                    12-200 ml jar.                                   31         31
+        11 Queso Cabrales                           1 kg pkg.                                        21         22
+         5 Chef Anton"s Gumbo Mix                   36 boxes                                      21.35          0
+         6 Grandmas"s Boysenberry Spread            12-8 oz jars.                                    25        120
+7 rows selected.
+--------------------------------------------------------------------------------------------------------------------------
+
+
+query1
+
+SQL> SELECT
+  2   *
+  3  FROM PREVIOUS_PRODUCTS
+  4  UNION
+  5  SELECT
+  6   *
+  7  FROM CURRENT_PRODUCTS;
+       PID NAME                                     UNIT                                          PRICE      STOCK
+---------- ---------------------------------------- ---------------------------------------- --------------- ---------
+         1 Chang                                    24-12 oz bottles.                                19         17
+         3 Aniseed Syrup                            12-550 ml bottles.                               10         13
+         4 Chef Anton"s Cajun Seasoning             48-6 oz jars.                                    22         53
+         5 Chef Anton"s Gumbo Mix                   36 boxes                                      21.35          0
+         6 Grandmas"s Boysenberry Spread            12-8 oz jars.                                    25        120
+         7 Uncle Bob"s Organic Dried Pears          12-1 lb pkgs.                                    30         15
+         8 Northwoods Cranberry Sauce               12-12 oz jars.                                   40          6
+         9 Mishi Kobe Niku                          18-500 g pkgs.                                   97         29
+        10 Ikura                                    12-200 ml jar.                                   31         31
+        11 Queso Cabrales                           1 kg pkg.                                        21         22
+10 rows selected.
+--------------------------------------------------------------------------------------------------------------------------
+query2
+
+
+SQL> SELECT
+  2   *
+  3  FROM PREVIOUS_PRODUCTS
+  4  UNION ALL
+  5  SELECT
+  6   *
+  7  FROM CURRENT_PRODUCTS;
+       PID NAME                                     UNIT                                          PRICE      STOCK
+---------- ---------------------------------------- ---------------------------------------- --------------- --------
+         7 Uncle Bob"s Organic Dried Pears          12-1 lb pkgs.                                    30         15
+         8 Northwoods Cranberry Sauce               12-12 oz jars.                                   40          6
+         1 Chang                                    24-12 oz bottles.                                19         17
+         3 Aniseed Syrup                            12-550 ml bottles.                               10         13
+         4 Chef Anton"s Cajun Seasoning             48-6 oz jars.                                    22         53
+         5 Chef Anton"s Gumbo Mix                   36 boxes                                      21.35          0
+         6 Grandmas"s Boysenberry Spread            12-8 oz jars.                                    25        120
+         7 Uncle Bob"s Organic Dried Pears          12-1 lb pkgs.                                    30         15
+         8 Northwoods Cranberry Sauce               12-12 oz jars.                                   40          6
+         9 Mishi Kobe Niku                          18-500 g pkgs.                                   97         29
+        10 Ikura                                    12-200 ml jar.                                   31         31
+        11 Queso Cabrales                           1 kg pkg.                                        21         22
+         5 Chef Anton"s Gumbo Mix                   36 boxes                                      21.35          0
+         6 Grandmas"s Boysenberry Spread            12-8 oz jars.                                    25        120
+14 rows selected.
+
+--------------------------------------------------------------------------------------------------------------------------
+query3
+
+
+SQL> SELECT
+  2   *
+  3  FROM PREVIOUS_PRODUCTS
+  4  INTERSECT
+  5  SELECT
+  6   *
+  7  FROM CURRENT_PRODUCTS;
+       PID NAME                                     UNIT                                          PRICE      STOCK
+---------- ---------------------------------------- ---------------------------------------- --------------- -------
+         5 Chef Anton"s Gumbo Mix                   36 boxes                                      21.35          0
+         6 Grandmas"s Boysenberry Spread            12-8 oz jars.                                    25        120
+         7 Uncle Bob"s Organic Dried Pears          12-1 lb pkgs.                                    30         15
+         8 Northwoods Cranberry Sauce               12-12 oz jars.                                   40          6
+ 
+--------------------------------------------------------------------------------------------------------------------------
+query4
+
+
+SQL> SELECT
+  2   *
+  3  FROM PREVIOUS_PRODUCTS
+  4  MINUS
+  5  SELECT
+  6   *
+  7  FROM CURRENT_PRODUCTS;
+       PID NAME                                     UNIT                                          PRICE      STOCK
+---------- ---------------------------------------- ---------------------------------------- --------------- -------
+         1 Chang                                    24-12 oz bottles.                                19         17
+         3 Aniseed Syrup                            12-550 ml bottles.                               10         13
+         4 Chef Anton"s Cajun Seasoning             48-6 oz jars.                                    22         53

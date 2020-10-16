@@ -1,0 +1,17 @@
+<html>
+<body onload="il.src=imgArr[0]+'.jpg' ">
+<script>
+i=0;
+var imgArr=new Array("Lighthouse","Penguins","Koala","Hydrangeas","Jellyfish"); 
+
+function show(){
+	if(i==imgArr.length){i=0;}
+	il.src=imgArr[i++]+".jpg";
+}
+setInterval('show()',1000);
+</script>
+<h2>Mouse events</h2>
+<img width="500" height="400" name="il">
+</form>
+</body>
+</html>

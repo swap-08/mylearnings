@@ -1,0 +1,98 @@
+UNIX FILE SYSTEMS  AND PERMISSIONS
+
+1>
+
+
+[user15@DELL0708S-02VM7 ~]$ chmod u-x chap1
+
+[user15@DELL0708S-02VM7 ~]$ ls -l chap1
+----------  1 user15 user15 12 Jun 17  2010 chap1
+
+[user15@DELL0708S-02VM7 ~]$ chmod u+x chap1
+
+[user15@DELL0708S-02VM7 ~]$ ls -l chap1
+---x------  1 user15 user15 12 Jun 17  2010 chap1
+
+
+-------------------------------------------------------------------------
+2>
+
+METHOD :1
+
+[user15@DELL0708S-02VM7 ~]$ chmod ugo=x add.c
+
+[user15@DELL0708S-02VM7 ~]$ ls -l add.c
+---x--x--x  1 user15 user15 8 Nov 10 01:20 add.c
+
+
+METHOD :2
+
+[user15@DELL0708S-02VM7 ~]$ chmod 111 add.c
+
+[user15@DELL0708S-02VM7 ~]$ ls -l add.c
+---x--x--x  1 user15 user15 8 Nov 10 01:20 add.c
+
+-------------------------------------------------------------------------
+3>
+
+
+[user15@DELL0708S-02VM7 ~]$ chmod 777 aa.c
+
+[user15@DELL0708S-02VM7 ~]$ chmod u-x aa.c
+
+[user15@DELL0708S-02VM7 ~]$ chmod g=r aa.c
+
+[user15@DELL0708S-02VM7 ~]$ chmod o=r aa.c
+
+[user15@DELL0708S-02VM7 ~]$ ls -l aa.c
+-rw-r--r--  1 user15 user15 4 Nov 10 01:22 aa.c
+
+
+-------------------------------------------------------------------------
+4>
+
+
+[user15@DELL0708S-02VM7 ~]$ chmod 777 a.c kk.c nato
+
+[user15@DELL0708S-02VM7 ~]$ chmod 777 a.c kk.c nato myfile
+
+
+/*BEFORE*/
+
+[user15@DELL0708S-02VM7 ~]$ ls -l a.c kk.c nato myfile
+-rwxrwxrwx  1 user15 user15 0 Mar 14  2010 a.c
+-rwxrwxrwx  1 user15 user15 0 Mar 14  2010 kk.c
+-rwxrwxrwx  1 user15 user15 0 Mar 14  2010 myfile
+-rwxrwxrwx  1 user15 user15 0 Mar 14  2010 nato
+
+
+/*AFTER*/
+
+[user15@DELL0708S-02VM7 ~]$ chmod u=x a.c kk.c nato myfile
+
+[user15@DELL0708S-02VM7 ~]$ ls -l a.c kk.c nato myfile=
+---xrwxrwx  1 user15 user15 0 Mar 14  2010 a.c
+---xrwxrwx  1 user15 user15 0 Mar 14  2010 kk.c
+---xrwxrwx  1 user15 user15 0 Mar 14  2010 myfile
+---xrwxrwx  1 user15 user15 0 Mar 14  2010 nato
+
+-------------------------------------------------------------------------
+5>
+
+
+[user15@DELL0708S-02VM7 ~]$ cd ..
+
+[user15@DELL0708S-02VM7 home]$ cd ..
+
+[user15@DELL0708S-02VM7 /]$ cd /bin
+
+[user15@DELL0708S-02VM7 bin]$ ls
+
+[user15@DELL0708S-02VM7 bin]$ cd ..
+
+[user15@DELL0708S-02VM7 /]$ cd /etc
+
+[user15@DELL0708S-02VM7 etc]$ ls
+
+
+-------------------------------------------------------------------------

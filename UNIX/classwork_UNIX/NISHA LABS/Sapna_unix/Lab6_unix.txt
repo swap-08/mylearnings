@@ -1,0 +1,73 @@
+Ans-1_a.
+[testuser6@pace sapnadubey]$ sed -n '2,2p; /[pP]une$/p' Employee.dat
+John    34228   GRIT    Hyderabad
+Albert  32342   PACE    Pune
+Richard 23232   ACS     Pune
+
+
+Ans-1_b.
+[testuser6@pace sapnadubey]$ sed -n '1,5p' Employee.dat
+James   76382   PACE    Chennai
+John    34228   GRIT    Hyderabad
+Peter   22321   GE      Bangalore
+Albert  32342   PACE    Pune
+Mathew  23222   PACE    Mumbai
+
+			   or
+[testuser6@pace sapnadubey]$ sed 5q Employee.dat
+James   76382   PACE    Chennai
+John    34228   GRIT    Hyderabad
+Peter   22321   GE      Bangalore
+Albert  32342   PACE    Pune
+Mathew  23222   PACE    Mumbai
+
+
+
+Ans-1_c.
+[testuser6@pace sapnadubey]$ cat Employee.dat
+James   76382   PACE    Chennai
+John    34228   GRIT    Hyderabad
+Peter   22321   GE      Bangalore
+Albert  32342   PACE    Pune
+Mathew  23222   PACE    Mumbai
+Richard 23232   ACS     Pune
+
+[testuser6@pace sapnadubey]$ sed -n 's/Pune/Chennai/p' Employee.dat
+Albert  32342   PACE    Chennai
+Richard 23232   ACS     Chennai
+
+
+Ans-1_d.
+[testuser6@pace sapnadubey]$ sed -e 's/e/UNIX/g' Employee.dat
+JamUNIXs        76382   PACE    ChUNIXnnai
+John    34228   GRIT    HydUNIXrabad
+PUNIXtUNIXr     22321   GE      BangalorUNIX
+AlbUNIXrt       32342   PACE    PunUNIX
+MathUNIXw       23222   PACE    Mumbai
+Richard 23232   ACS     PunUNIX
+
+
+Ans-1_e.
+[testuser6@pace sapnadubey]$ sed '/^$/d' Employee.dat
+James   76382   PACE    Chennai
+John    34228   GRIT    Hyderabad
+Peter   22321   GE      Bangalore
+Albert  32342   PACE    Pune
+Mathew  23222   PACE    Mumbai
+Richard 23232   ACS     Pune
+
+
+Ans-1_f.
+[testuser6@pace sapnadubey]$ sed 3,5d Employee.dat
+James   76382   PACE    Chennai
+John    34228   GRIT    Hyderabad
+Richard 23232   ACS     Pune
+
+
+Ans-2.
+[testuser6@pace sapnadubey]$ sed -n '/PACE/p' Employee.dat > PACE.dat
+[testuser6@pace sapnadubey]$ cat PACE.dat
+James   76382   PACE    Chennai
+Albert  32342   PACE    Pune
+Mathew  23222   PACE    Mumbai
+

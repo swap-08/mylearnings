@@ -1,0 +1,30 @@
+<html>
+<body>
+<script>
+function savecookie()
+{
+	alert(navigator.cookieEnabled);
+	var cooName=frm1.cname.value;
+	var cooVal=frm1.cval.value;
+	document.cookie=cooName+"="+escape(cooVal)+";";
+	alert("cookie saved");
+}
+function readcookie()
+{
+	alert("cookie is"+document.cookie);
+}
+
+</script>
+ 
+<form name="frm1">
+Enter cookie name;
+<input type="text" size=20 name="cname"/><br>
+ 
+Enter cookie value;
+<input type="text" size=20 name="cval"/><br>
+ 
+<input type="button" value="save cookie" onclick="savecookie()"/><br>
+<input type="button" value="read cookie" onclick="readcookie()"/>
+</form> 
+</body>
+</html>

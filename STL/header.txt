@@ -1,0 +1,48 @@
+fileheader
+
+/*************************<File Header>*************************/
+/*!
+@file<filename>
+@brief Abstract: <Abstract>
+	[content..]
+Description:   .....
+@note<note>
+@todo...
+Author:
+Date:
+Change History:
+*/
+/*****************************************************************/
+
+
+
+
+
+			
+/*************************<Function Header>*************************/
+/*!
+@fn<function name>
+@brief ABSTRACT:
+
+Description:<ONE LINE>
+@param<parameter>
+@return<return>
+@remarks
+@warning
+@see
+*/
+/*****************************************************************/
+
+
+
+/*************************<Structure Header>*************************/
+/*!
+@struct<sn name>
+@brief ABSTRACT:
+
+Description:<ONE LINE>
+@remarks
+@warning
+@see
+*/
+/*****************************************************************/

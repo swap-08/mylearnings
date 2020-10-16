@@ -1,0 +1,347 @@
+<date>
+	<day>27</day>
+	<month>06</month>
+	<year>1982</year>
+</date>
+
+
+<?xml version="1.0"?>
+<date>
+	<day>27</day>
+	<month>06</month>
+	<year>1982</year>
+</date>
+
+
+
+<?xml version="1.0"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+	<xsl:template match="/">
+		<html>
+			<head>
+				<title>Display Date</title>
+			</head>
+			<body bgcolor="#FFFFFF">
+				<xsl:value-of select="date"/>
+				<xsl:value-of select="day"/>
+				<xsl:value-of select="month"/>
+				<xsl:value-of select="year"/>
+			</body>
+		</html>
+	</xsl:template>
+</xsl:stylesheet>
+
+
+<?xml version="1.0"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+	<xsl:template match="/">
+		<html>
+			<head>
+				<title>Display Date</title>
+			</head>
+			<body bgcolor="#FFFFFF">
+				<h1><xsl:value-of select="date"/></h1>
+				<h1><xsl:value-of select="day"/></h1>
+				<h1><xsl:value-of select="month"/></h1>
+				<h1><xsl:value-of select="year"/></h1>
+			</body>
+		</html>
+	</xsl:template>
+</xsl:stylesheet>
+
+
+
+
+<?xml version="1.0"?>
+<?xml-stylesheet href="Date.xsl" type="text/xsl"?>
+<BDate>
+<date>
+	<day>27</day>
+	<month>06</month>
+	<year>1982</year>
+</date>
+<date>
+	<day>17</day>
+	<month>12</month>
+	<year>1982</year>
+</date>
+</BDate>
+
+<?xml version="1.0"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+	<xsl:template match="/">
+		<html>
+			<head>
+				<title>Display Date</title>
+			</head>
+			<body bgcolor="#FFFFFF">
+				<xsl:for-each select="BDate/date">
+					<xsl:value-of select="day"/>
+					<xsl:value-of select="month"/>
+					<xsl:value-of select="year"/>
+				</xsl:for-each>				
+			</body>
+		</html>
+	</xsl:template>
+</xsl:stylesheet>
+
+
+
+<?xml version="1.0"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+	<xsl:template match="/">
+		<html>
+			<head>
+				<title>Display Date</title>
+			</head>
+			<body bgcolor="#FFFFFF">
+				<xsl:for-each select="BDate/date">
+					<xsl:value-of select="day"/> /
+					<xsl:value-of select="month"/> / 
+					<xsl:value-of select="year"/> 
+					<br/>
+				</xsl:for-each>				
+			</body>
+		</html>
+	</xsl:template>
+</xsl:stylesheet>
+
+
+
+
+
+<?xml version="1.0"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+	<xsl:template match="/">
+		<html>
+			<head>
+				<title>Display Date</title>
+			</head>
+			<body bgcolor="#FFFFFF">
+				<xsl:for-each select="BDate/date">
+					<h1><xsl:apply-templates select="day"/></h1>
+					<h1><xsl:apply-templates select="month"/></h1>
+					<h1><xsl:apply-templates select="year"/></h1>
+				</xsl:for-each>				
+			</body>
+		</html>
+	</xsl:template>
+	
+	<xsl:template match="day">
+	  day: <span style="color:#00ff00">
+	  <xsl:value-of select="."/></span>
+	  <br />
+	</xsl:template>	
+	
+	<xsl:template match="month">
+		  month: <span style="color:#00ff00">
+		  <xsl:value-of select="."/></span>
+		  <br />
+	</xsl:template>	
+	
+	<xsl:template match="year">
+		  year: <span style="color:#00ff00">
+		  <xsl:value-of select="."/></span>
+		  <br />
+	</xsl:template>	
+	
+
+</xsl:stylesheet>
+
+
+
+
+<?xml version="1.0"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+	<xsl:template match="/">
+		<html>
+			<head>
+				<title>Display Date</title>
+			</head>
+			<body bgcolor="#FFFFFF">
+				<xsl:for-each select="BDate/date">
+					<xsl:apply-templates select="day"/> /
+					<xsl:apply-templates select="month"/> / 
+					<xsl:apply-templates select="year"/> 
+					<br/>
+				</xsl:for-each>				
+			</body>
+		</html>
+	</xsl:template>
+	
+		<xsl:template match="day">
+			day: <span style="color:#00ff00">
+			<xsl:value-of select="."/></span>		
+		</xsl:template>	
+		
+		<xsl:template match="month">
+			month: <span style="color:#00ff00">
+			<xsl:value-of select="."/></span>			 
+		</xsl:template>	
+		
+		<xsl:template match="year">
+			year: <span style="color:#00ff00">
+			<xsl:value-of select="."/></span>			
+		</xsl:template>
+	
+</xsl:stylesheet>
+
+
+<?xml version="1.0"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+	<xsl:template match="/">
+		<html>
+			<head>
+				<title>Display Date</title>
+			</head>
+			<body bgcolor="#FFFFFF">
+				<xsl:for-each select="BDate/date">
+					<xsl:if test="day &gt; 20">
+						<xsl:apply-templates select="day"/> /
+						<xsl:apply-templates select="month"/> / 
+						<xsl:apply-templates select="year"/> 
+						<br/>
+					</xsl:if>
+				</xsl:for-each>				
+			</body>
+		</html>
+	</xsl:template>
+	
+		<xsl:template match="day">
+			day: <span style="color:#00ff00">
+			<xsl:value-of select="."/></span>		
+		</xsl:template>	
+		
+		<xsl:template match="month">
+			month: <span style="color:#00ff00">
+			<xsl:value-of select="."/></span>			 
+		</xsl:template>	
+		
+		<xsl:template match="year">
+			year: <span style="color:#00ff00">
+			<xsl:value-of select="."/></span>			
+	</xsl:template>
+	
+</xsl:stylesheet>
+
+---------------------------------------------------------------------------------
+DTD:
+
+
+<?xml version="1.0"?>
+<!DOCTYPE BDate SYSTEM "Date.dtd">
+<BDate>
+<date>
+	<day>27</day>
+	<month>06</month>
+	<year>1982</year>
+</date>
+<date>
+	<day>17</day>
+	<month>12</month>
+	<year>1982</year>
+</date>
+</BDate>
+
+
+
+<!ELEMENT BDate ( date)+ >
+<!ELEMENT date ( day,month,year)+ >
+<!ELEMENT day ( #PCDATA)>
+<!ELEMENT month ( #PCDATA)>
+<!ELEMENT year ( #PCDATA)>
+
+---------------------------------------------------------------------------------
+XSD:
+
+<?xml version="1.0"?>
+<BDate xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="Date.xsd">
+<date>
+	<day>27</day>
+	<month>06</month>
+	<year>1982</year>
+</date>
+</BDate>
+
+
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<!-- definition of simple elements -->
+<xs:element name="day" type="xs:positiveInteger"/>
+<xs:element name="month" type="xs:positiveInteger"/>
+<xs:element name="year" type="xs:positiveInteger"/>
+<!-- definition of complex elements -->
+<xs:element name="date">
+ <xs:complexType>
+  <xs:sequence>
+   <xs:element ref="day"/>
+   <xs:element ref="month"/>
+   <xs:element ref="year"/>
+  </xs:sequence>
+ </xs:complexType>
+</xs:element>
+<xs:element name="BDate">
+ <xs:complexType>
+  <xs:sequence>
+   <xs:element ref="date"/>
+  </xs:sequence>
+ </xs:complexType>
+</xs:element>
+</xs:schema>
+
+
+
+<?xml version="1.0"?>
+<BDate xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:noNamespaceSchemaLocation="Date.xsd">
+<date>
+	<day>27</day>
+	<month>06</month>
+	<year>1982</year>
+</date>
+<date>
+	<day>27</day>
+	<month>06</month>
+	<year>1982</year>
+</date>
+
+</BDate>
+
+
+
+
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<!-- definition of simple elements -->
+<xs:element name="day" type="xs:positiveInteger"/>
+<xs:element name="month" type="xs:positiveInteger"/>
+<xs:element name="year" type="xs:positiveInteger"/>
+<!-- definition of complex elements -->
+<xs:element name="date">
+ <xs:complexType>
+  <xs:sequence>
+   <xs:element ref="day"/>
+   <xs:element ref="month"/>
+   <xs:element ref="year"/>
+  </xs:sequence>
+ </xs:complexType>
+</xs:element>
+<xs:element name="BDate">
+ <xs:complexType>
+  <xs:sequence>
+   <xs:element ref="date" maxOccurs="unbounded" />
+  </xs:sequence>
+ </xs:complexType>
+</xs:element>
+</xs:schema>
+
+
+
+attribute
+namespace : xsd create namespace and use namespace
+
+
+
+
+

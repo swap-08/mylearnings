@@ -1,0 +1,26 @@
+<html>
+<body>
+<script type="text/javascript">
+function check()
+{
+var re=new RegExp(frm1.pat.value,"g");
+var teststring=frm1.str.value;
+count=0;
+while(match=re.exec(teststring)){
+	alert("Match Found"+RegExp.lastMatch+" at "+match.index);
+	count++;
+}
+if(count==0)
+{
+	alert("Match not found");
+}
+}
+</script>
+<form name="frm1">
+enter pattern
+<input type="text" name="pat" size="20"/><br>
+enter search string
+<input type="text" name="str" size="20"/><br>
+<input type="button" value="check" onclick="check()"/><br>
+</forms></body>
+</html>

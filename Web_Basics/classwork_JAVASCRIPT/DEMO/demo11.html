@@ -1,0 +1,30 @@
+<html>
+<body>
+<script>
+function sum(){
+txt1=frm.t1.value;
+txt2=frm.t2.value;
+if(isNaN(txt1)){
+alert("Enter a valid number");
+}
+
+else if(isNaN(txt2)){
+alert("Enter a valid number");
+}
+else if(txt1.length==0 || txt2.length==0)){
+alert("Field should not be empty");
+}
+else{
+var n1=parseInt(txt1);
+var n2=parseInt(txt2);
+frm.t3.value=(n1+n2);
+}
+</script>
+<h2>Calculator</h2>
+<form name="frm">
+Enter a number :<input type="text" name="t1" size="10"><br>
+Enter a number :<input type="text" name="t2" size="10"><br>
+Sum<input type="text" name="t3" size="10" disable><br><input type="button" value="Add" onClick="sum()"><br>
+</form>
+</body>
+</html>

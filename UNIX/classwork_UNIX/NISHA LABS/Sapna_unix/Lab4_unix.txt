@@ -1,0 +1,657 @@
+Ans-1.
+[testuser6@pace sapnadubey]$ ls --help|cat >lsdoc
+
+
+Ans-2.
+[testuser6@pace sapnadubey]$ cat lsdoc
+Usage: ls [OPTION]... [FILE]...
+List information about the FILEs (the current directory by default).
+Sort entries alphabetically if none of -cftuvSUX nor --sort.
+
+Mandatory arguments to long options are mandatory for short options too.
+  -a, --all                  do not ignore entries starting with .
+  -A, --almost-all           do not list implied . and ..
+      --author               with -l, print the author of each file
+  -b, --escape               print octal escapes for nongraphic characters
+      --block-size=SIZE      use SIZE-byte blocks
+  -B, --ignore-backups       do not list implied entries ending with ~
+  -c                         with -lt: sort by, and show, ctime (time of last
+                               modification of file status information)
+                               with -l: show ctime and sort by name
+                               otherwise: sort by ctime
+  -C                         list entries by columns
+      --color[=WHEN]         control whether color is used to distinguish file
+                               types.  WHEN may be `never', `always', or `auto'
+  -d, --directory            list directory entries instead of contents,
+                               and do not dereference symbolic links
+  -D, --dired                generate output designed for Emacs' dired mode
+  -f                         do not sort, enable -aU, disable -lst
+  -F, --classify             append indicator (one of */=>@|) to entries
+      --file-type            likewise, except do not append `*'
+      --format=WORD          across -x, commas -m, horizontal -x, long -l,
+                               single-column -1, verbose -l, vertical -C
+      --full-time            like -l --time-style=full-iso
+  -g                         like -l, but do not list owner
+  -G, --no-group             like -l, but do not list group
+  -h, --human-readable       with -l, print sizes in human readable format
+                               (e.g., 1K 234M 2G)
+      --si                   likewise, but use powers of 1000 not 1024
+  -H, --dereference-command-line
+                             follow symbolic links listed on the command line
+      --dereference-command-line-symlink-to-dir
+                             follow each command line symbolic link
+                             that points to a directory
+      --hide=PATTERN         do not list implied entries matching shell PATTERN
+                               (overridden by -a or -A)
+      --indicator-style=WORD append indicator with style WORD to entry names:
+                               none (default), slash (-p),
+                               file-type (--file-type), classify (-F)
+  -i, --inode                with -l, print the index number of each file
+  -I, --ignore=PATTERN       do not list implied entries matching shell PATTERN
+  -k                         like --block-size=1K
+  -l                         use a long listing format
+  -L, --dereference          when showing file information for a symbolic
+                               link, show information for the file the link
+                               references rather than for the link itself
+  -m                         fill width with a comma separated list of entries
+  -n, --numeric-uid-gid      like -l, but list numeric user and group IDs
+  -N, --literal              print raw entry names (don't treat e.g. control
+                               characters specially)
+  -o                         like -l, but do not list group information
+  -p, --indicator-style=slash
+                             append / indicator to directories
+  -q, --hide-control-chars   print ? instead of non graphic characters
+      --show-control-chars   show non graphic characters as-is (default
+                             unless program is `ls' and output is a terminal)
+  -Q, --quote-name           enclose entry names in double quotes
+      --quoting-style=WORD   use quoting style WORD for entry names:
+                               literal, locale, shell, shell-always, c, escape
+  -r, --reverse              reverse order while sorting
+  -R, --recursive            list subdirectories recursively
+  -s, --size                 with -l, print size of each file, in blocks
+  -S                         sort by file size
+      --sort=WORD            extension -X, none -U, size -S, time -t,
+                             version -v, status -c, time -t, atime -u,
+                             access -u, use -u
+      --time=WORD            with -l, show time as WORD instead of modification
+                             time: atime, access, use, ctime or status; use
+                             specified time as sort key if --sort=time
+      --time-style=STYLE     with -l, show times using style STYLE:
+                             full-iso, long-iso, iso, locale, +FORMAT.
+                             FORMAT is interpreted like `date'; if FORMAT is
+                             FORMAT1<newline>FORMAT2, FORMAT1 applies to
+                             non-recent files and FORMAT2 to recent files;
+                             if STYLE is prefixed with `posix-', STYLE
+                             takes effect only outside the POSIX locale
+  -t                         sort by modification time
+  -T, --tabsize=COLS         assume tab stops at each COLS instead of 8
+  -u                         with -lt: sort by, and show, access time
+                               with -l: show access time and sort by name
+                               otherwise: sort by access time
+  -U                         do not sort; list entries in directory order.
+                             In combination with one_per_line format `-1',
+                             it will show files immediately and it has no
+                             memory limitations.
+  -v                         sort by version
+  -w, --width=COLS           assume screen width instead of current value
+  -x                         list entries by lines instead of by columns
+  -X                         sort alphabetically by entry extension
+  -1                         list one file per line
+
+SELinux options:
+
+      --lcontext             Display security context.   Enable -l. Lines
+                               will probably be too wide for most displays.
+      -Z, --context          Display security context so it fits on most
+                               displays.  Displays only mode, user, group,
+                               security context and file name.
+      --scontext             Display only security context and file name.
+
+
+      --help     display this help and exit
+      --version  output version information and exit
+
+SIZE may be (or may be an integer optionally followed by) one of following:
+kB 1000, K 1024, MB 1000*1000, M 1024*1024, and so on for G, T, P, E, Z, Y.
+
+By default, color is not used to distinguish types of files.  That is
+equivalent to using --color=none.  Using the --color option without the
+optional WHEN argument is equivalent to using --color=always.  With
+--color=auto, color codes are output only if standard output is connected
+to a terminal (tty).  The environment variable LS_COLORS can influence the
+colors, and can be set easily by the dircolors command.
+
+Exit status is 0 if OK, 1 if minor problems, 2 if serious trouble.
+
+Report bugs to <bug-coreutils@gnu.org>.
+
+
+Ans-3.
+[testuser6@pace sapnadubey]$ head -4 lsdoc
+Usage: ls [OPTION]... [FILE]...
+List information about the FILEs (the current directory by default).
+Sort entries alphabetically if none of -cftuvSUX nor --sort.
+
+
+
+Ans-4.
+[testuser6@pace sapnadubey]$ tail -7 lsdoc
+--color=auto, color codes are output only if standard output is connected
+to a terminal (tty).  The environment variable LS_COLORS can influence the
+colors, and can be set easily by the dircolors command.
+
+Exit status is 0 if OK, 1 if minor problems, 2 if serious trouble.
+
+Report bugs to <bug-coreutils@gnu.org>.
+
+
+
+Ans-5.
+[testuser6@pace sapnadubey]$ rm lsdoc
+[testuser6@pace sapnadubey]$ cat lsdoc
+cat: lsdoc: No such file or directory
+[testuser6@pace sapnadubey]$ ls
+case1  file2  file.unix  myfile      prog    temp   users
+chap1  file3  friends    newfreinds  result  user1
+
+
+Ans-6.
+[testuser6@pace sapnadubey]$ cat friends
+madhu   6966456 09/07/68
+jamil   2345215 08/09/67
+ajay    5546785 01/04/66
+simmi   7864563 12/12/70
+[testuser6@pace sapnadubey]$ sort -u -k3,3 friends|wc -l
+4
+
+
+Ans-7.
+[testuser6@pace sapnadubey]$ grep ^ma* friends
+madhu   6966456 09/07/68
+
+
+Ans-8.
+[testuser6@pace sapnadubey]$ grep '^ma' friends|grep 'i$|id$'
+
+
+Ans-9.
+[testuser6@pace sapnadubey]$ find -print
+.
+./file3
+./result
+./newfreinds
+./file2
+./temp
+./temp/directorynew
+./case1
+./prog
+./user1
+./users
+./myfile
+./friends
+./chap1
+./file.unix
+
+
+
+Ans-10.
+[testuser6@pace sapnadubey]$ find -type d -print
+.
+./temp
+./temp/directorynew
+
+
+
+Ans-11.
+[testuser6@pace sapnadubey]$ find -name 'chap*' -print
+./chap1
+
+
+Ans-12.
+[testuser6@pace sapnadubey]$ sort friends
+ajay    5546785 01/04/66
+jamil   2345215 08/09/67
+madhu   6966456 09/07/68
+simmi   7864563 12/12/70
+
+
+Ans-13.
+[testuser6@pace sapnadubey]$ cat friends|tr a-z A-z
+MADHU   6966456 09/07/68
+JAMIL   2345215 08/09/67
+AJAY    5546785 01/04/66
+SIMMI   7864563 12/12/70
+
+
+Ans-14.
+[testuser6@pace sapnadubey]$ cp * ../lab3/
+cp: omitting directory `temp'
+[testuser6@pace sapnadubey]$ cd
+[testuser6@pace ~]$ cd lab3
+[testuser6@pace lab3]$ ls
+case1  file2  file.unix  myfile      prog    user1
+chap1  file3  friends    newfreinds  result  users
+
+
+Ans-15.
+[testuser6@pace lab3]$ cat dir|ls -l|cut -c1-10,52-65
+total 96
+-rw-rw-r--ase1
+-rw-rw-r--hap1
+-rw-rw-r--ile2
+-rw-rw-r--ile3
+-rw-rw-r--ile.unix
+-rw-rw-r--riends
+-rw-rw-r--yfile
+-rw-rw-r--ewfreinds
+-rw-rw-r--rog
+-rw-rw-r--esult
+-rw-rw-r--ser1
+-rw-rw-r--sers
+
+
+Ans-16.
+[testuser6@pace sapnadubey]$ cat file2>files
+[testuser6@pace sapnadubey]$ cat files
+sapna
+bindu
+kuldeep
+vikram
+anku
+
+
+Ans-17.
+[testuser6@pace sapnadubey]$ cat file2|ls -l|cut -c1-10 >perms
+[testuser6@pace sapnadubey]$ cat perms
+total 112
+-rw-rw-r--
+-rw-rw-r--
+-rw-rw-r--
+-rw-rw-r--
+-rw-rw-r--
+-rw-rw-r--
+-rw-rw-r--
+-rw-rw-r--
+-rw-rw-r--
+-rw-rw-r--
+-rw-rw-r--
+-rw-rw-r--
+drwxrwxr-x
+-rw-rw-r--
+-rw-rw-r--
+
+
+Ans-18.
+[testuser6@pace sapnadubey]$ cat file2|ls -l|cut -c36-39 >sizes
+[testuser6@pace sapnadubey]$ cat sizes
+
+24 0
+25 0
+38 O
+70 O
+ 0 O
+ 8 O
+91 O
+41 O
+91 O
+75 O
+ 6 O
+32 O
+ 0 O
+96 O
+81 O
+11 O
+
+
+Ans-19.
+[testuser6@pace sapnadubey]$ paste files sizes perms
+                total 112
+        24 O    -rw-rw-r--
+        25 O    -rw-rw-r--
+        38 O    -rw-rw-r--
+        70 O    -rw-rw-r--
+         0 O    -rw-rw-r--
+         8 O    -rw-rw-r--
+        91 O    -rw-rw-r--
+        41 O    -rw-rw-r--
+        91 O    -rw-rw-r--
+        75 O    -rw-rw-r--
+         6 O    -rw-rw-r--
+        32 O    -rw-rw-r--
+         0 O    drwxrwxr-x
+        96 O    -rw-rw-r--
+        81 O    -rw-rw-r--
+        11 O
+
+
+Ans-20.
+[testuser6@pace sapnadubey]$ who
+testuser47 pts/1        2013-10-17 15:50 (10.216.53.129)
+testuser50 pts/2        2013-10-17 15:41 (10.216.53.111)
+testuser36 pts/3        2013-10-17 15:28 (10.216.53.134)
+testuser32 pts/4        2013-10-17 15:59 (10.216.53.107)
+testuser46 pts/6        2013-10-17 15:47 (10.216.53.114)
+testuser6 pts/7        2013-10-17 15:08 (10.216.53.95)
+testuser44 pts/8        2013-10-17 15:16 (10.216.53.109)
+testuser49 pts/9        2013-10-17 15:50 (10.216.53.122)
+testuser13 pts/10       2013-10-17 15:39 (10.216.53.93)
+testuser37 pts/11       2013-10-17 15:51 (10.216.53.117)
+testuser28 pts/12       2013-10-17 15:02 (10.216.53.108)
+testuser2 pts/13       2013-10-17 15:10 (10.216.53.115)
+testuser21 pts/14       2013-10-17 15:17 (10.216.53.126)
+testuser38 pts/15       2013-10-17 15:26 (10.216.53.112)
+testuser29 pts/16       2013-10-17 15:18 (10.216.53.101)
+testuser11 pts/17       2013-10-17 15:21 (10.216.53.123)
+testuser9 pts/18       2013-10-17 15:54 (10.216.53.116)
+testuser20 pts/22       2013-10-17 15:23 (10.216.53.92)
+testuser1 pts/23       2013-10-17 15:32 (10.216.53.106)
+testuser40 pts/27       2013-10-17 15:31 (10.216.53.97)
+
+
+Ans-21.
+[testuser6@pace sapnadubey]$ ls -s|sort|head -1
+4 files
+
+
+Ans-22.
+[testuser6@pace sapnadubey]$ cat friends|wc -l
+4
+
+
+Ans-23_1.
+
+[testuser6@pace sapnadubey]$ wc -L emp.lst dept.lst desig.lst
+ 60 emp.lst
+ 18 dept.lst
+ 12 desig.lst
+ 60 total
+
+Ans-23_2.
+
+[testuser6@pace sapnadubey]$ cut -d"|" -f5,6 emp.lst|tail -1
+23aug1990|30000
+
+Ans-23_3.
+
+[testuser6@pace sapnadubey]$ cut -c6-12,20-26 emp.lst >cfile1
+[testuser6@pace sapnadubey]$ cat cfile1
+abc               |se
+pqr               |re
+abcpqr            |se
+
+Ans-23_4.
+
+[testuser6@pace sapnadubey]$ cut -d"|" -f1,4,5,6 emp.lst >cfile2
+[testuser6@pace sapnadubey]$ cat cfile2
+1001|computer  |10dec1990|20000
+1002|electronic|12jan1990|21000
+1003|mecha     |23aug1990|30000
+
+
+Ans-23_5.
+
+[testuser6@pace sapnadubey]$ paste -d"|" cfile1 cfile2
+abc               |se       |1001|computer  |10dec1990|20000
+pqr               |re       |1002|electronic|12jan1990|21000
+abcpqr            |se       |1003|mecha     |23aug1990|30000
+[testuser6@pace sapnadubey]$
+
+
+Ans-23_6.
+
+[testuser6@pace sapnadubey]$ sort -r -k2,2 emp.lst
+1002|pqr               |re       |electronic|12jan1990|21000
+1001|abc               |se       |computer  |10dec1990|20000
+1003|abcpqr            |se       |mecha     |23aug1990|30000
+[testuser6@pace sapnadubey]$
+
+Ans-23_7.
+
+[testuser6@pace sapnadubey]$ sort -k6,6 emp.lst > srtf
+[testuser6@pace sapnadubey]$ cat srtf
+1001|abc               |se       |computer  |10dec1990|20000
+1002|pqr               |re       |electronic|12jan1990|21000
+1003|abcpqr            |se       |mecha     |23aug1990|30000
+[testuser6@pace sapnadubey]$
+
+Ans-23_8.
+
+[testuser6@pace sapnadubey]$ sort -k3,3 -k2,2 emp.lst
+1001|abc               |se       |computer  |10dec1990|20000
+1002|pqr               |re       |electronic|12jan1990|21000
+1003|abcpqr            |se       |mecha     |23aug1990|30000
+[testuser6@pace sapnadubey]$
+
+
+Ans-23_9.
+
+[testuser6@pace sapnadubey]$ cut -c51-54 emp.lst|sort
+1990
+1991
+1992
+
+Ans-23_10.
+
+[testuser6@pace sapnadubey]$ cut -d"|" -f3 emp.lst|sort|uniq
+re
+se
+[testuser6@pace sapnadubey]$
+
+Ans-23_11.
+
+[testuser6@pace sapnadubey]$ cut -d"|" -f3 emp.lst|sort|uniq -u
+re
+
+
+Ans-23_12.
+
+[testuser6@pace sapnadubey]$ cut -d"|" -f3 emp.lst|sort|uniq|wc -l
+2
+
+Ans-23_13.
+
+[testuser6@pace sapnadubey]$ cut -d"|" -f5 emp.lst|cut -c6-10|sort|uniq -c
+      1 1990
+      1 1991
+      1 1992
+
+
+Ans-23_14.
+
+[testuser6@pace sapnadubey]$ cut -d"|" -f3 emp.lst|nl -w1 -v100 -i5
+100     se
+105     re
+110     se
+
+
+
+Ans-24_1.
+
+[testuser6@pace sapnadubey]$ grep "Manu Sharma" mumbai_emp.lst
+101     Manu Sharma     SE      production      11/12/1990      50000
+[testuser6@pace sapnadubey]$
+
+Ans-24_2.
+
+[testuser6@pace sapnadubey]$ grep "Manu Sharma" mumbai_emp.lst|cut -f1,4
+101     production
+
+Ans-24_3.
+
+[testuser6@pace sapnadubey]$ cat mumbai_emp.lst pune_emp.lst|grep "Manager"
+102     Ab saxena       Manager HR Department   23/10/1989      60000
+2001    Triwedi         Manager Production      22/10/1990      60000
+[testuser6@pace sapnadubey]$
+
+Ans-24_4.
+
+[testuser6@pace sapnadubey]$ cut -f3 mumbai_emp.lst pune_emp.lst|grep "SE"|wc -l
+2
+
+Ans-24_5.
+
+[testuser6@pace sapnadubey]$ cut -f2 pune_emp.lst|nl
+     1  Dwivedi
+     2  Triwedi
+
+Ans-24_6.
+
+[testuser43@pace sapnadubey]$ grep -v "Hr[dD]epartment" mumbai_emp.lst >nonhr
+[testuser43@pace sapnadubey]$ cat nonhr
+101     Manu Sharma     SE      production      11/12/1990      50000
+103     PD saksena      HR      Recruitment     14/11/1987      70000
+104     Seema Sharma    HR      Development     15/10/1988      75000
+105     pradip          Admin   Management      10/12/1990      90000
+
+Ans-24_7.
+
+[testuser6@pace sapnadubey]$ grep -v "Manager" mumbai_emp.lst|sort|head -1|cut -f2,3,5
+Manu Sharma     SE      11/12/1990
+
+
+Ans-24_8.
+
+[testuser6@pace sapnadubey]$  grep "Seema Sharma*" mumbai_emp.lst pune_emp.lst
+mumbai_emp.lst:104      Seema Sharma    HR      Development     15/10/1988     75000
+
+
+
+Ans-24_9.
+`	
+[testuser6@pace sapnadubey]$  grep 'sa[xk]s*ena' mumbai_emp.lst
+102     Ab saxena       Manager Hrdepartment    23/10/1989      60000
+103     PD saksena      HR      Recruitment     14/11/1987      70000
+
+
+Ans-24_10.
+
+[testuser6@pace sapnadubey]$  grep 'Manager' pune_emp.lst|grep '[5-9][0-9][0-9][0-9][0-9]'
+2001    Triwedi Manager Production      22/10/1990      60000
+ 
+or
+
+[testuser6@pace sapnadubey]$ awk '$6 > 50000 && $6 < 99999 {print}' pune_emp.lst
+2001    Triwedi Manager Production      22/10/1990      60000
+
+Ans-24_11.
+
+[testuser6@pace sapnadubey]$ grep '2[0-9][0-9][0-9]' pune_emp.lst
+2001    Triwedi Manager Production      22/10/1990      60000
+2222    Pradip  HR      development     13/11/1989      40000
+
+or
+
+[testuser6@pace sapnadubey]$ awk '$1 > 2000 && $1 < 2999 {print}' pune_emp.lst
+2001    Triwedi Manager Production      22/10/1990      60000
+2222    Pradip  HR      development     13/11/1989      40000
+
+Ans-24_12.
+
+[testuser6@pace sapnadubey]$ cut -d" " -f2,5 pune_emp.lst|egrep "[0-9][0-9]/10/[0-9]+"
+2001    Triwedi Manager Production      22/10/1990      60000
+
+
+Ans-24_13.
+
+[testuser6@pace sapnadubey]$ grep -v "HR" mumbai_emp.lst|grep -v "Admin"
+101     Manu Sharma     SE      production      11/12/1990      50000
+102     Ab saxena       Manager Hrdepartment    23/10/1989      60000
+
+
+Ans-24_14.
+
+[testuser6@pace sapnadubey]$ cut -f2 pune_emp.lst|grep 'edi$'
+Dwivedi
+Triwedi
+
+
+Ans-24_15.
+
+[testuser6@pace sapnadubey]$ egrep "HR|Admin|Recr" mumbai_emp.lst pune_emp.lst | sort -t"|" -k4 -r
+pune_emp.lst:2222       Pradip  HR      development     13/11/1989      40000
+pune_emp.lst:201        Dwivedi SE      HR Depat        23/11/1988      50000
+mumbai_emp.lst:105      pradip          Admin   Management      10/12/1990     90000
+mumbai_emp.lst:104      Seema Sharma    HR      Development     15/10/1988     75000
+mumbai_emp.lst:103      PD saksena      HR      Recruitment     14/11/1987     70000
+
+
+Ans-25.
+[testuser6@pace sapnadubey]$ date "+%T IST %a %d %b %y"
+17:35:43 IST Thu 17 Oct 13
+
+
+Ans-26.
+[testuser6@pace sapnadubey]$ ls -i|cut -d" " -f2|sort -n
+case1
+chap1
+dept.lst
+desig.lst
+emp.lst
+file2
+file3
+files
+file.unix
+friends
+myfile
+newfreinds
+perms
+prog
+result
+sizes
+temp
+user1
+users
+
+
+Ans-27.
+[testuser6@pace sapnadubey]$ ls|sort
+case1
+chap1
+dept.lst
+desig.lst
+emp.lst
+file2
+file3
+files
+file.unix
+friends
+myfile
+newfreinds
+perms
+prog
+result
+sizes
+temp
+user1
+users
+
+
+Ans-28.
+[testuser6@pace sapnadubey]$ ls -l|cut -c36-40,54-65|sort -n
+
+ 0 Ocles
+ 6 Ocog
+ 8 Ocle.unix
+11 Ocers
+24 Ocse1
+25 Ocap1
+29 Ocsig.lst
+32 Ocsult
+38 Ocle2
+41 Ocfile
+43 Ocpt.lst
+69 Ocp.lst
+70 Ocle3
+75 Ocrms
+81 Ocer1
+81 Oczes
+91 Ociends
+91 Ocwfreinds
+96 Ocmp
+
+
+
+Ans-29.
+[testuser6@pace sapnadubey]$ ls -ltr|tail -1
+-rw-rw-r-- 1 testuser6 testuser6   29 Oct 17 17:23 desig.lst
+

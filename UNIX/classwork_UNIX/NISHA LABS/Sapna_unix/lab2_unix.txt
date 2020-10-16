@@ -1,0 +1,334 @@
+Ans-1.
+[testuser6@pace lab2]$ pwd
+/home/testuser6/lab2
+
+Ans-2.
+[testuser6@pace lab2]$ logname
+testuser6
+
+Ans-4.
+[testuser6@pace lab2]$ ls -a
+.  ..  test1.txt  test2.txt
+
+Ans-5.
+[testuser6@pace ~]$ ls -a
+.              c1.txt  .emacs           man1.txt  shiv     .swp
+..             c2.txt  ex2              man2.txt  shivcha  t1.txt
+.bash_history  C_prog  .exampl2.sh.swo  .mozilla  shlscr   temp
+.bash_logout   dir1    .exampl2.sh.swp  newd1     swe      test1.txt
+.bash_profile  dir2    .first.txt.swp   newdir2   swe1     test2.txt
+.bashrc        doc     lab2             result    swetha   .viminfo
+
+Ans-6.
+[testuser6@pace lab2]$ ls -l
+total 16
+-rw-rw-r-- 1 testuser6 testuser6 43 Oct 16 16:08 test1.txt
+-rw-rw-r-- 1 testuser6 testuser6 13 Oct 16 16:09 test2.txt
+
+Ans-7.
+[testuser6@pace lab2]$ ls chap*[0-9a-z]
+chap1  chap2  chapp
+
+Ans-8.
+[testuser6@pace ~]$ mkdir c_prog
+[testuser6@pace ~]$ ls
+c1.txt  C_prog  doc   man1.txt  newdir2  shivcha  swe1    temp
+c2.txt  dir1    ex2   man2.txt  result   shlscr   swetha  test1.txt
+c_prog  dir2    lab2  newd1     shiv     swe      t1.txt  test2.txt
+
+Ans-9.
+[testuser6@pace ~]$ mkdir newdir
+[testuser6@pace ~]$ mkdir newdirectory
+
+Ans-10.
+[testuser6@pace ~]$ ls -R
+
+Ans-11.
+[testuser6@pace ~]$ rmdir newdirectory
+[testuser6@pace ~]$ ls
+c1.txt  C_prog  doc   man1.txt  newdir   shiv     swe     t1.txt     test2.txt
+c2.txt  dir1    ex2   man2.txt  newdir2  shivcha  swe1    temp
+c_prog  dir2    lab2  newd1     result   shlscr   swetha  test1.txt
+
+Ans-12.
+[testuser6@pace ~]$ mkdir temp1
+
+Ans-13.
+[testuser6@pace ~]$ rmdir newdir
+[testuser6@pace ~]$ ls
+c1.txt  C_prog  doc   man1.txt  newdir2  shivcha  swe1    temp       test2.txt
+c2.txt  dir1    ex2   man2.txt  result   shlscr   swetha  temp1
+c_prog  dir2    lab2  newd1     shiv     swe      t1.txt  test1.txt
+
+
+Ans-14.
+[testuser6@pace temp1]$ mkdir directorynew
+
+Ans-15.
+[testuser6@pace temp1]$ cd
+[testuser6@pace ~]$
+
+Ans-16.
+[testuser6@pace ~]$ cd temp1/directorynew   //relative path
+[testuser6@pace directorynew]$
+
+[testuser6@pace ~]$ cd temp1/directorynew   //absolute path
+[testuser6@pace directorynew]$
+
+Ans-17.
+[testuser6@pace ~]$ rmdir c_prog
+[testuser6@pace ~]$ ls
+c1.txt  dir1  ex2       man2.txt  result   shlscr  swetha  temp1
+c2.txt  dir2  lab2      newd1     shiv     swe     t1.txt  test1.txt
+C_prog  doc   man1.txt  newdir2   shivcha  swe1    temp    test2.txt
+
+Ans-18.
+[testuser6@pace ~]$ cd etc
+[testuser6@pace etc]$ ls
+list1  list2
+
+
+Ans-19.
+[testuser6@pace ~]$ ls .[0-9a-zA-Z]*
+.bash_history  .bashrc          .exampl2.sh.swp  .next  .viminfo
+.bash_logout   .emacs           .first.txt.swp   .now
+.bash_profile  .exampl2.sh.swo  .last            .swp
+
+.mozilla:
+
+Ans-20.
+[testuser6@pace ~]$ cat >first.unix
+Hi! goog morning everybody.
+welcome to igate.
+Hope you enjoy doing the assignments.
+[testuser6@pace ~]$ cat first.unix
+Hi! goog morning everybody.
+welcome to igate.
+Hope you enjoy doing the assignments.
+
+Ans-21.
+[testuser6@pace ~]$ cp first.unix first.unics
+[testuser6@pace ~]$ ls
+c1.txt  dir1  etc          first.unix  man2.txt  result   shlscr  swetha  temp1
+c2.txt  dir2  ex2          lab2        newd1     shiv     swe     t1.txt  test1.txt
+C_prog  doc   first.unics  man1.txt    newdir2   shivcha  swe1    temp    test2.txt
+
+Ans-22.
+[testuser6@pace ~]$ cat first.unix first.unics
+Hi! goog morning everybody.
+welcome to igate.
+Hope you enjoy doing the assignments.
+Hi! goog morning everybody.
+welcome to igate.
+Hope you enjoy doing the assignments.
+
+Ans-23.
+[testuser6@pace temp]$ mkdir new1
+
+Ans-24.
+[testuser6@pace ~]$ cp * temp1/new1
+cp: omitting directory `C_prog'
+cp: omitting directory `dir1'
+cp: omitting directory `dir2'
+cp: omitting directory `doc'
+cp: omitting directory `etc'
+cp: omitting directory `ex2'
+cp: omitting directory `lab2'
+cp: omitting directory `newd1'
+cp: omitting directory `newdir2'
+cp: omitting directory `shiv'
+cp: omitting directory `shivcha'
+cp: omitting directory `shlscr'
+cp: omitting directory `swe'
+cp: omitting directory `swe1'
+cp: omitting directory `swetha'
+cp: omitting directory `temp'
+cp: omitting directory `temp1'
+[testuser6@pace ~]$ cd temp1/new1
+[testuser6@pace new1]$ ls
+c1.txt  first.unics  man1.txt  result  test1.txt
+c2.txt  first.unix   man2.txt  t1.txt  test2.txt
+
+Ans-25.
+[testuser6@pace ~]$ mv first.unix temp1
+[testuser6@pace ~]$ cd temp1
+[testuser6@pace temp1]$ ls
+c1.txt  directorynew  first.unix  man2.txt  result  test1.txt
+c2.txt  first.unics   man1.txt    new1      t1.txt  test2.txt
+
+Ans-26.
+[testuser6@pace ~]$ rm first.unix
+[testuser6@pace ~]$ ls
+c1.txt  dir2  first.unics  newd1    shivcha  swetha  test1.txt
+c2.txt  doc   lab2         newdir2  shlscr   t1.txt  test2.txt
+C_prog  etc   man1.txt     result   swe      temp
+dir1    ex2   man2.txt     shiv     swe1     temp1
+
+Ans-27.
+[testuser6@pace ~]$ cd temp1
+[testuser6@pace temp1]$ rm *
+rm: cannot remove `directorynew': Is a directory
+rm: cannot remove `new1': Is a directory
+rm: remove write-protected regular file `t1.txt'? Y
+[testuser6@pace temp1]$ ls
+directorynew  new1
+
+Ans-28.
+[testuser6@pace temp1]$ mv *[aoc] /home/
+mv: cannot move `aha' to `/home/aha': Permission denied
+mv: cannot move `echo' to `/home/echo': Permission denied
+mv: cannot move `mec' to `/home/mec': Permission denied
+
+
+[testuser6@pace ~]$ mv *[aoc] temp1
+[testuser6@pace ~]$ cd temp1
+[testuser6@pace temp1]$ ls
+aa  aha  directorynew  doc  echo  etc  lac  mec  new1  set  shivcha  swetha
+
+Ans-29.
+[testuser6@pace ~]$ mv *unix temp1
+[testuser6@pace ~]$ cd temp1
+[testuser6@pace temp1]$ ls
+aa   directorynew  echo  lac  new1      set      swetha
+aha  doc           etc   mec  sec.unix  shivcha  thrid.unix
+
+Ans-30.
+[testuser6@pace ~]$ rm -R temp1
+rm: remove write-protected regular file `temp1/new1/t1.txt'? Y
+[testuser6@pace ~]$ cd temp1
+-bash: cd: temp1: No such file or directory
+
+Ans-31.
+[testuser6@pace ~]$ cat > friends
+madhu   121     09/07/68
+jamil   122     08/09/67
+ajay    123     01/04/66
+mano    124     09/07/68
+david   125     09/09/60
+simmi   126     12/12/70
+navin   127     30/05/68
+
+Ans-33.
+[testuser6@pace ~]$ cat friends
+madhu   121     09/07/68
+jamil   122     08/09/67
+ajay    123     01/04/66
+mano    124     09/07/68
+david   125     09/09/60
+simmi   126     12/12/70
+navin   127     30/05/68
+
+Ans-34.
+[testuser6@pace ~]$ cat<friends>newfriends
+[testuser6@pace ~]$ cat newfriends
+madhu   121     09/07/68
+jamil   122     08/09/67
+ajay    123     01/04/66
+mano    124     09/07/68
+david   125     09/09/60
+simmi   126     12/12/70
+navin   127     30/05/68
+
+Ans-35.
+[testuser6@pace ~]$ cat friends newfriends
+madhu   121     09/07/68
+jamil   122     08/09/67
+ajay    123     01/04/66
+mano    124     09/07/68
+david   125     09/09/60
+simmi   126     12/12/70
+navin   127     30/05/68
+madhu   121     09/07/68
+jamil   122     08/09/67
+ajay    123     01/04/66
+mano    124     09/07/68
+david   125     09/09/60
+simmi   126     12/12/70
+navin   127     30/05/68
+
+Ans-36.
+[testuser6@pace ~]$ who
+testuser28 pts/1        2013-10-16 18:16 (10.216.53.108)
+testuser4 pts/3        2013-10-16 18:49 (10.216.53.171)
+testuser6 pts/4        2013-10-16 18:33 (10.216.53.95)
+testuser14 pts/9        2013-10-16 18:17 (10.216.53.98)
+testuser48 pts/10       2013-10-16 18:33 (10.216.53.121)
+testuser18 pts/11       2013-10-16 18:18 (10.216.53.113)
+testuser11 pts/16       2013-10-16 18:09 (10.216.53.123)
+testuser8 pts/17       2013-10-16 18:19 (10.216.53.102)
+testuser6 pts/18       2013-10-16 18:19 (10.216.53.112)
+testuser9 pts/19       2013-10-16 18:24 (10.216.53.116)
+testuser50 pts/20       2013-10-16 18:24 (10.216.53.111)
+testuser46 pts/21       2013-10-16 18:33 (10.216.53.114)
+[testuser6@pace ~]$ who>users
+[testuser6@pace ~]$ cat users
+testuser28 pts/1        2013-10-16 18:16 (10.216.53.108)
+testuser49 pts/2        2013-10-16 19:04 (10.216.53.129)
+testuser4 pts/3        2013-10-16 18:49 (10.216.53.171)
+testuser6 pts/4        2013-10-16 18:33 (10.216.53.95)
+testuser20 pts/5        2013-10-16 19:04 (10.216.53.92)
+testuser14 pts/9        2013-10-16 18:17 (10.216.53.98)
+testuser48 pts/10       2013-10-16 18:33 (10.216.53.121)
+testuser18 pts/11       2013-10-16 18:18 (10.216.53.113)
+testuser11 pts/16       2013-10-16 18:09 (10.216.53.123)
+testuser8 pts/17       2013-10-16 18:19 (10.216.53.102)
+testuser6 pts/18       2013-10-16 18:19 (10.216.53.112)
+testuser9 pts/19       2013-10-16 18:24 (10.216.53.116)
+testuser50 pts/20       2013-10-16 18:24 (10.216.53.111)
+testuser46 pts/21       2013-10-16 18:33 (10.216.53.114)
+
+Ans-37.
+[testuser6@pace ~]$ cat <friends>>users
+[testuser6@pace ~]$ cat users
+madhu   121     09/07/68
+jamil   122     08/09/67
+ajay    123     01/04/66
+mano    124     09/07/68
+david   125     09/09/60
+simmi   126     12/12/70
+navin   127     30/05/68
+madhu   121     09/07/68
+jamil   122     08/09/67
+ajay    123     01/04/66
+mano    124     09/07/68
+david   125     09/09/60
+simmi   126     12/12/70
+navin   127     30/05/68
+
+Ans-38.
+[testuser6@pace ~]$ date
+Wed Oct 16 19:13:43 IST 2013
+
+Ans-39.
+[testuser6@pace ~]$ cal 7 1991
+     July 1991
+Su Mo Tu We Th Fr Sa
+    1  2  3  4  5  6
+ 7  8  9 10 11 12 13
+14 15 16 17 18 19 20
+21 22 23 24 25 26 27
+28 29 30 31
+
+Ans-40.
+[testuser6@pace ~]$ date"+%"
+-bash: date+%: command not found
+[testuser6@pace ~]$ date "+%m"
+10
+[testuser6@pace ~]$ date"+%D"
+-bash: date+%D: command not found
+[testuser6@pace ~]$ date"+%/%Training Activity"
+-bash: date+%/%Training Activity: No such file or directory
+[testuser6@pace ~]$ date"+%Training Activity"
+-bash: date+%Training Activity: command not found
+[testuser6@pace ~]$ date"+%r"
+-bash: date+%r: command not found
+
+
+
+
+
+
+
+
+
+

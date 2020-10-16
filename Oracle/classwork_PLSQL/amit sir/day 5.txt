@@ -1,0 +1,633 @@
+declare
+
+NUM1 Number;
+NUM2 Number;
+NUM3 Number;
+
+BEGIN
+NUM1 :=20;
+NUM2 :=10;
+NUM3 :=NUM1/NUM2;
+DBMS_OUTPUT.PUT_LINE('Hiii' || NUM3);
+End;
+/
+
+
+declare
+
+NUM1 Number;
+NUM2 Number;
+NUM3 Number;
+
+BEGIN
+NUM1 :=20;
+NUM2 :=0;
+NUM3 :=NUM1/NUM2;
+DBMS_OUTPUT.PUT_LINE('Hiii' || NUM3);
+End;
+/
+
+
+declare 
+  num1 number;
+  num2 number;
+  num3 number;
+begin
+  num1 :=20;
+  num2 :=0;                                                           
+  num3 :=num1/num2;
+  dbms_output.put_line('Hi ' || num3);
+exception
+when DIVIDE_BY_ZERO then
+  dbms_output.put_line('Cannot divide by 0');
+end;
+/
+
+declare 
+  num1 number;
+  num2 number;
+  num3 number;
+begin
+  num1 :=20;
+  num2 :=0;                                                           
+  num3 :=num1/num2;
+  dbms_output.put_line('Hi ' || num3);
+exception
+when ZERO_DIVIDE then
+  dbms_output.put_line('Cannot divide by 0');
+end;
+/
+
+
+declare
+dno number;
+dnm varchar2(20);
+dloc varchar2(20);
+begin
+
+	select deptno,dname,loc into dno,dnm,dloc from dept
+	where deptno<40;
+	dbms_output.put_line(dno);
+	
+exception
+when TOO_MANY_ROWS then
+dbms_output.put_line('MULTIPLE ROWS EXCEPTION!!');
+end;
+/
+
+
+declare
+dno number;
+dnm varchar2(20);
+dloc varchar2(20);
+begin
+
+	select deptno,dname,loc into dno,dnm,dloc from dept           
+	where deptno<40;
+	dbms_output.put_line(dno);
+	
+exception
+when TOO_MANY_ROWS then
+  dbms_output.put_line('MULTIPLE ROWS EXCEPTION!!');
+when ZERO_DIVIDE then
+  dbms_output.put_line('Cannot divide by 0');
+end;
+/
+
+
+NO_DATA_FOUND , TOO_MANY_ROWS , INVALID_CURSOR, DUP_VAL_ON_INDEX
+
+
+declare
+dno number;
+dnm varchar2(20);
+dloc varchar2(20);
+begin
+
+	select deptno,dname,loc into dno,dnm,dloc from dept         
+	where deptno<40;
+	dbms_output.put_line(dno);
+	
+exception
+when OTHERS then
+  dbms_output.put_line('MULTIPLE ROWS EXCEPTION!!');
+when ZERO_DIVIDE then
+  dbms_output.put_line('Cannot divide by 0');
+end;
+/
+
+
+declare
+dno number;
+dnm varchar2(20);
+dloc varchar2(20);
+begin
+
+	select deptno,dname,loc into dno,dnm,dloc from dept          
+	where deptno<40;
+	dbms_output.put_line(dno);
+	
+exception
+when ZERO_DIVIDE then
+  dbms_output.put_line('Cannot divide by 0');
+when OTHERS then
+  dbms_output.put_line('MULTIPLE ROWS EXCEPTION!!');
+end;
+/
+
+declare
+dno number;
+dnm varchar2(20);
+dloc varchar2(20);
+begin
+
+	select deptno,dname,loc into dno,dnm,dloc from dept          
+	where deptno<40;
+	dbms_output.put_line(dno);
+	
+exception
+when ZERO_DIVIDE then
+  dbms_output.put_line( SQLERRM || SQLCODE);
+when OTHERS then
+  dbms_output.put_line('MULTIPLE ROWS EXCEPTION!!');
+end;
+/
+
+******************************************************
+declare
+    ezero EXCEPTION;  
+    NUM3 Number;
+BEGIN
+    NUM3 :=10;
+   select count(*) into NUM3 from emp where deptno=223;
+   if NUM3 =0 then
+          RAISE ezero;
+   end if;    
+        DBMS_OUTPUT.PUT_LINE('Hiii' || NUM3);
+EXCEPTION
+       WHEN ezero  THEN
+                  DBMS_OUTPUT.PUT_LINE(SQLERRM || SQLCODE);
+End;
+/
+
+declare
+    ezero EXCEPTION;  
+    NUM3 Number;
+    PRAGMA EXCEPTION_INIT(ezero, -20011);
+BEGIN
+    NUM3 :=10;
+   select count(*) into NUM3 from emp where deptno=223;
+   if NUM3 =0 then
+          RAISE_APPLICATION_ERROR(-20011, 'Application Raised Error');
+end if;    
+        DBMS_OUTPUT.PUT_LINE('Hiii' || NUM3);
+EXCEPTION
+       --WHEN ZERO_DIVIDE THEN
+       -- DBMS_OUTPUT.PUT_LINE('put proper value of'   || NUM2);
+       WHEN ezero  THEN
+                  DBMS_OUTPUT.PUT_LINE(SQLERRM || SQLCODE);
+       WHEN OTHERS THEN
+                   DBMS_OUTPUT.PUT_LINE(SQLERRM || SQLCODE);
+End;
+/
+
+--Oracle Define error can also be mapped
+DECLARE
+	V_Deptno NUMBER := 10;
+	Child_Record_Found EXCEPTION;
+--All ORACLE ERRORS ARE NEGATIVE
+--Error-2292 OCCURS WHEN REFERENTIAL INTEGRITY RULE IS VIOLATED
+        PRAGMA EXCEPTION_INIT (Child_Record_Found, -2292);
+BEGIN
+	DELETE FROM dept WHERE deptno = V_Deptno;
+
+EXCEPTION
+	WHEN Child_Record_Found THEN
+/* Error_Log is a table containing one varchar2 column created by the user to store error messages */
+INSERT INTO Error_Log 
+	VALUES ('Employees Exist for Department No' || V_Deptno);
+WHEN OTHERS THEN
+		INSERT INTO Error_Log
+		VALUES('Unable to delete dept No' || V_Deptno 		|| 'because of Unknown Reasons');
+END;
+
+----------------------------------------
+Notes on Exception Propogation 
+----------------------------------------
+
+DECLARE
+BEGIN
+             execute immediate 'create table dept1
+                                             (
+                                                 deptno NUMBER,
+                                                 dname VARCHAR2(200),
+                                                 loc VARCHAR2(200)
+                                             )';
+              DBMS_OUTPUT.PUT_LINE('Table creation Successfully');
+End;
+/
+***************************************************************
+DECLARE
+          stmt VARCHAR2(200);
+          dnumber NUMBER(2);
+BEGIN
+           stmt:='select deptno from dept2 where deptno=30';
+           execute immediate stmt into dnumber;
+           DBMS_OUTPUT.PUT_LINE('Result :' || dnumber);
+End;
+/
+
+******************************************************************
+declare 
+depnam varchar2(20) := 'testing'; 
+l_loc varchar2(10) := 'Dubai'; 
+begin 
+execute immediate 'insert into dept values (:1, :2, :3)' using 50, l_depnam,l_loc; 
+commit; 
+end; 
+/
+
+
+**************************************
+declare
+          NUM1 NUMBER(3);
+          NUM2 NUMBER(3);
+          NUM3 NUMBER(3);
+BEGIN
+	NUM1 := 10;
+	NUM2 := 10;
+	NUM3 := NUM1 + NUM2;
+        DBMS_OUTPUT.PUT_LINE('The addition of' || NUM1 
+        ||'and ' ||NUM2 ||'is'||NUM3 );
+End;
+/
+
+CREATE PROCEDURE FIRST_PROC
+AS
+          NUM1 NUMBER(3);
+          NUM2 NUMBER(3);
+          NUM3 NUMBER(3);
+BEGIN
+	NUM1 := 10;
+	NUM2 := 10;
+	NUM3 := NUM1 + NUM2;
+        DBMS_OUTPUT.PUT_LINE('The addition of' || NUM1 
+        ||'and ' ||NUM2 ||'is'||NUM3 );
+End;
+/
+
+*********************************
+To execute the function
+
+exec FIRST_PROC;
+
+begin
+FIRST_PROC;
+end;
+/
+
+**********************************
+To delete the procedure
+
+drop procedure FIRST_PROC;
+**************************************************
+CREATE OR REPLACE PROCEDURE FIRST_PROC
+(NUM1 NUMBER) AS
+
+          NUM2 NUMBER(3);
+          NUM3 NUMBER(3);
+BEGIN	
+	NUM2 := 10;
+	NUM3 := NUM1 + NUM2;
+        DBMS_OUTPUT.PUT_LINE('The addition of' || NUM1 
+        ||'and ' ||NUM2 ||'is'||NUM3 );
+END;
+/
+
+
+declare 
+	TEMPNUM NUMBER(3);
+begin
+	TEMPNUM := 30;
+	FIRST_PROC(TEMPNUM);
+        DBMS_OUTPUT.PUT_LINE('The TEMPNUM IS' || TEMPNUM );
+end;
+/
+
+
+CREATE OR REPLACE PROCEDURE FIRST_PROC
+(NUM1 IN NUMBER) AS
+
+          NUM2 NUMBER(3);
+          NUM3 NUMBER(3);
+BEGIN	
+	NUM2 := 10;
+	NUM3 := NUM1 + NUM2;
+        DBMS_OUTPUT.PUT_LINE('The addition of' || NUM1 
+        ||'and ' ||NUM2 ||'is'||NUM3 );
+END;
+/
+
+
+CREATE OR REPLACE PROCEDURE FIRST_PROC
+(NUM1 IN NUMBER) AS
+
+          NUM2 NUMBER(3);
+          NUM3 NUMBER(3);
+BEGIN	
+	NUM1 := 200;
+	NUM2 := 10;
+	NUM3 := NUM1 + NUM2;
+        DBMS_OUTPUT.PUT_LINE('The addition of' || NUM1 
+        ||'and ' ||NUM2 ||'is'||NUM3 );
+END;
+/
+
+
+
+CREATE OR REPLACE PROCEDURE FIRST_PROC
+(NUM1 OUT NUMBER) AS
+
+          NUM2 NUMBER(3);
+          NUM3 NUMBER(3);
+BEGIN	
+	NUM1 := 200;
+	NUM2 := 10;
+	NUM3 := NUM1 + NUM2;
+        DBMS_OUTPUT.PUT_LINE('The addition of' || NUM1 
+        ||'and ' ||NUM2 ||'is'||NUM3 );
+END;
+/
+
+***************************************************
+
+CREATE OR REPLACE PROCEDURE FIRST_PROC
+(NUM1 OUT NUMBER) AS
+
+          NUM2 NUMBER(3);
+          NUM3 NUMBER(3);
+BEGIN	
+        DBMS_OUTPUT.PUT_LINE('The addition of' || NUM1 
+        ||'and ' ||NUM2 ||'is'||NUM3 );
+
+	NUM1 := 200;
+	NUM2 := 10;
+	NUM3 := NUM1 + NUM2;
+        DBMS_OUTPUT.PUT_LINE('The addition of' || NUM1 
+        ||'and ' ||NUM2 ||'is'||NUM3 );
+END;
+/
+
+CREATE OR REPLACE FUNCTION FIRST_FUNC  
+(NUM1 OUT NUMBER) RETURN NUMBER AS
+
+          NUM2 NUMBER(3);
+          NUM3 NUMBER(3);
+BEGIN	
+        DBMS_OUTPUT.PUT_LINE('The addition of' || NUM1 
+        ||'and ' ||NUM2 ||'is'||NUM3 );
+
+	NUM1 := 200;
+	NUM2 := 10;
+	NUM3 := NUM1 + NUM2;
+        DBMS_OUTPUT.PUT_LINE('The addition of' || NUM1 
+        ||'and ' ||NUM2 ||'is'||NUM3 );
+END;
+/
+
+
+SQL > VARIABLE Avgsalary NUMBER
+
+SQL >
+BEGIN
+:Avgsalary := FIRST_FUNC ( 50);
+END ;
+/
+
+SQL > PRINT  Avgsalary
+
+
+
+CREATE OR REPLACE FUNCTION FIRST_FUNC  
+(NUM1 IN OUT NUMBER) RETURN NUMBER
+AS
+
+          NUM2 NUMBER(3);
+          NUM3 NUMBER(3);
+BEGIN	
+        DBMS_OUTPUT.PUT_LINE('The addition of' || NUM1 
+        ||'and ' ||NUM2 ||'is'||NUM3 );
+
+	NUM1 := 200;
+	NUM2 := 10;
+	NUM3 := NUM1 + NUM2;
+        DBMS_OUTPUT.PUT_LINE('The addition of' || NUM1 
+        ||'and ' ||NUM2 ||'is'||NUM3 );
+        return NUM3;
+END;
+/
+declare 
+	TEMPNUM NUMBER(3);
+	NEWNUM NUMBER(3);
+begin
+	TEMPNUM := 30;
+	NEWNUM := FIRST_PROC(TEMPNUM);
+        DBMS_OUTPUT.PUT_LINE('The TEMPNUM IS' || TEMPNUM );
+	DBMS_OUTPUT.PUT_LINE('The NEWNUM IS' || NEWNUM );
+end;
+/
+
+
+
+
+
+*****************************************************
+create or replace package first_pack as
+
+PROCEDURE FIRST_PROC (NUM1 IN OUT NUMBER);
+FUNCTION FIRST_FUNC  (NUM1 IN OUT NUMBER) RETURN NUMBER;
+
+end first_pack;
+/
+********************************************************
+create or replace package body first_pack as
+
+FUNCTION FIRST_FUNC  
+(NUM1 IN OUT NUMBER) RETURN NUMBER AS
+
+          NUM2 NUMBER(3);
+          NUM3 NUMBER(3);
+BEGIN	
+        DBMS_OUTPUT.PUT_LINE('The addition of' || NUM1 
+        ||'and ' ||NUM2 ||'is'||NUM3 );
+
+	NUM1 := 200;
+	NUM2 := 10;
+	NUM3 := NUM1 + NUM2;
+        DBMS_OUTPUT.PUT_LINE('The addition of' || NUM1 
+        ||'and ' ||NUM2 ||'is'||NUM3 );
+END FIRST_FUNC;
+
+PROCEDURE FIRST_PROC (NUM1 IN OUT NUMBER) AS
+
+          NUM2 NUMBER(3);
+          NUM3 NUMBER(3);
+BEGIN	
+        DBMS_OUTPUT.PUT_LINE('The addition of' || NUM1 
+        ||'and ' ||NUM2 ||'is'||NUM3 );
+
+	NUM1 := 200;
+	NUM2 := 10;
+	NUM3 := NUM1 + NUM2;
+        DBMS_OUTPUT.PUT_LINE('The addition of' || NUM1 
+        ||'and ' ||NUM2 ||'is'||NUM3 );
+END FIRST_PROC;
+
+END first_pack;
+/
+
+
+
+create or replace package body first_pack as
+
+PROCEDURE test as 
+begin
+     DBMS_OUTPUT.PUT_LINE('Hiiiiii');
+end TEST;
+
+FUNCTION FIRST_FUNC  
+(NUM1 IN OUT NUMBER) RETURN NUMBER AS
+
+          NUM2 NUMBER(3);
+          NUM3 NUMBER(3);
+BEGIN	
+        DBMS_OUTPUT.PUT_LINE('The addition of' || NUM1 
+        ||'and ' ||NUM2 ||'is'||NUM3 );
+        test; 
+	NUM1 := 200;
+	NUM2 := 10;
+	NUM3 := NUM1 + NUM2;
+        DBMS_OUTPUT.PUT_LINE('The addition of' || NUM1 
+        ||'and ' ||NUM2 ||'is'||NUM3 );
+END FIRST_FUNC;
+
+PROCEDURE FIRST_PROC (NUM1 IN OUT NUMBER) AS
+
+          NUM2 NUMBER(3);
+          NUM3 NUMBER(3);
+BEGIN	
+        DBMS_OUTPUT.PUT_LINE('The addition of' || NUM1 
+        ||'and ' ||NUM2 ||'is'||NUM3 );
+        test; 
+	NUM1 := 200;
+	NUM2 := 10;
+	NUM3 := NUM1 + NUM2;
+        DBMS_OUTPUT.PUT_LINE('The addition of' || NUM1 
+        ||'and ' ||NUM2 ||'is'||NUM3 );
+END FIRST_PROC;
+
+END first_pack;
+/
+
+
+SQL > VARIABLE Avgsalary NUMBER
+SQL >
+BEGIN
+:Avgsalary := 30;
+first_pack.first_proc(avgsalary);
+END ;
+/
+SQL > PRINT  Avgsalary
+
+
+SQL>	SET SERVEROUTPUT ON
+SQL > VARIABLE Avgsalary NUMBER
+SQL > exec first_pack.first_proc(avgsalary); 
+SQL > PRINT  Avgsalary
+
+
+
+CREATE or replace PROCEDURE  LOG_USAGE ( EMPNO_IN IN NUMBER, 
+                 MSG_IN IN VARCHAR2)
+IS
+BEGIN 
+	INSERT INTO dept2 VALUES (10,'ERP','NAGPUR');
+	COMMIT;
+END LOG_USAGE;
+
+CREATE PROCEDURE CHG_EMP
+IS
+BEGIN
+	UPDATE EMP SET SAL = SAL + 250
+		WHERE EMPNO = 7566;
+
+	LOG_USAGE(7566,20);  
+
+	UPDATE EMP SET SAL = SAL + 100
+		WHERE EMPNO = 7499;
+	rollback;
+END CHG_EMP; 
+/
+
+exec CHG_EMP;
+
+
+CREATE or replace PROCEDURE  LOG_USAGE ( EMPNO_IN IN NUMBER, 
+                 MSG_IN IN VARCHAR2)
+IS
+PRAGMA AUTONOMOUS_TRANSACTION;
+BEGIN 
+	INSERT INTO dept2 VALUES (10,'ERP','NAGPUR');
+	COMMIT;
+END LOG_USAGE;
+
+-------------------------------------------------------------------
+
+CREATE OR REPLACE PACKAGE dept_Data AS
+	TYPE deptcurtyp is ref cursor return dept%rowtype;
+	PROCEDURE dept_details(dept_cur IN OUT deptcurtyp);
+END dept_Data;
+/ 
+
+
+CREATE OR REPLACE PACKAGE BODY dept_Data AS 
+PROCEDURE dept_details(dept_cur IN OUT deptcurtyp) IS
+   dno number;
+   dnm varchar2(200);
+   dloc varchar2(200);
+BEGIN
+	OPEN dept_cur for SELECT * FROM dept;
+END dept_details;
+END dept_Data;
+/
+
+VARIABLE cv REFCURSOR
+
+set autoprint on
+
+execute dept_Data.dept_details(:cv);
+
+
+CREATE OR REPLACE PACKAGE BODY dept_Data AS 
+PROCEDURE dept_details(dept_cur IN OUT deptcurtyp) IS
+   dno number;
+   dnm varchar2(200);
+   dloc varchar2(200);
+BEGIN
+	OPEN dept_cur for SELECT * FROM dept;
+	fetch dept_cur into dno,dnm,dloc;
+	while (dept_cur%FOUND)
+	loop
+		dbms_output.put_line(dno || dnm || dloc);
+		fetch dept_cur into dno,dnm,dloc;
+	end loop;
+	close dept_cur;
+END dept_details;
+END dept_Data;
+/
+
+ 
+
+
+
+

@@ -1,0 +1,760 @@
+declare
+	cursor cdept IS
+	select deptno,dname,loc from dept;
+
+BEGIN
+for rdept in cdept
+loop
+	dbms_output.put_line(rdept.deptno||rdept.dname||rdept.loc);
+end loop;
+end;
+/
+
+
+******************************
+using for loop
+******************************
+
+
+declare 
+cursor cname is
+ 
+select	s.student_code,
+	s.student_name,
+	s.dept_code,
+	m.subject1,
+	m.subject2,
+	m.subject3,
+	m.subject1+m.subject2+m.subject3 as "total"
+	
+from 	student_masters s,student_marks m
+where 	s.student_code=m.student_code
+and 	s.dept_code=&dept;
+percentage number;
+begin
+	for rdept in cname
+	loop
+		percentage:=(rdept.subject1+rdept.subject2+rdept.subject3)/3;
+		dbms_output.put_line(rdept.student_code||'  '||rdept.dept_code||'  '||percentage);
+	end loop;
+end;
+/
+
+
+
+
+SQL> declare 
+  2  cursor cname is
+  3   
+  4  select s.student_code,
+  5   s.student_name,
+  6   s.dept_code,
+  7   m.subject1,
+  8   m.subject2,
+  9   m.subject3,
+ 10   m.subject1+m.subject2+m.subject3 as "total"
+ 11   
+ 12  from  student_masters s,student_marks m
+ 13  where  s.student_code=m.student_code
+ 14  and  s.dept_code=&dept;
+ 15  percentage number;
+ 16  begin
+ 17   for rdept in cname
+ 18   loop
+ 19    percentage:=(rdept.subject1+rdept.subject2+rdept.subject3)/3;
+ 20    dbms_output.put_line(rdept.student_code||'  '||rdept.dept_code||'  '||percentage);
+ 21   end loop;
+ 22  end;
+ 23  /
+Enter value for dept: 20
+old  14: and  s.dept_code=&dept;
+new  14: and  s.dept_code=20;
+1003  20  68.66666666666666666666666666666666666667
+1007  20  65
+1013  20  66
+1021  20  78.33333333333333333333333333333333333333
+1003  20  63
+1007  20  73.33333333333333333333333333333333333333
+1013  20  76
+1021  20  68.66666666666666666666666666666666666667
+1003  20  68.66666666666666666666666666666666666667
+1007  20  65
+1013  20  66
+1021  20  78.33333333333333333333333333333333333333
+1003  20  63
+1007  20  73.33333333333333333333333333333333333333
+1013  20  76
+1021  20  68.66666666666666666666666666666666666667
+
+PL/SQL procedure successfully completed.
+
+
+****************
+using fetch
+****************
+
+declare 
+cursor cname is
+
+select	s.student_code,
+	s.student_name,
+	m.subject1,
+	m.subject2,
+	m.subject3	
+from 	student_masters s,student_marks m
+where 	s.student_code=m.student_code
+and 	s.dept_code=&dept;
+	
+	name student_masters.student_name%type;
+	code student_masters.student_code%type;
+	sub1 student_marks.subject1%type;
+	sub2 student_marks.subject2%type;
+	sub3 student_marks.subject3%type;	
+
+	percentage number;
+begin
+	open cname;
+
+	--dbms_output.put_line(cname%rowcount);
+
+	fetch cname into code,name,sub1,sub2,sub3;
+
+while(cname%FOUND)
+loop
+				
+	exit when cname%NOTFOUND;
+
+	percentage:=(sub1+sub2+sub3)/3;
+	
+	dbms_output.put_line(name||'  '||code||'  '||percentage);
+	fetch cname into code,name,sub1,sub2,sub3;
+end loop;
+close cname;
+			
+end;
+/
+
+
+
+
+SQL> declare 
+  2  cursor cname is
+  3  
+  4  select s.student_code,
+  5   s.student_name,
+  6   m.subject1,
+  7   m.subject2,
+  8   m.subject3 
+  9  from  student_masters s,student_marks m
+ 10  where  s.student_code=m.student_code
+ 11  and  s.dept_code=&dept;
+ 12   
+ 13   name student_masters.student_name%type;
+ 14   code student_masters.student_code%type;
+ 15   sub1 student_marks.subject1%type;
+ 16   sub2 student_marks.subject2%type;
+ 17   sub3 student_marks.subject3%type; 
+ 18  
+ 19   percentage number;
+ 20  begin
+ 21   open cname;
+ 22  
+ 23   --dbms_output.put_line(cname%rowcount);
+ 24  
+ 25   fetch cname into code,name,sub1,sub2,sub3;
+ 26  
+ 27  while(cname%FOUND)
+ 28  loop
+ 29      
+ 30   exit when cname%NOTFOUND;
+ 31  
+ 32   percentage:=(sub1+sub2+sub3)/3;
+ 33   
+ 34   dbms_output.put_line(name||'  '||code||'  '||percentage);
+ 35   fetch cname into code,name,sub1,sub2,sub3;
+ 36  end loop;
+ 37  close cname;
+ 38     
+ 39  end;
+ 40  /
+Enter value for dept: 20
+old  11: and  s.dept_code=&dept;
+new  11: and  s.dept_code=20;
+Ajay  1003  68.66666666666666666666666666666666666667
+Mehul  1007  65
+Anil  1013  66
+Sumit  1021  78.33333333333333333333333333333333333333
+Ajay  1003  63
+Mehul  1007  73.33333333333333333333333333333333333333
+Anil  1013  76
+Sumit  1021  68.66666666666666666666666666666666666667
+Ajay  1003  68.66666666666666666666666666666666666667
+Mehul  1007  65
+Anil  1013  66
+Sumit  1021  78.33333333333333333333333333333333333333
+Ajay  1003  63
+Mehul  1007  73.33333333333333333333333333333333333333
+Anil  1013  76
+Sumit  1021  68.66666666666666666666666666666666666667
+
+PL/SQL procedure successfully completed.
+
+
+
+*********************************************
+use of if
+*********************************************
+
+
+declare 
+cursor cname is
+ 
+select	s.student_code,
+	s.student_name,
+	s.dept_code,
+	m.subject1,
+	m.subject2,
+	m.subject3,
+	m.subject1+m.subject2+m.subject3 as "total"
+	
+from 	student_masters s,student_marks m
+where 	s.student_code=m.student_code
+and 	s.dept_code=&dept;
+percentage number;
+begin
+	for rdept in cname
+	loop
+		percentage:=(rdept.subject1+rdept.subject2+rdept.subject3)/3;
+		dbms_output.put_line(rdept.student_code||'  '||rdept.dept_code||'  '||percentage);
+
+		if(percentage>=80) then
+		begin
+		dbms_output.put_line('A');
+		end;
+
+		elsif(percentage>=70 and percentage<80) then
+		begin
+		dbms_output.put_line('B');
+		end;
+	
+		elsif(percentage>=60 and percentage<70) then
+		begin
+		dbms_output.put_line('C');
+		end;
+		else
+		begin
+		dbms_output.put_line('D');
+		end;
+		end if;
+	end loop;
+end;
+/
+
+
+
+************************************
+parameterised cursor
+
+
+
+declare 
+cursor cname(dept number) is
+ 
+select	s.student_code,
+	s.student_name,
+	s.dept_code,
+	m.subject1,
+	m.subject2,
+	m.subject3,
+	m.subject1+m.subject2+m.subject3 as "total"
+	
+from 	student_masters s,student_marks m
+where 	s.student_code=m.student_code
+and 	s.dept_code=dept;
+percentage number;
+begin
+	for rdept in cname(20)
+	loop
+		percentage:=(rdept.subject1+rdept.subject2+rdept.subject3)/3;
+		dbms_output.put_line(rdept.student_code||'  '||rdept.dept_code||'  '||percentage);
+	end loop;
+end;
+/
+
+
+
+SQL> declare 
+  2  cursor cname(dept number) is
+  3   
+  4  select s.student_code,
+  5   s.student_name,
+  6   s.dept_code,
+  7   m.subject1,
+  8   m.subject2,
+  9   m.subject3,
+ 10   m.subject1+m.subject2+m.subject3 as "total"
+ 11   
+ 12  from  student_masters s,student_marks m
+ 13  where  s.student_code=m.student_code
+ 14  and  s.dept_code=dept;
+ 15  percentage number;
+ 16  begin
+ 17   for rdept in cname(20)
+ 18   loop
+ 19    percentage:=(rdept.subject1+rdept.subject2+rdept.subject3)/3;
+ 20    dbms_output.put_line(rdept.student_code||'  '||rdept.dept_code||'  '||percentage);
+ 21   end loop;
+ 22  end;
+ 23  /
+1003  20  68.66666666666666666666666666666666666667
+1007  20  65
+1013  20  66
+1021  20  78.33333333333333333333333333333333333333
+1003  20  63
+1007  20  73.33333333333333333333333333333333333333
+1013  20  76
+1021  20  68.66666666666666666666666666666666666667
+1003  20  68.66666666666666666666666666666666666667
+1007  20  65
+1013  20  66
+1021  20  78.33333333333333333333333333333333333333
+1003  20  63
+1007  20  73.33333333333333333333333333333333333333
+1013  20  76
+1021  20  68.66666666666666666666666666666666666667
+
+PL/SQL procedure successfully completed.
+
+
+***************************
+lab1 1.4
+***************************
+
+declare
+cursor cname is
+
+select 		min(staff_sal),dept_code from staff_masters
+where 		dept_code=&dept
+group by	dept_code;
+
+begin
+	for rname in cname
+loop
+	
+	dbms_output.put_line('Increase salary'||'  '||rname.min(staff_sal));
+end loop;
+end;
+/
+
+
+
+
+
+
+
+
+
+
+
+****************************************************************************
+exception
+****************************************************************************
+
+
+declare 
+cursor cname(dept number) is
+ 
+select	s.student_code,
+	s.student_name,
+	s.dept_code,
+	m.subject1,
+	m.subject2,
+	m.subject3,
+	m.subject1+m.subject2+m.subject3 as "total"
+	
+from 	student_masters s,student_marks m
+where 	s.student_code=m.student_code
+and 	s.dept_code=dept;
+percentage number;
+begin
+	for rdept in cname(2)
+	loop
+		percentage:=(rdept.subject1+rdept.subject2+rdept.subject3)/3;
+		dbms_output.put_line(rdept.student_code||'  '||rdept.dept_code||'  '||percentage);
+	end loop;
+exception
+when OTHERS then
+dbms_output.put_line('error.....');
+--when no_data_found then
+--dbms_output.put_line('error.....');
+
+
+end;
+/
+
+*********************************************************
+procedure..
+
+
+CREATE OR REPLACE FUNCTION FIRST_FUNC(DOB IN DATE)
+RETURN NUMBER
+AS
+AGE Number;
+
+BEGIN
+
+AGE:=FLOOR((SYSDATE-DOB)/365);
+
+return AGE;
+END;
+/
+
+
+DECLARE
+	TEMPNUM DATE;
+	NUM	NUMBER;
+BEGIN
+TEMPNUM:='30-MAR-2000';
+NUM:=FIRST_FUNC(TEMPNUM);
+DBMS_OUTPUT.PUT_LINE('AGE IS'||NUM);
+END;
+/
+
+
+
+SQL> DECLARE
+  2   TEMPNUM DATE;
+  3   NUM NUMBER;
+  4  BEGIN
+  5  TEMPNUM:='30-MAR-2000';
+  6  NUM:=FIRST_FUNC(TEMPNUM);
+  7  DBMS_OUTPUT.PUT_LINE('AGE IS'||NUM);
+  8  END;
+  9  /
+AGE IS13.6986301369863013698630136986301369863
+
+PL/SQL procedure successfully completed.
+
+
+*********************************************
+
+CREATE OR REPLACE procedure staff(code IN staff_masters.staff_code%type)
+AS
+name staff_masters.staff_name%type;
+
+BEGIN
+	select lower(staff_name) into name from staff_masters where staff_code=code;
+	DBMS_OUTPUT.PUT_LINE('NAME IS  '||name);
+
+END;
+/
+
+
+
+
+begin
+	staff(100005);
+end;
+/
+
+
+
+SQL> CREATE OR REPLACE procedure staff(code IN staff_masters.staff_code%type)
+  2  AS
+  3  name staff_masters.staff_name%type;
+  4  
+  5  BEGIN
+  6   select lower(staff_name) into name from staff_masters where staff_code=code;
+  7   DBMS_OUTPUT.PUT_LINE('NAME IS  '||name);
+  8  
+  9  END;
+ 10  /
+
+Procedure created.
+
+SQL> 
+SQL> begin
+  2   staff(100005);
+  3  end;
+  4  /
+NAME IS  john
+
+PL/SQL procedure successfully completed.
+
+***********************************3.4
+
+
+
+CREATE OR REPLACE procedure staff(code IN staff_masters.staff_code%type)
+AS
+name staff_masters.staff_name%type;
+
+BEGIN
+	select lower(staff_name) into name from staff_masters where staff_code=code;
+	DBMS_OUTPUT.PUT_LINE('NAME IS  '||name);
+exception
+when no_data_found then
+DBMS_OUTPUT.PUT_LINE('No data found');
+when others then
+DBMS_OUTPUT.PUT_LINE('other found');
+
+END;
+/
+
+begin
+	staff(10005);
+end;
+/
+
+
+
+
+SQL> CREATE OR REPLACE procedure staff(code IN staff_masters.staff_code%type)
+  2  AS
+  3  name staff_masters.staff_name%type;
+  4  
+  5  BEGIN
+  6   select lower(staff_name) into name from staff_masters where staff_code=code;
+  7   DBMS_OUTPUT.PUT_LINE('NAME IS  '||name);
+  8  exception
+  9  when no_data_found then
+ 10  DBMS_OUTPUT.PUT_LINE('No data found');
+ 11  when others then
+ 12  DBMS_OUTPUT.PUT_LINE('other found');
+ 13  
+ 14  END;
+ 15  /
+
+Procedure created.
+
+SQL> begin
+  2   staff(10005);
+  3  end;
+  4  /
+No data found
+
+PL/SQL procedure successfully completed.
+
+
+
+****************************************************************************3.3
+
+
+
+CREATE OR REPLACE PROCEDURE MANAGER(CODE IN STAFF_MASTERS.STAFF_CODE%TYPE,NAME OUT STAFF_MASTERS.STAFF_NAME%TYPE,DCODE OUT STAFF_MASTERS.DEPT_CODE%TYPE)
+AS
+begin
+	select b.staff_name,b.dept_code into name,dcode
+from 	staff_masters a,staff_masters b 
+where 	a.staff_code=CODE
+and 	a.mgr_code=b.staff_code;
+end;
+/
+a.staff_code=b.staff_code
+AND
+
+
+
+
+******************
+declare
+	c STAFF_MASTERS.STAFF_CODE%TYPE;
+	NME STAFF_MASTERS.STAFF_NAME%TYPE;
+	DCDE  STAFF_MASTERS.DEPT_CODE%TYPE;
+
+begin
+	c:=100006;
+	MANAGER(c,NME,DCDE);
+	DBMS_OUTPUT.PUT_LINE(NME||' '||DCDE);
+END;
+/
+
+
+
+*************
+
+SQL> CREATE OR REPLACE PROCEDURE MANAGER(CODE IN STAFF_MASTERS.STAFF_CODE%TYPE,NAME OUT STAFF_MASTER
+S.STAFF_NAME%TYPE,DCODE OUT STAFF_MASTERS.DEPT_CODE%TYPE)
+  2  AS
+  3  begin
+  4   select b.staff_name,b.dept_code into name,dcode
+  5  from  staff_masters a,staff_masters b 
+  6  where  a.staff_code=CODE
+  7  and  a.mgr_code=b.staff_code;
+  8  end;
+  9  /
+
+Procedure created.
+
+SQL> declare
+  2   c STAFF_MASTERS.STAFF_CODE%TYPE;
+  3   NME STAFF_MASTERS.STAFF_NAME%TYPE;
+  4   DCDE  STAFF_MASTERS.DEPT_CODE%TYPE;
+  5  
+  6  begin
+  7   c:=100006;
+  8   MANAGER(c,NME,DCDE);
+  9   DBMS_OUTPUT.PUT_LINE(NME||' '||DCDE);
+ 10  END;
+ 11  /
+John 10
+
+PL/SQL procedure successfully completed.
+
+
+
+
+************************************************************************3.7
+create or replace procedure pro
+as
+	cursor cname
+	is
+	select 	a.staff_name,b.dept_name,c.design_name,a.staff_sal
+	from 	staff_masters a,department_masters b,designation_masters c
+	where 	a.dept_code=b.dept_code
+	and	a.design_code=c.design_code;
+begin
+	for rname in cname
+loop
+	dbms_output.put_line(rname.staff_name||' '||rname.dept_name||' '||rname.design_name||' '||rname.staff_sal);
+end loop;
+exception
+when no_data_found then
+	dbms_output.put_line('no data found');
+end;
+/
+	
+
+
+begin
+	pro;
+end;
+/
+
+
+SQL> begin
+  2   pro;
+  3  end;
+  4  /
+Arvind Electronics Professor 17000
+Mohan Computer Science Professor 24000
+Anil Electricals Professor 50000
+John Computer Science Director 32000
+Allen Electronics Reader 100000
+Smith Electricals Reader 92000
+Raviraj Mechanics Professor 18000
+Rahul Electricals Professor 52000
+RAM Electronics Reader 32000
+
+PL/SQL procedure successfully completed.
+
+
+
+**************************************************************
+
+CREATE OR REPLACE PACKAGE PKF AS
+
+FUNCTION FUN(HDATE IN OUT DATE)
+RETURN NUMBER;
+
+PROCEDURE PRO(EXPNUM IN OUT Number);
+END PKF;
+/
+
+
+
+---BODY
+
+CREATE OR REPLACE PACKAGE BODY PKF AS
+
+FUNCTION FUN(HDATE IN OUT DATE)
+RETURN NUMBER
+AS
+CURSOR CNAME  IS
+
+SELECT 	STAFF_NAME,STAFF_SAL,HIREDATE FROM STAFF_MASTERS
+WHERE	HIREDATE=HDATE;
+
+EXP NUMBER;
+
+BEGIN
+FOR RFUN IN CNAME
+LOOP
+	EXP:=ROUND((SYSDATE-RFUN.HIREDATE)/365);
+	DBMS_OUTPUT.PUT_LINE('EXPERINECE '||EXP);
+END LOOP;
+RETURN EXP;
+END FUN;
+
+--PROCEDURE
+
+PROCEDURE PRO(EXPNUM IN OUT Number)
+AS
+ALLOWANCE NUMBER;
+
+BEGIN
+	IF(EXPNUM>5)  THEN
+	ALLOWANCE:=EXPNUM*3000;
+	DBMS_OUTPUT.PUT_LINE('ALLOWANCE IS   '||ALLOWANCE);
+	ELSE
+	DBMS_OUTPUT.PUT_LINE('NOT APPLICABLE');	
+	END IF;
+END PRO;
+END PKF;
+/
+
+
+
+***************
+
+CREATE OR REPLACE FUNCTION FUNC(HDATE IN OUT DATE)
+RETURN NUMBER
+AS
+CURSOR CNAME  IS
+
+SELECT 	STAFF_NAME,STAFF_SAL,HIREDATE FROM STAFF_MASTERS
+WHERE	HIREDATE=HDATE;
+
+EXP NUMBER;
+
+BEGIN
+FOR RFUN IN CNAME
+LOOP
+	EXP:=ROUND((SYSDATE-RFUN.HIREDATE)/365);
+	DBMS_OUTPUT.PUT_LINE('EXPERINECE '||EXP);
+END LOOP;
+RETURN EXP;
+END;
+/
+
+
+******************
+CREATE OR REPLACE PROCEDURE PRO(EXPNUM IN OUT Number)
+AS
+ALLOWANCE NUMBER;
+
+BEGIN
+	IF(EXPNUM>5)  THEN
+	ALLOWANCE:=EXPNUM*3000;
+	DBMS_OUTPUT.PUT_LINE('ALLOWANCE IS   '||ALLOWANCE);
+	ELSE
+	DBMS_OUTPUT.PUT_LINE('NOT APPLICABLE');	
+	END IF;
+END;
+/
+
+
+************************
+
+DECLARE
+H DATE;
+NUM NUMBER;
+BEGIN
+H:='15-JAN-03';
+NUM:=PKF.FUN(H);
+PKF.PRO(NUM);
+END;
+/
+
+
+

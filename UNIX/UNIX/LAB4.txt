@@ -1,0 +1,742 @@
+PIPES AND FILTERS
+
+1>
+
+
+[user15@DELL0708S-02VM7 swapnil]$ man ls >lsdoc
+
+
+
+-------------------------------------------------------------------------------
+2>
+
+
+[user15@DELL0708S-02VM7 swapnil]$ more lsdoc
+LS(1)                           User Commands                           LS(1)
+
+
+
+NAME
+       ls - list directory contents
+
+SYNOPSIS
+       ls [OPTION]... [FILE]...
+
+DESCRIPTION
+       List  information  about the FILEs (the current directory by default).
+       Sort entries alphabetically if none of -cftuSUX nor --sort.
+
+       Mandatory arguments to long options are mandatory  for  short  options
+       too.
+
+       -a, --all
+              do not hide entries starting with .
+
+       -A, --almost-all
+              do not list implied . and ..
+
+       --author
+              print the author of each file
+
+       -b, --escape
+              print octal escapes for nongraphic characters
+
+       --block-size=SIZE
+              use SIZE-byte blocks
+
+       -B, --ignore-backups
+              do not list implied entries ending with ~
+
+       -c     with  -lt:  sort by, and show, ctime (time of last modification
+              of file status information) with -l: show  ctime  and  sort  by
+              name otherwise: sort by ctime
+
+       -C     list entries by columns
+
+       --color[=WHEN]
+-
+
+
+-------------------------------------------------------------------------------
+3>
+
+[user15@DELL0708S-02VM7 swapnil]$ head -4 lsdoc
+LS(1)                           User Commands                           LS(1)
+
+-------------------------------------------------------------------------------
+4>
+
+[user15@DELL0708S-02VM7 swapnil]$ head -4 lsdoc
+LS(1)                           User Commands                           LS(1)
+
+
+
+[user15@DELL0708S-02VM7 swapnil]$
+[user15@DELL0708S-02VM7 swapnil]$ tail -7 lsdoc
+              info coreutils ls
+
+       should give you access to the complete manual.
+
+
+
+ls (coreutils) 5.2.1            February 2005                           LS(1)
+
+
+-------------------------------------------------------------------------------
+5>
+
+
+[user15@DELL0708S-02VM7 swapnil]$ rm lsdoc
+[user15@DELL0708S-02VM7 swapnil]$ ls
+C_prog  friends  help  newfriends  swap  temp_UNIX  users
+
+-------------------------------------------------------------------------------
+6>
+[user15@DELL0708S-02VM7 swapnil]$ sort -u -k3,3 friends|wc -l
+4
+
+
+-------------------------------------------------------------------------------
+7>
+
+
+[user15@DELL0708S-02VM7 swapnil]$ grep '^Ma*' friends
+Madhu   6966456 09/07/68
+Mano    7820022 09/07/68
+
+-------------------------------------------------------------------------------
+8>
+
+-------------------------------------------------------------------------------
+9>
+
+
+[user15@DELL0708S-02VM7 swapnil]$ find *
+C_prog
+C_prog/cfile.c
+friends
+temp
+-------------------------------------------------------------------------------
+
+10>
+
+
+[user15@DELL0708S-02VM7 swapnil]$ find -type d -print
+.
+./lab7
+./moduletest
+./lab4
+./c_cpp_on_unix
+./c_cpp_on_unix/lab2
+./c_cpp_on_unix/lab3
+./c_cpp_on_unix/lab1_assignment2
+./pcs
+./C_prog
+./lab5
+./lab6
+./lab10
+./lab10/10_2todo
+./lab9
+./lab9/assignment1
+./lab8
+./lab8/cpponunix
+./lab8/sss
+
+
+-------------------------------------------------------------------------------
+11>
+
+
+[user15@DELL0708S-02VM7 ~]$ find chap*
+chap1
+chap44
+chaphyh
+chapsdasd
+chap.txt
+
+-------------------------------------------------------------------------------
+12>
+
+
+[user15@DELL0708S-02VM7 swapnil]$ sort +0 friends
+Ajay    5546785 01/04/66
+David   8281292 09/09/60
+Jamil   2345215 08/09/67
+Madhu   6966456 09/07/68
+Mano    7820022 09/07/68
+Simmi   7864563 12/12/70
+
+
+-------------------------------------------------------------------------------
+13>
+METHOD 1:
+
+[user15@DELL0708S-02VM7 swapnil]$ tr '[a-z]' '[A-Z]'<friends
+MADHU   6966456 09/07/68
+JAMIL   2345215 08/09/67
+AJAY    5546785 01/04/66
+MANO    7820022 09/07/68
+DAVID   8281292 09/09/60
+SIMMI   7864563 12/12/70
+
+
+METHOD 2:
+
+[user15@DELL0708S-02VM7 swapnil]$ awk '{print toupper($0)}' friends
+MADHU   6966456 09/07/68
+JAMIL   2345215 08/09/67
+AJAY    5546785 01/04/66
+MANO    7820022 09/07/68
+DAVID   8281292 09/09/60
+SIMMI   7864563 12/12/70
+
+
+-------------------------------------------------------------------------------
+14>
+
+[user15@DELL0708S-02VM7 swapnil]$ find *
+C_prog
+C_prog/cfile.c
+dir
+friends
+temp
+
+[user15@DELL0708S-02VM7 swapnil]$ find * |<dir
+
+[user15@DELL0708S-02VM7 swapnil]$ cat dir
+C_prog
+C_prog/cfile.c
+friends
+temp
+
+-------------------------------------------------------------------------------
+15>
+
+
+[user15@DELL0708S-02VM7 swapnil]$ cat dir|ls -l|cut -c1-10,15-21
+total 16
+drwxrwxr-xuser15
+-rw-rw-r--user15
+-rw-rw-r--user15
+-rw-rw-r--user15
+
+
+-------------------------------------------------------------------------------
+16>
+
+
+
+-------------------------------------------------------------------------------
+17>
+
+
+METHOD 1:
+
+[user15@DELL0708S-02VM7 swapnil]$ cat dir|ls -l >abc
+
+[user15@DELL0708S-02VM7 swapnil]$ cat abc
+total 16
+-rw-rw-r--  1 user15 user15    0 Dec 22 07:06 abc
+drwxrwxr-x  2 user15 user15 4096 Dec 21 03:41 C_prog
+-rw-rw-r--  1 user15 user15   35 Dec 22 03:42 dir
+-rw-rw-r--  1 user15 user15  150 Dec 21 09:18 friends
+-rw-rw-r--  1 user15 user15   54 Dec 21 10:05 temp
+
+[user15@DELL0708S-02VM7 swapnil]$ cut abc -c1-10 >files
+
+[user15@DELL0708S-02VM7 swapnil]$ cat files
+total 16
+-rw-rw-r--
+drwxrwxr-x
+-rw-rw-r--
+-rw-rw-r--
+-rw-rw-r--
+
+
+METHOD 2:
+
+[user15@DELL0708S-02VM7 swapnil]$ cat dir|ls -l >files
+
+[user15@DELL0708S-02VM7 swapnil]$ cat files
+total 16
+drwxrwxr-x  2 user15 user15 4096 Dec 21 03:41 C_prog
+-rw-rw-r--  1 user15 user15   35 Dec 22 03:42 dir
+-rw-rw-r--  1 user15 user15    0 Dec 22 07:10 files
+-rw-rw-r--  1 user15 user15  150 Dec 21 09:18 friends
+-rw-rw-r--  1 user15 user15   54 Dec 21 10:05 temp
+
+[user15@DELL0708S-02VM7 swapnil]$ cat files|cut -c1-10
+total 16
+drwxrwxr-x
+-rw-rw-r--
+-rw-rw-r--
+-rw-rw-r--
+-rw-rw-r--
+
+
+
+-------------------------------------------------------------------------------
+18>
+
+[user15@DELL0708S-02VM7 swapnil]$ cat dir|ls -l|cut -c28-32 >sizes
+
+[user15@DELL0708S-02VM7 swapnil]$ cat sizes
+
+ 4096
+   35
+  269
+  150
+  321
+   54
+
+-------------------------------------------------------------------------------
+19>
+
+
+-------------------------------------------------------------------------------
+20>
+
+[user15@DELL0708S-02VM7 swapnil]$ who|wc -l
+38
+
+-------------------------------------------------------------------------------
+21>
+
+
+[user15@DELL0708S-02VM7 swapnil]$ wc -l friends
+6 friends
+
+-------------------------------------------------------------------------------
+22>
+
+
+[user15@DELL0708S-02VM7 swapnil]$ sort -n sizes|head -2
+
+   35
+
+-------------------------------------------------------------------------------
+23>
+
+[user15@DELL0708S-02VM7 lab4]$ cat emp.lst
+1001|rahul             |trainee  |systems   |06/06/90|25000
+1002|sundeep           |trainee  |systems   |16/07/92|25000
+1003|manoj             |trainee  |systems   |12/06/91|25000
+1004|swapnil           |trainee  |systems   |08/09/91|23000
+1005|shailesh          |mentor   |iLEARN    |12/05/85|40000
+1005|atharva           |clerk    |management|02/04/70|15000
+
+[user15@DELL0708S-02VM7 lab4]$ cat dept.lst
+01|systems   |1001
+02|iLEARN    |1005
+03|managenent|1005
+
+[user15@DELL0708S-02VM7 lab4]$ cat desig.lst
+tr|trainee
+cl|clerk
+mn|mentor
+
+
+-----<1>----------------------------------------------------------- 
+	
+[user15@DELL0708S-02VM7 lab4]$ ls -l
+total 12
+-rw-rw-r--  1 user15 user15  56 Dec 22 08:20 dept.lst
+-rw-rw-r--  1 user15 user15  29 Dec 22 08:22 desig.lst
+-rw-rw-r--  1 user15 user15 356 Dec 22 08:15 emp.lst
+
+
+[user15@DELL0708S-02VM7 lab4]$ ls -l|cut -c28-32
+
+  56
+  29
+ 356
+
+-----<2>----------------------------------------------------------- 
+
+[user15@DELL0708S-02VM7 lab4]$ cut -d"|" -f5,6 emp.lst|tail -1
+02/04/70|15000
+
+-----<3>----------------------------------------------------------- 
+
+[user15@DELL0708S-02VM7 lab4]$ cut -d"|" -f2,3 emp.lst >cfile1
+
+[user15@DELL0708S-02VM7 lab4]$ cat cfile1
+rahul             |trainee
+sundeep           |trainee
+manoj             |trainee
+swapnil           |trainee
+shailesh          |mentor
+atharva           |clerk
+
+-----<4>----------------------------------------------------------- 
+
+
+[user15@DELL0708S-02VM7 lab4]$ cut -d"|" -f1,3,5,6 emp.lst >cfile2
+
+[user15@DELL0708S-02VM7 lab4]$ cat cfile2
+1001|trainee  |06/06/90|25000
+1002|trainee  |16/07/92|25000
+1003|trainee  |12/06/91|25000
+1004|trainee  |08/09/91|23000
+1005|mentor   |12/05/85|40000
+1005|clerk    |02/04/70|15000
+
+-----<5>-----------------------------------------------------------
+ 
+[user15@DELL0708S-02VM7 lab4]$ paste cfile1 cfile2
+rahul             |trainee      1001|trainee  |06/06/90|25000
+sundeep           |trainee      1002|trainee  |16/07/92|25000
+manoj             |trainee      1003|trainee  |12/06/91|25000
+swapnil           |trainee      1004|trainee  |08/09/91|23000
+shailesh          |mentor       1005|mentor   |12/05/85|40000
+atharva           |clerk        1005|clerk    |02/04/70|15000
+
+
+-----<6>----------------------------------------------------------- 
+
+[user15@DELL0708S-02VM7 lab4]$ sort -r -t"|" +1 emp.lst
+1004|swapnil           |trainee  |systems   |08/09/91|23000
+1002|sundeep           |trainee  |systems   |16/07/92|25000
+1005|shailesh          |mentor   |iLEARN    |12/05/85|40000
+1001|rahul             |trainee  |systems   |06/06/90|25000
+1003|manoj             |trainee  |systems   |12/06/91|25000
+1005|atharva           |clerk    |management|02/04/70|15000
+
+
+
+-----<7>----------------------------------------------------------- 
+
+[user15@DELL0708S-02VM7 lab4]$ sort -t"|" +5 emp.lst|cut -d"|" -f 6 >srtf
+
+[user15@DELL0708S-02VM7 lab4]$ cat srtf
+15000
+23000
+25000
+25000
+25000
+40000
+
+
+-----<8>----------------------------------------------------------- 
+
+[user15@DELL0708S-02VM7 lab4]$ sort -t"|" +2 emp.lst
+1005|atharva           |clerk    |management|02/04/70|15000
+1005|shailesh          |mentor   |iLEARN    |12/05/85|40000
+1001|rahul             |trainee  |systems   |06/06/90|25000
+1004|swapnil           |trainee  |systems   |08/09/91|23000
+1003|manoj             |trainee  |systems   |12/06/91|25000
+1002|sundeep           |trainee  |systems   |16/07/92|25000
+
+-----<9>----------------------------------------------------------- 
+
+[user15@DELL0708S-02VM7 lab4]$ sort -t"/" -k +2 -k +1 emp.lst
+1005|atharva           |clerk    |management|02/04/70|15000
+1005|shailesh          |mentor   |iLEARN    |12/05/85|40000
+1001|rahul             |trainee  |systems   |06/06/90|25000
+1003|manoj             |trainee  |systems   |12/06/91|25000
+1002|sundeep           |trainee  |systems   |16/07/92|25000
+1004|swapnil           |trainee  |systems   |08/09/91|23000
+
+
+-----<10>----------------------------------------------------------- 
+
+[user15@DELL0708S-02VM7 lab4]$ cut -d"|" -f3 emp.lst|uniq
+trainee
+mentor
+clerk
+
+-----<11>----------------------------------------------------------- 
+
+[user15@DELL0708S-02VM7 lab4]$ cut -d"|" -f3 emp.lst|uniq -u
+mentor
+clerk
+
+-----<12>----------------------------------------------------------- 
+
+[user15@DELL0708S-02VM7 lab4]$ cut -d"|" -f3 emp.lst|uniq -c
+      4 trainee
+      1 mentor
+      1 clerk
+
+
+-----<13>----------------------------------------------------------- 
+
+[user15@DELL0708S-02VM7 lab4]$ cut -d"|" -f5 emp.lst|uniq -c
+      1 06/06/90
+      1 16/07/92
+      1 12/06/91
+      1 08/09/91
+      1 12/05/85
+      1 02/04/70
+
+-----<14>----------------------------------------------------------- 
+
+[user15@DELL0708S-02VM7 lab4]$ nl -w2 -v100 -i5 code
+100     tr|trainee
+105     cl|clerk
+110     mn|mentor
+
+-------------------------------------------------------------------------------
+24>
+
+
+[user15@DELL0708S-02VM7 swapnil]$ cat mumbai.lst
+2001|Raghu      |se             |elect     |15/05/75|12000|Mumbai
+2004|Sribalaji  |se             |computer  |04/07/77|15000|Mumbai
+2013|Ganeshbabu |manager        |hardware  |07/08/71|60000|Mumbai
+2012|Manu Sharma|se             |hardware  |05/07/72|13000|Mumbai
+6023|Saxena     |se             |elect     |18/10/74|55000|Mumbai
+6024|saksena    |se             |computer  |19/06/73|65000|Mumbai
+
+
+[user15@DELL0708S-02VM7 swapnil]$ cat pune.lst
+2001|Dwivedi    |se             |computer  |10/12/78|15000|Pune
+2003|Trivedi    |manager        |hr        |01/01/76|85000|Pune
+2009|Chaturvedi |se             |elect     |14/09/75|62000|Pune
+6000|Vishnu     |se             |hardware  |23/03/74|73000|Pune
+
+
+[user15@DELL0708S-02VM7 swapnil]$ cat ttc.lst
+6005|Sivabalan          |se             |admin  |22/08/75|18000|TTC
+6007|seema sharma       |manager        |computer|24/05/70|25000|TTC
+
+
+
+
+
+-----<1>-----------------------------------------------------------
+
+[user15@DELL0708S-02VM7 swapnil]$ grep -i 'Manu Sharma' mumbai.lst
+2012|Manu Sharma|se             |hardware  |05/07/72|13000|Mumbai
+
+
+
+
+-----<2>-----------------------------------------------------------
+
+[user15@DELL0708S-02VM7 swapnil]$ grep -i 'Manu Sharma' mumbai.lst|cut -d"|" -f1,4
+2012|hardware
+
+
+
+-----<3>-----------------------------------------------------------
+
+[user15@DELL0708S-02VM7 swapnil]$ grep -i 'manager' pune.lst >pqr
+
+[user15@DELL0708S-02VM7 swapnil]$ cat pqr
+2003|Trivedi    |manager        |hr        |01/01/76|85000|Pune
+
+[user15@DELL0708S-02VM7 swapnil]$ grep -i 'manager' ttc.lst >abc
+
+[user15@DELL0708S-02VM7 swapnil]$ cat abc
+6007|seema sharma       |manager        |computer|24/05/70|25000|TTc
+
+
+[user15@DELL0708S-02VM7 swapnil]$ grep -i 'manager' mumbai.lst >xyz
+
+[user15@DELL0708S-02VM7 swapnil]$ cat xyz
+2013|Ganeshbabu 	|manager        |hardware  |07/08/71|60000|Mumbai
+
+
+[user15@DELL0708S-02VM7 swapnil]$ cat <abc >>pqr
+[user15@DELL0708S-02VM7 swapnil]$ cat<xyz>>pqr
+
+[user15@DELL0708S-02VM7 swapnil]$ cat pqr
+2003|Trivedi    	|manager        |hr        |01/01/76|85000|Pune
+6007|seema sharma       |manager        |computer  |24/05/70|25000|TTc
+2013|Ganeshbabu 	|manager        |hardware  |07/08/71|60000|Mumbai
+6007|seema sharma       |manager        |computer  |24/05/70|25000|TTc
+
+
+
+
+-----<4>-----------------------------------------------------------
+
+
+[user15@DELL0708S-02VM7 swapnil]$ grep "se" mumbai.lst|uniq -c
+      1 2001|Raghu      |se             |elect     |15/05/75|12000|Mumbai
+      1 2004|Sribalaji  |se             |computer  |04/07/77|15000|Mumbai
+      1 2012|Manu Sharma|se             |hardware  |05/07/72|13000|Mumbai
+      1 6023|Saxena     |se             |elect     |18/10/74|55000|Mumbai
+      1 6024|saksena    |se             |computer  |19/06/73|65000|Mumbai
+
+[user15@DELL0708S-02VM7 swapnil]$ grep "se" mumbai.lst|wc -l
+5
+
+[user15@DELL0708S-02VM7 swapnil]$ grep "se" pune.lst|wc -l
+3
+
+[user15@DELL0708S-02VM7 swapnil]$ grep "se" ttc.lst|wc -l
+2
+
+
+
+-----<5>-----------------------------------------------------------
+
+
+[user15@DELL0708S-02VM7 swapnil]$ nl -w2 -v1 -i1 pune.lst
+ 1      2001|Dwivedi    |se             |computer  |10/12/78|15000|Pune
+ 2      2003|Trivedi    |manager        |hr        |01/01/76|85000|Pune
+ 3      2009|Chaturvedi |se             |elect     |14/09/75|62000|Pune
+ 4      6000|Vishnu     |se             |hardware  |23/03/74|73000|Pune
+
+[user15@DELL0708S-02VM7 swapnil]$ nl -w2 -v1 -i1 pune.lst|grep "hardware"
+ 4      6000|Vishnu     |se             |hardware  |23/03/74|73000|Pune
+
+
+
+
+-----<6>-----------------------------------------------------------
+
+
+[user15@DELL0708S-02VM7 swapnil]$ grep -v "hardware" mumbai.lst >nonhardware
+
+[user15@DELL0708S-02VM7 swapnil]$ cat nonhardware
+2001|Raghu      |se             |elect     |15/05/75|12000|Mumbai
+2004|Sribalaji  |se             |computer  |04/07/77|15000|Mumbai
+6023|Saxena     |se             |elect     |18/10/74|55000|Mumbai
+6024|saksena    |se             |computer  |19/06/73|65000|Mumbai
+
+
+
+
+-----<7>-----------------------------------------------------------
+
+
+[user15@DELL0708S-02VM7 swapnil]$ grep -v "manager" mumbai.lst|sort -r -t"/" +2
+2004|Sribalaji  |se             |computer  |04/07/77|15000|Mumbai
+2001|Raghu      |se             |elect     |15/05/75|12000|Mumbai
+6023|Saxena     |se             |elect     |18/10/74|55000|Mumbai
+6024|saksena    |se             |computer  |19/06/73|65000|Mumbai
+2012|Manu Sharma|se             |hardware  |05/07/72|13000|Mumbai
+
+
+[user15@DELL0708S-02VM7 swapnil]$ grep -v "manager" mumbai.lst|sort -r -t"/" +2|head -1
+2004|Sribalaji  |se             |computer  |04/07/77|15000|Mumbai
+
+
+
+
+-----<8>-----------------------------------------------------------
+
+
+[user15@DELL0708S-02VM7 pcs]$ grep -i 'seema sharma' mumbai.lst pune.lst ttc.lst|cut -d":" -f1
+ttc.lst
+
+
+
+
+
+-----<9>-----------------------------------------------------------
+
+[user15@DELL0708S-02VM7 swapnil]$ cut -d"|" -f2 mumbai.lst|grep -i -n "sax*"|grep -i  "sak*"
+5:Saxena
+6:saksena
+
+
+
+-----<10>-----------------------------------------------------------
+
+
+[user15@DELL0708S-02VM7 pcs]$ cut -d"|" -f3,6 pune.lst|egrep 'manager' >mgr
+
+[user15@DELL0708S-02VM7 pcs]$ cat mgr
+manager        |85000
+
+[user15@DELL0708S-02VM7 pcs]$ egrep '[50000,99999]' mgr
+manager        |85000
+
+
+
+
+
+-----<11>-----------------------------------------------------------
+
+
+
+[user15@DELL0708S-02VM7 pcs]$ awk '$1 > 2000 && $1 < 3000{print}' pune.lst
+2001|Dwivedi    |se             |computer  |10/12/78|15000|Pune
+2003|Trivedi    |manager        |hr        |01/01/76|85000|Pune
+2009|Chaturvedi |se             |elect     |14/09/75|62000|Pune
+
+
+[user15@DELL0708S-02VM7 pcs]$ awk '$1 > 2000 && $1 < 3000{print}' mumbai.lst
+2001|Raghu      |se             |elect     |15/05/75|12000|Mumbai
+2004|Sribalaji  |se             |computer  |04/07/77|15000|Mumbai
+2013|Ganeshbabu |manager        |hardware  |07/08/71|60000|Mumbai
+2012|Manu Sharma|se             |hardware  |05/07/72|13000|Mumbai
+
+[user15@DELL0708S-02VM7 pcs]$ awk '$1 > 2000 && $1 < 3000{print}' ttc.lst
+
+
+
+
+
+-----<12>-----------------------------------------------------------
+
+[user15@DELL0708S-02VM7 pcs]$ cat pune.lst|cut -d"/" -f1,2,3|egrep `date "+%m"`
+2001|Dwivedi    |se             |computer  |10/12/78|15000|Pune
+
+
+
+
+-----<13>-----------------------------------------------------------
+
+[user15@DELL0708S-02VM7 pcs]$ egrep -v -i -e "hr" -e "admin" pune.lst mumbai.lst ttc.lst >F1
+[user15@DELL0708S-02VM7 pcs]$ cat F1
+
+pune.lst:2001  |Dwivedi     |se             |computer  |10/12/78|15000|Pune
+pune.lst:2009  |Chaturvedi  |se             |elect     |14/09/75|62000|Pune
+pune.lst:6000  |Vishnu      |se             |hardware  |23/03/74|73000|Pune
+mumbai.lst:2001|Raghu       |se             |elect     |15/05/75|12000|Mumbai
+mumbai.lst:2004|Sribalaji   |se             |computer  |04/07/77|15000|Mumbai
+mumbai.lst:2013|Ganeshbabu  |manager        |hardware  |07/08/71|60000|Mumbai
+mumbai.lst:2012|Manu Sharma |se             |hardware  |05/07/72|13000|Mumbai
+mumbai.lst:6023|Saxena      |se             |elect     |18/10/74|55000|Mumbai
+mumbai.lst:6024|saksena     |se             |computer  |19/06/73|65000|Mumbai
+ttc.lst:6007   |seema sharma|manager        |computer  |24/05/70|25000|TTC
+
+
+
+
+
+-----<14>-----------------------------------------------------------
+
+
+[user15@DELL0708S-02VM7 pcs]$ egrep -i -e "dwivedi" -e "trivedi" -e "chaturvedi" pune.lst
+2001|Dwivedi    |se             |computer  |10/12/78|15000|Pune
+2003|Trivedi    |manager        |hr        |01/01/76|85000|Pune
+2009|Chaturvedi |se             |elect     |14/09/75|62000|Pune
+
+
+
+
+-----<15>-----------------------------------------------------------
+
+
+[user15@DELL0708S-02VM7 pcs]$ egrep -i -e "hr" -e "admin" pune.lst mumbai.lst ttc.lst|sort -t"|" -r +2
+ttc.lst:6005 |Sivabalan      |se             |admin  |22/08/75|18000|TTC
+pune.lst:2003|Trivedi        |manager        |hr     |01/01/76|85000|Pune
+
+
+
+
+-----------------------------------------------------------------------
+25>STRETCHED ASSIGNMENT :
+
+[user15@DELL0708S-02VM7 pcs]$ cut -d" " -f4 date >>sequence
+[user15@DELL0708S-02VM7 pcs]$ cut -d" " -f5 date >>sequence
+[user15@DELL0708S-02VM7 pcs]$ cut -d" " -f1 date >>sequence
+[user15@DELL0708S-02VM7 pcs]$ cut -d" " -f3 date >>sequence
+[user15@DELL0708S-02VM7 pcs]$ cut -d" " -f2 date >>sequence
+[user15@DELL0708S-02VM7 pcs]$ cut -d" " -f6 date >>sequence
+[user15@DELL0708S-02VM7 pcs]$ cat date
+Mon Dec 23 08:49:02 IST 2013
+
+[user15@DELL0708S-02VM7 pcs]$ cat sequence
+08:49:02
+IST
+Mon
+23
+Dec
+2013

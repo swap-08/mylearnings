@@ -1,0 +1,6 @@
+<!ELEMENT BDate ( date)+ >
+<!ELEMENT date ( day,month,year)+ >
+<!ELEMENT day ( #PCDATA)>
+<!ELEMENT month ( #PCDATA)>
+<!ELEMENT year ( #PCDATA)>
+

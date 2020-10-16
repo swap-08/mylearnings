@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<xsl:stylesheet version="1.0"
+ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <xsl:template match="/">
+
+    <table border="1" >
+      <xsl:for-each select="movies/movie" >
+        <tr>
+          <xsl:for-each select="actor">
+            <td>
+              <h1>
+                <xsl:value-of select="."/>
+              </h1>
+            </td>
+          </xsl:for-each>
+        </tr>
+        <tr>
+          <td>
+            <h1>
+              <xsl:value-of select="title"/>
+            </h1>
+          </td>
+
+        </tr>
+      </xsl:for-each>
+
+    </table>
+  </xsl:template>
+</xsl:stylesheet>
